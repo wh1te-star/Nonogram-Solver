@@ -1,0 +1,17 @@
+out/
+build/ 
+*.exe
+*.dll
+*.o
+*.obj
+
+.vs/
+*.vcxproj.user
+*.suo
+
+.git/
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
