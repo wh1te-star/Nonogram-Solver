@@ -25,21 +25,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(imgui_)
 
-# --- 2.5. Fetch glad (OpenGL Loader) ---
-FetchContent_Declare(
-    glad_
-    GIT_REPOSITORY https://github.com/Dav1dde/glad.git
-    GIT_TAG        v2.0.8 # Stable version
-    
-    # ★ 解決策：gladのビルドオプションを設定する
-    CMAKE_ARGS 
-        -DGLAD_API=gl=4.6      # 使用するOpenGLバージョンを指定
-        -DGLAD_PROFILE=core    # コアプロファイルを使う
-        -DGLAD_ALL_LANGUAGES=ON # 全ての言語でヘッダーを生成
-        -DGLAD_EXPORT=ON       # エクスポートをONにする
-)
-FetchContent_MakeAvailable(glad_)
-
 # --- 3. Find System OpenGL (Rendering) ---
 # Necessary for the OpenGL rendering backend
 find_package(OpenGL REQUIRED)
@@ -88,9 +73,9 @@ add_library(glad STATIC
     ${GLAD_C}
 )
 
-# インクルードパスの設定
 target_include_directories(glad PUBLIC
     ${GLAD_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/Rendering/RenderingSystem
 )
 
 
@@ -99,7 +84,7 @@ target_include_directories(glad PUBLIC
 add_executable(
     NonogramSolverCore
     "main.cpp"
-    # Add other core source files (.cpp) here as needed
+    "Rendering/RenderingSystem/RenderingSystem.cpp"
 )
 
 
