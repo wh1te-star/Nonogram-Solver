@@ -3,8 +3,8 @@
 
 
 #include <vector>
-#include "Board/BoardLength/BoardLength.h"
-#include "Hint/HintNumber/HintNumber.h"
+#include "BoardLength.h"
+#include "HintNumber.h"
 
 class CellIndex {
 protected:

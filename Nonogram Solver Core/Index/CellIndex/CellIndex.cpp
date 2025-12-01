@@ -1,8 +1,8 @@
-#include "Index/CellIndex/CellIndex.h"
+#include "CellIndex.h"
 
 #include <algorithm>
 #include <vector>
-#include "Board/BoardLength/BoardLength.h"
+#include "BoardLength.h"
 
 
 CellIndex::CellIndex(int index) : index(index) {}

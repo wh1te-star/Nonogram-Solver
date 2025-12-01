@@ -1,9 +1,9 @@
-#include "Index/Coordinate/Coordinate.h"
+#include "Coordinate.h"
 
-#include "Index/CellIndex/RowIndex.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Board/BoardLength/ColumnLength.h"
+#include "RowIndex.h"
+#include "ColumnIndex.h"
+#include "RowLength.h"
+#include "ColumnLength.h"
 
 Coordinate::Coordinate(RowIndex rowIndex, ColumnIndex columnIndex) :
     rowIndex(rowIndex), columnIndex(columnIndex) {}

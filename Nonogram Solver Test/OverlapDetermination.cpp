@@ -1,9 +1,9 @@
 #include "pch.h"
 
 #include <vector>
-#include "Algorithm/OverlapDeterminationAlgorithm/OverlapDeterminationAlgorithm.h"
-#include "Algorithm/FindLeftMostPlacementAlgorithm/FindLeftMostPlacementAlgorithm.h"
-#include "Algorithm/FindRightMostPlacementAlgorithm/FindRightMostPlacementAlgorithm.h"
+#include "OverlapDeterminationAlgorithm.h"
+#include "FindLeftMostPlacementAlgorithm.h"
+#include "FindRightMostPlacementAlgorithm.h"
 
 
 void leftMostPlacementTest(

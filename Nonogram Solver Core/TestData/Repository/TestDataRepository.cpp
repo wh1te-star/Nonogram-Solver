@@ -1,5 +1,5 @@
-#include "TestData/Repository/TestDataRepository.h"
-#include "Hint/HintNumber/HintNumber.h"
+#include "TestDataRepository.h"
+#include "HintNumber.h"
 #include <sstream>
 #include <cassert>
 

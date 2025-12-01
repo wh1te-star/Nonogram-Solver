@@ -1,4 +1,4 @@
-#include "Algorithm/FindRightMostPlacementAlgorithm/FindRightMostPlacementAlgorithm.h"
+#include "FindRightMostPlacementAlgorithm.h"
 
 
 Placement FindRightMostPlacementAlgorithm::run(

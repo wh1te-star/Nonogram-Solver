@@ -7,13 +7,13 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_internal.h"
-#include "Rendering/FontData/FontData.h"
-#include "Rendering/TableRenderer/TableRenderer.h"
-#include "TestData/Repository/TestDataRepository.h"
-#include "Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.h"
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
-#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
-#include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
+#include "FontData.h"
+#include "TableRenderer.h"
+#include "TestDataRepository.h"
+#include "BacktrackAlgorithm.h"
+#include "SharedBacktrackBoard.h"
+#include "SharedBacktrackStack.h"
+#include "SharedHighlightIndexes.h"
 
 
 RenderingSystem::RenderingSystem() :

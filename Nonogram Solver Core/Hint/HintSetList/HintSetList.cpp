@@ -1,7 +1,7 @@
-#include "Hint/HintSetList/HintSetList.h"
+#include "HintSetList.h"
 
 #include <algorithm>
-#include "Hint/HintSet/HintSet.h"
+#include "HintSet.h"
 
 
 HintSetList::HintSetList(std::vector<HintSet> hintSetList) :

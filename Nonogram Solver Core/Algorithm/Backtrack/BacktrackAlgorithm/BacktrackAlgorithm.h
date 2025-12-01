@@ -4,11 +4,11 @@
 
 #include <atomic>
 #include <thread>
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
-#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
-#include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
+#include "SharedBacktrackBoard.h"
+#include "SharedBacktrackStack.h"
+#include "SharedHighlightIndexes.h"
+#include "Line.h"
+#include "HintSet.h"
 
 class BacktrackAlgorithm {
 private:

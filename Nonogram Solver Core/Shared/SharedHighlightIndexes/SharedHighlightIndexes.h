@@ -3,8 +3,8 @@
 
 
 #include <mutex>
-#include "Rendering/HighlightIndexes/HighlightIndexes.h"
-#include "Rendering/TableRenderer/TableRenderer.h"
+#include "HighlightIndexes.h"
+#include "TableRenderer.h"
 
 class SharedHighlightIndexes {
 private:

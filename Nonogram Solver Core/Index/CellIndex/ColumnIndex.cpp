@@ -1,9 +1,9 @@
-#include "Index/CellIndex/ColumnIndex.h"
+#include "ColumnIndex.h"
 
 #include <algorithm>
 #include <vector>
-#include "Index/CellIndex/CellIndex.h"
-#include "Board/BoardLength/ColumnLength.h"
+#include "CellIndex.h"
+#include "ColumnLength.h"
 
 ColumnIndex::ColumnIndex(int index) : CellIndex(index) {}
 

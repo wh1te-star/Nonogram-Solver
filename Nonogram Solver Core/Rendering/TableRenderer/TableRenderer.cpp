@@ -1,4 +1,4 @@
-#include "Rendering/TableRenderer/TableRenderer.h"
+#include "TableRenderer.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -7,16 +7,16 @@
 #include "imgui_impl_opengl3.h"
 #include "imgui_internal.h"
 #include <string>
-#include "Board/BacktrackBoard/BacktrackBoard.h"
-#include "Rendering/FontData/FontData.h"
-#include "Index/CellIndex/RowIndex.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Board/BoardLength/ColumnLength.h"
-#include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
-#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
-#include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
+#include "BacktrackBoard.h"
+#include "FontData.h"
+#include "RowIndex.h"
+#include "ColumnIndex.h"
+#include "RowLength.h"
+#include "ColumnLength.h"
+#include "BacktrackStack.h"
+#include "SharedBacktrackBoard.h"
+#include "SharedBacktrackStack.h"
+#include "SharedHighlightIndexes.h"
 
 
 TableRenderer::TableRenderer(){}

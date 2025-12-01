@@ -1,10 +1,10 @@
-#include "Placement/Placement/Placement.h"
+#include "Placement.h"
 
 #include <cassert>
-#include "Cell/Cell/Cell.h"
-#include "Index/Coordinate/Coordinate.h"
-#include "Placement/Placement/RowPlacement.h"
-#include "Placement/Placement/ColumnPlacement.h"
+#include "Cell.h"
+#include "Coordinate.h"
+#include "RowPlacement.h"
+#include "ColumnPlacement.h"
 
 
 Placement::Placement(std::vector<Cell> placement) :

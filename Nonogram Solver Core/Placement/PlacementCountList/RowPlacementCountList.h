@@ -2,9 +2,9 @@
 #define ROWPLACEMENTCOUNTLIST_H
 
 
-#include "Placement/PlacementCountList/PlacementCountList.h"
-#include "Placement/PlacementCount/PlacementCount.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "PlacementCountList.h"
+#include "PlacementCount.h"
+#include "RowIndex.h"
 
 class RowPlacementCountList : public PlacementCountList {
 public:

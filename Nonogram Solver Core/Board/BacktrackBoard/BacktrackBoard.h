@@ -2,9 +2,9 @@
 #define BACKTRACKBOARD_H
 
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Placement/PlacementCountList/RowPlacementCountList.h"
-#include "Placement/PlacementCountList/ColumnPlacementCountList.h"
+#include "NonogramBoard.h"
+#include "RowPlacementCountList.h"
+#include "ColumnPlacementCountList.h"
 
 class BacktrackBoard {
 private:

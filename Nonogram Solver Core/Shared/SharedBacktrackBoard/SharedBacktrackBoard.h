@@ -3,8 +3,8 @@
 
 
 #include <mutex>
-#include "Board/BacktrackBoard/BacktrackBoard.h"
-#include "Rendering/TableRenderer/TableRenderer.h"
+#include "BacktrackBoard.h"
+#include "TableRenderer.h"
 
 class SharedBacktrackBoard {
 private:

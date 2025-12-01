@@ -2,7 +2,7 @@
 #define ROWLENGTH_H
 
 
-#include "Board/BoardLength/BoardLength.h"
+#include "BoardLength.h"
 class RowIndex;
 
 class RowLength : public BoardLength {

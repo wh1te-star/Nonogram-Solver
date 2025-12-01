@@ -3,7 +3,7 @@
 
 
 #include <mutex>
-#include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
+#include "BacktrackStack.h"
 
 class SharedBacktrackStack {
 private:

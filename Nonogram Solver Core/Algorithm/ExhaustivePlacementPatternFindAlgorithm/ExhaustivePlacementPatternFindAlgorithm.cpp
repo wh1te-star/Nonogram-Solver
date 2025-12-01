@@ -1,6 +1,6 @@
-#include "Algorithm/ExhaustivePlacementPatternFindAlgorithm/ExhaustivePlacementPatternFindAlgorithm.h"
+#include "ExhaustivePlacementPatternFindAlgorithm.h"
 
-#include "Board/Line/Line.h"
+#include "Line.h"
 
 
 std::vector<Placement> ExhaustivePlacementPatternFindAlgorithm::run(

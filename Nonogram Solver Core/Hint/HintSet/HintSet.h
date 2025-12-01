@@ -3,8 +3,8 @@
 
 
 #include <vector>
-#include "Index/CellIndex/CellIndex.h"
-#include "Hint/HintNumber/HintNumber.h"
+#include "CellIndex.h"
+#include "HintNumber.h"
 
 class HintSet {
 private:

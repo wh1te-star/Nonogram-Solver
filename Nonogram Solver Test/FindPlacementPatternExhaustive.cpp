@@ -6,7 +6,7 @@
 #include <fstream>
 #include <string>
 #include <stdexcept>
-#include "Algorithm/ExhaustivePlacementPatternFindAlgorithm/ExhaustivePlacementPatternFindAlgorithm.h"
+#include "ExhaustivePlacementPatternFindAlgorithm.h"
 
 
 const std::string projectName = "Nonogram Solver Test";

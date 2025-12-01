@@ -2,8 +2,8 @@
 #define BACKTRACKSTACK_H
 
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
+#include "Line.h"
+#include "HintSet.h"
 
 class BacktrackStack {
 private:

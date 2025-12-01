@@ -1,4 +1,4 @@
-#include "TestData/Repository/TestDataRepository.h"
+#include "TestDataRepository.h"
 
 std::string TestDataRepository::GetDifficultColumnHintString(){
 	return R"###(

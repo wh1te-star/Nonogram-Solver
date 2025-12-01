@@ -1,4 +1,4 @@
-#include "Rendering/HighlightIndexes/HighlightIndexes.h"
+#include "HighlightIndexes.h"
 
 
 HighlightIndexes::HighlightIndexes(){}

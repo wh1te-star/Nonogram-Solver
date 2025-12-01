@@ -1,4 +1,4 @@
-﻿#include "Rendering/RenderingSystem/RenderingSystem.h"
+﻿#include "RenderingSystem.h"
 
 int main() {
 	RenderingSystem renderingSystem = RenderingSystem();

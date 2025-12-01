@@ -3,18 +3,18 @@
 
 
 #include <vector>
-#include "Board/BoardLength/RowLength.h"
-#include "Board/BoardLength/ColumnLength.h"
-#include "Cell/CellVector2D/CellVector2D.h"
-#include "Cell/CellColor/CellColor.h"
-#include "Index/Coordinate/Coordinate.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
-#include "Board/Line/Row.h"
-#include "Board/Line/Column.h"
-#include "Placement/Placement/Placement.h"
-#include "Placement/Placement/RowPlacement.h"
-#include "Placement/Placement/ColumnPlacement.h"
+#include "RowLength.h"
+#include "ColumnLength.h"
+#include "CellVector2D.h"
+#include "CellColor.h"
+#include "Coordinate.h"
+#include "ColumnIndex.h"
+#include "RowIndex.h"
+#include "Row.h"
+#include "Column.h"
+#include "Placement.h"
+#include "RowPlacement.h"
+#include "ColumnPlacement.h"
 
 class Board {
 private:

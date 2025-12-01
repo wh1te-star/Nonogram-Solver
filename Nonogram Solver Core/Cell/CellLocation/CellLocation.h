@@ -2,8 +2,8 @@
 #define CELLLOCATION_H
 
 
-#include "Index/Coordinate/Coordinate.h"
-#include "Cell/Cell/Cell.h"
+#include "Coordinate.h"
+#include "Cell.h"
 
 class CellLocation {
 private:

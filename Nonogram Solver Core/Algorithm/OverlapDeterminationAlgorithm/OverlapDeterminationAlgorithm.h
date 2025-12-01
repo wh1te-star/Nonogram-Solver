@@ -3,10 +3,10 @@
 
 
 #include <vector>
-#include "Cell/Cell/Cell.h"
-#include "Board/Line/Column.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Placement/Placement/ColumnPlacement.h"
+#include "Cell.h"
+#include "Column.h"
+#include "HintSet.h"
+#include "ColumnPlacement.h"
 
 class OverlapDeterminationAlgorithm {
 public:

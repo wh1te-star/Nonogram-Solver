@@ -1,8 +1,8 @@
-#include "Algorithm/OverlapDeterminationAlgorithm/OverlapDeterminationAlgorithm.h"
+#include "OverlapDeterminationAlgorithm.h"
 
-#include "Algorithm/FindLeftMostPlacementAlgorithm/FindLeftMostPlacementAlgorithm.h"
-#include "Algorithm/FindRightMostPlacementAlgorithm/FindRightMostPlacementAlgorithm.h"
-#include "Board/Line/Line.h"
+#include "FindLeftMostPlacementAlgorithm.h"
+#include "FindRightMostPlacementAlgorithm.h"
+#include "Line.h"
 
 
 Line OverlapDeterminationAlgorithm::run(

@@ -1,4 +1,4 @@
-#include "Board/BoardLength/BoardLength.h"
+#include "BoardLength.h"
 
 BoardLength::BoardLength(int length) : length(length) {}
 

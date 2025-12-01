@@ -1,4 +1,4 @@
-#include "Hint/HintNumber/HintNumber.h"
+#include "HintNumber.h"
 
 HintNumber::HintNumber(int number) : number(number) {}
 

@@ -75,7 +75,39 @@ add_library(glad STATIC
 
 target_include_directories(glad PUBLIC
     ${GLAD_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/Backtrack/BacktrackAlgorithm
+	${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/Backtrack/BacktrackStack
+	${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/ExhaustivePlacementPatternFindAlgorithm
+	${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/FindLeftMostPlacementAlgorithm
+	${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/FindRightMostPlacementAlgorithm
+	${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/OverlapDeterminationAlgorithm
+	${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/PlacementPatternCountAlgorithm
+	${CMAKE_CURRENT_SOURCE_DIR}/Board/BacktrackBoard
+	${CMAKE_CURRENT_SOURCE_DIR}/Board/Board
+	${CMAKE_CURRENT_SOURCE_DIR}/Board/BoardLength
+	${CMAKE_CURRENT_SOURCE_DIR}/Board/Line
+	${CMAKE_CURRENT_SOURCE_DIR}/Board/NonogramBoard
+	${CMAKE_CURRENT_SOURCE_DIR}/Cell/Cell
+	${CMAKE_CURRENT_SOURCE_DIR}/Cell/CellColor
+	${CMAKE_CURRENT_SOURCE_DIR}/Cell/CellLocation
+	${CMAKE_CURRENT_SOURCE_DIR}/Cell/CellVector2D
+	${CMAKE_CURRENT_SOURCE_DIR}/Hint/HintNumber
+	${CMAKE_CURRENT_SOURCE_DIR}/Hint/HintSet
+	${CMAKE_CURRENT_SOURCE_DIR}/Hint/HintSetList
+	${CMAKE_CURRENT_SOURCE_DIR}/Index/CellIndex
+	${CMAKE_CURRENT_SOURCE_DIR}/Index/Coordinate
+	${CMAKE_CURRENT_SOURCE_DIR}/Placement/Placement
+	${CMAKE_CURRENT_SOURCE_DIR}/Placement/PlacementCount
+	${CMAKE_CURRENT_SOURCE_DIR}/Placement/PlacementCountList
+	${CMAKE_CURRENT_SOURCE_DIR}/Rendering/FontData
+	${CMAKE_CURRENT_SOURCE_DIR}/Rendering/HighlightIndexes
 	${CMAKE_CURRENT_SOURCE_DIR}/Rendering/RenderingSystem
+	${CMAKE_CURRENT_SOURCE_DIR}/Rendering/TableRenderer
+	${CMAKE_CURRENT_SOURCE_DIR}/Shared/SharedBacktrackBoard
+	${CMAKE_CURRENT_SOURCE_DIR}/Shared/SharedBacktrackStack
+	${CMAKE_CURRENT_SOURCE_DIR}/Shared/SharedHighlightIndexes
+	${CMAKE_CURRENT_SOURCE_DIR}/TestData/Repository
+	${CMAKE_CURRENT_SOURCE_DIR}/TestData/TestData
 )
 
 
@@ -84,7 +116,52 @@ target_include_directories(glad PUBLIC
 add_executable(
     NonogramSolverCore
     "main.cpp"
-    "Rendering/RenderingSystem/RenderingSystem.cpp"
+	"Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.cpp"
+	"Algorithm/Backtrack/BacktrackStack/BacktrackStack.cpp"
+	"Algorithm/ExhaustivePlacementPatternFindAlgorithm/ExhaustivePlacementPatternFindAlgorithm.cpp"
+	"Algorithm/FindLeftMostPlacementAlgorithm/FindLeftMostPlacementAlgorithm.cpp"
+	"Algorithm/FindRightMostPlacementAlgorithm/FindRightMostPlacementAlgorithm.cpp"
+	"Algorithm/OverlapDeterminationAlgorithm/OverlapDeterminationAlgorithm.cpp"
+	"Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.cpp"
+	"Board/BacktrackBoard/BacktrackBoard.cpp"
+	"Board/Board/Board.cpp"
+	"Board/BoardLength/BoardLength.cpp"
+	"Board/BoardLength/ColumnLength.cpp"
+	"Board/BoardLength/RowLength.cpp"
+	"Board/Line/Column.cpp"
+	"Board/Line/Line.cpp"
+	"Board/Line/Row.cpp"
+	"Board/NonogramBoard/NonogramBoard.cpp"
+	"Cell/Cell/Cell.cpp"
+	"Cell/CellLocation/CellLocation.cpp"
+	"Hint/HintNumber/HintNumber.cpp"
+	"Hint/HintSet/HintSet.cpp"
+	"Hint/HintSetList/ColumnHintSetList.cpp"
+	"Hint/HintSetList/HintSetList.cpp"
+	"Hint/HintSetList/RowHintSetList.cpp"
+	"Index/CellIndex/CellIndex.cpp"
+	"Index/CellIndex/ColumnIndex.cpp"
+	"Index/CellIndex/RowIndex.cpp"
+	"Index/Coordinate/Coordinate.cpp"
+	"Placement/Placement/ColumnPlacement.cpp"
+	"Placement/Placement/Placement.cpp"
+	"Placement/Placement/RowPlacement.cpp"
+	"Placement/PlacementCount/PlacementCount.cpp"
+	"Placement/PlacementCountList/ColumnPlacementCountList.cpp"
+	"Placement/PlacementCountList/PlacementCountList.cpp"
+	"Placement/PlacementCountList/RowPlacementCountList.cpp"
+	"Rendering/FontData/FontData.cpp"
+	"Rendering/HighlightIndexes/HighlightIndexes.cpp"
+	"Rendering/RenderingSystem/RenderingSystem.cpp"
+	"Rendering/TableRenderer/TableRenderer.cpp"
+	"Shared/SharedBacktrackBoard/SharedBacktrackBoard.cpp"
+	"Shared/SharedBacktrackStack/SharedBacktrackStack.cpp"
+	"Shared/SharedHighlightIndexes/SharedHighlightIndexes.cpp"
+	"TestData/Repository/TestDataRepository.cpp"
+	"TestData/TestData/TestDataDifficult.cpp"
+	"TestData/TestData/TestDataEasy.cpp"
+	"TestData/TestData/TestDataLambda.cpp"
+	"TestData/TestData/TestDataLarge.cpp"
 )
 
 

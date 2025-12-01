@@ -2,8 +2,8 @@
 #define COLUMN_H
 
 
-#include "Board/Line/Line.h"
-#include "Index/Coordinate/Coordinate.h"
+#include "Line.h"
+#include "Coordinate.h"
 
 class Column : public Line {
 public:

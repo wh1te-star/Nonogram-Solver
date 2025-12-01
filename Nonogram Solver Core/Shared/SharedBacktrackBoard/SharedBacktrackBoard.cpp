@@ -1,4 +1,4 @@
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
+#include "SharedBacktrackBoard.h"
 
 #include <atomic>
 #include <thread>

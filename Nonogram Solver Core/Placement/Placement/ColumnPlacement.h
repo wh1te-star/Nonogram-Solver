@@ -2,8 +2,8 @@
 #define COLUMNPLACEMENT_H
 
 
-#include "Placement/Placement/Placement.h"
-#include "Index/Coordinate/Coordinate.h"
+#include "Placement.h"
+#include "Coordinate.h"
 
 class ColumnPlacement : public Placement {
 public:

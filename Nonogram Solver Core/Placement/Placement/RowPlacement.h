@@ -2,8 +2,8 @@
 #define ROWPLACEMENT_H
 
 
-#include "Index/Coordinate/Coordinate.h"
-#include "Placement/Placement/Placement.h"
+#include "Coordinate.h"
+#include "Placement.h"
 
 class RowPlacement : public Placement {
 public:

@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "Hint/HintNumber/HintNumber.h"
-#include "Hint/HintSetList/RowHintSetList.h"
-#include "Hint/HintSetList/ColumnHintSetList.h"
+#include "HintNumber.h"
+#include "RowHintSetList.h"
+#include "ColumnHintSetList.h"
 
 class TestDataRepository {
 public:

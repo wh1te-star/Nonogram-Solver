@@ -1,8 +1,8 @@
-#include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
+#include "BacktrackStack.h"
 
 #include <cassert>
-#include "Board/Line/Line.h"
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
+#include "Line.h"
+#include "SharedBacktrackBoard.h"
 
 
 BacktrackStack::BacktrackStack(

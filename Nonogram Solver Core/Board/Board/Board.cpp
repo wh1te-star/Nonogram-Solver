@@ -1,14 +1,14 @@
-#include "Board/Board/Board.h"
+#include "Board.h"
 
 #include <typeinfo>
 #include <cassert>
-#include "Board/BoardLength/ColumnLength.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Cell/Cell/Cell.h"
-#include "Cell/CellLocation/CellLocation.h"
-#include "Index/CellIndex/RowIndex.h"
-#include "Placement/Placement/ColumnPlacement.h"
-#include "Placement/Placement/RowPlacement.h"
+#include "ColumnLength.h"
+#include "RowLength.h"
+#include "Cell.h"
+#include "CellLocation.h"
+#include "RowIndex.h"
+#include "ColumnPlacement.h"
+#include "RowPlacement.h"
 
 Board::Board(RowLength rowLength, ColumnLength columnLength)
 	: rowLength(std::move(rowLength)),

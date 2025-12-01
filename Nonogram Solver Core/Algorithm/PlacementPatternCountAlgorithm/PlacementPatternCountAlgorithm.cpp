@@ -1,7 +1,7 @@
-#include "Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.h"
+#include "PlacementPatternCountAlgorithm.h"
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
+#include "Line.h"
+#include "HintSet.h"
 
 
 PlacementCount PlacementPatternCountAlgorithm::run(

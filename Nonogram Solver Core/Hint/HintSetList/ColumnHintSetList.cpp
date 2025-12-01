@@ -1,7 +1,8 @@
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Hint/HintSetList/ColumnHintSetList.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Board/BoardLength/RowLength.h"
+#include "ColumnHintSetList.h"
+
+#include "ColumnIndex.h"
+#include "HintSet.h"
+#include "RowLength.h"
 
 ColumnHintSetList::ColumnHintSetList(std::vector<HintSet> hintSetList) :
 	HintSetList(hintSetList) {}

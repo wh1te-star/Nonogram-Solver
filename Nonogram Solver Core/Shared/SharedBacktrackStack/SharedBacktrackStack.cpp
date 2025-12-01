@@ -1,6 +1,6 @@
-#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
+#include "SharedBacktrackStack.h"
 
-#include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
+#include "BacktrackStack.h"
 
 
 SharedBacktrackStack::SharedBacktrackStack(BacktrackStack backtrackStack)

@@ -1,8 +1,8 @@
-#include "Cell/Cell/Cell.h"
+#include "Cell.h"
 
 #include <algorithm>
 #include <cassert>
-#include "Cell/CellColor/CellColor.h"
+#include "CellColor.h"
 
 
 Cell::Cell() : color(None) {}

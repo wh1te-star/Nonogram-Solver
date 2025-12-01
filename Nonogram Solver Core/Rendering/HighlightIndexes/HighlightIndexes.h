@@ -3,8 +3,8 @@
 
 
 #include <unordered_set>
-#include "Index/CellIndex/RowIndex.h"
-#include "Index/CellIndex/ColumnIndex.h"
+#include "RowIndex.h"
+#include "ColumnIndex.h"
 
 class HighlightIndexes {
 private:

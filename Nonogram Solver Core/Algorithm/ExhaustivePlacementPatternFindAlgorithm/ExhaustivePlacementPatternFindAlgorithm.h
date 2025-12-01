@@ -3,10 +3,10 @@
 
 
 #include <vector>
-#include "Cell/Cell/Cell.h"
-#include "Board/Line/Line.h"
-#include "Placement/Placement/Placement.h"
-#include "Hint/HintSet/HintSet.h"
+#include "Cell.h"
+#include "Line.h"
+#include "Placement.h"
+#include "HintSet.h"
 
 class ExhaustivePlacementPatternFindAlgorithm {
 public:

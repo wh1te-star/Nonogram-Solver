@@ -1,4 +1,4 @@
-#include "Board/NonogramBoard/NonogramBoard.h"
+#include "NonogramBoard.h"
 
 
 NonogramBoard::NonogramBoard(

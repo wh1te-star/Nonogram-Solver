@@ -1,9 +1,9 @@
-#include "Board/Line/Line.h"
+#include "Line.h"
 
-#include "Cell/Cell/Cell.h"
-#include "Index/Coordinate/Coordinate.h"
-#include "Board/Line/Row.h"
-#include "Board/Line/Column.h"
+#include "Cell.h"
+#include "Coordinate.h"
+#include "Row.h"
+#include "Column.h"
 #include <cassert>
 
 

@@ -2,9 +2,9 @@
 #define COLUMNHINTSETLIST_H
 
 
-#include "Hint/HintSetList/HintSetList.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Board/BoardLength/RowLength.h"
+#include "HintSetList.h"
+#include "ColumnIndex.h"
+#include "RowLength.h"
 
 class ColumnHintSetList : public HintSetList {
 public:

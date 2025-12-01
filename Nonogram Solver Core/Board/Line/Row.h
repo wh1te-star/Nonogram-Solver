@@ -2,8 +2,8 @@
 #define ROW_H
 
 
-#include "Index/Coordinate/Coordinate.h"
-#include "Board/Line/Line.h"
+#include "Coordinate.h"
+#include "Line.h"
 
 class Row : public Line {
 public:

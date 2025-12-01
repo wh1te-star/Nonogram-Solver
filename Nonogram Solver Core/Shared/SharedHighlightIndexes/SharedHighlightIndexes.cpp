@@ -1,4 +1,4 @@
-#include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
+#include "SharedHighlightIndexes.h"
 
 #include <atomic>
 #include <thread>

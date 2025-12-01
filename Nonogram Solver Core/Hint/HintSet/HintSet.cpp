@@ -1,5 +1,5 @@
-#include "Hint/HintSet/HintSet.h"
-#include "Hint/HintNumber/HintNumber.h"
+#include "HintSet.h"
+#include "HintNumber.h"
 
 HintSet::HintSet(std::vector<HintNumber> numbers) : numbers(numbers) {}
 

@@ -3,8 +3,8 @@
 
 
 #include <vector>
-#include "Board/BoardLength/BoardLength.h"
-#include "Hint/HintSet/HintSet.h"
+#include "BoardLength.h"
+#include "HintSet.h"
 
 class HintSetList {
 private:

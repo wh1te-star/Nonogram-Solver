@@ -1,6 +1,7 @@
-#include "Placement/PlacementCountList/PlacementCountList.h"
+#include "PlacementCountList.h"
+
 #include <algorithm>
-#include "Placement/PlacementCount/PlacementCount.h"
+#include "PlacementCount.h"
 
 
 PlacementCountList::PlacementCountList(std::vector<PlacementCount> placementCountList) :

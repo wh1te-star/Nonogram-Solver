@@ -3,7 +3,7 @@
 
 
 #include <iostream>
-#include "Cell/CellColor/CellColor.h"
+#include "CellColor.h"
 
 class Cell {
 private:
