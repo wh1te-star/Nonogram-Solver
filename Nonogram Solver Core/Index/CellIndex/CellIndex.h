@@ -5,16 +5,22 @@
 #include <vector>
 #include "BoardLength.h"
 #include "HintNumber.h"
+#include "CellIndexType.h"
 
 class CellIndex {
 protected:
     int index;
+    CellIndexType type = CellIndexType::Unknown;
 
 public:
     explicit CellIndex(int index);
+    explicit CellIndex(int index, CellIndexType type);
 
 public:
-    const int& getIndex() const;
+    int getIndex() const;
+    CellIndexType getType() const;
+    RowIndex toRowIndex() const;
+    ColumnIndex toColumnIndex() const;
 
 public:
     CellIndex operator+(int shift) const;

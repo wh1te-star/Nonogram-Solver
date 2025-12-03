@@ -7,6 +7,7 @@
 #include "ExhaustivePlacementPatternFindAlgorithm.h"
 #include "SharedBacktrackBoard.h"
 #include "SharedHighlightIndexes.h"
+#include "HintSet.h"
 
 
 BacktrackAlgorithm::BacktrackAlgorithm(
@@ -31,28 +32,31 @@ void BacktrackAlgorithm::backtrackSolve() {
 void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
 	if (terminate.load()) return;
 
-	RowIndex targetRowIndex = RowIndex(0);
+	CellIndex targetIndex = CellIndex(0);
     if(depth == 0) {
-		targetRowIndex = RowIndex(34);
+		targetIndex = CellIndex(34, CellIndexType::Row);
     } else if(depth == 1){
-		targetRowIndex = RowIndex(49);
+		targetIndex = CellIndex(49, CellIndexType::Row);
 	}
     else if (depth == 2) {
         return;
-		targetRowIndex = RowIndex(64);
+		targetIndex = CellIndex(64, CellIndexType::Row);
     }
     else {
         return;
     }
+
+    Line row = sharedBacktrackBoard.getRowLine(targetIndex.toRowIndex());
+    HintSet rowHintSet = sharedBacktrackBoard.getRowHintSetList()[targetIndex.toRowIndex()];
 	std::vector<Placement> exhaustivePlacements = ExhaustivePlacementPatternFindAlgorithm::run(
-        sharedBacktrackBoard.getRowLine(targetRowIndex),
-        sharedBacktrackBoard.getRowHintSetList()[targetRowIndex]
+        row,
+        rowHintSet
 	);
     BacktrackBoard previousBacktrackBoard = sharedBacktrackBoard.getBacktrackBoard();
     for (Placement placement : exhaustivePlacements) {
-		sharedBacktrackBoard.applyRow(targetRowIndex, placement.toRowPlacement());
-		if (waitAndCheckTermination(1000)) return;
-        bool more = deterministicSolve(0);
+		sharedBacktrackBoard.applyRow(targetIndex.toRowIndex(), placement.toRowPlacement());
+		if (waitAndCheckTermination(1)) return;
+        bool more = deterministicSolve(1);
         if (sharedBacktrackBoard.isSolved()) {
 			solutions.push_back(sharedBacktrackBoard.getBoard());
         }
@@ -68,7 +72,7 @@ void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
             PlacementCount placementCount = previousBacktrackBoard.getColumnPlacementCountList()[columnIndex];
             sharedBacktrackBoard.setColumnPlacementCount(columnIndex, placementCount);
         }
-		if (waitAndCheckTermination(50)) return;
+		if (waitAndCheckTermination(1)) return;
     }
 
     if(solutions.size() > 0){
