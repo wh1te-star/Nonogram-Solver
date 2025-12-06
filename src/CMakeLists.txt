@@ -75,7 +75,7 @@ target_include_directories(glad PRIVATE
 # =========================================================
 
 # Define source files for the core logic (Everything EXCEPT main.cpp)
-set(CORE_SOURCES
+set(NONOGRAM_CORE_SOURCES
     "Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.cpp"
     "Algorithm/Backtrack/BacktrackStack/BacktrackStack.cpp"
     "Algorithm/ExhaustivePlacementPatternFindAlgorithm/ExhaustivePlacementPatternFindAlgorithm.cpp"
@@ -125,45 +125,12 @@ set(CORE_SOURCES
 )
 
 # Create the Core Logic Library Target
-add_library(NonogramCoreLib STATIC ${CORE_SOURCES})
+add_library(NonogramCoreLib STATIC ${NONOGRAM_CORE_SOURCES})
 
 # Include directories (made PUBLIC so test code can access headers)
 target_include_directories(NonogramCoreLib PUBLIC
     ${GLAD_DIR}/include 
-    ${CMAKE_CURRENT_SOURCE_DIR} # Allows including via relative paths
-    ${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/Backtrack/BacktrackAlgorithm
-    ${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/Backtrack/BacktrackStack
-    ${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/ExhaustivePlacementPatternFindAlgorithm
-    ${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/FindLeftMostPlacementAlgorithm
-    ${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/FindRightMostPlacementAlgorithm
-    ${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/OverlapDeterminationAlgorithm
-    ${CMAKE_CURRENT_SOURCE_DIR}/Algorithm/PlacementPatternCountAlgorithm
-    ${CMAKE_CURRENT_SOURCE_DIR}/Board/BacktrackBoard
-    ${CMAKE_CURRENT_SOURCE_DIR}/Board/Board
-    ${CMAKE_CURRENT_SOURCE_DIR}/Board/BoardLength
-    ${CMAKE_CURRENT_SOURCE_DIR}/Board/Line
-    ${CMAKE_CURRENT_SOURCE_DIR}/Board/NonogramBoard
-    ${CMAKE_CURRENT_SOURCE_DIR}/Cell/Cell
-    ${CMAKE_CURRENT_SOURCE_DIR}/Cell/CellColor
-    ${CMAKE_CURRENT_SOURCE_DIR}/Cell/CellLocation
-    ${CMAKE_CURRENT_SOURCE_DIR}/Cell/CellVector2D
-    ${CMAKE_CURRENT_SOURCE_DIR}/Hint/HintNumber
-    ${CMAKE_CURRENT_SOURCE_DIR}/Hint/HintSet
-    ${CMAKE_CURRENT_SOURCE_DIR}/Hint/HintSetList
-    ${CMAKE_CURRENT_SOURCE_DIR}/Index/CellIndex
-    ${CMAKE_CURRENT_SOURCE_DIR}/Index/Coordinate
-    ${CMAKE_CURRENT_SOURCE_DIR}/Placement/Placement
-    ${CMAKE_CURRENT_SOURCE_DIR}/Placement/PlacementCount
-    ${CMAKE_CURRENT_SOURCE_DIR}/Placement/PlacementCountList
-    ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/FontData
-    ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/HighlightIndexes
-    ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/RenderingSystem
-    ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/TableRenderer
-    ${CMAKE_CURRENT_SOURCE_DIR}/Shared/SharedBacktrackBoard
-    ${CMAKE_CURRENT_SOURCE_DIR}/Shared/SharedBacktrackStack
-    ${CMAKE_CURRENT_SOURCE_DIR}/Shared/SharedHighlightIndexes
-    ${CMAKE_CURRENT_SOURCE_DIR}/SampleData/Repository
-    ${CMAKE_CURRENT_SOURCE_DIR}/SampleData/SampleData
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Link dependencies to the library (made PUBLIC for transitive linking)
@@ -185,12 +152,12 @@ endif()
 #  Application Executable (Links to the Library)
 # =========================================================
 # The executable now only includes main.cpp
-add_executable(NonogramSolverCore "main.cpp")
+add_executable(NonogramCore "main.cpp")
 
 # Link to the core library we just created
-target_link_libraries(NonogramSolverCore PRIVATE NonogramCoreLib)
+target_link_libraries(NonogramCore PRIVATE CoreLib)
 
 # Set the output directory
-set_target_properties(NonogramSolverCore PROPERTIES 
+set_target_properties(NonogramCore PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )

@@ -4,8 +4,8 @@
 
 #include <atomic>
 #include <thread>
-#include "SharedBacktrackBoard.h"
-#include "SharedBacktrackStack.h"
+#include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
+#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
 #include "SharedHighlightIndexes.h"
 #include "Line.h"
 #include "HintSet.h"

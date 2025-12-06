@@ -13,7 +13,7 @@ add_executable(
 )
 
 target_link_libraries(NonogramTests PRIVATE
-    NonogramCoreLib
+    CoreLib
     GTest::gtest_main
 )
 

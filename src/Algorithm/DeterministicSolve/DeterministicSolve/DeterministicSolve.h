@@ -2,7 +2,7 @@
 #define DETERMINISTICSOLVE_H
 
 
-#include "IDeterministicSolve.h"
+#include "Algorithm/DeterministicSolve/IDeterministicSolve.h"
 
 class DeterministicSolve : public IDeterministicSolve {
 public:
