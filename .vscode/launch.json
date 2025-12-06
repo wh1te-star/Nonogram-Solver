@@ -12,6 +12,16 @@
             "environment": [],
             "console": "externalTerminal",
             "preLaunchTask": "${defaultBuildTask}"
+        },
+        {
+            "name": "Python: Current File with Args",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "C:\\Users\\sleee\\StudioProjects\\Nonogram Solver\\out\\build\\x64-debug\\test\\generated_data\\test_combinations.txt"
+            ]
         }
     ]
 }
