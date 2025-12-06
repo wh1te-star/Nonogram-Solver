@@ -57,16 +57,17 @@ target_include_directories(imgui_backends PUBLIC
 
 # --- Glad Generation (Unchanged) ---
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
-set(GLAD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/gl")
+set(GLAD_DIR "${CMAKE_CURRENT_BINARY_DIR}/gl")
 set(GLAD_C "${GLAD_DIR}/src/glad.c")
 set(GLAD_H "${GLAD_DIR}/include/glad/glad.h")
+set(GLAD_KHR "${GLAD_DIR}/include/KHR/khrplatform.h")
 add_custom_command(
-    OUTPUT ${GLAD_C} ${GLAD_H}
+    OUTPUT ${GLAD_C} ${GLAD_H} ${GLAD_KHR}
     COMMAND Python3::Interpreter -m glad --generator=c --out-path=${GLAD_DIR} --api="gl=3.3" --profile=core
     COMMENT "Generating Glad OpenGL loader..."
 )
 add_library(glad STATIC ${GLAD_C})
-target_include_directories(glad PRIVATE
+target_include_directories(glad PUBLIC
     ${GLAD_DIR}/include 
 )
 
@@ -125,7 +126,15 @@ set(NONOGRAM_CORE_SOURCES
 )
 
 # Create the Core Logic Library Target
-add_library(NonogramCoreLib STATIC ${NONOGRAM_CORE_SOURCES})
+add_library(NonogramCoreLib STATIC
+    ${NONOGRAM_CORE_SOURCES}
+    ${GLAD_H}
+    ${GLAD_KHR}
+)
+
+target_compile_definitions(NonogramCoreLib PUBLIC
+    GLFW_INCLUDE_NONE
+)
 
 # Include directories (made PUBLIC so test code can access headers)
 target_include_directories(NonogramCoreLib PUBLIC
@@ -155,7 +164,7 @@ endif()
 add_executable(NonogramCore "main.cpp")
 
 # Link to the core library we just created
-target_link_libraries(NonogramCore PRIVATE CoreLib)
+target_link_libraries(NonogramCore PRIVATE NonogramCoreLib)
 
 # Set the output directory
 set_target_properties(NonogramCore PROPERTIES 

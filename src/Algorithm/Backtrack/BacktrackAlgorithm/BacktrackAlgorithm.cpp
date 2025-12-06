@@ -1,13 +1,13 @@
-#include "BacktrackAlgorithm.h"
+#include "Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.h"
 
 #include <algorithm>
-#include "Line.h"
-#include "OverlapDeterminationAlgorithm.h"
-#include "PlacementPatternCountAlgorithm.h"
-#include "ExhaustivePlacementPatternFindAlgorithm.h"
-#include "SharedBacktrackBoard.h"
-#include "SharedHighlightIndexes.h"
-#include "HintSet.h"
+#include "Board/Line/Line.h"
+#include "Algorithm/OverlapDeterminationAlgorithm/OverlapDeterminationAlgorithm.h"
+#include "Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.h"
+#include "Algorithm/ExhaustivePlacementPatternFindAlgorithm/ExhaustivePlacementPatternFindAlgorithm.h"
+#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
+#include "Rendering/HighlightIndexes/HighlightIndexes.h"
+#include "Hint/HintSet/HintSet.h"
 
 
 BacktrackAlgorithm::BacktrackAlgorithm(

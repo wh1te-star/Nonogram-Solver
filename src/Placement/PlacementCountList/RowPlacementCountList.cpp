@@ -1,16 +1,16 @@
-#include "RowPlacementCountList.h"
+#include "Placement/PlacementCountList/RowPlacementCountList.h"
 
-#include "PlacementCount.h"
-#include "RowIndex.h"
+#include "Index/CellIndex/RowIndex.h"
+#include "Placement/PlacementCount/PlacementCount.h"
 
-RowPlacementCountList::RowPlacementCountList(std::vector<PlacementCount> placementCountList) :
-	PlacementCountList(placementCountList) {}
+RowPlacementCountList::RowPlacementCountList(
+    std::vector<PlacementCount> placementCountList)
+    : PlacementCountList(placementCountList) {}
 
-const PlacementCount& RowPlacementCountList::operator[](RowIndex index) const {
-    return placementCountList[index.getIndex()]; 
+const PlacementCount &RowPlacementCountList::operator[](RowIndex index) const {
+  return placementCountList[index.getIndex()];
 }
 
-PlacementCount& RowPlacementCountList::operator[](RowIndex index) {
-    return placementCountList[index.getIndex()]; 
+PlacementCount &RowPlacementCountList::operator[](RowIndex index) {
+  return placementCountList[index.getIndex()];
 }
-

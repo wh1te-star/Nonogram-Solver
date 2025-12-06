@@ -1,32 +1,23 @@
 #ifndef FINDRIGHTMOSTPLACEMENTALGORITHM_H
 #define FINDRIGHTMOSTPLACEMENTALGORITHM_H
 
-
+#include "Board/Line/Column.h"
+#include "Cell/Cell/Cell.h"
+#include "Hint/HintSet/HintSet.h"
+#include "Placement/Placement/Placement.h"
 #include <vector>
-#include "Cell.h"
-#include "Column.h"
-#include "HintSet.h"
-#include "ColumnPlacement.h"
 
 class FindRightMostPlacementAlgorithm {
 public:
-	static Placement run(
-		const Line& line,
-		const HintSet& HintSet
-	);
+  static Placement run(const Line &line, const HintSet &HintSet);
 
-    static Placement getRightMostPlacement(
-        const Line& line,
-		const HintSet& HintSet
-    );
+  static Placement getRightMostPlacement(const Line &line,
+                                         const HintSet &HintSet);
 
-    static Placement getRightMostPlacementRecursive(
-		const Line& line,
-		const HintSet& HintSet,
-		Placement& currentPlacement,
-		int currentHintIndex
-	);
+  static Placement getRightMostPlacementRecursive(const Line &line,
+                                                  const HintSet &HintSet,
+                                                  Placement &currentPlacement,
+                                                  int currentHintIndex);
 };
-
 
 #endif

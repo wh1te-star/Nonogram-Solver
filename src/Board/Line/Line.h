@@ -3,9 +3,9 @@
 
 
 #include <vector>
-#include "Cell.h"
-#include "CellLocation.h"
-#include "Coordinate.h"
+#include "Cell/Cell/Cell.h"
+#include "Cell/CellLocation/CellLocation.h"
+#include "Index/Coordinate/Coordinate.h"
 class Row;
 class Column;
 

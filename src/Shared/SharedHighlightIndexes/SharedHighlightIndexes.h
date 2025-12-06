@@ -1,31 +1,29 @@
 #ifndef SHAREDHIGHLIGHTINDEXES_H
 #define SHAREDHIGHLIGHTINDEXES_H
 
-
+#include "Rendering/HighlightIndexes/HighlightIndexes.h"
+#include "Rendering/TableRenderer/TableRenderer.h"
 #include <mutex>
-#include "HighlightIndexes.h"
-#include "TableRenderer.h"
 
 class SharedHighlightIndexes {
 private:
-    mutable std::mutex mtx;
-	HighlightIndexes highlightIndexes;
+  mutable std::mutex mtx;
+  HighlightIndexes highlightIndexes;
 
 public:
-	SharedHighlightIndexes();
+  SharedHighlightIndexes();
 
 public:
-	HighlightIndexes getHighlightIndexes() const;
-	void addRowIndex(RowIndex rowIndex);
-	void addColumnIndex(ColumnIndex columnIndex);
-	void deleteRowIndex(RowIndex rowIndex);
-	void deleteColumnIndex(ColumnIndex columnIndex);
-	bool findRowIndex(RowIndex rowIndex) const;
-	bool findColumnIndex(ColumnIndex columnIndex) const;
-	void clear();
-	void clearRowIndexes();
-	void clearColumnIndexes();
+  HighlightIndexes getHighlightIndexes() const;
+  void addRowIndex(RowIndex rowIndex);
+  void addColumnIndex(ColumnIndex columnIndex);
+  void deleteRowIndex(RowIndex rowIndex);
+  void deleteColumnIndex(ColumnIndex columnIndex);
+  bool findRowIndex(RowIndex rowIndex) const;
+  bool findColumnIndex(ColumnIndex columnIndex) const;
+  void clear();
+  void clearRowIndexes();
+  void clearColumnIndexes();
 };
-
 
 #endif

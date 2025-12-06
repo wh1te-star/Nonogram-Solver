@@ -1,16 +1,15 @@
-#include "RowHintSetList.h"
+#include "Hint/HintSetList/RowHintSetList.h"
 
-#include "HintSetList.h"
-#include "ColumnLength.h"
+#include "Board/BoardLength/ColumnLength.h"
+#include "Hint/HintSetList/HintSetList.h"
 
-RowHintSetList::RowHintSetList(std::vector<HintSet> hintSetList) :
-	HintSetList(hintSetList) {}
+RowHintSetList::RowHintSetList(std::vector<HintSet> hintSetList)
+    : HintSetList(hintSetList) {}
 
 HintSet RowHintSetList::operator[](RowIndex rowIndex) const {
-	return hintSetList[rowIndex.getIndex()];
+  return hintSetList[rowIndex.getIndex()];
 }
 
 ColumnLength RowHintSetList::getMaxHintSetLength() const {
-	return ColumnLength(getMaxItemCount());
+  return ColumnLength(getMaxItemCount());
 }
-

@@ -1,36 +1,34 @@
 #ifndef HIGHLIGHTINDEXES_H
 #define HIGHLIGHTINDEXES_H
 
-
+#include "Index/CellIndex/ColumnIndex.h"
+#include "Index/CellIndex/RowIndex.h"
 #include <unordered_set>
-#include "RowIndex.h"
-#include "ColumnIndex.h"
 
 class HighlightIndexes {
 private:
-	std::unordered_set<RowIndex> rowIndexes;
-	std::unordered_set<ColumnIndex> columnIndexes;
+  std::unordered_set<RowIndex> rowIndexes;
+  std::unordered_set<ColumnIndex> columnIndexes;
 
 public:
-	HighlightIndexes();
+  HighlightIndexes();
 
 public:
-	void addRowIndex(const RowIndex& rowIndex);
-	void addColumnIndex(const ColumnIndex& columnIndex);
+  void addRowIndex(const RowIndex &rowIndex);
+  void addColumnIndex(const ColumnIndex &columnIndex);
 
 public:
-	void deleteRowIndex(const RowIndex& rowIndex);
-	void deleteColumnIndex(const ColumnIndex& columnIndex);
+  void deleteRowIndex(const RowIndex &rowIndex);
+  void deleteColumnIndex(const ColumnIndex &columnIndex);
 
 public:
-	bool findRowIndex(const RowIndex& rowIndex) const;
-	bool findColumnIndex(const ColumnIndex& columnIndex) const;
+  bool findRowIndex(const RowIndex &rowIndex) const;
+  bool findColumnIndex(const ColumnIndex &columnIndex) const;
 
 public:
-	void clear();
-	void clearRowIndexes();
-	void clearColumnIndexes();
+  void clear();
+  void clearRowIndexes();
+  void clearColumnIndexes();
 };
-
 
 #endif

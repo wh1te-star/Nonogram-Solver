@@ -1,114 +1,121 @@
-#include "SharedBacktrackBoard.h"
+#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
 
 #include <atomic>
-#include <thread>
 #include <chrono>
-
+#include <thread>
 
 SharedBacktrackBoard::SharedBacktrackBoard(BacktrackBoard backtrackBoard)
-	: backtrackBoard(backtrackBoard) {}
+    : backtrackBoard(backtrackBoard) {}
 
 BacktrackBoard SharedBacktrackBoard::getBacktrackBoard() const {
-	return backtrackBoard;
+  return backtrackBoard;
 }
 
 RowLength SharedBacktrackBoard::getRowLength() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getRowLength();
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getRowLength();
 }
 
 ColumnLength SharedBacktrackBoard::getColumnLength() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getColumnLength();
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getColumnLength();
 }
 
 Board SharedBacktrackBoard::getBoard() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getBoard();
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getBoard();
 }
 
 Cell SharedBacktrackBoard::getCell(Coordinate coordinate) const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getCell(coordinate);
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getCell(coordinate);
 }
 
 Row SharedBacktrackBoard::getRowLine(RowIndex rowIndex) const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getRowLine(rowIndex);
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getRowLine(rowIndex);
 }
 
 Column SharedBacktrackBoard::getColumnLine(ColumnIndex columnIndex) const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getColumnLine(columnIndex);
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getColumnLine(columnIndex);
 }
 
 bool SharedBacktrackBoard::isInRange(Coordinate coordinate) const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.isInRange(coordinate);
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.isInRange(coordinate);
 }
 
 bool SharedBacktrackBoard::isSolved() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.isSolved();
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.isSolved();
 }
 
-void SharedBacktrackBoard::applyCell(Coordinate coordinate, const Cell& cell, bool overwriteNone) {
-	std::lock_guard<std::mutex> lock(mtx);
-	backtrackBoard.applyCell(coordinate, cell, overwriteNone);
+void SharedBacktrackBoard::applyCell(Coordinate coordinate, const Cell &cell,
+                                     bool overwriteNone) {
+  std::lock_guard<std::mutex> lock(mtx);
+  backtrackBoard.applyCell(coordinate, cell, overwriteNone);
 }
 
-void SharedBacktrackBoard::applyRow(RowIndex rowIndex, const Row& row, bool overwriteNone) {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.applyRow(rowIndex, row, overwriteNone);
+void SharedBacktrackBoard::applyRow(RowIndex rowIndex, const Row &row,
+                                    bool overwriteNone) {
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.applyRow(rowIndex, row, overwriteNone);
 }
 
-void SharedBacktrackBoard::applyRow(RowIndex rowIndex, const RowPlacement& rowPlacement) {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.applyRow(rowIndex, rowPlacement);
+void SharedBacktrackBoard::applyRow(RowIndex rowIndex,
+                                    const RowPlacement &rowPlacement) {
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.applyRow(rowIndex, rowPlacement);
 }
 
-void SharedBacktrackBoard::applyColumn(ColumnIndex columnIndex, const Column& column, bool overwriteNone) {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.applyColumn(columnIndex, column, overwriteNone);
+void SharedBacktrackBoard::applyColumn(ColumnIndex columnIndex,
+                                       const Column &column,
+                                       bool overwriteNone) {
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.applyColumn(columnIndex, column, overwriteNone);
 }
 
-void SharedBacktrackBoard::applyColumn(ColumnIndex columnIndex, const ColumnPlacement& columnPlacement) {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.applyColumn(columnIndex, columnPlacement);
+void SharedBacktrackBoard::applyColumn(ColumnIndex columnIndex,
+                                       const ColumnPlacement &columnPlacement) {
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.applyColumn(columnIndex, columnPlacement);
 }
 
-void SharedBacktrackBoard::applyBoard(const Board& board, bool overwriteNone) {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.applyBoard(board, overwriteNone);
+void SharedBacktrackBoard::applyBoard(const Board &board, bool overwriteNone) {
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.applyBoard(board, overwriteNone);
 }
 
 RowHintSetList SharedBacktrackBoard::getRowHintSetList() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getRowHintSetList();
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getRowHintSetList();
 }
 
 ColumnHintSetList SharedBacktrackBoard::getColumnHintSetList() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getColumnHintSetList();
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getColumnHintSetList();
 }
 
 RowPlacementCountList SharedBacktrackBoard::getRowPlacementCountList() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getRowPlacementCountList();
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getRowPlacementCountList();
 }
 
-ColumnPlacementCountList SharedBacktrackBoard::getColumnPlacementCountList() const {
-	std::lock_guard<std::mutex> lock(mtx);
-	return backtrackBoard.getColumnPlacementCountList();
+ColumnPlacementCountList
+SharedBacktrackBoard::getColumnPlacementCountList() const {
+  std::lock_guard<std::mutex> lock(mtx);
+  return backtrackBoard.getColumnPlacementCountList();
 }
 
-void SharedBacktrackBoard::setRowPlacementCount(RowIndex rowIndex, PlacementCount placementCount) {
-	std::lock_guard<std::mutex> lock(mtx);
-	backtrackBoard.setRowPlacementCount(rowIndex, placementCount);
+void SharedBacktrackBoard::setRowPlacementCount(RowIndex rowIndex,
+                                                PlacementCount placementCount) {
+  std::lock_guard<std::mutex> lock(mtx);
+  backtrackBoard.setRowPlacementCount(rowIndex, placementCount);
 }
 
-void SharedBacktrackBoard::setColumnPlacementCount(ColumnIndex columnIndex, PlacementCount placementCount) {
-	std::lock_guard<std::mutex> lock(mtx);
-	backtrackBoard.setColumnPlacementCount(columnIndex, placementCount);
+void SharedBacktrackBoard::setColumnPlacementCount(
+    ColumnIndex columnIndex, PlacementCount placementCount) {
+  std::lock_guard<std::mutex> lock(mtx);
+  backtrackBoard.setColumnPlacementCount(columnIndex, placementCount);
 }
-

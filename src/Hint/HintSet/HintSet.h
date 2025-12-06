@@ -1,30 +1,28 @@
 #ifndef HINTSET_H
 #define HINTSET_H
 
-
+#include "Hint/HintNumber/HintNumber.h"
+#include "Index/CellIndex/CellIndex.h"
 #include <vector>
-#include "CellIndex.h"
-#include "HintNumber.h"
 
 class HintSet {
 private:
-	std::vector<HintNumber> numbers;
+  std::vector<HintNumber> numbers;
 
 public:
-	HintSet(std::vector<HintNumber> numbers);
-	HintSet(std::vector<int> numbers);
+  HintSet(std::vector<HintNumber> numbers);
+  HintSet(std::vector<int> numbers);
 
 public:
-	std::vector<HintNumber> getNumbers() const;
+  std::vector<HintNumber> getNumbers() const;
 
 public:
-	bool operator==(const HintSet& other) const;
-	bool operator!=(const HintSet& other) const;
-	HintNumber operator[](int index) const;
+  bool operator==(const HintSet &other) const;
+  bool operator!=(const HintSet &other) const;
+  HintNumber operator[](int index) const;
 
 public:
-	size_t size() const;
+  size_t size() const;
 };
-
 
 #endif

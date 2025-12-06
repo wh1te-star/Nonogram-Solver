@@ -1,25 +1,24 @@
 #ifndef CELLLOCATION_H
 #define CELLLOCATION_H
 
-
-#include "Coordinate.h"
-#include "Cell.h"
+#include "Cell/Cell/Cell.h"
+#include "Index/Coordinate/Coordinate.h"
 
 class CellLocation {
 private:
-	Coordinate coordinate;
-	Cell cell;
+  Coordinate coordinate;
+  Cell cell;
 
 public:
-    explicit CellLocation(Coordinate coordinate, Cell cell);
+  explicit CellLocation(Coordinate coordinate, Cell cell);
 
 public:
-    const Coordinate& getCoordinate() const;
-    const Cell& getCell() const;
+  const Coordinate &getCoordinate() const;
+  const Cell &getCell() const;
 
 public:
-    bool operator==(const CellLocation& other) const;
-    bool operator!=(const CellLocation& other) const;
+  bool operator==(const CellLocation &other) const;
+  bool operator!=(const CellLocation &other) const;
 };
 
 #endif

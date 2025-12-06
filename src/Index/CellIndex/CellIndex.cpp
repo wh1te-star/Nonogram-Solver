@@ -1,8 +1,8 @@
-#include "CellIndex.h"
+#include "Index/CellIndex/CellIndex.h"
 
-#include "BoardLength.h"
-#include "ColumnIndex.h"
-#include "RowIndex.h"
+#include "Board/BoardLength/BoardLength.h"
+#include "Index/CellIndex/ColumnIndex.h"
+#include "Index/CellIndex/RowIndex.h"
 #include <cassert>
 
 CellIndex::CellIndex(int index) : index(index) {}

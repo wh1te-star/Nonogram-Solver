@@ -3,9 +3,9 @@
 
 
 #include <vector>
-#include "BoardLength.h"
-#include "HintNumber.h"
-#include "CellIndexType.h"
+#include "Board/BoardLength/BoardLength.h"
+#include "Hint/HintNumber/HintNumber.h"
+#include "Index/CellIndex/CellIndexType.h"
 class RowIndex;
 class ColumnIndex;
 

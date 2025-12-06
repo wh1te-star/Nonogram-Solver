@@ -2,9 +2,9 @@
 #define PLACEMENTPATTERNCOUNTALGORITHM_H
 
 
-#include "PlacementCount.h"
-#include "Line.h"
-#include "HintSet.h"
+#include "Placement/PlacementCount/PlacementCount.h"
+#include "Board/Line/Line.h"
+#include "Hint/HintSet/HintSet.h"
 
 class PlacementPatternCountAlgorithm {
 public:

@@ -1,25 +1,25 @@
 #ifndef PLACEMENTCOUNTLIST_H
 #define PLACEMENTCOUNTLIST_H
 
-
+#include "Placement/PlacementCount/PlacementCount.h"
 #include <vector>
-#include "PlacementCount.h"
 
 class PlacementCountList {
 protected:
-	std::vector<PlacementCount> placementCountList;
+  std::vector<PlacementCount> placementCountList;
 
 protected:
-    explicit PlacementCountList(std::vector<PlacementCount> placementCountList);
-public:
-    virtual ~PlacementCountList() = default;
+  explicit PlacementCountList(std::vector<PlacementCount> placementCountList);
 
 public:
-    const std::vector<PlacementCount>& getPlacementCountList() const;
+  virtual ~PlacementCountList() = default;
 
 public:
-    bool operator==(const PlacementCountList& other) const;
-    bool operator!=(const PlacementCountList& other) const;
+  const std::vector<PlacementCount> &getPlacementCountList() const;
+
+public:
+  bool operator==(const PlacementCountList &other) const;
+  bool operator!=(const PlacementCountList &other) const;
 };
 
 #endif

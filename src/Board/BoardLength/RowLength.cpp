@@ -1,5 +1,5 @@
-#include "RowLength.h"
-#include "RowIndex.h"
+#include "Board/BoardLength/RowLength.h"
+#include "Index/CellIndex/RowIndex.h"
 
 RowLength::RowLength(int length) : BoardLength(length) {}
 

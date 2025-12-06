@@ -1,7 +1,7 @@
 #ifndef COLUMNLENGTH_H
 #define COLUMNLENGTH_H
 
-#include "BoardLength.h"
+#include "Board/BoardLength/BoardLength.h"
 class ColumnIndex;
 
 class ColumnLength : public BoardLength {

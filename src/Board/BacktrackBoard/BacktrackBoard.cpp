@@ -1,4 +1,4 @@
-#include "BacktrackBoard.h"
+#include "Board/BacktrackBoard/BacktrackBoard.h"
 
 
 BacktrackBoard::BacktrackBoard(
