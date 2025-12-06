@@ -1,10 +1,10 @@
-#include "TestDataRepository.h"
+#include "SampleDataRepository.h"
 #include "HintNumber.h"
 #include <sstream>
 #include <cassert>
 
 
-std::vector<std::vector<HintNumber>> TestDataRepository::parseHints(const std::string& hintString) {
+std::vector<std::vector<HintNumber>> SampleDataRepository::parseHints(const std::string& hintString) {
     std::vector<std::vector<HintNumber>> hintMatrix;
     std::stringstream ss(hintString);
     std::string line;
@@ -38,7 +38,7 @@ std::vector<std::vector<HintNumber>> TestDataRepository::parseHints(const std::s
     return hintMatrix;
 }
 
-RowHintSetList TestDataRepository::getRowHintSetList(TestDataType type) {
+RowHintSetList SampleDataRepository::getRowHintSetList(SampleDataType type) {
 	std::string rowHintNumbersString = GetRowHintString(type);
     std::vector<std::vector<HintNumber>> tempRowHintNumbers = parseHints(rowHintNumbersString);
 
@@ -56,7 +56,7 @@ RowHintSetList TestDataRepository::getRowHintSetList(TestDataType type) {
 	return rowHintSetList;
 }
 
-ColumnHintSetList TestDataRepository::getColumnHintSetList(TestDataType type) {
+ColumnHintSetList SampleDataRepository::getColumnHintSetList(SampleDataType type) {
 	std::string columnHintNumbersString = GetColumnHintString(type);
 	std::vector<std::vector<HintNumber>> tempColumnHintNumbers = parseHints(columnHintNumbersString);
 
@@ -74,7 +74,7 @@ ColumnHintSetList TestDataRepository::getColumnHintSetList(TestDataType type) {
 	return columnHintSetList;
 }
 
-std::string TestDataRepository::GetRowHintString(TestDataType type) {
+std::string SampleDataRepository::GetRowHintString(SampleDataType type) {
     switch (type) {
     case Easy: return GetEasyRowHintString();
     case Lambda: return GetLambdaRowHintString();
@@ -85,7 +85,7 @@ std::string TestDataRepository::GetRowHintString(TestDataType type) {
     return "";
 }
 
-std::string TestDataRepository::GetColumnHintString(TestDataType type) {
+std::string SampleDataRepository::GetColumnHintString(SampleDataType type) {
     switch (type) {
     case Easy: return GetEasyColumnHintString();
     case Lambda: return GetLambdaColumnHintString();

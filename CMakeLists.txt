@@ -12,3 +12,8 @@ endif()
 project ("Nonogram Solver")
 
 add_subdirectory ("Nonogram Solver Core")
+
+enable_testing()
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Nonogram Solver Test")
+    add_subdirectory("Nonogram Solver Test")
+endif()

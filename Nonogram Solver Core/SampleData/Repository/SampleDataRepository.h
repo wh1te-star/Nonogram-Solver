@@ -1,5 +1,5 @@
-#ifndef TEstDATAREPOSITORY_H
-#define TEstDATAREPOSITORY_H
+#ifndef SAMPLEDATAREPOSITORY_H
+#define SAMPLEDATAREPOSITORY_H
 
 #include <string>
 #include <vector>
@@ -7,15 +7,15 @@
 #include "RowHintSetList.h"
 #include "ColumnHintSetList.h"
 
-class TestDataRepository {
+class SampleDataRepository {
 public:
-    enum TestDataType { Easy, Lambda, Large, Difficult };
+    enum SampleDataType { Easy, Lambda, Large, Difficult };
 
 private:
-    TestDataRepository() = delete;
+    SampleDataRepository() = delete;
 
-    static std::string GetColumnHintString(TestDataType type);
-    static std::string GetRowHintString(TestDataType type);
+    static std::string GetColumnHintString(SampleDataType type);
+    static std::string GetRowHintString(SampleDataType type);
     static std::string GetEasyRowHintString();
     static std::string GetEasyColumnHintString();
     static std::string GetLambdaRowHintString();
@@ -28,8 +28,8 @@ private:
     static std::vector<std::vector<HintNumber>> parseHints(const std::string& hintString);
 
 public:
-    static RowHintSetList getRowHintSetList(TestDataType type);
-    static ColumnHintSetList getColumnHintSetList(TestDataType type);
+    static RowHintSetList getRowHintSetList(SampleDataType type);
+    static ColumnHintSetList getColumnHintSetList(SampleDataType type);
 };
 
 #endif

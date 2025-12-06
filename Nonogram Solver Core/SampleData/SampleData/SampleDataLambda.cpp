@@ -1,13 +1,15 @@
-#include "TestDataRepository.h"
+#include "SampleDataRepository.h"
 
-std::string TestDataRepository::GetLambdaColumnHintString(){
+std::string SampleDataRepository::GetLambdaColumnHintString()
+{
 	return R"###(
 		2, 1, 2, 3,  ,  ,  ,  ,  ,  
 		1, 3, 4, 4, 4, 3, 3, 3, 2, 2
 	)###";
 }
 
-std::string TestDataRepository::GetLambdaRowHintString(){
+std::string SampleDataRepository::GetLambdaRowHintString()
+{
 	return R"###(
 		 ,  , 2
 		 , 1, 2

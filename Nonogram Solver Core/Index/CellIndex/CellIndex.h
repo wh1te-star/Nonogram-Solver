@@ -6,6 +6,8 @@
 #include "BoardLength.h"
 #include "HintNumber.h"
 #include "CellIndexType.h"
+class RowIndex;
+class ColumnIndex;
 
 class CellIndex {
 protected:
@@ -33,17 +35,18 @@ public:
     CellIndex operator--();
     CellIndex operator++(int);
     CellIndex operator--(int);
-    bool operator==(const CellIndex& other) const;
-    bool operator!=(const CellIndex& other) const;
-    bool operator<(const CellIndex& other) const;
-    bool operator<=(const CellIndex& other) const;
-    bool operator>(const CellIndex& other) const;
-    bool operator>=(const CellIndex& other) const;
-    bool operator<(const BoardLength& other) const;
-    bool operator<=(const BoardLength& other) const;
-    bool operator>(const BoardLength& other) const;
-    bool operator>=(const BoardLength& other) const;
+    bool operator==(const CellIndex &other) const;
+    bool operator!=(const CellIndex &other) const;
+    bool operator<(const CellIndex &other) const;
+    bool operator<=(const CellIndex &other) const;
+    bool operator>(const CellIndex &other) const;
+    bool operator>=(const CellIndex &other) const;
+    bool operator<(const BoardLength &other) const;
+    bool operator<=(const BoardLength &other) const;
+    bool operator>(const BoardLength &other) const;
+    bool operator>=(const BoardLength &other) const;
     static std::vector<CellIndex> range(int first, int last);
 };
+
 
 #endif

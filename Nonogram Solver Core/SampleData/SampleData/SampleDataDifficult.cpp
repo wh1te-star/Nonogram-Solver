@@ -1,6 +1,6 @@
-#include "TestDataRepository.h"
+#include "SampleDataRepository.h"
 
-std::string TestDataRepository::GetDifficultColumnHintString(){
+std::string SampleDataRepository::GetDifficultColumnHintString(){
 	return R"###(
  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  1,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   
  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  1,  1,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  3,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   
@@ -19,7 +19,7 @@ std::string TestDataRepository::GetDifficultColumnHintString(){
 	)###";
 }
 
-std::string TestDataRepository::GetDifficultRowHintString(){
+std::string SampleDataRepository::GetDifficultRowHintString(){
 	return R"###(
   ,   ,   ,   ,   ,   ,   ,   ,   ,   , 12
   ,   ,   ,   ,   ,   ,   ,   ,   ,  3,  3

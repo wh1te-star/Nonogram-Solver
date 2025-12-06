@@ -1,4 +1,4 @@
-#include "BacktrackAlgorithm.h"
+#include "DeterministicSolve.h"
 
 #include <algorithm>
 #include "Line.h"
@@ -10,77 +10,7 @@
 #include "HintSet.h"
 
 
-BacktrackAlgorithm::BacktrackAlgorithm(
-    SharedBacktrackBoard& sharedBacktrackBoard,
-    SharedBacktrackStack& sharedBacktrackStack,
-	SharedHighlightIndexes& sharedHighlightIndexes
-) :
-    sharedBacktrackBoard(sharedBacktrackBoard),
-    sharedBacktrackStack(sharedBacktrackStack),
-	sharedHighlightIndexes(sharedHighlightIndexes) {}
-
-void BacktrackAlgorithm::run() {
-    backtrackSolve();
-}
-
-void BacktrackAlgorithm::backtrackSolve() {
-    deterministicSolve(10);
-
-    backtrackSolveRecursive(0);
-
-    if(solutions.size() > 0){
-        sharedBacktrackBoard.applyBoard(solutions[0], true);
-	}
-}
-
-void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
-	if (terminate.load()) return;
-
-	CellIndex targetIndex = CellIndex(0);
-    if(depth == 0) {
-		targetIndex = CellIndex(34, CellIndexType::Row);
-    } else if(depth == 1){
-		targetIndex = CellIndex(49, CellIndexType::Row);
-	}
-    else if (depth == 2) {
-        return;
-		targetIndex = CellIndex(64, CellIndexType::Row);
-    }
-    else {
-        return;
-    }
-
-    Line row = sharedBacktrackBoard.getRowLine(targetIndex.toRowIndex());
-    HintSet rowHintSet = sharedBacktrackBoard.getRowHintSetList()[targetIndex.toRowIndex()];
-	std::vector<Placement> exhaustivePlacements = ExhaustivePlacementPatternFindAlgorithm::run(
-        row,
-        rowHintSet
-	);
-    BacktrackBoard previousBacktrackBoard = sharedBacktrackBoard.getBacktrackBoard();
-    for (Placement placement : exhaustivePlacements) {
-		sharedBacktrackBoard.applyRow(targetIndex.toRowIndex(), placement.toRowPlacement());
-		if (waitAndCheckTermination(1)) return;
-        bool more = deterministicSolve(1);
-        if (sharedBacktrackBoard.isSolved()) {
-			solutions.push_back(sharedBacktrackBoard.getBoard());
-        }
-		if(more) {
-            backtrackSolveRecursive(depth + 1);
-        }
-		sharedBacktrackBoard.applyBoard(previousBacktrackBoard.getBoard(), true);
-        for (RowIndex rowIndex : RowIndex::range(0, previousBacktrackBoard.getBoard().getRowLength().getLength() - 1)) {
-            PlacementCount placementCount = previousBacktrackBoard.getRowPlacementCountList()[rowIndex];
-            sharedBacktrackBoard.setRowPlacementCount(rowIndex, placementCount);
-        }
-        for (ColumnIndex columnIndex : ColumnIndex::range(0, previousBacktrackBoard.getBoard().getColumnLength().getLength() - 1)) {
-            PlacementCount placementCount = previousBacktrackBoard.getColumnPlacementCountList()[columnIndex];
-            sharedBacktrackBoard.setColumnPlacementCount(columnIndex, placementCount);
-        }
-		if (waitAndCheckTermination(1)) return;
-    }
-}
-
-bool BacktrackAlgorithm::deterministicSolve(int waitMillis) {
+bool DeterministicSolve::deterministicSolve(int waitMillis) {
 	RowLength rowLength = sharedBacktrackBoard.getRowLength();
 	ColumnLength columnLength = sharedBacktrackBoard.getColumnLength();
     while (true) {

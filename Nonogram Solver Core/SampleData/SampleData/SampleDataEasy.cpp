@@ -1,6 +1,6 @@
-#include "TestDataRepository.h"
+#include "SampleDataRepository.h"
 
-std::string TestDataRepository::GetEasyColumnHintString(){
+std::string SampleDataRepository::GetEasyColumnHintString(){
 	return R"###(
 		 ,  ,  ,  , 3, 5, 6,  ,  ,  ,  ,  ,  ,  ,  
 		2,  , 7, 7, 5, 3, 1, 6, 6, 5, 3,  ,  ,  , 2
@@ -8,7 +8,7 @@ std::string TestDataRepository::GetEasyColumnHintString(){
 	)###";
 }
 
-std::string TestDataRepository::GetEasyRowHintString(){
+std::string SampleDataRepository::GetEasyRowHintString(){
 	return R"###(
 		 , 2, 2
 		 ,  , 7

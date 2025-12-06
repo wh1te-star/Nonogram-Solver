@@ -1,5 +1,4 @@
-#include "pch.h"
-
+#include <gtest/gtest.h>
 #include <vector>
 #include "PlacementPatternCountAlgorithm.h"
 #include "Line.h"
