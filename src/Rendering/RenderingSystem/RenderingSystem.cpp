@@ -162,6 +162,8 @@ void RenderingSystem::renderingLoop() {
     glClear(GL_COLOR_BUFFER_BIT);
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     glfwSwapBuffers(window);
+
+    std::cout << "Frame Rate: " << ImGui::GetIO().Framerate << std::endl;
   }
 
   algorithm.request_stop();

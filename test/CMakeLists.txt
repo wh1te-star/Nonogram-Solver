@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(NonogramTests)
 
-# 1. Look for Python interpreter explicitly before using it
-# "REQUIRED" fails the build immediately if Python isn't found
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 include(FetchContent)

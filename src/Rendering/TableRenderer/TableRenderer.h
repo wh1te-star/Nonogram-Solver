@@ -62,10 +62,21 @@ private:
                        ColumnPlacementCountList columnPlacementCountList,
                        float cell_size, BacktrackStack backtrackStack) const;
 
+
   void drawGridLine(RowIndex rowIndex, ColumnIndex columnIndex,
                     RowLength columnHintLength, ColumnLength rowHintLength,
                     RowLength columnPlacementCountLength,
                     ColumnLength rowPlacementCountLength) const;
+  ImU32 getCellColorU32(RowIndex rowIndex, ColumnIndex columnIndex,
+                        RowLength columnHintLength, ColumnLength rowHintLength,
+                        Board board, CellType cellType,
+                        HighlightIndexes highlightIndexes,
+                        bool isHovered) const;
+  void drawGridLineDirect(ImDrawList *draw_list, ImVec2 p_min, ImVec2 p_max,
+                          RowIndex rowIndex, ColumnIndex columnIndex,
+                          RowLength columnHintLength,
+                          ColumnLength rowHintLength, RowLength boardRowLength,
+                          ColumnLength boardColumnLength) const;
 };
 
 #endif

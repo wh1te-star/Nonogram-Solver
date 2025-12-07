@@ -14,6 +14,7 @@ public:
 
 public:
   BacktrackStack getBacktrackStack() const;
+  void setBacktrackStack(const BacktrackStack &backtrackStack);
   int getDepthAtRowIndex(RowIndex rowIndex) const;
   int getDepthAtColumnIndex(ColumnIndex columnIndex) const;
   void pushRowIndex(RowIndex rowIndex);

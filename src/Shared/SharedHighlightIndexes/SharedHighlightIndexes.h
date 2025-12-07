@@ -15,6 +15,7 @@ public:
 
 public:
   HighlightIndexes getHighlightIndexes() const;
+  void setHighlightIndexes(const HighlightIndexes &indexes);
   void addRowIndex(RowIndex rowIndex);
   void addColumnIndex(ColumnIndex columnIndex);
   void deleteRowIndex(RowIndex rowIndex);

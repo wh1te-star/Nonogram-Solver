@@ -1,5 +1,6 @@
 #include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
 
+#include "SharedHighlightIndexes.h"
 #include <atomic>
 #include <chrono>
 #include <thread>
@@ -9,6 +10,12 @@ SharedHighlightIndexes::SharedHighlightIndexes() {}
 HighlightIndexes SharedHighlightIndexes::getHighlightIndexes() const {
   std::lock_guard<std::mutex> lock(mtx);
   return highlightIndexes;
+}
+
+void SharedHighlightIndexes::setHighlightIndexes(
+    const HighlightIndexes &indexes) {
+  std::lock_guard<std::mutex> lock(mtx);
+  highlightIndexes = indexes;
 }
 
 void SharedHighlightIndexes::addRowIndex(RowIndex rowIndex) {

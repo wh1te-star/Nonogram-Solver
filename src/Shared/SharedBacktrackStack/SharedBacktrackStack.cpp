@@ -1,6 +1,7 @@
 #include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
 
 #include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
+#include "SharedBacktrackStack.h"
 
 SharedBacktrackStack::SharedBacktrackStack(BacktrackStack backtrackStack)
     : backtrackStack(backtrackStack) {}
@@ -8,6 +9,12 @@ SharedBacktrackStack::SharedBacktrackStack(BacktrackStack backtrackStack)
 BacktrackStack SharedBacktrackStack::getBacktrackStack() const {
   std::lock_guard<std::mutex> lock(mtx);
   return backtrackStack;
+}
+
+void SharedBacktrackStack::setBacktrackStack(
+    const BacktrackStack &backtrackStack) {
+  std::lock_guard<std::mutex> lock(mtx);
+  this->backtrackStack = backtrackStack;
 }
 
 int SharedBacktrackStack::getDepthAtRowIndex(RowIndex rowIndex) const {

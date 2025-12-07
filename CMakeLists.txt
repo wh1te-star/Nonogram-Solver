@@ -13,7 +13,13 @@ project ("Nonogram Solver")
 
 add_subdirectory (src)
 
+string(TOUPPER "${CMAKE_BUILD_TYPE}" UPPER_BUILD_TYPE)
+
 enable_testing()
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/test")
     add_subdirectory(test)
+endif()
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/bench")
+    add_subdirectory(bench)
 endif()
