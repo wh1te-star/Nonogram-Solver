@@ -95,6 +95,7 @@ set(NONOGRAM_CORE_SOURCES
     "Board/NonogramBoard/NonogramBoard.cpp"
     "Cell/Cell/Cell.cpp"
     "Cell/CellLocation/CellLocation.cpp"
+    "Cell/CellChange/CellChange.cpp"
     "Hint/HintNumber/HintNumber.cpp"
     "Hint/HintSet/HintSet.cpp"
     "Hint/HintSetList/ColumnHintSetList.cpp"

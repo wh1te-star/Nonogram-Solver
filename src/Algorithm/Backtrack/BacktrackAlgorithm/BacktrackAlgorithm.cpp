@@ -7,6 +7,7 @@
 #include "Hint/HintSet/HintSet.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
+#include "Cell/CellChange/CellChange.h"
 #include <algorithm>
 #include <chrono>
 
@@ -70,6 +71,7 @@ void BacktrackAlgorithm::backtrackSolve() {
   backtrackSolveRecursive(0);
 }
 
+/*
 void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
   if (terminate.load())
     return;
@@ -146,6 +148,32 @@ void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
     sharedBacktrackBoard.applyBoard(solutions[0], true);
   }
 }
+  */
+
+void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
+    if (localBacktrackBoard.isSolved()) {
+        solutions.push_back(localBacktrackBoard.getBoard());
+        return;
+    }
+
+    std::vector<CellChange> assumptionList = getExhaustiveList();
+
+    if (assumptionList.empty()) {
+        return;
+    }
+
+    for (CellChange assumption : assumptionList) {
+        localBacktrackBoard.applyChange(assumption);
+
+        bool hasContradiction = deterministicSolve(1);
+
+        if (!hasContradiction) {
+            backtrackSolveRecursive(depth + 1);
+        }
+
+        localBacktrackBoard.revertChange(assumption);
+    }
+  }
 
 bool BacktrackAlgorithm::deterministicSolve(int waitMillis) {
   RowLength rowLength = localBacktrackBoard.getRowLength();
