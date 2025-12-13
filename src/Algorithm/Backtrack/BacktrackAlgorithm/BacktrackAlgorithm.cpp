@@ -4,10 +4,10 @@
 #include "Algorithm/OverlapDeterminationAlgorithm/OverlapDeterminationAlgorithm.h"
 #include "Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.h"
 #include "Board/Line/Line.h"
+#include "Cell/CellChange/CellChange.h"
 #include "Hint/HintSet/HintSet.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
-#include "Cell/CellChange/CellChange.h"
 #include <algorithm>
 #include <chrono>
 
@@ -18,7 +18,6 @@ BacktrackAlgorithm::BacktrackAlgorithm(
     : sharedBacktrackBoard(sharedBacktrackBoard),
       sharedBacktrackStack(sharedBacktrackStack),
       sharedHighlightIndexes(sharedHighlightIndexes),
-      // Initialize local instances from shared state
       localBacktrackBoard(sharedBacktrackBoard.getBacktrackBoard()),
       localBacktrackStack(sharedBacktrackStack.getBacktrackStack()),
       localHighlightIndexes(sharedHighlightIndexes.getHighlightIndexes()) {
@@ -41,7 +40,8 @@ void BacktrackAlgorithm::syncToSharedIfNeeded(bool force) {
     sharedBacktrackBoard.applyBoard(localBacktrackBoard.getBoard(), true);
 
     RowLength rowLength = localBacktrackBoard.getBoard().getRowLength();
-    ColumnLength columnLength = localBacktrackBoard.getBoard().getColumnLength();
+    ColumnLength columnLength =
+        localBacktrackBoard.getBoard().getColumnLength();
 
     for (RowIndex rowIndex : RowIndex::range(0, rowLength.getLength() - 1)) {
       sharedBacktrackBoard.setRowPlacementCount(
@@ -58,17 +58,12 @@ void BacktrackAlgorithm::syncToSharedIfNeeded(bool force) {
     sharedBacktrackStack.setBacktrackStack(localBacktrackStack);
 
     // 3. Sync HighlightIndexes (Assuming setHighlightIndexes exists)
-    // Note: Since highlights change very fast in loops, this will show a "snapshot" 
-    // of the highlight at the moment of sync.
+    // Note: Since highlights change very fast in loops, this will show a
+    // "snapshot" of the highlight at the moment of sync.
     sharedHighlightIndexes.setHighlightIndexes(localHighlightIndexes);
 
     lastUpdateTime = now;
   }
-}
-
-void BacktrackAlgorithm::backtrackSolve() {
-  deterministicSolve(10);
-  backtrackSolveRecursive(0);
 }
 
 /*
@@ -95,7 +90,8 @@ void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
       ExhaustivePlacementPatternFindAlgorithm::run(row, rowHintSet);
 
   BacktrackBoard previousBacktrackBoard = localBacktrackBoard;
-  // If you were using the stack logic here, you would push to localBacktrackStack
+  // If you were using the stack logic here, you would push to
+localBacktrackStack
   // e.g., localBacktrackStack.push(previousBacktrackBoard);
 
   for (Placement placement : exhaustivePlacements) {
@@ -150,144 +146,7 @@ void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
 }
   */
 
-void BacktrackAlgorithm::backtrackSolveRecursive(int depth) {
-    if (localBacktrackBoard.isSolved()) {
-        solutions.push_back(localBacktrackBoard.getBoard());
-        return;
-    }
-
-    std::vector<CellChange> assumptionList = getExhaustiveList();
-
-    if (assumptionList.empty()) {
-        return;
-    }
-
-    for (CellChange assumption : assumptionList) {
-        localBacktrackBoard.applyChange(assumption);
-
-        bool hasContradiction = deterministicSolve(1);
-
-        if (!hasContradiction) {
-            backtrackSolveRecursive(depth + 1);
-        }
-
-        localBacktrackBoard.revertChange(assumption);
-    }
-  }
-
 bool BacktrackAlgorithm::deterministicSolve(int waitMillis) {
-  RowLength rowLength = localBacktrackBoard.getRowLength();
-  ColumnLength columnLength = localBacktrackBoard.getColumnLength();
-
-  while (true) {
-    bool proceed = false;
-    for (RowIndex rowIndex : RowIndex::range(0, rowLength.getLength() - 1)) {
-      // Update LOCAL highlight
-      localHighlightIndexes.addRowIndex(rowIndex);
-
-      Row rowLine = localBacktrackBoard.getRowLine(rowIndex);
-      RowHintSetList rowHintSetList = localBacktrackBoard.getRowHintSetList();
-      HintSet rowHintSet = rowHintSetList[rowIndex];
-
-      Row newRowLine =
-          OverlapDeterminationAlgorithm::run(rowLine, rowHintSet).toRow();
-
-      if (newRowLine.size() == 0) {
-        return false;
-      }
-
-      Row currentRowLine = localBacktrackBoard.getRowLine(rowIndex);
-      localBacktrackBoard.applyRow(rowIndex, newRowLine, false);
-
-      if (currentRowLine != localBacktrackBoard.getRowLine(rowIndex)) {
-        proceed = true;
-      }
-
-      PlacementCount count =
-          PlacementPatternCountAlgorithm::run(rowLine, rowHintSet);
-
-      localBacktrackBoard.setRowPlacementCount(rowIndex, count);
-
-      if (count == PlacementCount(0)) {
-        return false;
-      }
-      if (count == PlacementCount(1)) {
-        RowPlacement finalPlacement =
-            ExhaustivePlacementPatternFindAlgorithm::run(rowLine, rowHintSet)[0]
-                .toRowPlacement();
-        localBacktrackBoard.applyRow(rowIndex, finalPlacement);
-      }
-
-      // Sync all locals to shared (throttled)
-      syncToSharedIfNeeded();
-
-      if (waitAndCheckTermination(waitMillis))
-        return false;
-
-      // Update LOCAL highlight
-      localHighlightIndexes.deleteRowIndex(rowIndex);
-    }
-
-    for (ColumnIndex columnIndex :
-         ColumnIndex::range(0, columnLength.getLength() - 1)) {
-      // Update LOCAL highlight
-      localHighlightIndexes.addColumnIndex(columnIndex);
-
-      Column columnLine = localBacktrackBoard.getColumnLine(columnIndex);
-      ColumnHintSetList columnHintSetList =
-          localBacktrackBoard.getColumnHintSetList();
-      HintSet columnHintSet = columnHintSetList[columnIndex];
-
-      Column newColumnLine =
-          OverlapDeterminationAlgorithm::run(columnLine, columnHintSet)
-              .toColumn();
-
-      if (newColumnLine.size() == 0) {
-        return false;
-      }
-
-      Column currentColumnLine = localBacktrackBoard.getColumnLine(columnIndex);
-      localBacktrackBoard.applyColumn(columnIndex, newColumnLine, false);
-
-      if (currentColumnLine != localBacktrackBoard.getColumnLine(columnIndex)) {
-        proceed = true;
-      }
-
-      PlacementCount count =
-          PlacementPatternCountAlgorithm::run(columnLine, columnHintSet);
-
-      localBacktrackBoard.setColumnPlacementCount(columnIndex, count);
-
-      if (count == PlacementCount(0))
-        return false;
-      if (count == PlacementCount(1)) {
-        ColumnPlacement finalPlacement =
-            ExhaustivePlacementPatternFindAlgorithm::run(columnLine,
-                                                         columnHintSet)[0]
-                .toColumnPlacement();
-        localBacktrackBoard.applyColumn(columnIndex, finalPlacement);
-      }
-
-      // Sync all locals to shared (throttled)
-      syncToSharedIfNeeded();
-
-      if (waitAndCheckTermination(waitMillis))
-        return false;
-
-      // Update LOCAL highlight
-      localHighlightIndexes.deleteColumnIndex(columnIndex);
-    }
-
-    if (proceed == false) {
-      syncToSharedIfNeeded(true);
-      return true;
-    }
-    if (localBacktrackBoard.isSolved()) {
-      syncToSharedIfNeeded(true);
-      return false;
-    }
-  }
-  return true;
 }
 
 bool BacktrackAlgorithm::waitAndCheckTermination(const int waitMillis) const {

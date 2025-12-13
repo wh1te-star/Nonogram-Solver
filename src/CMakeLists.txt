@@ -124,6 +124,10 @@ set(NONOGRAM_CORE_SOURCES
     "SampleData/SampleData/SampleDataEasy.cpp"
     "SampleData/SampleData/SampleDataLambda.cpp"
     "SampleData/SampleData/SampleDataLarge.cpp"
+    "Solver/Solver/BacktrackSolver/BacktrackSolver.cpp"
+    "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.cpp"
+    "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.cpp"
+    "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.cpp"
 )
 
 # Create the Core Logic Library Target

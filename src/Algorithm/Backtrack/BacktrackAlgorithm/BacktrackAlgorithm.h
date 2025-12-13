@@ -4,9 +4,9 @@
 #include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
 #include "Board/Line/Line.h"
 #include "Hint/HintSet/HintSet.h"
-#include "Rendering/HighlightIndexes/HighlightIndexes.h" // Need the concrete class definition
+#include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
-#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h" // Ensure this is included
+#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
 #include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
 #include <atomic>
 #include <thread>
@@ -19,7 +19,6 @@ private:
   SharedHighlightIndexes &sharedHighlightIndexes;
   std::atomic<bool> terminate{false};
 
-  // Local instances for calculation
   BacktrackBoard localBacktrackBoard;
   BacktrackStack localBacktrackStack;
   HighlightIndexes localHighlightIndexes;
@@ -29,7 +28,6 @@ private:
 
   std::vector<Board> solutions;
 
-  // Helper to sync all local states to shared states
   void syncToSharedIfNeeded(bool force = false);
 
 public:
