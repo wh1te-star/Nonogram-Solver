@@ -6,12 +6,6 @@
 
 class DFSLeftmostPlacementFinder : public ILeftMostPlacementFinder {
 public:
-    enum class DFSResult {
-        Found,
-        NotFound
-    };
-
-public:
   DFSLeftmostPlacementFinder() = default;
   bool find(
     const HintSet& hintSet,
