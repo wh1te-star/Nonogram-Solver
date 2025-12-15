@@ -7,18 +7,18 @@
 class DFSLeftmostPlacementFinder : public ILeftMostPlacementFinder {
 public:
   DFSLeftmostPlacementFinder() = default;
-  bool find(
+  Placement find(
     const HintSet& hintSet,
     Line& line
   ) override;
 
 private:
-  bool dfsLeftmostPlacementFind(
+  Placement dfsLeftmostPlacementFind(
     const HintSet& hintSet,
     Line& line
   );
 
-  bool dfsLeftmostPlacementFindRecursive(
+  Placement dfsLeftmostPlacementFindRecursive(
     const HintSet& hintSet,
     Line& line,
     Placement &currentPlacement,

@@ -7,7 +7,7 @@
 class ILeftMostPlacementFinder {
 public:
   ILeftMostPlacementFinder() = default;
-  virtual bool find(
+  virtual Placement find(
     const HintSet& hintSet,
     Line& line
   ) = 0;

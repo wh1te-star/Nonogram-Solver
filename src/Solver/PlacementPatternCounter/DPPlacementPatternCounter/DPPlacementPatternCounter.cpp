@@ -1,17 +1,19 @@
-#include "Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.h"
+#include "Solver/PlacementPatternCounter/DPPlacementPatternCounter/DPPlacementPatternCounter.h"
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
+DPPlacementPatternCounter::DPPlacementPatternCounter() {}
 
-PlacementCount PlacementPatternCountAlgorithm::run(const Line &line,
-                                                   const HintSet &HintSet) {
-  return CountPlacement(line, HintSet);
+DPPlacementPatternCounter::DPPlacementPatternCounter(int MAX_COUNT)
+    : MAX_COUNT(MAX_COUNT) {}
+
+PlacementCount DPPlacementPatternCounter::count(const HintSet &hintSet,
+                                                Line &line) {
+  return DPPlacementPatternCount(hintSet, line);
 }
 
 PlacementCount
-PlacementPatternCountAlgorithm::CountPlacement(const Line &line,
-                                               const HintSet &HintSet) {
-  int hintsCount = HintSet.size();
+DPPlacementPatternCounter::DPPlacementPatternCount(const HintSet &hintSet,
+                                                   const Line &line) {
+  int hintsCount = hintSet.size();
   int totalLength = line.size();
   std::vector<std::vector<PlacementCount>> partialCount(
       hintsCount + 1,
@@ -32,7 +34,7 @@ PlacementPatternCountAlgorithm::CountPlacement(const Line &line,
 
   for (int hintNumberIndexInt = 1; hintNumberIndexInt <= hintsCount;
        hintNumberIndexInt++) {
-    HintNumber hintNumber = HintSet[hintNumberIndexInt - 1];
+    HintNumber hintNumber = hintSet[hintNumberIndexInt - 1];
 
     for (int cellIndexInt = 1; cellIndexInt <= totalLength; cellIndexInt++) {
       CellIndex cellIndex = CellIndex(cellIndexInt);
@@ -62,8 +64,9 @@ PlacementPatternCountAlgorithm::CountPlacement(const Line &line,
         }
       }
 
-      if (partialCount[hintNumberIndexInt][cellIndexInt] > MAX_COUNT) {
-        return MAX_COUNT;
+      if (partialCount[hintNumberIndexInt][cellIndexInt] >
+          PlacementCount(MAX_COUNT)) {
+        return PlacementCount(MAX_COUNT);
       }
     }
   }
@@ -71,8 +74,8 @@ PlacementPatternCountAlgorithm::CountPlacement(const Line &line,
   return partialCount[hintsCount][totalLength];
 }
 
-bool PlacementPatternCountAlgorithm::isSeparated(
-    const Line &line, const CellIndex &prevCellIndex) {
+bool DPPlacementPatternCounter::isSeparated(const Line &line,
+                                            const CellIndex &prevCellIndex) {
   if (prevCellIndex < 0) {
     return true;
   }
@@ -80,9 +83,9 @@ bool PlacementPatternCountAlgorithm::isSeparated(
   return prevCell.canColor(White);
 }
 
-bool PlacementPatternCountAlgorithm::isBlockFits(const Line &line,
-                                                 const CellIndex &blockStart,
-                                                 const HintNumber &hintNumber) {
+bool DPPlacementPatternCounter::isBlockFits(const Line &line,
+                                            const CellIndex &blockStart,
+                                            const HintNumber &hintNumber) {
   for (int offset = 0; offset < hintNumber.getNumber(); offset++) {
     CellIndex cellIndex = blockStart + offset;
     Cell cell = line[cellIndex];

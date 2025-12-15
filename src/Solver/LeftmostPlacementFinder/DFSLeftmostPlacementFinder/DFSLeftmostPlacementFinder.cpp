@@ -1,22 +1,22 @@
 #include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
 
-bool DFSLeftmostPlacementFinder::find(
+Placement DFSLeftmostPlacementFinder::find(
     const HintSet &hintSet,
     Line &line) {
   return dfsLeftmostPlacementFind(hintSet, line);
 }
-bool DFSLeftmostPlacementFinder::dfsLeftmostPlacementFind(
+Placement DFSLeftmostPlacementFinder::dfsLeftmostPlacementFind(
     const HintSet &hintSet,
     Line &line) {
   Placement currentPlacement = Placement("");
-  return getLeftMostPlacementRecursive(line, hintSet, currentPlacement, 0);
+  return dfsLeftmostPlacementFindRecursive(hintSet, line, currentPlacement, 0);
 }
 
-bool DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
+Placement DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
     const HintSet &hintSet, Line &line, Placement &currentPlacement,
     int currentHintIndex) {
   if (currentPlacement.size() > line.size()) {
-    return false;
+    return Placement("");
   }
   if (currentHintIndex >= hintSet.size()) {
     Placement foundPlacement = currentPlacement;
@@ -40,8 +40,8 @@ bool DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
     if (currentPlacement.size() < line.size()) {
       currentPlacement = currentPlacement + Placement("W");
     }
-    Placement foundPlacement = getLeftMostPlacementRecursive(
-        line, hintSet, currentPlacement, currentHintIndex + 1);
+    Placement foundPlacement = dfsLeftmostPlacementFindRecursive(
+        hintSet, line, currentPlacement, currentHintIndex + 1);
     if (foundPlacement.size() != 0) {
       return foundPlacement;
     }
@@ -51,13 +51,13 @@ bool DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
   if (currentIndex < line.size() && line[currentIndex].canColor(White)) {
     Placement previousPlacement = currentPlacement;
     currentPlacement = currentPlacement + Placement("W");
-    Placement foundPlacement = getLeftMostPlacementRecursive(
-        line, hintSet, currentPlacement, currentHintIndex);
+    Placement foundPlacement = dfsLeftmostPlacementFindRecursive(
+        hintSet, line, currentPlacement, currentHintIndex);
     if (foundPlacement.size() != 0) {
       return foundPlacement;
     }
     currentPlacement = previousPlacement;
   }
 
-  return true;
+  return Placement("");
 }
