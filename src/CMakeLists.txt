@@ -79,11 +79,6 @@ target_include_directories(glad PUBLIC
 set(NONOGRAM_CORE_SOURCES
     "Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.cpp"
     "Algorithm/Backtrack/BacktrackStack/BacktrackStack.cpp"
-    "Algorithm/ExhaustivePlacementPatternFindAlgorithm/ExhaustivePlacementPatternFindAlgorithm.cpp"
-    "Algorithm/FindLeftMostPlacementAlgorithm/FindLeftMostPlacementAlgorithm.cpp"
-    "Algorithm/FindRightMostPlacementAlgorithm/FindRightMostPlacementAlgorithm.cpp"
-    "Algorithm/OverlapDeterminationAlgorithm/OverlapDeterminationAlgorithm.cpp"
-    "Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.cpp"
     "Board/BacktrackBoard/BacktrackBoard.cpp"
     "Board/Board/Board.cpp"
     "Board/BoardLength/BoardLength.cpp"
@@ -127,7 +122,11 @@ set(NONOGRAM_CORE_SOURCES
     "Solver/Solver/BacktrackSolver/BacktrackSolver.cpp"
     "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.cpp"
     "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.cpp"
+    "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.cpp"
     "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.cpp"
+    "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.cpp"
+    "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.cpp"
+    "Solver/PlacementPatternCounter/DPPlacementPatternCounter/DPPlacementPatternCounter.cpp"
 )
 
 # Create the Core Logic Library Target

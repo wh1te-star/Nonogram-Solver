@@ -3,7 +3,7 @@
 LineRepeatDeterministicSolver::LineRepeatDeterministicSolver() {}
 
 bool LineRepeatDeterministicSolver::solve(NonogramBoard &nonogramBoard) {
-  lineRepeatDeterministicSolve();
+  return lineRepeatDeterministicSolve(nonogramBoard);
 }
 
 bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
@@ -14,7 +14,7 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
   while (true) {
     bool proceed = false;
     for (RowIndex rowIndex : RowIndex::range(0, rowLength.getLength() - 1)) {
-      //localHighlightIndexes.addRowIndex(rowIndex);
+      // localHighlightIndexes.addRowIndex(rowIndex);
 
       Row rowLine = nonogramBoard.getRowLine(rowIndex);
       RowHintSetList rowHintSetList = nonogramBoard.getRowHintSetList();

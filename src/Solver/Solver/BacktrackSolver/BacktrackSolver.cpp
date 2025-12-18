@@ -1,7 +1,6 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
-BacktrackSolver::BacktrackSolver(
-    IDeterministicSolver &deterministicSolver)
+BacktrackSolver::BacktrackSolver(IDeterministicSolver &deterministicSolver)
     : deterministicSolver(deterministicSolver) {}
 
 void BacktrackSolver::solve(NonogramBoard &nonogramBoard) {
@@ -10,11 +9,11 @@ void BacktrackSolver::solve(NonogramBoard &nonogramBoard) {
 
 void BacktrackSolver::backtrackSolve(NonogramBoard &nonogramBoard) {
   deterministicSolver.solve(nonogramBoard);
-  backtrackSolveRecursive(nonogramBoard);
+  backtrackSolveRecursive(nonogramBoard, 0);
 }
 
-void BacktrackSolver::backtrackSolveRecursive(
-    NonogramBoard &nonogramBoard, int depth) {
+void BacktrackSolver::backtrackSolveRecursive(NonogramBoard &nonogramBoard,
+                                              int depth) {
   if (nonogramBoard.isSolved()) {
     solutions.push_back(nonogramBoard.getBoard());
     return;

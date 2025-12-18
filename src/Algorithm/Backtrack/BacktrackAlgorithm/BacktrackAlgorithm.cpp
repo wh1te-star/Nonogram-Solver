@@ -1,8 +1,5 @@
 #include "Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.h"
 
-#include "Algorithm/ExhaustivePlacementPatternFindAlgorithm/ExhaustivePlacementPatternFindAlgorithm.h"
-#include "Algorithm/OverlapDeterminationAlgorithm/OverlapDeterminationAlgorithm.h"
-#include "Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.h"
 #include "Board/Line/Line.h"
 #include "Cell/CellChange/CellChange.h"
 #include "Hint/HintSet/HintSet.h"
@@ -12,21 +9,14 @@
 #include <chrono>
 
 BacktrackAlgorithm::BacktrackAlgorithm(
-    SharedBacktrackBoard &sharedBacktrackBoard,
-    SharedBacktrackStack &sharedBacktrackStack,
-    SharedHighlightIndexes &sharedHighlightIndexes)
-    : sharedBacktrackBoard(sharedBacktrackBoard),
-      sharedBacktrackStack(sharedBacktrackStack),
-      sharedHighlightIndexes(sharedHighlightIndexes),
-      localBacktrackBoard(sharedBacktrackBoard.getBacktrackBoard()),
-      localBacktrackStack(sharedBacktrackStack.getBacktrackStack()),
-      localHighlightIndexes(sharedHighlightIndexes.getHighlightIndexes()) {
+    ISolver &solver)
+    : solver(solver)
+    {
   lastUpdateTime = std::chrono::steady_clock::now();
 }
 
 void BacktrackAlgorithm::run() {
-  deterministicSolve(10);
-  backtrackSolve();
+  
 }
 
 void BacktrackAlgorithm::syncToSharedIfNeeded(bool force) {
@@ -145,9 +135,6 @@ localBacktrackStack
   }
 }
   */
-
-bool BacktrackAlgorithm::deterministicSolve(int waitMillis) {
-}
 
 bool BacktrackAlgorithm::waitAndCheckTermination(const int waitMillis) const {
   if (waitMillis <= 0) {
