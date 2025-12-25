@@ -2,6 +2,7 @@
 #define BACKTRACKALGORITHM_H
 
 #include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
+#include "Board/BacktrackBoard/BacktrackBoard.h"
 #include "Board/Line/Line.h"
 #include "Hint/HintSet/HintSet.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
@@ -15,8 +16,14 @@
 
 class BacktrackAlgorithm {
 private:
-  ISolver &solver;
   std::atomic<bool> terminate{false};
+  SharedBacktrackBoard &sharedBacktrackBoard;
+  SharedBacktrackStack &sharedBacktrackStack;
+  SharedHighlightIndexes &sharedHighlightIndexes;
+  BacktrackBoard localBacktrackBoard;
+  BacktrackStack localBacktrackStack;
+  HighlightIndexes localHighlightIndexes;
+  ISolver &solver;
 
   int throttleMillis = 30;
   std::chrono::steady_clock::time_point lastUpdateTime;
@@ -26,7 +33,10 @@ private:
   void syncToSharedIfNeeded(bool force = false);
 
 public:
-  explicit BacktrackAlgorithm(ISolver &solver);
+  explicit BacktrackAlgorithm(SharedBacktrackBoard &sharedBacktrackBoard,
+                              SharedBacktrackStack &sharedBacktrackStack,
+                              SharedHighlightIndexes &sharedHighlightIndexes,
+                              ISolver &solver);
 
   void run();
 
