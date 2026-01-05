@@ -8,13 +8,10 @@ private:
     bool stopRequested;
 
 public:
-    SolverContext() : stopRequested(false) {}
-
-    bool shouldStop() const override { return stopRequested; }
-
-    void notifyProgress() override {}
-
-    void requestStop() { stopRequested = true; }
+    SolverContext();
+    bool shouldStop() const override;
+    void notifyProgress() override;
+    void requestStop();
 };
 
 #endif
