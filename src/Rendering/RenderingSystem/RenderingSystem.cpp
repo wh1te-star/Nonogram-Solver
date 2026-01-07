@@ -4,7 +4,6 @@
 #include "Rendering/FontData/FontData.h"
 #include "Rendering/TableRenderer/TableRenderer.h"
 #include "SampleData/Repository/SampleDataRepository.h"
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
 #include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
 #include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
 #include "imgui.h"
@@ -70,6 +69,7 @@ void RenderingSystem::renderingLoop() {
                                                         PlacementCount(0))),
       ColumnPlacementCountList(std::vector<PlacementCount>(
           columnHintSetList.size(), PlacementCount(0))));
+
   SharedBacktrackBoard sharedBacktrackBoard =
       SharedBacktrackBoard(backtrackBoard);
   SharedBacktrackStack sharedBacktrackStack =

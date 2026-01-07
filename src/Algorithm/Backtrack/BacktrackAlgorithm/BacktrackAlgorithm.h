@@ -5,43 +5,26 @@
 #include "Board/BacktrackBoard/BacktrackBoard.h"
 #include "Board/Line/Line.h"
 #include "Hint/HintSet/HintSet.h"
-#include "Rendering/HighlightIndexes/HighlightIndexes.h"
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
-#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
-#include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
-#include "Solver/Solver/ISolver.h"
+#include "Shared/ISender.h"
+#include "Shared/StopSignal/StopSignal/StopSignal.h"
 #include <atomic>
 #include <thread>
 #include <vector>
 
-class BacktrackAlgorithm {
+class AlgorithmThread {
 private:
-  std::atomic<bool> terminate{false};
-  SharedBacktrackBoard &sharedBacktrackBoard;
-  SharedBacktrackStack &sharedBacktrackStack;
-  SharedHighlightIndexes &sharedHighlightIndexes;
+  IStopSignal &stopSignal;
+
+  ISender<BacktrackBoard> &backtrackBoardSender;
+
   BacktrackBoard localBacktrackBoard;
-  BacktrackStack localBacktrackStack;
-  HighlightIndexes localHighlightIndexes;
-  ISolver &solver;
-
-  int throttleMillis = 30;
-  std::chrono::steady_clock::time_point lastUpdateTime;
-
-  std::vector<Board> solutions;
-
-  void syncToSharedIfNeeded(bool force = false);
 
 public:
-  explicit BacktrackAlgorithm(SharedBacktrackBoard &sharedBacktrackBoard,
-                              SharedBacktrackStack &sharedBacktrackStack,
-                              SharedHighlightIndexes &sharedHighlightIndexes,
-                              ISolver &solver);
+  AlgorithmThread::AlgorithmThread(
+      IStopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
+      const BacktrackBoard &initialBacktrackBoard);
 
-  void run();
-
-  bool waitAndCheckTermination(const int waitMillis) const;
-  void request_stop();
+      void run();
 };
 
 #endif
