@@ -9,13 +9,13 @@
 #include <algorithm>
 #include <chrono>
 
-AlgorithmThread::AlgorithmThread(IStopSignal &stopSignal,
-                                 ISender<BacktrackBoard> &backtrackBoardSender,
-                                 const BacktrackBoard &initialBacktrackBoard)
+BacktrackAlgorithm::BacktrackAlgorithm(
+    IStopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
+    BacktrackBoard initialBacktrackBoard)
     : stopSignal(stopSignal), backtrackBoardSender(backtrackBoardSender),
       localBacktrackBoard(initialBacktrackBoard) {}
 
-void AlgorithmThread::run() {
+void BacktrackAlgorithm::run() {
   int counter = 0;
   while (true) {
     if (stopSignal.shouldStop())

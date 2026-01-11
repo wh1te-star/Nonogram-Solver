@@ -7,7 +7,6 @@
 #include "Index/CellIndex/ColumnIndex.h"
 #include "Index/CellIndex/RowIndex.h"
 #include "Rendering/FontData/FontData.h"
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
 #include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
 #include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
 #include "imgui.h"
@@ -20,21 +19,19 @@
 TableRenderer::TableRenderer() {}
 
 void TableRenderer::render(
-    const SharedBacktrackBoard &sharedBacktrackBoard,
-    const SharedBacktrackStack &sharedBacktrackStack,
-    const SharedHighlightIndexes &sharedHighlightIndexes) const {
+    const BacktrackBoard &backtrackBoard
+    // const SharedBacktrackStack &sharedBacktrackStack,
+    // const SharedHighlightIndexes &sharedHighlightIndexes
+) const {
   auto start_total = std::chrono::high_resolution_clock::now();
   auto start_data_copy = std::chrono::high_resolution_clock::now();
 
   ImGui::Begin("Nonogram Board", NULL, ImGuiWindowFlags_None);
 
   // --- Data Retrieval (Same as before) ---
-  const HighlightIndexes highlightIndexes =
-      sharedHighlightIndexes.getHighlightIndexes();
-  const BacktrackStack backtrackStack =
-      sharedBacktrackStack.getBacktrackStack();
-  const BacktrackBoard backtrackBoard =
-      sharedBacktrackBoard.getBacktrackBoard();
+  // const HighlightIndexes highlightIndexes =
+  // sharedHighlightIndexes.getHighlightIndexes(); const BacktrackStack
+  // backtrackStack = sharedBacktrackStack.getBacktrackStack();
   const Board board = backtrackBoard.getBoard();
   const RowHintSetList rowHintSetList = backtrackBoard.getRowHintSetList();
   const ColumnHintSetList columnHintSetList =
@@ -137,20 +134,26 @@ void TableRenderer::render(
           rowBacktrackStackLength);
 
       // 2. Get Color & Draw Background
+      // ImU32 color = getCellColorU32(rowIndex, columnIndex, columnHintLength,
+      // rowHintLength, board, cellType, highlightIndexes, isHovered);
       ImU32 color = getCellColorU32(rowIndex, columnIndex, columnHintLength,
-                                    rowHintLength, board, cellType,
-                                    highlightIndexes, isHovered);
+                                    rowHintLength, board, cellType, isHovered);
 
       draw_list->AddRectFilled(p_min, p_max, color);
 
       // 3. Draw Label (Text)
+      // std::string label = setLabel( rowIndex, columnIndex, cellType,
+      // columnHintLength, rowHintLength, rowHintSetList, columnHintSetList,
+      // rowPlacementCountList, columnPlacementCountList, cell_size,
+      // backtrackStack);
       std::string label = setLabel(
           rowIndex, columnIndex, cellType, columnHintLength, rowHintLength,
           rowHintSetList, columnHintSetList, rowPlacementCountList,
-          columnPlacementCountList, cell_size, backtrackStack);
+          columnPlacementCountList, cell_size);//, backtrackStack);
 
       if (!label.empty()) {
-        ImVec2 textSize = font->CalcTextSizeA(font->LegacySize, FLT_MAX, 0.0f, label.c_str());
+        ImVec2 textSize =
+            font->CalcTextSizeA(font->LegacySize, FLT_MAX, 0.0f, label.c_str());
         ImVec2 textPos = ImVec2(p_min.x + (cell_size - textSize.x) * 0.5f,
                                 p_min.y + (cell_size - textSize.y) * 0.5f);
 
@@ -197,7 +200,6 @@ void TableRenderer::render(
               duration_total - duration_data_copy - duration_draw_loop);
 }
 
-// Reusing your logic, just separated for clarity
 TableRenderer::CellType TableRenderer::determineCellType(
     RowIndex rowIndex, ColumnIndex columnIndex, RowLength columnHintLength,
     ColumnLength rowHintLength, RowLength boardRowLength,
@@ -239,7 +241,7 @@ ImU32 TableRenderer::getCellColorU32(RowIndex rowIndex, ColumnIndex columnIndex,
                                      RowLength columnHintLength,
                                      ColumnLength rowHintLength, Board board,
                                      CellType cellType,
-                                     HighlightIndexes highlightIndexes,
+                                     //HighlightIndexes highlightIndexes,
                                      bool isHovered) const {
 
   // Define base colors (ABGR format for IM_COL32 usually, but the macro handles
@@ -264,14 +266,16 @@ ImU32 TableRenderer::getCellColorU32(RowIndex rowIndex, ColumnIndex columnIndex,
     baseColor = col_outOfBoard;
   } else if (cellType == ROW_PLACEMENT_COUNT || cellType == ROW_HINT ||
              cellType == ROW_BACKTRACK_STACK) {
-    if (highlightIndexes.findRowIndex(rowIndex - columnHintLength)) {
+    //if (highlightIndexes.findRowIndex(rowIndex - columnHintLength)) {
+    if (true) {
       baseColor = col_rowHintHigh;
     } else {
       baseColor = col_rowHint;
     }
   } else if (cellType == COLUMN_PLACEMENT_COUNT || cellType == COLUMN_HINT ||
              cellType == COLUMN_BACKTRACK_STACK) {
-    if (highlightIndexes.findColumnIndex(columnIndex - rowHintLength)) {
+    //if (highlightIndexes.findColumnIndex(columnIndex - rowHintLength)) {
+    if (true) {
       baseColor = col_colHintHigh;
     } else {
       baseColor = col_colHint;
@@ -316,8 +320,9 @@ std::string TableRenderer::setLabel(
     RowLength columnHintLength, ColumnLength rowHintLength,
     RowHintSetList rowHintSetList, ColumnHintSetList columnHintSetList,
     RowPlacementCountList rowPlacementCountList,
-    ColumnPlacementCountList columnPlacementCountList, float cell_size,
-    BacktrackStack backtrackBoard) const {
+    ColumnPlacementCountList columnPlacementCountList, float cell_size
+    //BacktrackStack backtrackBoard
+    ) const {
 
   // Logic remains mostly the same, just returning string.
   // Font pushing is handled in the main loop now.
@@ -363,6 +368,7 @@ std::string TableRenderer::setLabel(
       return std::to_string(placementCount.getCount());
     }
 
+    /*
     if (cellType == ROW_BACKTRACK_STACK) {
       RowIndex backtrackStackIndex = rowIndex - columnHintLength;
       int backtrackDepth =
@@ -376,6 +382,7 @@ std::string TableRenderer::setLabel(
           backtrackBoard.getDepthAtColumnIndex(backtrackStackIndex);
       return std::to_string(backtrackDepth);
     }
+      */
   }
 
   return "";

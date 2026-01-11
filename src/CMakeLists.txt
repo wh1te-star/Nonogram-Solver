@@ -75,59 +75,8 @@ target_include_directories(glad PUBLIC
 #  Refactoring: Create a Static Library for Core Logic
 # =========================================================
 
-# Define source files for the core logic (Everything EXCEPT main.cpp)
-set(NONOGRAM_CORE_SOURCES
-    "Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.cpp"
-    "Algorithm/Backtrack/BacktrackStack/BacktrackStack.cpp"
-    "Board/BacktrackBoard/BacktrackBoard.cpp"
-    "Board/Board/Board.cpp"
-    "Board/BoardLength/BoardLength.cpp"
-    "Board/BoardLength/ColumnLength.cpp"
-    "Board/BoardLength/RowLength.cpp"
-    "Board/Line/Column.cpp"
-    "Board/Line/Line.cpp"
-    "Board/Line/Row.cpp"
-    "Board/NonogramBoard/NonogramBoard.cpp"
-    "Cell/Cell/Cell.cpp"
-    "Cell/CellLocation/CellLocation.cpp"
-    "Cell/CellChange/CellChange.cpp"
-    "Hint/HintNumber/HintNumber.cpp"
-    "Hint/HintSet/HintSet.cpp"
-    "Hint/HintSetList/ColumnHintSetList.cpp"
-    "Hint/HintSetList/HintSetList.cpp"
-    "Hint/HintSetList/RowHintSetList.cpp"
-    "Index/CellIndex/CellIndex.cpp"
-    "Index/CellIndex/ColumnIndex.cpp"
-    "Index/CellIndex/RowIndex.cpp"
-    "Index/Coordinate/Coordinate.cpp"
-    "Placement/Placement/ColumnPlacement.cpp"
-    "Placement/Placement/Placement.cpp"
-    "Placement/Placement/RowPlacement.cpp"
-    "Placement/PlacementCount/PlacementCount.cpp"
-    "Placement/PlacementCountList/ColumnPlacementCountList.cpp"
-    "Placement/PlacementCountList/PlacementCountList.cpp"
-    "Placement/PlacementCountList/RowPlacementCountList.cpp"
-    "Rendering/FontData/FontData.cpp"
-    "Rendering/HighlightIndexes/HighlightIndexes.cpp"
-    "Rendering/RenderingSystem/RenderingSystem.cpp"
-    "Rendering/TableRenderer/TableRenderer.cpp"
-    "Shared/SharedBacktrackBoard/SharedBacktrackBoard.cpp"
-    "Shared/SharedBacktrackStack/SharedBacktrackStack.cpp"
-    "Shared/SharedHighlightIndexes/SharedHighlightIndexes.cpp"
-    "SampleData/Repository/SampleDataRepository.cpp"
-    "SampleData/SampleData/SampleDataDifficult.cpp"
-    "SampleData/SampleData/SampleDataEasy.cpp"
-    "SampleData/SampleData/SampleDataLambda.cpp"
-    "SampleData/SampleData/SampleDataLarge.cpp"
-    "Solver/Solver/BacktrackSolver/BacktrackSolver.cpp"
-    "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.cpp"
-    "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.cpp"
-    "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.cpp"
-    "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.cpp"
-    "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.cpp"
-    "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.cpp"
-    "Solver/PlacementPatternCounter/DPPlacementPatternCounter/DPPlacementPatternCounter.cpp"
-)
+file(GLOB_RECURSE NONOGRAM_CORE_SOURCES "*.cpp")
+list(REMOVE_ITEM NONOGRAM_CORE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
 # Create the Core Logic Library Target
 add_library(NonogramCoreLib STATIC

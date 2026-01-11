@@ -1,87 +1,97 @@
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
+#include "Placement/PlacementCount/PlacementCount.h"
+#include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 
-LineRepeatDeterministicSolver::LineRepeatDeterministicSolver() {}
+LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
+    IStopSignal &stopSignal,
+    IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
+    IDeterministicSolver &deterministicSolver, ILineSolver &lineSolver)
+    : stopSignal(stopSignal),
+      exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder),
+      deterministicSolver(deterministicSolver), lineSolver(lineSolver) {}
 
-bool LineRepeatDeterministicSolver::solve(NonogramBoard &nonogramBoard) {
-  return lineRepeatDeterministicSolve(nonogramBoard);
+bool LineRepeatDeterministicSolver::solve(
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard) {
+  return lineRepeatDeterministicSolve(sharedBacktrackBoard, backtrackBoard);
 }
 
 bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
-    NonogramBoard &nonogramBoard) {
-  RowLength rowLength = nonogramBoard.getRowLength();
-  ColumnLength columnLength = nonogramBoard.getColumnLength();
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard) {
+  RowLength rowLength = backtrackBoard.getRowLength();
+  ColumnLength columnLength = backtrackBoard.getColumnLength();
 
+  bool proceeded = false;
   while (true) {
-    bool proceed = false;
     for (RowIndex rowIndex : RowIndex::range(0, rowLength.getLength() - 1)) {
       // localHighlightIndexes.addRowIndex(rowIndex);
 
-      Row rowLine = nonogramBoard.getRowLine(rowIndex);
-      RowHintSetList rowHintSetList = nonogramBoard.getRowHintSetList();
+      Row rowLine = backtrackBoard.getRowLine(rowIndex);
+      Row previousRowLine = rowLine;
+      RowHintSetList rowHintSetList = backtrackBoard.getRowHintSetList();
       HintSet rowHintSet = rowHintSetList[rowIndex];
 
-      Row newRowLine =
-          OverlapDeterminationAlgorithm::run(rowLine, rowHintSet).toRow();
-
-      if (newRowLine.size() == 0) {
+      bool hasContradiction = lineSolver.solve(rowHintSet, rowLine);
+      if (hasContradiction) {
         return false;
       }
 
-      Row currentRowLine = localBacktrackBoard.getRowLine(rowIndex);
-      localBacktrackBoard.applyRow(rowIndex, newRowLine, false);
+      backtrackBoard.applyRow(rowIndex, rowLine, false);
 
-      if (currentRowLine != localBacktrackBoard.getRowLine(rowIndex)) {
-        proceed = true;
+      if (rowLine != previousRowLine) {
+        proceeded = true;
       }
 
-      PlacementCount count =
-          PlacementPatternCountAlgorithm::run(rowLine, rowHintSet);
-
-      localBacktrackBoard.setRowPlacementCount(rowIndex, count);
+      /*
+      PlacementCount count = PlacementPatternCountAlgorithm::run(rowLine,
+      rowHintSet); backtrackBoard.setRowPlacementCount(rowIndex, count);
 
       if (count == PlacementCount(0)) {
         return false;
       }
       if (count == PlacementCount(1)) {
+        DFSExhaustivePlacementPatternFinder finder =
+            DFSExhaustivePlacementPatternFinder();
         RowPlacement finalPlacement =
-            ExhaustivePlacementPatternFindAlgorithm::run(rowLine, rowHintSet)[0]
-                .toRowPlacement();
+            finder.find(rowHintSet, rowLine)[0].toRowPlacement();
         localBacktrackBoard.applyRow(rowIndex, finalPlacement);
       }
+        */
 
-      syncToSharedIfNeeded();
+      if (sharedBacktrackBoard.isRequested()) {
+        sharedBacktrackBoard.send(backtrackBoard);
+      }
 
-      if (waitAndCheckTermination(waitMillis))
+      if (stopSignal.shouldStop()) {
         return false;
+      }
 
-      localHighlightIndexes.deleteRowIndex(rowIndex);
+      // localHighlightIndexes.deleteRowIndex(rowIndex);
     }
 
     for (ColumnIndex columnIndex :
          ColumnIndex::range(0, columnLength.getLength() - 1)) {
-      // Update LOCAL highlight
-      localHighlightIndexes.addColumnIndex(columnIndex);
+      // localHighlightIndexes.addColumnIndex(columnIndex);
 
-      Column columnLine = localBacktrackBoard.getColumnLine(columnIndex);
+      Column columnLine = backtrackBoard.getColumnLine(columnIndex);
+      Column previousColumnLine = columnLine;
       ColumnHintSetList columnHintSetList =
-          localBacktrackBoard.getColumnHintSetList();
+          backtrackBoard.getColumnHintSetList();
       HintSet columnHintSet = columnHintSetList[columnIndex];
-
-      Column newColumnLine =
-          OverlapDeterminationAlgorithm::run(columnLine, columnHintSet)
-              .toColumn();
-
-      if (newColumnLine.size() == 0) {
+      bool hasContradiction = lineSolver.solve(columnHintSet, columnLine);
+      if (hasContradiction) {
         return false;
       }
 
-      Column currentColumnLine = localBacktrackBoard.getColumnLine(columnIndex);
-      localBacktrackBoard.applyColumn(columnIndex, newColumnLine, false);
+      Column currentColumnLine = backtrackBoard.getColumnLine(columnIndex);
+      backtrackBoard.applyColumn(columnIndex, columnLine, false);
 
-      if (currentColumnLine != localBacktrackBoard.getColumnLine(columnIndex)) {
-        proceed = true;
+      if (columnLine != previousColumnLine) {
+        proceeded = true;
       }
 
+      /*
       PlacementCount count =
           PlacementPatternCountAlgorithm::run(columnLine, columnHintSet);
 
@@ -96,21 +106,23 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
                 .toColumnPlacement();
         localBacktrackBoard.applyColumn(columnIndex, finalPlacement);
       }
+        */
 
-      syncToSharedIfNeeded();
+      if (sharedBacktrackBoard.isRequested()) {
+        sharedBacktrackBoard.send(backtrackBoard);
+      }
 
-      if (waitAndCheckTermination(waitMillis))
+      if (stopSignal.shouldStop()) {
         return false;
+      }
 
-      localHighlightIndexes.deleteColumnIndex(columnIndex);
+      //localHighlightIndexes.deleteColumnIndex(columnIndex);
     }
 
-    if (proceed == false) {
-      syncToSharedIfNeeded(true);
+    if (proceeded == false) {
       return true;
     }
-    if (localBacktrackBoard.isSolved()) {
-      syncToSharedIfNeeded(true);
+    if (backtrackBoard.isSolved()) {
       return false;
     }
   }

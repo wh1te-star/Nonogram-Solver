@@ -11,20 +11,19 @@
 #include <thread>
 #include <vector>
 
-class AlgorithmThread {
+class BacktrackAlgorithm {
 private:
   IStopSignal &stopSignal;
 
   ISender<BacktrackBoard> &backtrackBoardSender;
-
   BacktrackBoard localBacktrackBoard;
 
 public:
-  AlgorithmThread::AlgorithmThread(
+  BacktrackAlgorithm::BacktrackAlgorithm(
       IStopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
-      const BacktrackBoard &initialBacktrackBoard);
+      BacktrackBoard initialBacktrackBoard);
 
-      void run();
+  void run();
 };
 
 #endif

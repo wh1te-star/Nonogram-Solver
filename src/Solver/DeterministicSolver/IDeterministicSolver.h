@@ -1,14 +1,14 @@
 #ifndef IDETERMINISTICSOLVER_H
 #define IDETERMINISTICSOLVER_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
+#include "Shared/SharedDataAliases.h"
+#include "Board/BacktrackBoard/BacktrackBoard.h"
 
 class IDeterministicSolver {
 public:
   virtual ~IDeterministicSolver() = default;
-  virtual bool solve(
-    NonogramBoard& nonogramBoard
-  ) = 0;
+  virtual bool solve(SharedBacktrackBoard &sharedBacktrackBoard,
+                     BacktrackBoard &backtrackBoard) = 0;
 };
 
 #endif

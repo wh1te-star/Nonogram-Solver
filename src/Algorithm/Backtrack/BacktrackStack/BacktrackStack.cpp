@@ -2,7 +2,6 @@
 
 #include <cassert>
 #include "Board/Line/Line.h"
-#include "Shared/SharedBacktrackBoard/SharedBacktrackBoard.h"
 
 
 BacktrackStack::BacktrackStack(

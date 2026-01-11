@@ -3,13 +3,13 @@
 
 class BoardLength {
 protected:
-    const int length;
+    int length;
 
 public:
     BoardLength(int length);
 
 public:
-    const int& getLength() const;
+    int getLength() const;
 };
 
 #endif

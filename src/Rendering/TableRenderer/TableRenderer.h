@@ -3,6 +3,7 @@
 
 #include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
 #include "Board/Board/Board.h"
+#include "Board/BacktrackBoard/BacktrackBoard.h"
 #include "Board/BoardLength/ColumnLength.h"
 #include "Board/BoardLength/RowLength.h"
 #include "Hint/HintSetList/ColumnHintSetList.h"
@@ -16,9 +17,6 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include <string>
-class SharedBacktrackBoard;
-class SharedBacktrackStack;
-class SharedHighlightIndexes;
 
 class TableRenderer {
 private:
@@ -35,9 +33,10 @@ private:
 
 public:
   TableRenderer();
-  void render(const SharedBacktrackBoard &sharedBacktrackBoard,
-              const SharedBacktrackStack &sharedBacktrackStack,
-              const SharedHighlightIndexes &sharedHighlightIndexes) const;
+  void render(const BacktrackBoard &backtrackBoard
+              //const SharedBacktrackStack &sharedBacktrackStack,
+              //const SharedHighlightIndexes &sharedHighlightIndexes
+              ) const;
 
 private:
   CellType determineCellType(RowIndex rowIndex, ColumnIndex columnIndex,
@@ -60,7 +59,7 @@ private:
                        ColumnHintSetList columnHintSetList,
                        RowPlacementCountList rowPlacementCountList,
                        ColumnPlacementCountList columnPlacementCountList,
-                       float cell_size, BacktrackStack backtrackStack) const;
+                       float cell_size/*, BacktrackStack backtrackStack*/) const;
 
 
   void drawGridLine(RowIndex rowIndex, ColumnIndex columnIndex,
@@ -70,7 +69,7 @@ private:
   ImU32 getCellColorU32(RowIndex rowIndex, ColumnIndex columnIndex,
                         RowLength columnHintLength, ColumnLength rowHintLength,
                         Board board, CellType cellType,
-                        HighlightIndexes highlightIndexes,
+                        //HighlightIndexes highlightIndexes,
                         bool isHovered) const;
   void drawGridLineDirect(ImDrawList *draw_list, ImVec2 p_min, ImVec2 p_max,
                           RowIndex rowIndex, ColumnIndex columnIndex,

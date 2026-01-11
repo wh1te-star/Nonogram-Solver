@@ -1,25 +1,35 @@
 #ifndef SHAREDDATA_H
 #define SHAREDDATA_H
 
+#include "Shared/IReceiver.h"
+#include "Shared/ISender.h"
+#include <atomic>
+#include <mutex>
+
 template <typename T>
 class SharedDataBuffer : public ISender<T>, public IReceiver<T> {
 private:
-    std::atomic<bool> requestFlag{false};
-    mutable std::mutex mtx;
-    T sharedData;
-public:
-    bool isRequested() const override { return requestFlag.load(std::memory_order_relaxed); }
-    void send(const T& data) override {
-        std::lock_guard<std::mutex> lock(mtx);
-        sharedData = data;
-        requestFlag.store(false);
-    }
+  std::atomic<bool> requestFlag{false};
+  mutable std::mutex mtx;
+  T sharedData;
 
-    void request() override { requestFlag.store(true); }
-    T receive() const override {
-        std::lock_guard<std::mutex> lock(mtx);
-        return sharedData;
-    }
+public:
+  explicit SharedDataBuffer(const T &initialData) : sharedData(initialData) {}
+
+  bool isRequested() const override {
+    return requestFlag.load(std::memory_order_relaxed);
+  }
+  void send(const T &data) override {
+    std::lock_guard<std::mutex> lock(mtx);
+    sharedData = data;
+    requestFlag.store(false);
+  }
+
+  void request() override { requestFlag.store(true); }
+  T receive() const override {
+    std::lock_guard<std::mutex> lock(mtx);
+    return sharedData;
+  }
 };
 
 #endif

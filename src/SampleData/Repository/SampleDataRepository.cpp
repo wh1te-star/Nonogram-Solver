@@ -1,5 +1,6 @@
 #include "SampleData/Repository/SampleDataRepository.h"
 
+#include "Board/NonogramBoard/NonogramBoard.h"
 #include "Hint/HintNumber/HintNumber.h"
 #include <cassert>
 #include <sstream>
@@ -110,4 +111,13 @@ std::string SampleDataRepository::GetColumnHintString(SampleDataType type) {
     assert(false);
   }
   return "";
+}
+
+NonogramBoard SampleDataRepository::getSampleData(SampleDataType type) {
+  RowHintSetList rowHintSetList = getRowHintSetList(type);
+  ColumnHintSetList columnHintSetList = getColumnHintSetList(type);
+  return NonogramBoard(
+      Board(RowLength(rowHintSetList.size()),
+            ColumnLength(columnHintSetList.size())),
+      rowHintSetList, columnHintSetList);
 }

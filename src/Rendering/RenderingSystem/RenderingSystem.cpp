@@ -5,12 +5,14 @@
 #include "Rendering/TableRenderer/TableRenderer.h"
 #include "SampleData/Repository/SampleDataRepository.h"
 #include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
+#include "Shared/SharedDataAliases.h"
 #include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_internal.h"
 #include <GLFW/glfw3.h>
+#include <Shared/IReceiver.h>
 #include <glad/glad.h>
 #include <thread>
 
@@ -55,36 +57,29 @@ int RenderingSystem::initialize() {
 void RenderingSystem::renderingLoop() {
   bool first_time = true;
 
+  StopSignal stopSignal;
+
   SampleDataRepository::SampleDataType dataType =
       SampleDataRepository::Difficult;
-  RowHintSetList rowHintSetList =
-      SampleDataRepository::getRowHintSetList(dataType);
-  ColumnHintSetList columnHintSetList =
-      SampleDataRepository::getColumnHintSetList(dataType);
-  BacktrackBoard backtrackBoard = BacktrackBoard(
-      NonogramBoard(Board(RowLength(rowHintSetList.size()),
-                          ColumnLength(columnHintSetList.size())),
-                    rowHintSetList, columnHintSetList),
-      RowPlacementCountList(std::vector<PlacementCount>(rowHintSetList.size(),
-                                                        PlacementCount(0))),
+  NonogramBoard nonogramBoard = SampleDataRepository::getSampleData(dataType);
+  RowPlacementCountList rowPlacementCountList =
+      RowPlacementCountList(std::vector<PlacementCount>(
+          nonogramBoard.getRowLength().getLength(), PlacementCount(0)));
+  ColumnPlacementCountList columnPlacementCountList =
       ColumnPlacementCountList(std::vector<PlacementCount>(
-          columnHintSetList.size(), PlacementCount(0))));
-
+          nonogramBoard.getColumnLength().getLength(), PlacementCount(0)));
+  BacktrackBoard initialBacktrackBoard = BacktrackBoard(
+      nonogramBoard, rowPlacementCountList, columnPlacementCountList);
   SharedBacktrackBoard sharedBacktrackBoard =
-      SharedBacktrackBoard(backtrackBoard);
-  SharedBacktrackStack sharedBacktrackStack =
-      SharedBacktrackStack(BacktrackStack(backtrackBoard.getRowLength(),
-                                          backtrackBoard.getColumnLength()));
-
-  SharedHighlightIndexes sharedHighlightIndexes = SharedHighlightIndexes();
-  TableRenderer tableRenderer = TableRenderer();
+      SharedBacktrackBoard(initialBacktrackBoard);
+  IReceiver<BacktrackBoard> &receiver = sharedBacktrackBoard;
 
   BacktrackAlgorithm algorithm = BacktrackAlgorithm(
-      sharedBacktrackBoard, sharedBacktrackStack, sharedHighlightIndexes);
-  std::thread worker_thread(&BacktrackAlgorithm::run, &algorithm);
+      stopSignal, sharedBacktrackBoard, initialBacktrackBoard);
+  std::thread worker_thread(&BacktrackAlgorithm::run, std::ref(algorithm));
 
   int count = 0;
-
+  TableRenderer tableRenderer = TableRenderer();
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
 
@@ -109,7 +104,8 @@ void RenderingSystem::renderingLoop() {
     ImGui::Begin("DockSpace", nullptr, window_flags);
     ImGui::PopStyleVar(3);
 
-    ImGuiID dockspace_id = ImGui::GetID("MainDockspace");
+    ImGuiID dockspace_id = ImGui::GetID("MainDockspac"
+                                        "e");
     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f),
                      ImGuiDockNodeFlags_PassthruCentralNode);
 
@@ -131,19 +127,23 @@ void RenderingSystem::renderingLoop() {
     ImGui::End();
 
     ImGui::Begin("Control Panel", NULL, ImGuiWindowFlags_None);
-    ImGui::Text("Control Buttons");
+    ImGui::Text("Control "
+                "Buttons");
     ImGui::Spacing();
     if (ImGui::Button("Solve", ImVec2(-1, 0))) {
-      // processState = PROCESS_ROW_SIDE_INIT;
+      // processState =
+      // PROCESS_ROW_SIDE_INIT;
     }
     ImGui::Spacing();
     if (ImGui::Button("Stop", ImVec2(-1, 0))) {
-      // processState = PROCESS_NONE;
+      // processState =
+      // PROCESS_NONE;
     }
     ImGui::End();
 
-    tableRenderer.render(sharedBacktrackBoard, sharedBacktrackStack,
-                         sharedHighlightIndexes);
+    receiver.request();
+    BacktrackBoard currentBacktrackBoard = receiver.receive();
+    tableRenderer.render(currentBacktrackBoard);
 
     ImGui::Render();
     ImGui::EndFrame();
@@ -166,7 +166,7 @@ void RenderingSystem::renderingLoop() {
     std::cout << "Frame Rate: " << ImGui::GetIO().Framerate << std::endl;
   }
 
-  algorithm.request_stop();
+  stopSignal.requestStop();
   worker_thread.join();
 }
 
