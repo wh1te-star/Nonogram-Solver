@@ -1,4 +1,4 @@
-#include "Shared/StopSignal/StopSignal/StopSignal.h"
+#include "Shared/StopSignal/StopSignal.h"
 
 void StopSignal::requestStop() { stopFlag.store(true); }
 

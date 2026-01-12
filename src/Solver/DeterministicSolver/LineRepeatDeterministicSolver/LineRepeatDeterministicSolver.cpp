@@ -3,7 +3,7 @@
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 
 LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
-    IStopSignal &stopSignal,
+    StopSignal &stopSignal,
     IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
     IDeterministicSolver &deterministicSolver, ILineSolver &lineSolver)
     : stopSignal(stopSignal),

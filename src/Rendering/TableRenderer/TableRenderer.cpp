@@ -267,7 +267,7 @@ ImU32 TableRenderer::getCellColorU32(RowIndex rowIndex, ColumnIndex columnIndex,
   } else if (cellType == ROW_PLACEMENT_COUNT || cellType == ROW_HINT ||
              cellType == ROW_BACKTRACK_STACK) {
     //if (highlightIndexes.findRowIndex(rowIndex - columnHintLength)) {
-    if (true) {
+    if (false) {
       baseColor = col_rowHintHigh;
     } else {
       baseColor = col_rowHint;
@@ -275,7 +275,7 @@ ImU32 TableRenderer::getCellColorU32(RowIndex rowIndex, ColumnIndex columnIndex,
   } else if (cellType == COLUMN_PLACEMENT_COUNT || cellType == COLUMN_HINT ||
              cellType == COLUMN_BACKTRACK_STACK) {
     //if (highlightIndexes.findColumnIndex(columnIndex - rowHintLength)) {
-    if (true) {
+    if (false) {
       baseColor = col_colHintHigh;
     } else {
       baseColor = col_colHint;

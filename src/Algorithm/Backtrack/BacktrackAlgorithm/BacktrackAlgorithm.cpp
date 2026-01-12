@@ -10,7 +10,7 @@
 #include <chrono>
 
 BacktrackAlgorithm::BacktrackAlgorithm(
-    IStopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
+    StopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
     BacktrackBoard initialBacktrackBoard)
     : stopSignal(stopSignal), backtrackBoardSender(backtrackBoardSender),
       localBacktrackBoard(initialBacktrackBoard) {}
