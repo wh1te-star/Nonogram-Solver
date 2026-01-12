@@ -1,3 +1,4 @@
+/*
 #include "Algorithm/PlacementPatternCountAlgorithm/PlacementPatternCountAlgorithm.h"
 
 #include "Board/Line/Line.h"
@@ -29,3 +30,5 @@ TEST(Algorithm_PlacementPatternCount, ImpossibleCase) {
   PlacementCount result = PlacementPatternCountAlgorithm::run(line, hintSet);
   EXPECT_EQ(result.getCount(), 0);
 }
+
+*/

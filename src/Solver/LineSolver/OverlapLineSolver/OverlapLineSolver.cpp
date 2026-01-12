@@ -1,16 +1,24 @@
 #include "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.h"
 
+#include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
+#include "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.h"
+
+OverlapLineSolver::OverlapLineSolver(
+    ILeftmostPlacementFinder &leftmostPlacementFinder,
+    IRightmostPlacementFinder &rightmostPlacementFinder)
+    : leftmostPlacementFinder(leftmostPlacementFinder),
+      rightmostPlacementFinder(rightmostPlacementFinder) {}
+
 bool OverlapLineSolver::solve(const HintSet &hintSet, Line &line) {
   overlapLineSolve(hintSet, line);
+  return false;
 }
 
 bool OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Line &line) {
-  Placement leftmostPlacement =
-      FindLeftMostPlacementAlgorithm::run(line, hintSet);
-  Placement rightmostPlacement =
-      FindRightMostPlacementAlgorithm::run(line, hintSet);
+  Placement leftmostPlacement = leftmostPlacementFinder.find(hintSet, line);
+  Placement rightmostPlacement = rightmostPlacementFinder.find(hintSet, line);
   if (leftmostPlacement.size() == 0 || rightmostPlacement.size() == 0) {
-    return Line("");
+    return true;
   }
 
   std::vector<CellIndex> leftmostHintIndex = leftmostPlacement.getHintIndex();
@@ -50,5 +58,6 @@ bool OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Line &line) {
     }
   }
 
-  return determined;
+  line = determined;
+  return false;
 }

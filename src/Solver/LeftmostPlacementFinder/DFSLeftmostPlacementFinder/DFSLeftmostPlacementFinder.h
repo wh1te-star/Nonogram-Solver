@@ -4,26 +4,18 @@
 #include "Placement/Placement/Placement.h"
 #include "Solver/LeftMostPlacementFinder/ILeftMostPlacementFinder.h"
 
-class DFSLeftmostPlacementFinder : public ILeftMostPlacementFinder {
+class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
 public:
   DFSLeftmostPlacementFinder() = default;
-  Placement find(
-    const HintSet& hintSet,
-    Line& line
-  ) override;
+  Placement find(const HintSet &hintSet, Line &line) override;
 
 private:
-  Placement dfsLeftmostPlacementFind(
-    const HintSet& hintSet,
-    Line& line
-  );
+  Placement dfsLeftmostPlacementFind(const HintSet &hintSet, Line &line);
 
-  Placement dfsLeftmostPlacementFindRecursive(
-    const HintSet& hintSet,
-    Line& line,
-    Placement &currentPlacement,
-    int currentHintIndex
-  );
+  Placement dfsLeftmostPlacementFindRecursive(const HintSet &hintSet,
+                                              Line &line,
+                                              Placement &currentPlacement,
+                                              int currentHintIndex);
 };
 
 #endif

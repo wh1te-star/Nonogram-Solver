@@ -11,15 +11,18 @@ private:
 public:
   BacktrackSolver(IDeterministicSolver& deterministicSolver);
   void solve(
-    NonogramBoard& nonogramBoard
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard
   ) override;
 
 private:
   void backtrackSolve(
-    NonogramBoard& nonogramBoard
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard
   );
   void backtrackSolveRecursive(
-    NonogramBoard& nonogramBoard,
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard& backtrackBoard,
     int depth
   );
 };

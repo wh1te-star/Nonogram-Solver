@@ -3,30 +3,41 @@
 BacktrackSolver::BacktrackSolver(IDeterministicSolver &deterministicSolver)
     : deterministicSolver(deterministicSolver) {}
 
-void BacktrackSolver::solve(NonogramBoard &nonogramBoard) {
-  backtrackSolve(nonogramBoard);
+void BacktrackSolver::solve(
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard
+) {
+  backtrackSolve(sharedBacktrackBoard, backtrackBoard);
 }
 
-void BacktrackSolver::backtrackSolve(NonogramBoard &nonogramBoard) {
-  deterministicSolver.solve(nonogramBoard);
-  backtrackSolveRecursive(nonogramBoard, 0);
+void BacktrackSolver::backtrackSolve(
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard
+) {
+  deterministicSolver.solve(sharedBacktrackBoard, backtrackBoard);
+  backtrackSolveRecursive(sharedBacktrackBoard, backtrackBoard, 0);
 }
 
-void BacktrackSolver::backtrackSolveRecursive(NonogramBoard &nonogramBoard,
-                                              int depth) {
-  if (nonogramBoard.isSolved()) {
-    solutions.push_back(nonogramBoard.getBoard());
+void BacktrackSolver::backtrackSolveRecursive(
+    SharedBacktrackBoard &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard,
+    int depth
+) {
+  /*
+  if (backtrackBoard.isSolved()) {
+    solutions.push_back(backtrackBoard.getBoard());
     return;
   }
 
   for (CellChange assumption : getExhaustiveList()) {
-    nonogramBoard.applyChange(assumption);
+    backtrackBoard.applyChange(assumption);
 
-    bool hasContradiction = deterministicSolver.solve(nonogramBoard, 1);
+    bool hasContradiction = deterministicSolver.solve(backtrackBoard, 1);
     if (!hasContradiction) {
-      backtrackSolveRecursive(nonogramBoard, depth + 1);
+      backtrackSolveRecursive(sharedBacktrackBoard, backtrackBoard, depth + 1);
     }
 
-    nonogramBoard.revertChange(assumption);
+    backtrackBoard.revertChange(assumption);
   }
+    */
 }
