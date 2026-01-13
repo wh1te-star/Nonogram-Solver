@@ -3,13 +3,15 @@
 
 #include "Solver/Solver/ISolver.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
+#include "Shared/StopSignal/StopSignal.h"
 
 class BacktrackSolver : public ISolver {
 private:
+StopSignal& stopSignal;
   IDeterministicSolver& deterministicSolver;
 
 public:
-  BacktrackSolver(IDeterministicSolver& deterministicSolver);
+  BacktrackSolver(StopSignal& stopSignal, IDeterministicSolver& deterministicSolver);
   void solve(
     SharedBacktrackBoard &sharedBacktrackBoard,
     BacktrackBoard &backtrackBoard

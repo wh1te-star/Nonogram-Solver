@@ -1,7 +1,7 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
-BacktrackSolver::BacktrackSolver(IDeterministicSolver &deterministicSolver)
-    : deterministicSolver(deterministicSolver) {}
+BacktrackSolver::BacktrackSolver(StopSignal &stopSignal, IDeterministicSolver &deterministicSolver)
+    : stopSignal(stopSignal), deterministicSolver(deterministicSolver) {}
 
 void BacktrackSolver::solve(
     SharedBacktrackBoard &sharedBacktrackBoard,
@@ -23,7 +23,6 @@ void BacktrackSolver::backtrackSolveRecursive(
     BacktrackBoard &backtrackBoard,
     int depth
 ) {
-  /*
   if (backtrackBoard.isSolved()) {
     solutions.push_back(backtrackBoard.getBoard());
     return;
@@ -39,5 +38,4 @@ void BacktrackSolver::backtrackSolveRecursive(
 
     backtrackBoard.revertChange(assumption);
   }
-    */
 }
