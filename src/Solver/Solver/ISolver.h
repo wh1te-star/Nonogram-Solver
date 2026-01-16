@@ -9,7 +9,8 @@ public:
   virtual ~ISolver();
   virtual void solve(
     SharedBacktrackBoard &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard
+    BacktrackBoard &backtrackBoard,
+    std::vector<Board>& solutions 
   ) = 0;
 };
 
