@@ -7,7 +7,7 @@
 #include "Placement/Placement/Placement.h"
 #include <vector>
 
-class DFSExhaustivePlacementPatternFinder : IExhaustivePlacementPatternFinder {
+class DFSExhaustivePlacementPatternFinder : public IExhaustivePlacementPatternFinder {
 public:
   DFSExhaustivePlacementPatternFinder() = default;
   virtual std::vector<Placement> find(const HintSet &hintSet, const Line &line) override;

@@ -5,11 +5,8 @@
 
 class ILineSolver {
 public:
-  virtual ~ILineSolver();
-  virtual bool solve(
-    const HintSet& hintSet,
-    Line& line
-  ) = 0;
+  virtual ~ILineSolver() = default;
+  virtual bool solve(const HintSet &hintSet, Line &line) = 0;
 };
 
 #endif

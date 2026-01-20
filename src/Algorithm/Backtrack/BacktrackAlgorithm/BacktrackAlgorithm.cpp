@@ -19,27 +19,4 @@ BacktrackAlgorithm::BacktrackAlgorithm(
 void BacktrackAlgorithm::run(ISolver &solver) {
   std::vector<Board> solutions;
   solver.solve(backtrackBoardSender, localBacktrackBoard, solutions);
-
-  /*
-  int counter = 0;
-  while (true) {
-    if (stopSignal.shouldStop())
-      break;
-
-    RowIndex rowIndex =
-        RowIndex(counter % localBacktrackBoard.getRowLength().getLength());
-    ColumnIndex columnIndex = ColumnIndex(
-        counter % localBacktrackBoard.getColumnLength().getLength());
-    localBacktrackBoard.applyCell(
-        Coordinate(rowIndex, columnIndex),
-        Cell((counter % 2 == 0) ? CellColor::Black : CellColor::White));
-
-    if (backtrackBoardSender.isRequested()) {
-      backtrackBoardSender.send(localBacktrackBoard);
-    }
-
-    counter++;
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-  }
-    */
 }

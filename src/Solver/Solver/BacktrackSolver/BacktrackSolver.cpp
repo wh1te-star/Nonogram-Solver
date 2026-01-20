@@ -14,26 +14,26 @@ void BacktrackSolver::solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
   backtrackSolve(sharedBacktrackBoard, backtrackBoard, solutions);
 }
 
-void BacktrackSolver::backtrackSolve(ISender<BacktrackBoard> &sharedBacktrackBoard,
-                                     BacktrackBoard &backtrackBoard,
-                                     std::vector<Board> &solutions) {
+void BacktrackSolver::backtrackSolve(
+    ISender<BacktrackBoard> &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard, std::vector<Board> &solutions) {
   deterministicSolver.solve(sharedBacktrackBoard, backtrackBoard);
   backtrackSolveRecursive(sharedBacktrackBoard, backtrackBoard, solutions, 0);
 }
 
 void BacktrackSolver::backtrackSolveRecursive(
-    ISender<BacktrackBoard> &sharedBacktrackBoard, BacktrackBoard &backtrackBoard,
-    std::vector<Board> &solutions, int depth) {
+    ISender<BacktrackBoard> &sharedBacktrackBoard,
+    BacktrackBoard &backtrackBoard, std::vector<Board> &solutions, int depth) {
   if (backtrackBoard.isSolved()) {
     solutions.push_back(backtrackBoard.getBoard());
     return;
   }
-  if(stopSignal.shouldStop()) {
+  if (stopSignal.shouldStop()) {
     return;
   }
-    if (sharedBacktrackBoard.isRequested()) {
-      sharedBacktrackBoard.send(backtrackBoard);
-    }
+  if (sharedBacktrackBoard.isRequested()) {
+    sharedBacktrackBoard.send(backtrackBoard);
+  }
 
   RowIndex rowIndex = RowIndex(5);
   HintSet hintSet = backtrackBoard.getRowHintSetList()[rowIndex];

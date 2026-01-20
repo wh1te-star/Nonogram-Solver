@@ -11,6 +11,8 @@
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 #include "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.h"
+#include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
+#include "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.h"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
@@ -80,7 +82,8 @@ void RenderingSystem::renderingLoop() {
 
   DFSExhaustivePlacementPatternFinder exhaustivePlacementPatternFinder =
       DFSExhaustivePlacementPatternFinder();
-  OverlapLineSolver overlapLineSolver = OverlapLineSolver();
+  OverlapLineSolver overlapLineSolver = OverlapLineSolver(DFSLeftmostPlacementFinder(),
+                                                          DFSRightmostPlacementFinder());
   LineRepeatDeterministicSolver deterministicSolver = LineRepeatDeterministicSolver(
       stopSignal, overlapLineSolver);
   BacktrackSolver solver = BacktrackSolver(
