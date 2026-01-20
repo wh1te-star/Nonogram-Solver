@@ -1,41 +1,55 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
-BacktrackSolver::BacktrackSolver(StopSignal &stopSignal, IDeterministicSolver &deterministicSolver)
-    : stopSignal(stopSignal), deterministicSolver(deterministicSolver) {}
+#include "Placement/Placement/Placement.h"
 
-void BacktrackSolver::solve(
-    SharedBacktrackBoard &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard
-) {
-  backtrackSolve(sharedBacktrackBoard, backtrackBoard);
+BacktrackSolver::BacktrackSolver(
+    StopSignal &stopSignal, IDeterministicSolver &deterministicSolver,
+    IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder)
+    : stopSignal(stopSignal), deterministicSolver(deterministicSolver),
+      exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder) {}
+
+void BacktrackSolver::solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
+                            BacktrackBoard &backtrackBoard,
+                            std::vector<Board> &solutions) {
+  backtrackSolve(sharedBacktrackBoard, backtrackBoard, solutions);
 }
 
-void BacktrackSolver::backtrackSolve(
-    SharedBacktrackBoard &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard
-) {
+void BacktrackSolver::backtrackSolve(ISender<BacktrackBoard> &sharedBacktrackBoard,
+                                     BacktrackBoard &backtrackBoard,
+                                     std::vector<Board> &solutions) {
   deterministicSolver.solve(sharedBacktrackBoard, backtrackBoard);
-  backtrackSolveRecursive(sharedBacktrackBoard, backtrackBoard, 0);
+  backtrackSolveRecursive(sharedBacktrackBoard, backtrackBoard, solutions, 0);
 }
 
 void BacktrackSolver::backtrackSolveRecursive(
-    SharedBacktrackBoard &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard,
-    int depth
-) {
+    ISender<BacktrackBoard> &sharedBacktrackBoard, BacktrackBoard &backtrackBoard,
+    std::vector<Board> &solutions, int depth) {
   if (backtrackBoard.isSolved()) {
     solutions.push_back(backtrackBoard.getBoard());
     return;
   }
-
-  for (CellChange assumption : getExhaustiveList()) {
-    backtrackBoard.applyChange(assumption);
-
-    bool hasContradiction = deterministicSolver.solve(backtrackBoard, 1);
-    if (!hasContradiction) {
-      backtrackSolveRecursive(sharedBacktrackBoard, backtrackBoard, depth + 1);
+  if(stopSignal.shouldStop()) {
+    return;
+  }
+    if (sharedBacktrackBoard.isRequested()) {
+      sharedBacktrackBoard.send(backtrackBoard);
     }
 
-    backtrackBoard.revertChange(assumption);
+  RowIndex rowIndex = RowIndex(5);
+  HintSet hintSet = backtrackBoard.getRowHintSetList()[rowIndex];
+  Line line = backtrackBoard.getRowLine(rowIndex);
+  for (Placement assumption :
+       exhaustivePlacementPatternFinder.find(hintSet, line)) {
+    Row previousLine = backtrackBoard.getRowLine(rowIndex);
+    backtrackBoard.applyRow(rowIndex, assumption.toRowPlacement());
+
+    bool hasContradiction =
+        deterministicSolver.solve(sharedBacktrackBoard, backtrackBoard);
+    if (!hasContradiction) {
+      backtrackSolveRecursive(sharedBacktrackBoard, backtrackBoard, solutions,
+                              depth + 1);
+    }
+
+    backtrackBoard.applyRow(rowIndex, previousLine, true);
   }
 }

@@ -3,21 +3,17 @@
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 
 LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
-    StopSignal &stopSignal,
-    IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
-    IDeterministicSolver &deterministicSolver, ILineSolver &lineSolver)
-    : stopSignal(stopSignal),
-      exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder),
-      deterministicSolver(deterministicSolver), lineSolver(lineSolver) {}
+    StopSignal &stopSignal, ILineSolver &lineSolver)
+    : stopSignal(stopSignal), lineSolver(lineSolver) {}
 
 bool LineRepeatDeterministicSolver::solve(
-    SharedBacktrackBoard &sharedBacktrackBoard,
+    ISender<BacktrackBoard> &sharedBacktrackBoard,
     BacktrackBoard &backtrackBoard) {
   return lineRepeatDeterministicSolve(sharedBacktrackBoard, backtrackBoard);
 }
 
 bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
-    SharedBacktrackBoard &sharedBacktrackBoard,
+    ISender<BacktrackBoard> &sharedBacktrackBoard,
     BacktrackBoard &backtrackBoard) {
   RowLength rowLength = backtrackBoard.getRowLength();
   ColumnLength columnLength = backtrackBoard.getColumnLength();
@@ -116,7 +112,7 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
         return false;
       }
 
-      //localHighlightIndexes.deleteColumnIndex(columnIndex);
+      // localHighlightIndexes.deleteColumnIndex(columnIndex);
     }
 
     if (proceeded == false) {

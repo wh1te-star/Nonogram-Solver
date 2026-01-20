@@ -7,6 +7,7 @@
 #include "Hint/HintSet/HintSet.h"
 #include "Shared/ISender.h"
 #include "Shared/StopSignal/StopSignal.h"
+#include "Solver/Solver/ISolver.h"
 #include <atomic>
 #include <thread>
 #include <vector>
@@ -23,7 +24,7 @@ public:
       StopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
       BacktrackBoard initialBacktrackBoard);
 
-  void run();
+  void BacktrackAlgorithm::run(ISolver &solver);
 };
 
 #endif

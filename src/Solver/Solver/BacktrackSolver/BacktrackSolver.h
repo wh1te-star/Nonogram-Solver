@@ -1,32 +1,32 @@
 #ifndef BACKTRACKSOLVER_H
 #define BACKTRACKSOLVER_H
 
-#include "Solver/Solver/ISolver.h"
-#include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Shared/StopSignal/StopSignal.h"
+#include "Solver/DeterministicSolver/IDeterministicSolver.h"
+#include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFindAlgorithm.h"
+#include "Solver/Solver/ISolver.h"
 
 class BacktrackSolver : public ISolver {
 private:
-StopSignal& stopSignal;
-  IDeterministicSolver& deterministicSolver;
+  StopSignal &stopSignal;
+  IDeterministicSolver &deterministicSolver;
+  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
 
 public:
-  BacktrackSolver(StopSignal& stopSignal, IDeterministicSolver& deterministicSolver);
-  void solve(
-    SharedBacktrackBoard &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard
-  ) override;
+  BacktrackSolver(
+      StopSignal &stopSignal, IDeterministicSolver &deterministicSolver,
+      IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder);
+  void solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
+             BacktrackBoard &backtrackBoard,
+             std::vector<Board> &solutions) override;
 
 private:
-  void backtrackSolve(
-    SharedBacktrackBoard &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard
-  );
-  void backtrackSolveRecursive(
-    SharedBacktrackBoard &sharedBacktrackBoard,
-    BacktrackBoard& backtrackBoard,
-    int depth
-  );
+  void backtrackSolve(ISender<BacktrackBoard> &sharedBacktrackBoard,
+                      BacktrackBoard &backtrackBoard,
+                      std::vector<Board> &solutions);
+  void backtrackSolveRecursive(ISender<BacktrackBoard> &sharedBacktrackBoard,
+                               BacktrackBoard &backtrackBoard,
+                               std::vector<Board> &solutions, int depth);
 };
 
 #endif

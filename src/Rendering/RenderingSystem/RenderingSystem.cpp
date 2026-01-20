@@ -7,6 +7,10 @@
 #include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
 #include "Shared/SharedDataAliases.h"
 #include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
+#include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
+#include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
+#include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
+#include "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.h"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
@@ -74,9 +78,16 @@ void RenderingSystem::renderingLoop() {
       SharedBacktrackBoard(initialBacktrackBoard);
   IReceiver<BacktrackBoard> &receiver = sharedBacktrackBoard;
 
+  DFSExhaustivePlacementPatternFinder exhaustivePlacementPatternFinder =
+      DFSExhaustivePlacementPatternFinder();
+  OverlapLineSolver overlapLineSolver = OverlapLineSolver();
+  LineRepeatDeterministicSolver deterministicSolver = LineRepeatDeterministicSolver(
+      stopSignal, overlapLineSolver);
+  BacktrackSolver solver = BacktrackSolver(
+      stopSignal, deterministicSolver, exhaustivePlacementPatternFinder);
   BacktrackAlgorithm algorithm = BacktrackAlgorithm(
       stopSignal, sharedBacktrackBoard, initialBacktrackBoard);
-  std::thread worker_thread(&BacktrackAlgorithm::run, std::ref(algorithm));
+  std::thread worker_thread(&BacktrackAlgorithm::run, std::ref(algorithm), solver);
 
   int count = 0;
   TableRenderer tableRenderer = TableRenderer();

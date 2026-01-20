@@ -6,6 +6,7 @@
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "SampleData/Repository/SampleDataRepository.h"
 #include "Shared/SharedDataAliases.h"
+#include "Solver/Solver/ISolver.h"
 #include <algorithm>
 #include <chrono>
 
@@ -15,7 +16,11 @@ BacktrackAlgorithm::BacktrackAlgorithm(
     : stopSignal(stopSignal), backtrackBoardSender(backtrackBoardSender),
       localBacktrackBoard(initialBacktrackBoard) {}
 
-void BacktrackAlgorithm::run() {
+void BacktrackAlgorithm::run(ISolver &solver) {
+  std::vector<Board> solutions;
+  solver.solve(backtrackBoardSender, localBacktrackBoard, solutions);
+
+  /*
   int counter = 0;
   while (true) {
     if (stopSignal.shouldStop())
@@ -36,4 +41,5 @@ void BacktrackAlgorithm::run() {
     counter++;
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
+    */
 }

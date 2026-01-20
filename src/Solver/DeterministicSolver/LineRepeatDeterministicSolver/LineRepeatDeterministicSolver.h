@@ -10,20 +10,17 @@
 class LineRepeatDeterministicSolver : public IDeterministicSolver {
 public:
   StopSignal &stopSignal;
-  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
-  IDeterministicSolver &deterministicSolver;
   ILineSolver &lineSolver;
 
-  LineRepeatDeterministicSolver(
-      StopSignal &stopSignal,
-      IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
-      IDeterministicSolver &deterministicSolver, ILineSolver &lineSolver);
-  bool solve(SharedBacktrackBoard &sharedBacktrackBoard,
+  LineRepeatDeterministicSolver(StopSignal &stopSignal,
+                                ILineSolver &lineSolver);
+  bool solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
              BacktrackBoard &backtrackBoard) override;
 
 private:
-  bool lineRepeatDeterministicSolve(SharedBacktrackBoard &sharedBacktrackBoard,
-                                    BacktrackBoard &backtrackBoard);
+  bool
+  lineRepeatDeterministicSolve(ISender<BacktrackBoard> &sharedBacktrackBoard,
+                               BacktrackBoard &backtrackBoard);
 };
 
 #endif

@@ -7,7 +7,7 @@
 class IDeterministicSolver {
 public:
   virtual ~IDeterministicSolver() = default;
-  virtual bool solve(SharedBacktrackBoard &sharedBacktrackBoard,
+  virtual bool solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
                      BacktrackBoard &backtrackBoard) = 0;
 };
 
