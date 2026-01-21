@@ -80,6 +80,16 @@ bool Line::canPlaceBlock(const CellIndex &startIndex,
   return true;
 }
 
+void Line::apply(const Line &determined) {
+  for (size_t i = 0; i < line.size(); ++i) {
+    CellIndex cellIndex = CellIndex(static_cast<int>(i));
+    Cell determinedCell = determined[cellIndex];
+    if (determinedCell.getColor() != CellColor::None) {
+      line[i] = determinedCell;
+    }
+  }
+}
+
 Row Line::toRow() const { return Row(line); }
 
 Column Line::toColumn() const { return Column(line); }

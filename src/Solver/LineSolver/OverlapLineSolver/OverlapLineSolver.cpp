@@ -58,7 +58,6 @@ bool OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Line &line) {
     }
   }
 
-  // Must Fix, Must Fix, Must Fix, Must Fix, Must Fix, Must Fix, Must Fix, Must Fix, 
-  line.apply()
+  line.apply(determined);
   return false;
 }

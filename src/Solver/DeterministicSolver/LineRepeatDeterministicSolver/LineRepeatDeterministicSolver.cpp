@@ -18,8 +18,8 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
   RowLength rowLength = backtrackBoard.getRowLength();
   ColumnLength columnLength = backtrackBoard.getColumnLength();
 
-  bool proceeded = false;
   while (true) {
+    bool proceeded = false;
     for (RowIndex rowIndex : RowIndex::range(0, rowLength.getLength() - 1)) {
       // localHighlightIndexes.addRowIndex(rowIndex);
 

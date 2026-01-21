@@ -33,6 +33,7 @@ public:
 	const size_t size() const;
     const std::vector<CellLocation> getCellLocationList(const Coordinate& coordinate) const;
 	bool canPlaceBlock(const CellIndex& startIndex, const HintNumber& hintNumber) const;
+    void apply(const Line& determined);
 	Row toRow() const;
 	Column toColumn() const;
 };
