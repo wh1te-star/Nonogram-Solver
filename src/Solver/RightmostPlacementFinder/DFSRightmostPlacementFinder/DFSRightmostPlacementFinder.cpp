@@ -1,5 +1,7 @@
 #include "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.h"
 
+#include <iostream>
+
 Placement DFSRightmostPlacementFinder::find(const HintSet &hintSet,
                                             Line &line) {
   return dfsRightmostPlacementFind(hintSet, line);
@@ -16,6 +18,9 @@ DFSRightmostPlacementFinder::dfsRightmostPlacementFind(const HintSet &hintSet,
 Placement DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecursive(
     const HintSet &hintSet, const Line &line, Placement &currentPlacement,
     int currentHintIndex) {
+  for(int i=0;i<currentPlacement.size();i++)
+    std::cout<< currentPlacement.getPlacement()[i].getColor();
+    std::cout << std::endl;
   if (currentPlacement.size() > line.size()) {
     return Placement("");
   }

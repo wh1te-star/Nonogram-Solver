@@ -40,7 +40,7 @@ void BacktrackSolver::backtrackSolveRecursive(
   Line line = backtrackBoard.getRowLine(rowIndex);
   for (Placement assumption :
        exhaustivePlacementPatternFinder.find(hintSet, line)) {
-    Row previousLine = backtrackBoard.getRowLine(rowIndex);
+    Board previousBoard = backtrackBoard.getBoard();
     backtrackBoard.applyRow(rowIndex, assumption.toRowPlacement());
 
     bool hasContradiction =
@@ -50,6 +50,6 @@ void BacktrackSolver::backtrackSolveRecursive(
                               depth + 1);
     }
 
-    backtrackBoard.applyRow(rowIndex, previousLine, true);
+    backtrackBoard.applyBoard(previousBoard, true);
   }
 }
