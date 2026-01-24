@@ -19,4 +19,8 @@ BacktrackAlgorithm::BacktrackAlgorithm(
 void BacktrackAlgorithm::run(ISolver &solver) {
   std::vector<Board> solutions;
   solver.solve(backtrackBoardSender, localBacktrackBoard, solutions);
+  if(!solutions.empty()) {
+    localBacktrackBoard.applyBoard(solutions[0], true);
+    backtrackBoardSender.send(localBacktrackBoard);
+  }
 }

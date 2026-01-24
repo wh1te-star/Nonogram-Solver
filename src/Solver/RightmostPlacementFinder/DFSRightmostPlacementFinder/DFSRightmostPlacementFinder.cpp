@@ -18,9 +18,6 @@ DFSRightmostPlacementFinder::dfsRightmostPlacementFind(const HintSet &hintSet,
 Placement DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecursive(
     const HintSet &hintSet, const Line &line, Placement &currentPlacement,
     int currentHintIndex) {
-  for(int i=0;i<currentPlacement.size();i++)
-    std::cout<< currentPlacement.getPlacement()[i].getColor();
-    std::cout << std::endl;
   if (currentPlacement.size() > line.size()) {
     return Placement("");
   }

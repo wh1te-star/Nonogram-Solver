@@ -4,6 +4,7 @@
 #include "Board/BacktrackBoard/BacktrackBoard.h"
 #include "Shared/StopSignal/StopSignal.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
+#include "Solver/DeterministicSolver/DeterministicSolverResult.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFindAlgorithm.h"
 #include "Solver/LineSolver/ILineSolver.h"
 
@@ -14,11 +15,11 @@ public:
 
   LineRepeatDeterministicSolver(StopSignal &stopSignal,
                                 ILineSolver &lineSolver);
-  bool solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
-             BacktrackBoard &backtrackBoard) override;
+  DeterministicSolverResult solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
+                                  BacktrackBoard &backtrackBoard) override;
 
 private:
-  bool
+  DeterministicSolverResult
   lineRepeatDeterministicSolve(ISender<BacktrackBoard> &sharedBacktrackBoard,
                                BacktrackBoard &backtrackBoard);
 };

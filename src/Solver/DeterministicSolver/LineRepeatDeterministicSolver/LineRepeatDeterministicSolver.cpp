@@ -6,13 +6,13 @@ LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
     StopSignal &stopSignal, ILineSolver &lineSolver)
     : stopSignal(stopSignal), lineSolver(lineSolver) {}
 
-bool LineRepeatDeterministicSolver::solve(
+DeterministicSolverResult LineRepeatDeterministicSolver::solve(
     ISender<BacktrackBoard> &sharedBacktrackBoard,
     BacktrackBoard &backtrackBoard) {
   return lineRepeatDeterministicSolve(sharedBacktrackBoard, backtrackBoard);
 }
 
-bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
+DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
     ISender<BacktrackBoard> &sharedBacktrackBoard,
     BacktrackBoard &backtrackBoard) {
   RowLength rowLength = backtrackBoard.getRowLength();
@@ -30,7 +30,7 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
 
       bool hasContradiction = lineSolver.solve(rowHintSet, rowLine);
       if (hasContradiction) {
-        return false;
+        return DeterministicSolverResult::HasContradiction;
       }
 
       backtrackBoard.applyRow(rowIndex, rowLine, false);
@@ -60,7 +60,7 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
       }
 
       if (stopSignal.shouldStop()) {
-        return false;
+        return DeterministicSolverResult::Stopped;
       }
 
       // localHighlightIndexes.deleteRowIndex(rowIndex);
@@ -77,7 +77,7 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
       HintSet columnHintSet = columnHintSetList[columnIndex];
       bool hasContradiction = lineSolver.solve(columnHintSet, columnLine);
       if (hasContradiction) {
-        return false;
+        return DeterministicSolverResult::HasContradiction;
       }
 
       Column currentColumnLine = backtrackBoard.getColumnLine(columnIndex);
@@ -107,20 +107,19 @@ bool LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
       if (sharedBacktrackBoard.isRequested()) {
         sharedBacktrackBoard.send(backtrackBoard);
       }
-
       if (stopSignal.shouldStop()) {
-        return false;
+        return DeterministicSolverResult::Stopped;
       }
 
       // localHighlightIndexes.deleteColumnIndex(columnIndex);
     }
 
-    if (proceeded == false) {
-      return true;
-    }
     if (backtrackBoard.isSolved()) {
-      return false;
+      return DeterministicSolverResult::Solved;
+    }
+    if (proceeded == false) {
+      return DeterministicSolverResult::NoMoreProgress;
     }
   }
-  return true;
+  return DeterministicSolverResult::NoMoreProgress;
 }

@@ -66,7 +66,7 @@ void RenderingSystem::renderingLoop() {
   StopSignal stopSignal;
 
   SampleDataRepository::SampleDataType dataType =
-      SampleDataRepository::Difficult;
+      SampleDataRepository::Large;
   NonogramBoard nonogramBoard = SampleDataRepository::getSampleData(dataType);
   RowPlacementCountList rowPlacementCountList =
       RowPlacementCountList(std::vector<PlacementCount>(
