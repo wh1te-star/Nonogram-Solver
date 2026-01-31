@@ -1,15 +1,19 @@
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 
-LineAssumption::LineAssumption(const CellIndex &index, const Line &line)
-    : index(index), line(line) {}
+#include "Index/CellIndex/CellIndex.h"
+#include "Index/CellIndex/RowIndex.h"
+#include "Index/CellIndex/ColumnIndex.h"
+
+LineAssumption::LineAssumption(const RowIndex& index, const Line& line)
+    : orientation(Orientation::Row), index(index), line(line) {}
+
+LineAssumption::LineAssumption(const ColumnIndex& index, const Line& line)
+    : orientation(Orientation::Column), index(index), line(line) {}
 
 void LineAssumption::applyTo(BacktrackBoard &backtrackBoard) const {
-    if(is index row) {
-        RowIndex rowIndex = index.toRowIndex();
-        backtrackBoard.applyRow(rowIndex, line, true);
-        return;
-    }else{
-        ColumnIndex columnIndex = index.toColumnIndex();
-        backtrackBoard.applyColumn(columnIndex, line, true);
+    if (orientation == Orientation::Row) {
+        backtrackBoard.applyRow(RowIndex(index.getIndex()), static_cast<const Row&>(line), true);
+    } else {
+        backtrackBoard.applyColumn(ColumnIndex(index.getIndex()), static_cast<const Column&>(line), true);
     }
 }

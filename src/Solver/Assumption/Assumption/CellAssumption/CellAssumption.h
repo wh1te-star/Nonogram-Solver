@@ -2,8 +2,9 @@
 #define CELLASSUMPTION_H
 
 #include "Board/BacktrackBoard/BacktrackBoard.h"
+#include "Solver/Assumption/Assumption/IAssumption.h"
 
-class CellAssumption {
+class CellAssumption : public IAssumption {
 private:
     Coordinate coordinate;
     Cell cell;
@@ -11,7 +12,7 @@ private:
 public:
     explicit CellAssumption(const Coordinate& coordinate, const Cell& cell);
     virtual ~CellAssumption() = default;
-    virtual void applyTo(BacktrackBoard& board) const = 0;
+    void applyTo(BacktrackBoard& board) const override;
 };
 
 #endif
