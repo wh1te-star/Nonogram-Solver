@@ -3,7 +3,7 @@
 
 #include "Shared/StopSignal/StopSignal.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
-#include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFindAlgorithm.h"
+#include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include "Solver/Solver/ISolver.h"
 
 class BacktrackSolver : public ISolver {

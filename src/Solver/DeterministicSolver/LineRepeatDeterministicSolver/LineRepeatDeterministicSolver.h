@@ -3,9 +3,9 @@
 
 #include "Board/BacktrackBoard/BacktrackBoard.h"
 #include "Shared/StopSignal/StopSignal.h"
-#include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Solver/DeterministicSolver/DeterministicSolverResult.h"
-#include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFindAlgorithm.h"
+#include "Solver/DeterministicSolver/IDeterministicSolver.h"
+#include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include "Solver/LineSolver/ILineSolver.h"
 
 class LineRepeatDeterministicSolver : public IDeterministicSolver {

@@ -12,7 +12,8 @@ DeterministicSolverResult LineRepeatDeterministicSolver::solve(
   return lineRepeatDeterministicSolve(sharedBacktrackBoard, backtrackBoard);
 }
 
-DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
+DeterministicSolverResult
+LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
     ISender<BacktrackBoard> &sharedBacktrackBoard,
     BacktrackBoard &backtrackBoard) {
   RowLength rowLength = backtrackBoard.getRowLength();
@@ -97,7 +98,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
         return false;
       if (count == PlacementCount(1)) {
         ColumnPlacement finalPlacement =
-            ExhaustivePlacementPatternFindAlgorithm::run(columnLine,
+            ExhaustivePlacementPatternFinder::run(columnLine,
                                                          columnHintSet)[0]
                 .toColumnPlacement();
         localBacktrackBoard.applyColumn(columnIndex, finalPlacement);
