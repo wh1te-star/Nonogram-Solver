@@ -53,8 +53,7 @@ void BacktrackSolver::backtrackSolveRecursive(
     if (stopSignal.shouldStop())
       return;
 
-    Board previousBoard = backtrackBoard.getBoard();
-    assumption->applyTo(backtrackBoard);
+    backtrackBoard.applyAssumption(*assumption);
 
     switch (deterministicSolver.solve(sharedBacktrackBoard, backtrackBoard)) {
     case DeterministicSolverResult::Solved:
@@ -77,6 +76,6 @@ void BacktrackSolver::backtrackSolveRecursive(
       break;
     }
 
-    backtrackBoard.applyBoard(previousBoard, true);
+    backtrackBoard.revert();
   }
 }

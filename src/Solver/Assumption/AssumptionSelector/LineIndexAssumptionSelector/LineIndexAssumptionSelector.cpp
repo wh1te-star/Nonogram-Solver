@@ -22,6 +22,7 @@ LineIndexAssumptionSelector::select(const BacktrackBoard &board) {
   if (currentIndex >= lineCount) {
     assert(false);
   }
+
   if (orientation == Orientation::Row) {
     const RowIndex rowIndex(currentIndex);
     const Line &line = board.getRowLine(rowIndex);

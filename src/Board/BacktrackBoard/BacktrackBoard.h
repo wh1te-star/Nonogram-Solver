@@ -4,9 +4,11 @@
 #include "Board/NonogramBoard/NonogramBoard.h"
 #include "Placement/PlacementCountList/ColumnPlacementCountList.h"
 #include "Placement/PlacementCountList/RowPlacementCountList.h"
+class IAssumption;
 
 class BacktrackBoard {
 private:
+  std::vector<Board> undoStack;
   NonogramBoard nonogramBoard;
   RowPlacementCountList rowPlacementCountList;
   ColumnPlacementCountList columnPlacementCountList;
@@ -35,6 +37,9 @@ public:
   void applyColumn(ColumnIndex columnIndex,
                    const ColumnPlacement &columnPlacement);
   void applyBoard(const Board &board, bool overwriteNone);
+
+  void applyAssumption(const IAssumption &assumption);
+  void revert();
 
 public:
   RowHintSetList getRowHintSetList() const;
