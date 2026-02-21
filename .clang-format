@@ -1,0 +1,19 @@
+BasedOnStyle: LLVM
+ColumnLimit: 100
+
+IndentWidth: 4
+ContinuationIndentWidth: 4
+
+BinPackParameters: false
+AllowAllParametersOfDeclarationOnNextLine: true
+
+AlignAfterOpenBracket: AlwaysBreak
+
+PenaltyBreakAssignment: 100
+AlignOperands: Align
+
+# 初期化リスト（: 以降）の改行ルール
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AllowAllConstructorInitializersOnNextLine: true
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerIndentWidth: 4
