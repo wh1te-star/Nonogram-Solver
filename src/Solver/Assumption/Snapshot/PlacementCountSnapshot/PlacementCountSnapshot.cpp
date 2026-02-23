@@ -1,6 +1,6 @@
 #include "Solver/Assumption/Snapshot/PlacementCountSnapshot/PlacementCountSnapshot.h"
 
-FullSnapshot::FullSnapshot(
+PlacementCountSnapshot::PlacementCountSnapshot(
     Board board,
     RowPlacementCountList rowPlacementCountList,
     ColumnPlacementCountList columnPlacementCountList)

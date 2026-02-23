@@ -4,9 +4,7 @@
 #include "Rendering/FontData/FontData.h"
 #include "Rendering/TableRenderer/TableRenderer.h"
 #include "SampleData/Repository/SampleDataRepository.h"
-#include "Shared/SharedBacktrackStack/SharedBacktrackStack.h"
 #include "Shared/SharedDataAliases.h"
-#include "Shared/SharedHighlightIndexes/SharedHighlightIndexes.h"
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
@@ -74,11 +72,9 @@ void RenderingSystem::renderingLoop() {
   ColumnPlacementCountList columnPlacementCountList =
       ColumnPlacementCountList(std::vector<PlacementCount>(
           nonogramBoard.getColumnLength().getLength(), PlacementCount(0)));
-  BacktrackBoard initialBacktrackBoard = BacktrackBoard(
-      nonogramBoard, rowPlacementCountList, columnPlacementCountList);
-  SharedBacktrackBoard sharedBacktrackBoard =
-      SharedBacktrackBoard(initialBacktrackBoard);
-  IReceiver<BacktrackBoard> &receiver = sharedBacktrackBoard;
+  SharedNonogramBoard sharedNonogramBoard =
+      SharedNonogramBoard(nonogramBoard);
+  IReceiver<NonogramBoard> &receiver = sharedNonogramBoard;
 
   DFSExhaustivePlacementPatternFinder exhaustivePlacementPatternFinder =
       DFSExhaustivePlacementPatternFinder();
@@ -89,7 +85,7 @@ void RenderingSystem::renderingLoop() {
   BacktrackSolver solver = BacktrackSolver(
       stopSignal, deterministicSolver, exhaustivePlacementPatternFinder);
   BacktrackAlgorithm algorithm = BacktrackAlgorithm(
-      stopSignal, sharedBacktrackBoard, initialBacktrackBoard);
+      stopSignal, sharedNonogramBoard, nonogramBoard);
   std::thread worker_thread(&BacktrackAlgorithm::run, std::ref(algorithm), solver);
 
   int count = 0;
@@ -156,8 +152,8 @@ void RenderingSystem::renderingLoop() {
     ImGui::End();
 
     receiver.request();
-    BacktrackBoard currentBacktrackBoard = receiver.receive();
-    tableRenderer.render(currentBacktrackBoard);
+    NonogramBoard currentNonogramBoard = receiver.receive();
+    tableRenderer.render(currentNonogramBoard);
 
     ImGui::Render();
     ImGui::EndFrame();

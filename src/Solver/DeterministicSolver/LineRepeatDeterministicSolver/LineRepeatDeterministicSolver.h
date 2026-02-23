@@ -1,7 +1,7 @@
 #ifndef LINEREPEATDETERMINISTICSOLVER_H
 #define LINEREPEATDETERMINISTICSOLVER_H
 
-#include "Board/BacktrackBoard/BacktrackBoard.h"
+#include "Board/NonogramBoard/NonogramBoard.h"
 #include "Shared/StopSignal/StopSignal.h"
 #include "Solver/DeterministicSolver/DeterministicSolverResult.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
@@ -15,13 +15,13 @@ public:
 
   LineRepeatDeterministicSolver(StopSignal &stopSignal,
                                 ILineSolver &lineSolver);
-  DeterministicSolverResult solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
-                                  BacktrackBoard &backtrackBoard) override;
+  DeterministicSolverResult solve(ISender<NonogramBoard> &sharedNonogramBoard,
+                                  NonogramBoard &nonogramBoard) override;
 
 private:
   DeterministicSolverResult
-  lineRepeatDeterministicSolve(ISender<BacktrackBoard> &sharedBacktrackBoard,
-                               BacktrackBoard &backtrackBoard);
+  lineRepeatDeterministicSolve(ISender<NonogramBoard> &sharedNonogramBoard,
+                               NonogramBoard &nonogramBoard);
 };
 
 #endif

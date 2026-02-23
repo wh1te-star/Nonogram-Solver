@@ -1,8 +1,6 @@
 #ifndef BACKTRACKALGORITHM_H
 #define BACKTRACKALGORITHM_H
 
-#include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
-#include "Board/BacktrackBoard/BacktrackBoard.h"
 #include "Board/Line/Line.h"
 #include "Hint/HintSet/HintSet.h"
 #include "Shared/ISender.h"
@@ -16,13 +14,13 @@ class BacktrackAlgorithm {
 private:
   StopSignal &stopSignal;
 
-  ISender<BacktrackBoard> &backtrackBoardSender;
-  BacktrackBoard localBacktrackBoard;
+  ISender<NonogramBoard> &nonogramBoardSender;
+  NonogramBoard localNonogramBoard;
 
 public:
   BacktrackAlgorithm::BacktrackAlgorithm(
-      StopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
-      BacktrackBoard initialBacktrackBoard);
+      StopSignal &stopSignal, ISender<NonogramBoard> &nonogramBoardSender,
+      NonogramBoard initialNonogramBoard);
 
   void BacktrackAlgorithm::run(ISolver &solver);
 };

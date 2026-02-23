@@ -11,16 +11,16 @@
 #include <chrono>
 
 BacktrackAlgorithm::BacktrackAlgorithm(
-    StopSignal &stopSignal, ISender<BacktrackBoard> &backtrackBoardSender,
-    BacktrackBoard initialBacktrackBoard)
-    : stopSignal(stopSignal), backtrackBoardSender(backtrackBoardSender),
-      localBacktrackBoard(initialBacktrackBoard) {}
+    StopSignal &stopSignal, ISender<NonogramBoard> &nonogramBoardSender,
+    NonogramBoard initialNonogramBoard)
+    : stopSignal(stopSignal), nonogramBoardSender(nonogramBoardSender),
+      localNonogramBoard(initialNonogramBoard) {}
 
 void BacktrackAlgorithm::run(ISolver &solver) {
   std::vector<Board> solutions;
-  solver.solve(backtrackBoardSender, localBacktrackBoard, solutions);
+  solver.solve(nonogramBoardSender, localNonogramBoard, solutions);
   if(!solutions.empty()) {
-    localBacktrackBoard.applyBoard(solutions[0], true);
-    backtrackBoardSender.send(localBacktrackBoard);
+    localNonogramBoard.applyBoard(solutions[0], true);
+    nonogramBoardSender.send(localNonogramBoard);
   }
 }

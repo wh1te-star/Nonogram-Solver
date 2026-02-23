@@ -13,7 +13,7 @@ LineIndexAssumptionSelector::LineIndexAssumptionSelector(
       orientation(orientation), currentIndex(currentIndex) {}
 
 std::vector<std::unique_ptr<IAssumption>>
-LineIndexAssumptionSelector::select(const BacktrackBoard &board) {
+LineIndexAssumptionSelector::select(const NonogramBoard &board) {
   std::vector<std::unique_ptr<IAssumption>> assumptions;
 
   int lineCount = (orientation == Orientation::Row)

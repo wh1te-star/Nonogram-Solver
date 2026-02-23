@@ -7,13 +7,13 @@
 #include "Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 
-class FullSnapshot : public ISnapshot {
+class PlacementCountSnapshot : public ISnapshot {
   public:
     Board board;
     RowPlacementCountList rowPlacementCountList;
     ColumnPlacementCountList columnPlacementCountList;
 
-    FullSnapshot(
+    PlacementCountSnapshot(
         Board board,
         RowPlacementCountList rowPlacementCountList,
         ColumnPlacementCountList columnPlacementCountList);

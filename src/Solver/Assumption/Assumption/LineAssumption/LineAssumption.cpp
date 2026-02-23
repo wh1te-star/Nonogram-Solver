@@ -10,10 +10,10 @@ LineAssumption::LineAssumption(const RowIndex& index, const Line& line)
 LineAssumption::LineAssumption(const ColumnIndex& index, const Line& line)
     : orientation(Orientation::Column), index(index), line(line) {}
 
-void LineAssumption::applyTo(BacktrackBoard &backtrackBoard) const {
+void LineAssumption::applyTo(NonogramBoard &nonogramBoard) const {
     if (orientation == Orientation::Row) {
-        backtrackBoard.applyRow(RowIndex(index.getIndex()), static_cast<const Row&>(line), true);
+        nonogramBoard.applyRow(RowIndex(index.getIndex()), static_cast<const Row&>(line), true);
     } else {
-        backtrackBoard.applyColumn(ColumnIndex(index.getIndex()), static_cast<const Column&>(line), true);
+        nonogramBoard.applyColumn(ColumnIndex(index.getIndex()), static_cast<const Column&>(line), true);
     }
 }

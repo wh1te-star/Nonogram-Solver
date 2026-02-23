@@ -7,26 +7,26 @@ LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
     : stopSignal(stopSignal), lineSolver(lineSolver) {}
 
 DeterministicSolverResult LineRepeatDeterministicSolver::solve(
-    ISender<BacktrackBoard> &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard) {
-  return lineRepeatDeterministicSolve(sharedBacktrackBoard, backtrackBoard);
+    ISender<NonogramBoard> &NonogramBoardSender,
+    NonogramBoard &nonogramBoard) {
+  return lineRepeatDeterministicSolve(NonogramBoardSender, nonogramBoard);
 }
 
 DeterministicSolverResult
 LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
-    ISender<BacktrackBoard> &sharedBacktrackBoard,
-    BacktrackBoard &backtrackBoard) {
-  RowLength rowLength = backtrackBoard.getRowLength();
-  ColumnLength columnLength = backtrackBoard.getColumnLength();
+    ISender<NonogramBoard> &sharedNonogramBoard,
+    NonogramBoard &nonogramBoard) {
+  RowLength rowLength = nonogramBoard.getRowLength();
+  ColumnLength columnLength = nonogramBoard.getColumnLength();
 
   while (true) {
     bool proceeded = false;
     for (RowIndex rowIndex : RowIndex::range(0, rowLength.getLength() - 1)) {
       // localHighlightIndexes.addRowIndex(rowIndex);
 
-      Row rowLine = backtrackBoard.getRowLine(rowIndex);
+      Row rowLine = nonogramBoard.getRowLine(rowIndex);
       Row previousRowLine = rowLine;
-      RowHintSetList rowHintSetList = backtrackBoard.getRowHintSetList();
+      RowHintSetList rowHintSetList = nonogramBoard.getRowHintSetList();
       HintSet rowHintSet = rowHintSetList[rowIndex];
 
       bool hasContradiction = lineSolver.solve(rowHintSet, rowLine);
@@ -34,7 +34,7 @@ LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
         return DeterministicSolverResult::HasContradiction;
       }
 
-      backtrackBoard.applyRow(rowIndex, rowLine, false);
+      nonogramBoard.applyRow(rowIndex, rowLine, false);
 
       if (rowLine != previousRowLine) {
         proceeded = true;
@@ -42,7 +42,7 @@ LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
 
       /*
       PlacementCount count = PlacementPatternCountAlgorithm::run(rowLine,
-      rowHintSet); backtrackBoard.setRowPlacementCount(rowIndex, count);
+      rowHintSet); nonogramBoard.setRowPlacementCount(rowIndex, count);
 
       if (count == PlacementCount(0)) {
         return false;
@@ -52,12 +52,12 @@ LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
             DFSExhaustivePlacementPatternFinder();
         RowPlacement finalPlacement =
             finder.find(rowHintSet, rowLine)[0].toRowPlacement();
-        localBacktrackBoard.applyRow(rowIndex, finalPlacement);
+        nonogramBoard.applyRow(rowIndex, finalPlacement);
       }
         */
 
-      if (sharedBacktrackBoard.isRequested()) {
-        sharedBacktrackBoard.send(backtrackBoard);
+      if (sharedNonogramBoard.isRequested()) {
+        sharedNonogramBoard.send(nonogramBoard);
       }
 
       if (stopSignal.shouldStop()) {
@@ -71,18 +71,18 @@ LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
          ColumnIndex::range(0, columnLength.getLength() - 1)) {
       // localHighlightIndexes.addColumnIndex(columnIndex);
 
-      Column columnLine = backtrackBoard.getColumnLine(columnIndex);
+      Column columnLine = nonogramBoard.getColumnLine(columnIndex);
       Column previousColumnLine = columnLine;
       ColumnHintSetList columnHintSetList =
-          backtrackBoard.getColumnHintSetList();
+          nonogramBoard.getColumnHintSetList();
       HintSet columnHintSet = columnHintSetList[columnIndex];
       bool hasContradiction = lineSolver.solve(columnHintSet, columnLine);
       if (hasContradiction) {
         return DeterministicSolverResult::HasContradiction;
       }
 
-      Column currentColumnLine = backtrackBoard.getColumnLine(columnIndex);
-      backtrackBoard.applyColumn(columnIndex, columnLine, false);
+      Column currentColumnLine = nonogramBoard.getColumnLine(columnIndex);
+      nonogramBoard.applyColumn(columnIndex, columnLine, false);
 
       if (columnLine != previousColumnLine) {
         proceeded = true;
@@ -92,7 +92,7 @@ LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
       PlacementCount count =
           PlacementPatternCountAlgorithm::run(columnLine, columnHintSet);
 
-      localBacktrackBoard.setColumnPlacementCount(columnIndex, count);
+      nonogramBoard.setColumnPlacementCount(columnIndex, count);
 
       if (count == PlacementCount(0))
         return false;
@@ -101,12 +101,12 @@ LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
             ExhaustivePlacementPatternFinder::run(columnLine,
                                                          columnHintSet)[0]
                 .toColumnPlacement();
-        localBacktrackBoard.applyColumn(columnIndex, finalPlacement);
+        nonogramBoard.applyColumn(columnIndex, finalPlacement);
       }
         */
 
-      if (sharedBacktrackBoard.isRequested()) {
-        sharedBacktrackBoard.send(backtrackBoard);
+      if (sharedNonogramBoard.isRequested()) {
+        sharedNonogramBoard.send(nonogramBoard);
       }
       if (stopSignal.shouldStop()) {
         return DeterministicSolverResult::Stopped;
@@ -115,7 +115,7 @@ LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
       // localHighlightIndexes.deleteColumnIndex(columnIndex);
     }
 
-    if (backtrackBoard.isSolved()) {
+    if (nonogramBoard.isSolved()) {
       return DeterministicSolverResult::Solved;
     }
     if (proceeded == false) {

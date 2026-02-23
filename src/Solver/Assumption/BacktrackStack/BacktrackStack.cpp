@@ -1,4 +1,5 @@
-#include "Solver/Assumption/Assumption/BacktrackStack/BacktrackStack.h"
+#include "Solver/Assumption/BacktrackStack/BacktrackStack.h"
+
 #include "Board/Line/Line.h"
 #include <cassert>
 

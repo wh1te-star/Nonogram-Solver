@@ -3,6 +3,6 @@
 CellAssumption ::CellAssumption(const Coordinate &coordinate, const Cell &cell)
     : coordinate(coordinate), cell(cell) {}
 
-void CellAssumption ::applyTo(BacktrackBoard &backtrackBoard) const {
-  backtrackBoard.applyCell(coordinate, cell, true);
+void CellAssumption ::applyTo(NonogramBoard &nonogramBoard) const {
+  nonogramBoard.applyCell(coordinate, cell, true);
 }

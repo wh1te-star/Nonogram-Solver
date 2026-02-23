@@ -1,9 +1,9 @@
 #ifndef SHARED_DATA_ALIASES_H
 #define SHARED_DATA_ALIASES_H
 
+#include "Board/NonogramBoard/NonogramBoard.h"
 #include "Shared/SharedData.h"
-#include "Board/BacktrackBoard/BacktrackBoard.h"
 
-using SharedBacktrackBoard = SharedDataBuffer<BacktrackBoard>;
+using SharedNonogramBoard = SharedDataBuffer<NonogramBoard>;
 
 #endif

@@ -1,9 +1,8 @@
 #ifndef TABLERENDERER_H
 #define TABLERENDERER_H
 
-#include "Algorithm/Backtrack/BacktrackStack/BacktrackStack.h"
+#include "Board/NonogramBoard/NonogramBoard.h"
 #include "Board/Board/Board.h"
-#include "Board/BacktrackBoard/BacktrackBoard.h"
 #include "Board/BoardLength/ColumnLength.h"
 #include "Board/BoardLength/RowLength.h"
 #include "Hint/HintSetList/ColumnHintSetList.h"
@@ -33,7 +32,7 @@ private:
 
 public:
   TableRenderer();
-  void render(const BacktrackBoard &backtrackBoard
+  void render(const NonogramBoard &nonogramBoard
               //const SharedBacktrackStack &sharedBacktrackStack,
               //const SharedHighlightIndexes &sharedHighlightIndexes
               ) const;

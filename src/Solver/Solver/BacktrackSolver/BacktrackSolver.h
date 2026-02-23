@@ -7,26 +7,31 @@
 #include "Solver/Solver/ISolver.h"
 
 class BacktrackSolver : public ISolver {
-private:
-  StopSignal &stopSignal;
-  IDeterministicSolver &deterministicSolver;
-  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
+  private:
+    StopSignal &stopSignal;
+    IDeterministicSolver &deterministicSolver;
+    IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
 
-public:
-  BacktrackSolver(
-      StopSignal &stopSignal, IDeterministicSolver &deterministicSolver,
+  public:
+    BacktrackSolver(
+      StopSignal &stopSignal,
+      IDeterministicSolver &deterministicSolver,
       IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder);
-  void solve(ISender<BacktrackBoard> &sharedBacktrackBoard,
-             BacktrackBoard &backtrackBoard,
-             std::vector<Board> &solutions) override;
+    void solve(
+      ISender<NonogramBoard> &nonogramBoardSender,
+      NonogramBoard &nonogramBoard,
+      std::vector<Board> &solutions) override;
 
-private:
-  void backtrackSolve(ISender<BacktrackBoard> &sharedBacktrackBoard,
-                      BacktrackBoard &backtrackBoard,
-                      std::vector<Board> &solutions);
-  void backtrackSolveRecursive(ISender<BacktrackBoard> &sharedBacktrackBoard,
-                               BacktrackBoard &backtrackBoard,
-                               std::vector<Board> &solutions, int depth);
+  private:
+    void backtrackSolve(
+      ISender<NonogramBoard> &nonogramBoardSender,
+      NonogramBoard &nonogramBoard,
+      std::vector<Board> &solutions);
+    void backtrackSolveRecursive(
+      ISender<NonogramBoard> &nonogramBoardSender,
+      NonogramBoard &nonogramBoard,
+      std::vector<Board> &solutions,
+      int depth);
 };
 
 #endif
