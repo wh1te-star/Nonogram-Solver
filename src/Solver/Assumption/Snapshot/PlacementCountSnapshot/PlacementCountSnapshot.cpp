@@ -7,3 +7,7 @@ PlacementCountSnapshot::PlacementCountSnapshot(
     : board(std::move(board))
     , rowPlacementCountList(std::move(rowPlacementCountList))
     , columnPlacementCountList(std::move(columnPlacementCountList)) {}
+
+void PlacementCountSnapshot::restore(Board& board) const {
+    board.applyBoard(this->board, true);
+}

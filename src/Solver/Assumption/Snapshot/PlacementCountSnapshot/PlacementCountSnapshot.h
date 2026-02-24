@@ -17,6 +17,8 @@ class PlacementCountSnapshot : public ISnapshot {
         Board board,
         RowPlacementCountList rowPlacementCountList,
         ColumnPlacementCountList columnPlacementCountList);
+
+    void restore(Board& board) const override;
 };
 
 #endif

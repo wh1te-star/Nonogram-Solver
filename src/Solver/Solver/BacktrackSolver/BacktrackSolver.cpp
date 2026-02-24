@@ -82,6 +82,6 @@ void BacktrackSolver::backtrackSolveRecursive(
             break;
         }
 
-        nonogramBoard.revert();
+        //nonogramBoard.revert();
     }
 }
