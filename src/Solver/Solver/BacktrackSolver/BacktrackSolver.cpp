@@ -10,10 +10,13 @@
 BacktrackSolver::BacktrackSolver(
   StopSignal &stopSignal,
   IDeterministicSolver &deterministicSolver,
-  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder)
+  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
+  IAssumptionSelector &assumptionSelector)
     : stopSignal(stopSignal)
     , deterministicSolver(deterministicSolver)
-    , exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder) {}
+    , exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder)
+    , assumptionSelector(assumptionSelector)
+    , backtrackStack(BacktrackStack<IAssumptionSelector>(assumptionSelector)) {}
 
 void BacktrackSolver::solve(
   ISender<NonogramBoard> &nonogramBoardSender,
@@ -82,6 +85,6 @@ void BacktrackSolver::backtrackSolveRecursive(
             break;
         }
 
-        //nonogramBoard.revert();
+        // nonogramBoard.revert();
     }
 }
