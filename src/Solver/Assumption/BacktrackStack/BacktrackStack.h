@@ -6,13 +6,9 @@
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 
-template <typename TAssumptionSelector>
 class BacktrackStack {
-private:
-    using TSnapshot = typename TAssumptionSelector::SnapshotType;
-    
-    std::vector<TSnapshot> history;
-    const TAssumptionSelector &assumptionSelector;
+    std::vector<std::unique_ptr<ISnapshot>> history;
+    const IAssumptionSelector &assumptionSelector;
 
 public:
     explicit BacktrackStack(const TAssumptionSelector &assumptionSelector) : assumptionSelector(assumptionSelector) {}
