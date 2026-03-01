@@ -16,7 +16,7 @@ BacktrackSolver::BacktrackSolver(
     , deterministicSolver(deterministicSolver)
     , exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder)
     , assumptionSelector(assumptionSelector)
-    , backtrackStack(BacktrackStack<IAssumptionSelector>(assumptionSelector)) {}
+    , backtrackStack(BacktrackStack(assumptionSelector)) {}
 
 void BacktrackSolver::solve(
   ISender<NonogramBoard> &nonogramBoardSender,

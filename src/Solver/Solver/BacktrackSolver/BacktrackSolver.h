@@ -14,7 +14,7 @@ class BacktrackSolver : public ISolver {
     IDeterministicSolver &deterministicSolver;
     IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
     IAssumptionSelector &assumptionSelector;
-    BacktrackStack<IAssumptionSelector> backtrackStack;
+    BacktrackStack backtrackStack;
 
   public:
     BacktrackSolver(

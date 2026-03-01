@@ -10,19 +10,11 @@ class BacktrackStack {
     std::vector<std::unique_ptr<ISnapshot>> history;
     const IAssumptionSelector &assumptionSelector;
 
-public:
-    explicit BacktrackStack(const TAssumptionSelector &assumptionSelector) : assumptionSelector(assumptionSelector) {}
+  public:
+    BacktrackStack(const IAssumptionSelector &assumptionSelector);
 
-    void push(const TSnapshot &snapshot) {
-        history.push_back(snapshot);
-    }
-
-    void pop(Board &board) {
-        if (history.empty()) return;
-        
-        history.back().restore(board);
-        history.pop_back();
-    }
+    void push(std::unique_ptr<ISnapshot> snapshot);
+    void pop(Board &board);
 };
 
 #endif
