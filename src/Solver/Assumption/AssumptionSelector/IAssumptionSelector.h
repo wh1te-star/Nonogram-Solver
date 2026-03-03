@@ -1,17 +1,18 @@
 #ifndef IASSUMPTIONSELECTOR_H
 #define IASSUMPTIONSELECTOR_H
 
-#include <vector>
-#include <memory>
-#include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Board/NonogramBoard/NonogramBoard.h"
+#include "Solver/Assumption/Assumption/IAssumption.h"
+#include "Solver/Assumption/AssumptionSelectionContext.h"
+#include <memory>
+#include <vector>
 
 class IAssumptionSelector {
-public:
+  public:
     virtual ~IAssumptionSelector() = default;
 
-    virtual std::vector<std::unique_ptr<IAssumption>> select(const NonogramBoard &board) = 0;
+    virtual std::vector<std::unique_ptr<IAssumption>>
+    select(const NonogramBoard &board, const AssumptionSelectionContext &context) = 0;
 };
-
 
 #endif

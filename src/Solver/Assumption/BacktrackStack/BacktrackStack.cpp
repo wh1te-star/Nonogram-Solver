@@ -3,12 +3,15 @@
 BacktrackStack::BacktrackStack(const IAssumptionSelector &assumptionSelector)
     : assumptionSelector(assumptionSelector) {}
 
-void BacktrackStack::push(std::unique_ptr<ISnapshot> snapshot) { history.push_back(snapshot); }
+void BacktrackStack::push(std::unique_ptr<ISnapshot> snapshot) {
+    if (snapshot)
+        history.push_back(std::move(snapshot));
+}
 
-void BacktrackStack::pop(Board &board) {
+void BacktrackStack::pop(NonogramBoard &nonogramBoard) {
     if (history.empty())
         return;
 
-    history.back()->restore(board);
+    history.back()->restore(nonogramBoard.getBoard());
     history.pop_back();
 }

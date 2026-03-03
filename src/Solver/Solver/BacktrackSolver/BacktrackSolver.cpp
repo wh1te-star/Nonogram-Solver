@@ -1,8 +1,11 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
 #include "Placement/Placement/Placement.h"
+#include "Placement/PlacementCountList/ColumnPlacementCountList.h"
+#include "Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
+#include "Solver/Assumption/Snapshot/PlacementCountSnapshot/PlacementCountSnapshot.h"
 #include "Solver/DeterministicSolver/DeterministicSolverResult.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include <cassert>
@@ -16,7 +19,7 @@ BacktrackSolver::BacktrackSolver(
     , deterministicSolver(deterministicSolver)
     , exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder)
     , assumptionSelector(assumptionSelector)
-    , backtrackStack(BacktrackStack(assumptionSelector)) {}
+    , backtrackStack(assumptionSelector) {}
 
 void BacktrackSolver::solve(
   ISender<NonogramBoard> &nonogramBoardSender,
@@ -56,13 +59,20 @@ void BacktrackSolver::backtrackSolveRecursive(
         nonogramBoardSender.send(nonogramBoard);
     }
 
-    IAssumptionSelector &assumptionSelector = LineIndexAssumptionSelector(
-      exhaustivePlacementPatternFinder, Orientation::Row, depth);
-
-    for (const auto &assumption : assumptionSelector.select(nonogramBoard)) {
+    for (const auto &assumption :
+         assumptionSelector.select(nonogramBoard, AssumptionSelectionContext{depth})) {
         if (stopSignal.shouldStop())
             return;
 
+        backtrackStack.push(
+          std::make_unique<PlacementCountSnapshot>(
+            nonogramBoard.getBoard(),
+            RowPlacementCountList(
+              std::vector<PlacementCount>(
+                nonogramBoard.getRowLength().getLength(), PlacementCount(0))),
+            ColumnPlacementCountList(
+              std::vector<PlacementCount>(
+                nonogramBoard.getColumnLength().getLength(), PlacementCount(0)))));
         assumption->applyTo(nonogramBoard);
 
         switch (deterministicSolver.solve(nonogramBoardSender, nonogramBoard)) {
@@ -85,6 +95,6 @@ void BacktrackSolver::backtrackSolveRecursive(
             break;
         }
 
-        // nonogramBoard.revert();
+        backtrackStack.pop(nonogramBoard);
     }
 }

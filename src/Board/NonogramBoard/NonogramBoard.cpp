@@ -21,6 +21,10 @@ Board NonogramBoard::getBoard() const {
 	return board;
 }
 
+Board& NonogramBoard::getBoard() {
+    return board;
+}
+
 Cell NonogramBoard::getCell(Coordinate coordinate) const {
 	return board.getCell(coordinate);
 }

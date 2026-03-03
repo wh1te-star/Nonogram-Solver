@@ -22,6 +22,7 @@ public:
   RowLength getRowLength() const;
   ColumnLength getColumnLength() const;
   Board getBoard() const;
+  Board &getBoard();
   Cell getCell(Coordinate coordinate) const;
   Row getRowLine(RowIndex rowIndex) const;
   Column getColumnLine(ColumnIndex columnIndex) const;

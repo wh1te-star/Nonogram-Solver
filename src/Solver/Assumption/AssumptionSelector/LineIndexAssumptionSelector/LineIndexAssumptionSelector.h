@@ -9,14 +9,13 @@ class LineIndexAssumptionSelector : public IAssumptionSelector {
   private:
     IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
     Orientation orientation;
-    int currentIndex = 0;
 
   public:
     LineIndexAssumptionSelector(
       IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
-      Orientation orientation,
-      int currentIndex);
-    std::vector<std::unique_ptr<IAssumption>> select(const NonogramBoard &board) override;
+      Orientation orientation);
+    std::vector<std::unique_ptr<IAssumption>>
+    select(const NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };
 
 #endif
