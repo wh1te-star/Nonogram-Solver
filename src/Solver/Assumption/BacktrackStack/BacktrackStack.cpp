@@ -12,6 +12,6 @@ void BacktrackStack::pop(NonogramBoard &nonogramBoard) {
     if (history.empty())
         return;
 
-    history.back()->restore(nonogramBoard.getBoard());
+    history.back()->restore(nonogramBoard);
     history.pop_back();
 }
