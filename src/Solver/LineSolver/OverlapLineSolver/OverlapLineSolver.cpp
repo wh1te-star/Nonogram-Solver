@@ -1,5 +1,6 @@
 #include "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.h"
 
+#include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
 #include "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.h"
 
@@ -15,9 +16,11 @@ bool OverlapLineSolver::solve(const HintSet &hintSet, Line &line) {
 }
 
 bool OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Line &line) {
-  Placement leftmostPlacement = leftmostPlacementFinder.find(hintSet, line);
-  Placement rightmostPlacement = rightmostPlacementFinder.find(hintSet, line);
-  if (leftmostPlacement.size() == 0 || rightmostPlacement.size() == 0) {
+  Placement leftmostPlacement =Placement("");
+  Placement rightmostPlacement =Placement("");
+  PlacementFinderResult leftmostPlacementFinderResult = leftmostPlacementFinder.find(hintSet, line, leftmostPlacement);
+  PlacementFinderResult rightmostPlacementFinderResult = rightmostPlacementFinder.find(hintSet, line, rightmostPlacement);
+  if (leftmostPlacementFinderResult == notFound || rightmostPlacementFinderResult == notFound) {
     return true;
   }
 

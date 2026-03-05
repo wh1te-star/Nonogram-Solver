@@ -2,68 +2,71 @@
 
 #include <iostream>
 
-Placement DFSRightmostPlacementFinder::find(const HintSet &hintSet,
-                                            Line &line) {
-  return dfsRightmostPlacementFind(hintSet, line);
+PlacementFinderResult
+DFSRightmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement) {
+    PlacementFinderResult result = dfsRightmostPlacementFind(hintSet, line, resultPlacement);
+    return result;
 }
 
-Placement
-DFSRightmostPlacementFinder::dfsRightmostPlacementFind(const HintSet &hintSet,
-                                                       const Line &line) {
-  Placement currentPlacement = Placement("");
-  return dfsRightmostPlacementFindRecursive(hintSet, line, currentPlacement,
-                                            hintSet.size() - 1);
+PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFind(
+  const HintSet &hintSet, const Line &line, Placement &resultPlacement) {
+    Placement currentPlacement = Placement("");
+    return dfsRightmostPlacementFindRecursive(
+      hintSet, line, currentPlacement, hintSet.size() - 1, resultPlacement);
 }
 
-Placement DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecursive(
-    const HintSet &hintSet, const Line &line, Placement &currentPlacement,
-    int currentHintIndex) {
-  if (currentPlacement.size() > line.size()) {
-    return Placement("");
-  }
-  if (currentHintIndex < 0) {
-    Placement foundPlacement = currentPlacement;
-    if (currentPlacement.size() < line.size()) {
-      for (CellIndex cellIndex :
-           CellIndex::range(line.size() - currentPlacement.size() - 1, 0)) {
-        if (!line[cellIndex].canColor(White)) {
-          return Placement("");
+PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecursive(
+  const HintSet &hintSet,
+  const Line &line,
+  Placement &currentPlacement,
+  int currentHintIndex,
+  Placement &resultPlacement) {
+    if (currentPlacement.size() > line.size()) {
+        return notFound;
+    }
+    if (currentHintIndex < 0) {
+        Placement foundPlacement = currentPlacement;
+        if (currentPlacement.size() < line.size()) {
+            for (CellIndex cellIndex :
+                 CellIndex::range(line.size() - currentPlacement.size() - 1, 0)) {
+                if (!line[cellIndex].canColor(White)) {
+                    return notFound;
+                }
+                foundPlacement = Placement("W") + foundPlacement;
+            }
         }
-        foundPlacement = Placement("W") + foundPlacement;
-      }
+        resultPlacement = foundPlacement;
+        return success;
     }
-    return foundPlacement;
-  }
 
-  HintNumber hintNumber = hintSet[currentHintIndex];
-  CellIndex currentBlockIndex =
-      CellIndex(line.size() - currentPlacement.size() - hintNumber.getNumber());
-  if (line.canPlaceBlock(currentBlockIndex, hintNumber)) {
-    Placement previousPlacement = currentPlacement;
-    currentPlacement = Placement(hintNumber) + currentPlacement;
-    if (currentPlacement.size() < line.size()) {
-      currentPlacement = Placement("W") + currentPlacement;
+    HintNumber hintNumber = hintSet[currentHintIndex];
+    CellIndex currentBlockIndex = CellIndex(
+      line.size() - currentPlacement.size() - hintNumber.getNumber());
+    if (line.canPlaceBlock(currentBlockIndex, hintNumber)) {
+        Placement previousPlacement = currentPlacement;
+        currentPlacement = Placement(hintNumber) + currentPlacement;
+        if (currentPlacement.size() < line.size()) {
+            currentPlacement = Placement("W") + currentPlacement;
+        }
+        PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
+          hintSet, line, currentPlacement, currentHintIndex - 1, resultPlacement);
+        if (result == success) {
+            return success;
+        }
+        currentPlacement = previousPlacement;
     }
-    Placement foundPlacement = dfsRightmostPlacementFindRecursive(
-        hintSet, line, currentPlacement, currentHintIndex - 1);
-    if (foundPlacement.size() != 0) {
-      return foundPlacement;
-    }
-    currentPlacement = previousPlacement;
-  }
 
-  CellIndex currentAdjacentIndex =
-      CellIndex(line.size() - currentPlacement.size() - 1);
-  if (currentAdjacentIndex >= 0 && line[currentAdjacentIndex].canColor(White)) {
-    Placement previousPlacement = currentPlacement;
-    currentPlacement = Placement("W") + currentPlacement;
-    Placement foundPlacement = dfsRightmostPlacementFindRecursive(
-        hintSet, line, currentPlacement, currentHintIndex);
-    if (foundPlacement.size() != 0) {
-      return foundPlacement;
+    CellIndex currentAdjacentIndex = CellIndex(line.size() - currentPlacement.size() - 1);
+    if (currentAdjacentIndex >= 0 && line[currentAdjacentIndex].canColor(White)) {
+        Placement previousPlacement = currentPlacement;
+        currentPlacement = Placement("W") + currentPlacement;
+        PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
+          hintSet, line, currentPlacement, currentHintIndex, resultPlacement);
+        if (result == success) {
+            return success;
+        }
+        currentPlacement = previousPlacement;
     }
-    currentPlacement = previousPlacement;
-  }
 
-  return Placement("");
+    return notFound;
 }

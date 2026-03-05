@@ -1,63 +1,71 @@
 #include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
 
-Placement DFSLeftmostPlacementFinder::find(
-    const HintSet &hintSet,
-    Line &line) {
-  return dfsLeftmostPlacementFind(hintSet, line);
+PlacementFinderResult
+DFSLeftmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement) {
+    dfsLeftmostPlacementFind(hintSet, line, resultPlacement);
+    if (resultPlacement.size() > 0) {
+        resultPlacement = resultPlacement;
+        return success;
+    }
+    return notFound;
 }
-Placement DFSLeftmostPlacementFinder::dfsLeftmostPlacementFind(
-    const HintSet &hintSet,
-    Line &line) {
-  Placement currentPlacement = Placement("");
-  return dfsLeftmostPlacementFindRecursive(hintSet, line, currentPlacement, 0);
+PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFind(
+  const HintSet &hintSet, Line &line, Placement &resultPlacement) {
+    Placement currentPlacement = Placement("");
+
+    return dfsLeftmostPlacementFindRecursive(hintSet, line, currentPlacement, 0, resultPlacement);
 }
 
-Placement DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
-    const HintSet &hintSet, Line &line, Placement &currentPlacement,
-    int currentHintIndex) {
-  if (currentPlacement.size() > line.size()) {
-    return Placement("");
-  }
-  if (currentHintIndex >= hintSet.size()) {
-    Placement foundPlacement = currentPlacement;
-    if (currentPlacement.size() < line.size()) {
-      for (CellIndex cellIndex :
-           CellIndex::range(currentPlacement.size(), line.size() - 1)) {
-        if (!line[cellIndex].canColor(White)) {
-          return Placement("");
+PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
+  const HintSet &hintSet,
+  const Line &line,
+  Placement &currentPlacement,
+  int currentHintIndex,
+  Placement &resultPlacement) {
+
+    if (currentPlacement.size() > line.size()) {
+        return notFound;
+    }
+    if (currentHintIndex >= hintSet.size()) {
+        Placement foundPlacement = currentPlacement;
+        if (currentPlacement.size() < line.size()) {
+            for (CellIndex cellIndex : CellIndex::range(currentPlacement.size(), line.size() - 1)) {
+                if (!line[cellIndex].canColor(White)) {
+                    return notFound;
+                }
+                foundPlacement = foundPlacement + Placement("W");
+            }
         }
-        foundPlacement = foundPlacement + Placement("W");
-      }
+        resultPlacement = foundPlacement;
+        return success;
     }
-    return foundPlacement;
-  }
 
-  HintNumber hintNumber = hintSet[currentHintIndex];
-  CellIndex currentIndex = CellIndex(currentPlacement.size());
-  if (line.canPlaceBlock(currentIndex, hintNumber)) {
-    Placement previousPlacement = currentPlacement;
-    currentPlacement = currentPlacement + Placement(hintNumber);
-    if (currentPlacement.size() < line.size()) {
-      currentPlacement = currentPlacement + Placement("W");
+    HintNumber hintNumber = hintSet[currentHintIndex];
+    CellIndex currentIndex = CellIndex(currentPlacement.size());
+    if (line.canPlaceBlock(currentIndex, hintNumber)) {
+        Placement previousPlacement = currentPlacement;
+        currentPlacement = currentPlacement + Placement(hintNumber);
+        if (currentPlacement.size() < line.size()) {
+            currentPlacement = currentPlacement + Placement("W");
+        }
+        PlacementFinderResult result = dfsLeftmostPlacementFindRecursive(
+          hintSet, line, currentPlacement, currentHintIndex + 1, resultPlacement);
+        if (result == success) {
+            return success;
+        }
+        currentPlacement = previousPlacement;
     }
-    Placement foundPlacement = dfsLeftmostPlacementFindRecursive(
-        hintSet, line, currentPlacement, currentHintIndex + 1);
-    if (foundPlacement.size() != 0) {
-      return foundPlacement;
-    }
-    currentPlacement = previousPlacement;
-  }
 
-  if (currentIndex < line.size() && line[currentIndex].canColor(White)) {
-    Placement previousPlacement = currentPlacement;
-    currentPlacement = currentPlacement + Placement("W");
-    Placement foundPlacement = dfsLeftmostPlacementFindRecursive(
-        hintSet, line, currentPlacement, currentHintIndex);
-    if (foundPlacement.size() != 0) {
-      return foundPlacement;
+    if (currentIndex < line.size() && line[currentIndex].canColor(White)) {
+        Placement previousPlacement = currentPlacement;
+        currentPlacement = currentPlacement + Placement("W");
+        PlacementFinderResult result = dfsLeftmostPlacementFindRecursive(
+          hintSet, line, currentPlacement, currentHintIndex, resultPlacement);
+        if (result == success) {
+            return success;
+        }
+        currentPlacement = previousPlacement;
     }
-    currentPlacement = previousPlacement;
-  }
 
-  return Placement("");
+    return notFound;
 }

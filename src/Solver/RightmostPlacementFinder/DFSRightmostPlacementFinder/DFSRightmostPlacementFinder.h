@@ -2,28 +2,25 @@
 #define DFSRIGHTMOSTPLACEMENTFINDER_H
 
 #include "Placement/Placement/Placement.h"
+#include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
 
 class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
-public:
-  DFSRightmostPlacementFinder() = default;
-  Placement find(
-    const HintSet& hintSet,
-    Line& line
-  ) override;
+  public:
+    DFSRightmostPlacementFinder() = default;
+    PlacementFinderResult
+    find(const HintSet &hintSet, Line &line, Placement &resultPlacement) override;
 
-private:
-  Placement dfsRightmostPlacementFind(
-    const HintSet& hintSet,
-    const Line& line
-  );
+  private:
+    PlacementFinderResult
+    dfsRightmostPlacementFind(const HintSet &hintSet, const Line &line, Placement &resultPlacement);
 
-  Placement dfsRightmostPlacementFindRecursive(
-    const HintSet& hintSet,
-    const Line& line,
-    Placement &currentPlacement,
-    int currentHintIndex
-  );
+    PlacementFinderResult dfsRightmostPlacementFindRecursive(
+      const HintSet &hintSet,
+      const Line &line,
+      Placement &currentPlacement,
+      int currentHintIndex,
+      Placement &resultPlacement);
 };
 
 #endif
