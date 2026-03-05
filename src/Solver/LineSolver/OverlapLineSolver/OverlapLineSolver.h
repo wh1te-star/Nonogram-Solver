@@ -13,10 +13,10 @@ private:
 public:
   OverlapLineSolver(ILeftmostPlacementFinder &leftmostPlacementFinder,
                     IRightmostPlacementFinder &rightmostPlacementFinder);
-  bool solve(const HintSet &hintSet, Line &line) override;
+  LineSolverResult solve(const HintSet &hintSet, Line &line) override;
 
 private:
-  bool overlapLineSolve(const HintSet &hintSet, Line &line);
+  LineSolverResult overlapLineSolve(const HintSet &hintSet, Line &line);
 };
 
 #endif

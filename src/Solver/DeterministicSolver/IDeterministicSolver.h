@@ -2,7 +2,7 @@
 #define IDETERMINISTICSOLVER_H
 
 #include "Shared/SharedDataAliases.h"
-#include "Solver/DeterministicSolver/DeterministicSolverResult.h"
+#include "Solver/ResultEnum/DeterministicSolverResult.h"
 
 class IDeterministicSolver {
   public:

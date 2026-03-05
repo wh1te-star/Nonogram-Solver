@@ -6,8 +6,8 @@
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 #include "Solver/Assumption/Snapshot/PlacementCountSnapshot/PlacementCountSnapshot.h"
-#include "Solver/DeterministicSolver/DeterministicSolverResult.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
+#include "Solver/ResultEnum/DeterministicSolverResult.h"
 #include <cassert>
 
 BacktrackSolver::BacktrackSolver(
