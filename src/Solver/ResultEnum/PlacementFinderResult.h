@@ -1,7 +1,7 @@
 #ifndef IPLACEMENTFINDERRESULT_H
 #define IPLACEMENTFINDERRESULT_H
 
-enum PlacementFinderResult {
+enum class PlacementFinderResult {
     success,
     notFound,
 };

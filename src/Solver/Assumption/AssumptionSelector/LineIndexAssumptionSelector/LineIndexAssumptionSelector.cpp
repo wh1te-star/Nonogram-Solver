@@ -4,13 +4,13 @@
 #include "Hint/HintSet/HintSet.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
+#include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
 #include <cassert>
 
 LineIndexAssumptionSelector::LineIndexAssumptionSelector(
-  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
-  Orientation orientation)
+  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder, Orientation orientation)
     : exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder)
-    , orientation(orientation){}
+    , orientation(orientation) {}
 
 std::vector<std::unique_ptr<IAssumption>> LineIndexAssumptionSelector::select(
   const NonogramBoard &board, const AssumptionSelectionContext &context) {
@@ -29,9 +29,11 @@ std::vector<std::unique_ptr<IAssumption>> LineIndexAssumptionSelector::select(
         const Line &line = board.getRowLine(rowIndex);
         const HintSet &hintSet = board.getRowHintSetList()[rowIndex];
 
-        auto placements = exhaustivePlacementPatternFinder.find(hintSet, line);
+        std::vector<Placement> solutions;
+        ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
+          hintSet, line, solutions);
 
-        for (const Placement &placement : placements) {
+        for (const Placement &placement : solutions) {
             Line assumptionLine = Line(placement.getPlacement());
             assumptions.push_back(std::make_unique<LineAssumption>(rowIndex, assumptionLine));
         }
@@ -40,9 +42,11 @@ std::vector<std::unique_ptr<IAssumption>> LineIndexAssumptionSelector::select(
         const Line &line = board.getColumnLine(colIndex);
         const HintSet &hintSet = board.getColumnHintSetList()[colIndex];
 
-        auto placements = exhaustivePlacementPatternFinder.find(hintSet, line);
+        std::vector<Placement> solutions;
+        ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
+          hintSet, line, solutions);
 
-        for (const Placement &placement : placements) {
+        for (const Placement &placement : solutions) {
             Line assumptionLine = Line(placement.getPlacement());
             assumptions.push_back(std::make_unique<LineAssumption>(colIndex, assumptionLine));
         }

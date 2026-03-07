@@ -14,15 +14,16 @@ LineSolverResult OverlapLineSolver::solve(const HintSet &hintSet, Line &line) {
     return overlapLineSolve(hintSet, line);
 }
 
-LineSolverResult
-OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Line &line) {
+LineSolverResult OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Line &line) {
     Placement leftmostPlacement = Placement("");
     Placement rightmostPlacement = Placement("");
     PlacementFinderResult leftmostPlacementFinderResult = leftmostPlacementFinder.find(
       hintSet, line, leftmostPlacement);
     PlacementFinderResult rightmostPlacementFinderResult = rightmostPlacementFinder.find(
       hintSet, line, rightmostPlacement);
-    if (leftmostPlacementFinderResult == notFound || rightmostPlacementFinderResult == notFound) {
+    if (
+      leftmostPlacementFinderResult == PlacementFinderResult::notFound ||
+      rightmostPlacementFinderResult == PlacementFinderResult::notFound) {
         return LineSolverResult::HasContradiction;
     }
 

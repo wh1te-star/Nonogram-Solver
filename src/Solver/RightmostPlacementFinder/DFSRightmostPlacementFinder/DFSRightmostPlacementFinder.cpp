@@ -22,7 +22,7 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
   int currentHintIndex,
   Placement &resultPlacement) {
     if (currentPlacement.size() > line.size()) {
-        return notFound;
+        return PlacementFinderResult::notFound;
     }
     if (currentHintIndex < 0) {
         Placement foundPlacement = currentPlacement;
@@ -30,13 +30,13 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
             for (CellIndex cellIndex :
                  CellIndex::range(line.size() - currentPlacement.size() - 1, 0)) {
                 if (!line[cellIndex].canColor(White)) {
-                    return notFound;
+                    return PlacementFinderResult::notFound;
                 }
                 foundPlacement = Placement("W") + foundPlacement;
             }
         }
         resultPlacement = foundPlacement;
-        return success;
+        return PlacementFinderResult::success;
     }
 
     HintNumber hintNumber = hintSet[currentHintIndex];
@@ -50,8 +50,8 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
         }
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
           hintSet, line, currentPlacement, currentHintIndex - 1, resultPlacement);
-        if (result == success) {
-            return success;
+        if (result == PlacementFinderResult::success) {
+            return PlacementFinderResult::success;
         }
         currentPlacement = previousPlacement;
     }
@@ -62,11 +62,11 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
         currentPlacement = Placement("W") + currentPlacement;
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
           hintSet, line, currentPlacement, currentHintIndex, resultPlacement);
-        if (result == success) {
-            return success;
+        if (result == PlacementFinderResult::success) {
+            return PlacementFinderResult::success;
         }
         currentPlacement = previousPlacement;
     }
 
-    return notFound;
+    return PlacementFinderResult::notFound;
 }

@@ -5,9 +5,9 @@ DFSLeftmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &
     dfsLeftmostPlacementFind(hintSet, line, resultPlacement);
     if (resultPlacement.size() > 0) {
         resultPlacement = resultPlacement;
-        return success;
+        return PlacementFinderResult::success;
     }
-    return notFound;
+    return PlacementFinderResult::notFound;
 }
 PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFind(
   const HintSet &hintSet, Line &line, Placement &resultPlacement) {
@@ -24,20 +24,20 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
   Placement &resultPlacement) {
 
     if (currentPlacement.size() > line.size()) {
-        return notFound;
+        return PlacementFinderResult::notFound;
     }
     if (currentHintIndex >= hintSet.size()) {
         Placement foundPlacement = currentPlacement;
         if (currentPlacement.size() < line.size()) {
             for (CellIndex cellIndex : CellIndex::range(currentPlacement.size(), line.size() - 1)) {
                 if (!line[cellIndex].canColor(White)) {
-                    return notFound;
+                    return PlacementFinderResult::notFound;
                 }
                 foundPlacement = foundPlacement + Placement("W");
             }
         }
         resultPlacement = foundPlacement;
-        return success;
+        return PlacementFinderResult::success;
     }
 
     HintNumber hintNumber = hintSet[currentHintIndex];
@@ -50,8 +50,8 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
         }
         PlacementFinderResult result = dfsLeftmostPlacementFindRecursive(
           hintSet, line, currentPlacement, currentHintIndex + 1, resultPlacement);
-        if (result == success) {
-            return success;
+        if (result == PlacementFinderResult::success) {
+            return PlacementFinderResult::success;
         }
         currentPlacement = previousPlacement;
     }
@@ -61,11 +61,11 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
         currentPlacement = currentPlacement + Placement("W");
         PlacementFinderResult result = dfsLeftmostPlacementFindRecursive(
           hintSet, line, currentPlacement, currentHintIndex, resultPlacement);
-        if (result == success) {
-            return success;
+        if (result == PlacementFinderResult::success) {
+            return PlacementFinderResult::success;
         }
         currentPlacement = previousPlacement;
     }
 
-    return notFound;
+    return PlacementFinderResult::notFound;
 }

@@ -7,22 +7,22 @@
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include <vector>
 
-class DFSExhaustivePlacementPatternFinder
-    : public IExhaustivePlacementPatternFinder {
-public:
-  DFSExhaustivePlacementPatternFinder() = default;
-  virtual std::vector<Placement> find(const HintSet &hintSet,
-                                      const Line &line) override;
+class DFSExhaustivePlacementPatternFinder : public IExhaustivePlacementPatternFinder {
+  public:
+    DFSExhaustivePlacementPatternFinder() = default;
+    virtual ExhaustivePlacementPatternFinderResult
+    find(const HintSet &hintSet, const Line &line, std::vector<Placement> &solutions) override;
 
-private:
-  void dfsExhaustivePlacementFind(const HintSet &hintSet, const Line &line,
-                                  std::vector<Placement> &solutions);
+  private:
+    ExhaustivePlacementPatternFinderResult dfsExhaustivePlacementFind(
+      const HintSet &hintSet, const Line &line, std::vector<Placement> &solutions);
 
-  void dfsExhaustivePlacementFindRecursive(const HintSet &hintSet,
-                                           const Line &line,
-                                           std::vector<Placement> &solutions,
-                                           Placement &currentPlacement,
-                                           int currentHintIndex);
+    ExhaustivePlacementPatternFinderResult dfsExhaustivePlacementFindRecursive(
+      const HintSet &hintSet,
+      const Line &line,
+      std::vector<Placement> &solutions,
+      Placement &currentPlacement,
+      int currentHintIndex);
 };
 
 #endif
