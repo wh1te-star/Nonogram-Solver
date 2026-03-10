@@ -1,9 +1,10 @@
 #ifndef PLACEMENTFINDERRESULT_H
 #define PLACEMENTFINDERRESULT_H
 
-enum class PlacementFinderResult {
+enum class PlacementPatternCounterResult {
     success,
-    notFound,
+    tooManyPatterns,
 };
 
 #endif
+
