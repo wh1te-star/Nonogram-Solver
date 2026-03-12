@@ -5,14 +5,17 @@ DPPlacementPatternCounter::DPPlacementPatternCounter() {}
 DPPlacementPatternCounter::DPPlacementPatternCounter(int MAX_COUNT)
     : MAX_COUNT(MAX_COUNT) {}
 
-PlacementCount DPPlacementPatternCounter::count(const HintSet &hintSet,
-                                                Line &line) {
-  return DPPlacementPatternCount(hintSet, line);
+PlacementPatternCounterResult DPPlacementPatternCounter::count(const HintSet &hintSet,
+                                                              Line &line,
+                                                              PlacementCount &placementCount) {
+  auto result = DPPlacementPatternCount(hintSet, line, placementCount);
+  return result;
 }
 
-PlacementCount
+PlacementPatternCounterResult
 DPPlacementPatternCounter::DPPlacementPatternCount(const HintSet &hintSet,
-                                                   const Line &line) {
+                                                   const Line &line,
+                                                   PlacementCount &placementCount) {
   int hintsCount = hintSet.size();
   int totalLength = line.size();
   std::vector<std::vector<PlacementCount>> partialCount(
@@ -66,12 +69,14 @@ DPPlacementPatternCounter::DPPlacementPatternCount(const HintSet &hintSet,
 
       if (partialCount[hintNumberIndexInt][cellIndexInt] >
           PlacementCount(MAX_COUNT)) {
-        return PlacementCount(MAX_COUNT);
+            placementCount = PlacementCount(MAX_COUNT);
+        return PlacementPatternCounterResult::tooManyPatterns;
       }
     }
   }
 
-  return partialCount[hintsCount][totalLength];
+  placementCount = partialCount[hintsCount][totalLength];
+  return PlacementPatternCounterResult::success;
 }
 
 bool DPPlacementPatternCounter::isSeparated(const Line &line,

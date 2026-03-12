@@ -4,13 +4,15 @@
 #include "Board/Line/Line.h"
 #include "Hint/HintSet/HintSet.h"
 #include "Placement/PlacementCount/PlacementCount.h"
+#include "Solver/ResultEnum/PlacementPatternCounterResult.h"
 
 class IPlacementPatternCounter {
 public:
   IPlacementPatternCounter() = default;
-  virtual PlacementCount count(
+  virtual PlacementPatternCounterResult count(
     const HintSet& hintSet,
-    Line& line
+    Line& line,
+    PlacementCount& placementCount
   ) = 0;
 };
 
