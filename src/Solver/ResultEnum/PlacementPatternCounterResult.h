@@ -1,5 +1,5 @@
-#ifndef PLACEMENTFINDERRESULT_H
-#define PLACEMENTFINDERRESULT_H
+#ifndef PLACEMENTPATTERNCOUNTERRESULT_H
+#define PLACEMENTPATTERNCOUNTERRESULT_H
 
 enum class PlacementPatternCounterResult {
     success,
