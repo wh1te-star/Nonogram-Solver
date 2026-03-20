@@ -4,6 +4,8 @@
 
 PlacementFinderResult
 DFSRightmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement) {
+    profiler.startMeasurement();
+
     PlacementFinderResult result = dfsRightmostPlacementFind(hintSet, line, resultPlacement);
     return result;
 }
@@ -21,6 +23,10 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
   Placement &currentPlacement,
   int currentHintIndex,
   Placement &resultPlacement) {
+    if(profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
+        return PlacementFinderResult::notFound;
+    }
+
     if (currentPlacement.size() > line.size()) {
         return PlacementFinderResult::notFound;
     }

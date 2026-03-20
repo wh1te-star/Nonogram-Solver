@@ -4,8 +4,12 @@
 #include "Placement/Placement/Placement.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
+#include "AlgorithmProfiler/AlgorithmProfiler.h"
 
 class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
+  private:
+    AlgorithmProfiler profiler;
+
   public:
     DFSRightmostPlacementFinder() = default;
     PlacementFinderResult

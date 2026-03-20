@@ -3,8 +3,12 @@
 
 #include "Placement/Placement/Placement.h"
 #include "Solver/LeftMostPlacementFinder/ILeftMostPlacementFinder.h"
+#include "AlgorithmProfiler/AlgorithmProfiler.h"
 
 class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
+  private:
+    AlgorithmProfiler profiler;
+
   public:
     DFSLeftmostPlacementFinder() = default;
     PlacementFinderResult
