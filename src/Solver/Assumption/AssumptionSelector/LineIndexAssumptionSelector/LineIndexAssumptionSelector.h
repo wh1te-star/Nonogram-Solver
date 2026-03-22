@@ -7,13 +7,10 @@
 
 class LineIndexAssumptionSelector : public IAssumptionSelector {
   private:
-    IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
     Orientation orientation;
 
   public:
-    LineIndexAssumptionSelector(
-      IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
-      Orientation orientation);
+    LineIndexAssumptionSelector(Orientation orientation);
     std::vector<std::unique_ptr<IAssumption>>
     select(const NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };

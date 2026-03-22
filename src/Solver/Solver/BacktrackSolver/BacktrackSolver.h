@@ -2,6 +2,7 @@
 #define BACKTRACKSOLVER_H
 
 #include "Shared/StopSignal/StopSignal.h"
+#include "Solver/IBoardUpdateHandler.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/BacktrackStack/BacktrackStack.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
@@ -15,6 +16,7 @@ class BacktrackSolver : public ISolver {
     IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
     IAssumptionSelector &assumptionSelector;
     BacktrackStack backtrackStack;
+    IBoardUpdateHandler &boardUpdateHandler;
 
   public:
     BacktrackSolver(

@@ -7,10 +7,8 @@
 #include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
 #include <cassert>
 
-LineIndexAssumptionSelector::LineIndexAssumptionSelector(
-  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder, Orientation orientation)
-    : exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder)
-    , orientation(orientation) {}
+LineIndexAssumptionSelector::LineIndexAssumptionSelector(Orientation orientation)
+    : orientation(orientation) {}
 
 std::vector<std::unique_ptr<IAssumption>> LineIndexAssumptionSelector::select(
   const NonogramBoard &board, const AssumptionSelectionContext &context) {
