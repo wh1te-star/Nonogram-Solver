@@ -3,21 +3,22 @@
 #include "Board/Line/Line.h"
 #include "Hint/HintSet/HintSet.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
+#include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
 #include <cassert>
 
 PlacementCountAssumptionSelector::PlacementCountAssumptionSelector(
   IPlacementPatternCounter &placementPatternCounter, const Board &board)
-    : placementPatternCounter(placementPatternCounter) {
-    rowPlacementCounts = RowPlacementCountList(
-      std::vector<PlacementCount>(board.getRowLength().getLength(), PlacementCount(0)));
-    columnPlacementCounts = ColumnPlacementCountList(
-      std::vector<PlacementCount>(board.getColumnLength().getLength(), PlacementCount(0)));
-}
+    : placementPatternCounter(placementPatternCounter)
+    , rowPlacementCounts(
+        std::vector<PlacementCount>(board.getRowLength().getLength(), PlacementCount(0)))
+    , columnPlacementCounts(
+        std::vector<PlacementCount>(board.getColumnLength().getLength(), PlacementCount(0))) {}
 
-std::vector<std::unique_ptr<IAssumption>> PlacementCountAssumptionSelector::select(
+IAssumptionPosition PlacementCountAssumptionSelector::select(
   const NonogramBoard &board, const AssumptionSelectionContext &context) {
-    std::vector<std::unique_ptr<IAssumption>> assumptions;
-    return assumptions;
+
+    // Todo: Implement this method to select the line with the fewest placements.
+    return LineAssumptionPosition(Orientation::Row, RowIndex(0));
 }

@@ -4,6 +4,7 @@
 #include "Board/Orientation.h"
 #include "Placement/PlacementCountList/ColumnPlacementCountList.h"
 #include "Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"
 #include <vector>
@@ -15,9 +16,10 @@ class PlacementCountAssumptionSelector : public IAssumptionSelector {
     ColumnPlacementCountList columnPlacementCounts;
 
   public:
-    PlacementCountAssumptionSelector(IPlacementPatternCounter &placementPatternCounter, const Board &board);
+    PlacementCountAssumptionSelector(
+      IPlacementPatternCounter &placementPatternCounter, const Board &board);
 
-    std::vector<std::unique_ptr<IAssumption>>
+    IAssumptionPosition
     select(const NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };
 
