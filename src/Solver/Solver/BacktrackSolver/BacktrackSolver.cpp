@@ -3,6 +3,7 @@
 #include "Placement/Placement/Placement.h"
 #include "Placement/PlacementCountList/ColumnPlacementCountList.h"
 #include "Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 #include "Solver/Assumption/Snapshot/PlacementCountSnapshot/PlacementCountSnapshot.h"
@@ -18,8 +19,10 @@ BacktrackSolver::BacktrackSolver(
     : stopSignal(stopSignal)
     , deterministicSolver(deterministicSolver)
     , exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder)
-    , assumptionSelector(assumptionSelector)
-    , backtrackStack(assumptionSelector) {}
+    , assumptionSelector(assumptionSelector) {
+      backtrackStack = BacktrackStack(assumptionSelector);
+      assumptionEnumerator = AssumptionEnumerator(exhaustivePlacementPatternFinder);
+    }
 
 void BacktrackSolver::solve(
   ISender<NonogramBoard> &nonogramBoardSender,
@@ -59,8 +62,10 @@ void BacktrackSolver::backtrackSolveRecursive(
         nonogramBoardSender.send(nonogramBoard);
     }
 
+    IAssumptionPosition assumptionPosition = assumptionSelector.select(
+      nonogramBoard, AssumptionSelectionContext{depth});
     for (const auto &assumption :
-         assumptionSelector.select(nonogramBoard, AssumptionSelectionContext{depth})) {
+         assumptionEnumerator.enumerate(nonogramBoard.getBoard(), assumptionPosition)) {
         if (stopSignal.shouldStop())
             return;
 
