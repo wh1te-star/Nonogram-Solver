@@ -23,14 +23,14 @@ public:
   ColumnLength getColumnLength() const;
   Board getBoard() const;
   Board &getBoard();
-  Cell getCell(Coordinate coordinate) const;
+  Cell getCell(CellPosition cellPosition) const;
   Row getRowLine(RowIndex rowIndex) const;
   Column getColumnLine(ColumnIndex columnIndex) const;
-  bool isInRange(Coordinate coordinate) const;
+  bool isInRange(CellPosition cellPosition) const;
   bool isSolved() const;
 
 public:
-  void applyCell(Coordinate coordinate, const Cell &cell,
+  void applyCell(CellPosition cellPosition, const Cell &cell,
                  bool overrideNone = false);
   void applyRow(RowIndex rowIndex, const Row &row, bool overwriteNone);
   void applyRow(RowIndex rowIndex, const RowPlacement &rowPlacement);

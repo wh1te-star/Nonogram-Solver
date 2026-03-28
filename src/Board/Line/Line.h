@@ -5,7 +5,7 @@
 #include <vector>
 #include "Cell/Cell/Cell.h"
 #include "Cell/CellLocation/CellLocation.h"
-#include "Index/Coordinate/Coordinate.h"
+#include "Index/Position/CellPosition/CellPosition.h"
 class Row;
 class Column;
 
@@ -31,7 +31,7 @@ public:
 
 public:
 	const size_t size() const;
-    const std::vector<CellLocation> getCellLocationList(const Coordinate& coordinate) const;
+    const std::vector<CellLocation> getCellLocationList(const CellPosition& cellPosition) const;
 	bool canPlaceBlock(const CellIndex& startIndex, const HintNumber& hintNumber) const;
     void apply(const Line& determined);
 	Row toRow() const;

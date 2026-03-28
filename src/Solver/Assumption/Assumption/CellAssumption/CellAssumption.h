@@ -6,11 +6,11 @@
 
 class CellAssumption : public IAssumption {
 private:
-    Coordinate coordinate;
+    CellPosition coordinate;
     Cell cell;
 
 public:
-    explicit CellAssumption(const Coordinate& coordinate, const Cell& cell);
+    explicit CellAssumption(const CellPosition& coordinate, const Cell& cell);
     virtual ~CellAssumption() = default;
     void applyTo(NonogramBoard& board) const override;
 };

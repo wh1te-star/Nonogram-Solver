@@ -25,8 +25,8 @@ Board& NonogramBoard::getBoard() {
     return board;
 }
 
-Cell NonogramBoard::getCell(Coordinate coordinate) const {
-	return board.getCell(coordinate);
+Cell NonogramBoard::getCell(CellPosition cellPosition) const {
+	return board.getCell(cellPosition);
 }
 
 Row NonogramBoard::getRowLine(RowIndex rowIndex) const {
@@ -37,16 +37,16 @@ Column NonogramBoard::getColumnLine(ColumnIndex columnIndex) const {
 	return board.getColumnLine(columnIndex);
 }
 
-bool NonogramBoard::isInRange(Coordinate coordinate) const {
-	return board.isInRange(coordinate);
+bool NonogramBoard::isInRange(CellPosition cellPosition) const {
+	return board.isInRange(cellPosition);
 }
 
 bool NonogramBoard::isSolved() const {
 	return board.isSolved();
 }
 
-void NonogramBoard::applyCell(Coordinate coordinate, const Cell& cell, bool overwriteNone) {
-	board.applyCell(coordinate, cell, overwriteNone);
+void NonogramBoard::applyCell(CellPosition cellPosition, const Cell& cell, bool overwriteNone) {
+	board.applyCell(cellPosition, cell, overwriteNone);
 }
 
 void NonogramBoard::applyRow(RowIndex rowIndex, const Row& row, bool overwriteNone) {

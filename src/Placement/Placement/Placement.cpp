@@ -1,7 +1,7 @@
 #include "Placement/Placement/Placement.h"
 
 #include "Cell/Cell/Cell.h"
-#include "Index/Coordinate/Coordinate.h"
+#include "Index/Position/CellPosition/CellPosition.h"
 #include "Placement/Placement/ColumnPlacement.h"
 #include "Placement/Placement/RowPlacement.h"
 #include <cassert>
@@ -76,12 +76,12 @@ bool Placement::hasNone() const {
 const size_t Placement::size() const { return placement.size(); }
 
 const std::vector<CellLocation>
-Placement::getCellLocationList(const Coordinate &coordinate) const {
+Placement::getCellLocationList(const CellPosition &cellPosition) const {
   std::vector<CellLocation> cellLocationList;
   int shift = 0;
   for (Cell cell : placement) {
-    Coordinate cellCoordinate = coordinate.move(0, shift);
-    cellLocationList.emplace_back(cellCoordinate, cell);
+    CellPosition cellCellPosition = cellPosition.move(0, shift);
+    cellLocationList.emplace_back(cellCellPosition, cell);
     shift++;
   }
   return cellLocationList;

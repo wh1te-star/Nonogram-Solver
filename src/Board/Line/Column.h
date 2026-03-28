@@ -3,7 +3,6 @@
 
 
 #include "Board/Line/Line.h"
-#include "Index/Coordinate/Coordinate.h"
 
 class Column : public Line {
 public:

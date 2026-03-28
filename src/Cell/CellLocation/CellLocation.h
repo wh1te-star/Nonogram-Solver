@@ -2,18 +2,18 @@
 #define CELLLOCATION_H
 
 #include "Cell/Cell/Cell.h"
-#include "Index/Coordinate/Coordinate.h"
+#include "Index/Position/CellPosition/CellPosition.h"
 
 class CellLocation {
 private:
-  Coordinate coordinate;
+  CellPosition position;
   Cell cell;
 
 public:
-  explicit CellLocation(Coordinate coordinate, Cell cell);
+  explicit CellLocation(CellPosition position, Cell cell);
 
 public:
-  const Coordinate &getCoordinate() const;
+  const CellPosition &getPosition() const;
   const Cell &getCell() const;
 
 public:

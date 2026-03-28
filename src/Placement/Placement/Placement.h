@@ -3,7 +3,7 @@
 
 #include "Cell/Cell/Cell.h"
 #include "Cell/CellLocation/CellLocation.h"
-#include "Index/Coordinate/Coordinate.h"
+#include "Index/Position/CellPosition/CellPosition.h"
 #include <vector>
 class RowPlacement;
 class ColumnPlacement;
@@ -35,7 +35,7 @@ private:
 public:
   const size_t size() const;
   const std::vector<CellLocation>
-  getCellLocationList(const Coordinate &coordinate) const;
+  getCellLocationList(const CellPosition &cellPosition) const;
   const std::vector<CellIndex> getHintIndex() const;
   RowPlacement toRowPlacement() const;
   ColumnPlacement toColumnPlacement() const;

@@ -2,14 +2,14 @@
 
 #include <algorithm>
 #include "Cell/Cell/Cell.h"
-#include "Index/Coordinate/Coordinate.h"
+#include "Index/Position/CellPosition/CellPosition.h"
 
-CellLocation::CellLocation(Coordinate coordinate, Cell cell) :
-    coordinate(std::move(coordinate)),
+CellLocation::CellLocation(CellPosition position, Cell cell) :
+    position(std::move(position)),
     cell(std::move(cell)) {}
 
-const Coordinate& CellLocation::getCoordinate() const {
-    return coordinate;
+const CellPosition& CellLocation::getPosition() const {
+    return position;
 }
 
 const Cell& CellLocation::getCell() const {
@@ -17,7 +17,7 @@ const Cell& CellLocation::getCell() const {
 }
 
 bool CellLocation::operator==(const CellLocation& other) const {
-	return coordinate == other.coordinate && cell == other.cell;
+	return position == other.position && cell == other.cell;
 }
 
 bool CellLocation::operator!=(const CellLocation& other) const {

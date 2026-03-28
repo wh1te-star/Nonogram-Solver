@@ -42,7 +42,7 @@ std::vector<std::unique_ptr<IAssumption>> AssumptionEnumerator::enumerateCellAss
     std::vector<std::unique_ptr<IAssumption>> assumptions;
     assumptions.reserve(2);
 
-    Coordinate coordinate{cellAssumptionPosition.getRow(), cellAssumptionPosition.getColumn()};
+    CellPosition coordinate{cellAssumptionPosition.getRow(), cellAssumptionPosition.getColumn()};
 
     assumptions[0] = std::make_unique<CellAssumption>(coordinate, Cell(White));
     assumptions[1] = std::make_unique<CellAssumption>(coordinate, Cell(Black));

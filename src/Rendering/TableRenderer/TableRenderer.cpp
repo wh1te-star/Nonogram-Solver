@@ -277,9 +277,9 @@ ImU32 TableRenderer::getCellColorU32(
             baseColor = col_colHint;
         }
     } else {
-        Coordinate coordinate = Coordinate(
+        CellPosition cellPosition = CellPosition(
           rowIndex - columnHintLength, columnIndex - rowHintLength);
-        CellColor cellColor = board.getCell(coordinate).getColor();
+        CellColor cellColor = board.getCell(cellPosition).getColor();
         if (cellColor == Black) {
             baseColor = col_black;
         } else if (cellColor == White) {
