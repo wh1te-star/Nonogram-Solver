@@ -94,7 +94,6 @@ std::vector<std::unique_ptr<IAssumption>> AssumptionEnumerator::enumerateLineAss
 
 std::vector<std::unique_ptr<IAssumption>> AssumptionEnumerator::enumerateHintAssumption(
   const NonogramBoard &nonogramBoard, const HintAssumptionPosition &hintAssumptionPosition) {
-    return exhaustivePlacementPatternFinder.findHintPlacementPatterns(
-      nonogramBoard, hintAssumptionPosition.getOrientation(), hintAssumptionPosition.getIndex(),
-      hintAssumptionPosition.getHintIndex());
+    //Implement later
+    return {};
 }

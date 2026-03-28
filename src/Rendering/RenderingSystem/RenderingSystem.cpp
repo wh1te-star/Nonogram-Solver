@@ -1,6 +1,6 @@
 #include "RenderingSystem.h"
 
-#include "Algorithm/Backtrack/BacktrackAlgorithm/BacktrackAlgorithm.h"
+#include "AlgorithmThreadRunner/AlgorithmThreadRunner.h"
 #include "Rendering/FontData/FontData.h"
 #include "Rendering/TableRenderer/TableRenderer.h"
 #include "SampleData/Repository/SampleDataRepository.h"
@@ -84,9 +84,9 @@ void RenderingSystem::renderingLoop() {
 
     BacktrackSolver solver = BacktrackSolver(
       stopSignal, deterministicSolver, exhaustivePlacementPatternFinder, assumptionSelector);
-    BacktrackAlgorithm algorithm = BacktrackAlgorithm(
+    AlgorithmThreadRunner algorithm = AlgorithmThreadRunner(
       stopSignal, sharedNonogramBoard, nonogramBoard);
-    std::thread worker_thread(&BacktrackAlgorithm::run, &algorithm, std::ref(solver));
+    std::thread worker_thread(&AlgorithmThreadRunner::run, &algorithm, std::ref(solver));
 
     int count = 0;
     TableRenderer tableRenderer = TableRenderer();
