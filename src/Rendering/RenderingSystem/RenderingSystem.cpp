@@ -6,6 +6,7 @@
 #include "SampleData/Repository/SampleDataRepository.h"
 #include "Shared/SharedDataAliases.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
+#include "Solver/Assumption/AssumptionEnumerator/LineAssumptionEnumerator/LineAssumptionEnumerator.h"
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 #include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
@@ -79,11 +80,12 @@ void RenderingSystem::renderingLoop() {
       DFSLeftmostPlacementFinder(), DFSRightmostPlacementFinder());
     LineRepeatDeterministicSolver deterministicSolver = LineRepeatDeterministicSolver(
       stopSignal, overlapLineSolver);
-    LineIndexAssumptionSelector assumptionSelector(
-      exhaustivePlacementPatternFinder, Orientation::Row);
+    LineIndexAssumptionSelector assumptionSelector(Orientation::Row);
+    LineAssumptionEnumerator assumptionEnumerator(exhaustivePlacementPatternFinder);
+    BacktrackStack backtrackStack(assumptionSelector);
 
     BacktrackSolver solver = BacktrackSolver(
-      stopSignal, deterministicSolver, exhaustivePlacementPatternFinder, assumptionSelector);
+      stopSignal, deterministicSolver, assumptionSelector, assumptionEnumerator, backtrackStack);
     AlgorithmThreadRunner algorithm = AlgorithmThreadRunner(
       stopSignal, sharedNonogramBoard, nonogramBoard);
     std::thread worker_thread(&AlgorithmThreadRunner::run, &algorithm, std::ref(solver));

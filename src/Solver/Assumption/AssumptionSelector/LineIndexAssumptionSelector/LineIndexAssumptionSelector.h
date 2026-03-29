@@ -12,7 +12,7 @@ class LineIndexAssumptionSelector : public IAssumptionSelector {
 
   public:
     LineIndexAssumptionSelector(Orientation orientation);
-    IAssumptionPosition
+    std::unique_ptr<IAssumptionPosition>
     select(const NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };
 

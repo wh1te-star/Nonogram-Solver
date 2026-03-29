@@ -4,7 +4,7 @@
 #include "Shared/StopSignal/StopSignal.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
-#include "Solver/Assumption/AssumptionEnumerator/AssumptionEnumerator.h"
+#include "Solver/Assumption/AssumptionEnumerator/IAssumptionEnumerator.h"
 #include "Solver/Assumption/BacktrackStack/BacktrackStack.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
@@ -14,18 +14,17 @@ class BacktrackSolver : public ISolver {
   private:
     StopSignal &stopSignal;
     IDeterministicSolver &deterministicSolver;
-    IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
     IAssumptionSelector &assumptionSelector;
-    AssumptionEnumerator assumptionEnumerator;
-    BacktrackStack backtrackStack;
-    IBoardUpdateHandler &boardUpdateHandler;
+    IAssumptionEnumerator &assumptionEnumerator;
+    BacktrackStack &backtrackStack;
 
   public:
     BacktrackSolver(
       StopSignal &stopSignal,
       IDeterministicSolver &deterministicSolver,
-      IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
-      IAssumptionSelector &assumptionSelector);
+      IAssumptionSelector &assumptionSelector,
+      IAssumptionEnumerator &assumptionEnumerator,
+      BacktrackStack &backtrackStack);
     void solve(
       ISender<NonogramBoard> &nonogramBoardSender,
       NonogramBoard &nonogramBoard,

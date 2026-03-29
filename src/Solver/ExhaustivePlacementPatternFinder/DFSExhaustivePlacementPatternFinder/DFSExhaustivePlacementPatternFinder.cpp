@@ -54,4 +54,6 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
           hintSet, line, solutions, currentPlacement, currentHintIndex);
         currentPlacement = previousPlacement;
     }
+
+    return ExhaustivePlacementPatternFinderResult::success;
 }

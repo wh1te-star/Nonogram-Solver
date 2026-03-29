@@ -16,9 +16,9 @@ PlacementCountAssumptionSelector::PlacementCountAssumptionSelector(
     , columnPlacementCounts(
         std::vector<PlacementCount>(board.getColumnLength().getLength(), PlacementCount(0))) {}
 
-IAssumptionPosition PlacementCountAssumptionSelector::select(
+std::unique_ptr<IAssumptionPosition> PlacementCountAssumptionSelector::select(
   const NonogramBoard &board, const AssumptionSelectionContext &context) {
 
     // Todo: Implement this method to select the line with the fewest placements.
-    return LineAssumptionPosition(Orientation::Row, RowIndex(0));
+    return std::make_unique<LineAssumptionPosition>(Orientation::Row, RowIndex(0));
 }

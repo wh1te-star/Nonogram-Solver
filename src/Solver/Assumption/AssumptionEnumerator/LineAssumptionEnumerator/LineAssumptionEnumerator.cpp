@@ -21,44 +21,40 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
     Orientation orientation = lineAssumptionPosition->getOrientation();
     CellIndex index = lineAssumptionPosition->getIndex();
 
-      if (orientation == Orientation::Row) {
-          RowIndex rowIndex = index.toRowIndex();
-          Line line = nonogramBoard.getRowLine(rowIndex);
-          HintSet hintSet = nonogramBoard.getRowHintSetList()[rowIndex];
+    if (orientation == Orientation::Row) {
+        RowIndex rowIndex = index.toRowIndex();
+        Line line = nonogramBoard.getRowLine(rowIndex);
+        HintSet hintSet = nonogramBoard.getRowHintSetList()[rowIndex];
 
-          std::vector<Placement> solutions;
-          ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
-            hintSet, line, solutions);
+        std::vector<Placement> solutions;
+        ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
+          hintSet, line, solutions);
 
-          if (result == ExhaustivePlacementPatternFinderResult::success) {
-              std::vector<std::unique_ptr<IAssumption>> assumptions;
-              assumptions.reserve(solutions.size());
-              for (int i = 0; i < solutions.size(); i++) {
-                  assumptions[i] = std::make_unique<LineAssumption>(
-                    Orientation::Row, rowIndex, solutions[i]);
-              }
-              return assumptions;
-          }
-      } else {
-          ColumnIndex columnIndex = index.toColumnIndex();
-          Line line = nonogramBoard.getColumnLine(columnIndex);
-          HintSet hintSet = nonogramBoard.getColumnHintSetList()[columnIndex];
+        std::vector<std::unique_ptr<IAssumption>> assumptions;
+        assumptions.reserve(solutions.size());
+        for (int i = 0; i < solutions.size(); i++) {
+            assumptions.push_back(
+              std::make_unique<LineAssumption>(rowIndex, Line(solutions[i].getPlacement())));
+        }
+        return assumptions;
+    } else {
+        ColumnIndex columnIndex = index.toColumnIndex();
+        Line line = nonogramBoard.getColumnLine(columnIndex);
+        HintSet hintSet = nonogramBoard.getColumnHintSetList()[columnIndex];
 
-          std::vector<Placement> solutions;
-          ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
-            hintSet, line, solutions);
+        std::vector<Placement> solutions;
+        ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
+          hintSet, line, solutions);
 
-          if (result == ExhaustivePlacementPatternFinderResult::success) {
-              std::vector<std::unique_ptr<IAssumption>> assumptions;
-              assumptions.reserve(solutions.size());
-              for (int i = 0; i < solutions.size(); i++) {
-                  assumptions[i] = std::make_unique<LineAssumption>(
-                    Orientation::Column, columnIndex, solutions[i]);
-              }
-              return assumptions;
-          }
-      }
+        std::vector<std::unique_ptr<IAssumption>> assumptions;
+        assumptions.reserve(solutions.size());
+        for (int i = 0; i < solutions.size(); i++) {
+            assumptions.push_back(
+              std::make_unique<LineAssumption>(columnIndex, Line(solutions[i].getPlacement())));
+        }
+        return assumptions;
+    }
 
-      assert(false && "Failed to enumerate line assumptions");
-      return {};
-  }
+    assert(false && "Failed to enumerate line assumptions");
+    return {};
+}

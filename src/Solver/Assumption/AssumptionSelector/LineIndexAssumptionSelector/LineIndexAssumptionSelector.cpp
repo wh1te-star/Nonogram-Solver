@@ -11,7 +11,7 @@
 LineIndexAssumptionSelector::LineIndexAssumptionSelector(Orientation orientation)
     : orientation(orientation) {}
 
-IAssumptionPosition LineIndexAssumptionSelector::select(
+std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector::select(
   const NonogramBoard &board, const AssumptionSelectionContext &context) {
     std::vector<std::unique_ptr<IAssumption>> assumptions;
 
@@ -25,9 +25,9 @@ IAssumptionPosition LineIndexAssumptionSelector::select(
 
     if (orientation == Orientation::Row) {
         const RowIndex rowIndex(currentIndex);
-        return LineAssumptionPosition(orientation, rowIndex);
+        return std::make_unique<LineAssumptionPosition>(orientation, rowIndex);
     } else {
-        const ColumnIndex colIndex(currentIndex);
-        return LineAssumptionPosition(orientation, colIndex);
+        const ColumnIndex columnIndex(currentIndex);
+        return std::make_unique<LineAssumptionPosition>(orientation, columnIndex);
     }
 }

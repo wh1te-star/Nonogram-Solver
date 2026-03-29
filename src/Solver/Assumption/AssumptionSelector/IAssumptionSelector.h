@@ -12,7 +12,7 @@ class IAssumptionSelector {
   public:
     virtual ~IAssumptionSelector() = default;
 
-    virtual IAssumptionPosition
+    virtual std::unique_ptr<IAssumptionPosition>
     select(const NonogramBoard &board, const AssumptionSelectionContext &context) = 0;
 };
 

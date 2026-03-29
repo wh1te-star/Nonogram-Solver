@@ -14,15 +14,14 @@
 BacktrackSolver::BacktrackSolver(
   StopSignal &stopSignal,
   IDeterministicSolver &deterministicSolver,
-  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder,
-  IAssumptionSelector &assumptionSelector)
+  IAssumptionSelector &assumptionSelector,
+  IAssumptionEnumerator &assumptionEnumerator,
+  BacktrackStack &backtrackStack)
     : stopSignal(stopSignal)
     , deterministicSolver(deterministicSolver)
-    , exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder)
-    , assumptionSelector(assumptionSelector) {
-      backtrackStack = BacktrackStack(assumptionSelector);
-      assumptionEnumerator = AssumptionEnumerator(exhaustivePlacementPatternFinder);
-    }
+    , assumptionSelector(assumptionSelector)
+    , assumptionEnumerator(assumptionEnumerator)
+    , backtrackStack(backtrackStack) {}
 
 void BacktrackSolver::solve(
   ISender<NonogramBoard> &nonogramBoardSender,
@@ -62,10 +61,10 @@ void BacktrackSolver::backtrackSolveRecursive(
         nonogramBoardSender.send(nonogramBoard);
     }
 
-    IAssumptionPosition assumptionPosition = assumptionSelector.select(
+    std::unique_ptr<IAssumptionPosition> assumptionPosition = assumptionSelector.select(
       nonogramBoard, AssumptionSelectionContext{depth});
     for (const auto &assumption :
-         assumptionEnumerator.enumerate(nonogramBoard.getBoard(), assumptionPosition)) {
+         assumptionEnumerator.enumerate(nonogramBoard, *assumptionPosition)) {
         if (stopSignal.shouldStop())
             return;
 

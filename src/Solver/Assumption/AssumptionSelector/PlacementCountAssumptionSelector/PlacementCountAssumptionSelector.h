@@ -19,7 +19,7 @@ class PlacementCountAssumptionSelector : public IAssumptionSelector {
     PlacementCountAssumptionSelector(
       IPlacementPatternCounter &placementPatternCounter, const Board &board);
 
-    IAssumptionPosition
+    std::unique_ptr<IAssumptionPosition>
     select(const NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };
 
