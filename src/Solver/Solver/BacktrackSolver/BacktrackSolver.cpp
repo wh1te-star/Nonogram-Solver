@@ -8,6 +8,7 @@
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 #include "Solver/Assumption/Snapshot/PlacementCountSnapshot/PlacementCountSnapshot.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
+#include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
 #include <cassert>
 
@@ -24,19 +25,18 @@ BacktrackSolver::BacktrackSolver(
     , backtrackStack(backtrackStack) {}
 
 void BacktrackSolver::solve(
-  ISender<NonogramBoard> &nonogramBoardSender,
   NonogramBoard &nonogramBoard,
-  std::vector<Board> &solutions) {
-    backtrackSolve(nonogramBoardSender, nonogramBoard, solutions);
+  std::vector<Board> &solutions,
+  IBoardUpdateHandler &boardUpdateHandler) {
+    backtrackSolve(nonogramBoard, solutions, boardUpdateHandler);
 }
 
 void BacktrackSolver::backtrackSolve(
-  ISender<NonogramBoard> &nonogramBoardSender,
   NonogramBoard &nonogramBoard,
-  std::vector<Board> &solutions) {
+  std::vector<Board> &solutions,
+  IBoardUpdateHandler &boardUpdateHandler) {
 
-    DeterministicSolverResult result = deterministicSolver.solve(
-      nonogramBoardSender, nonogramBoard);
+    DeterministicSolverResult result = deterministicSolver.solve(nonogramBoard, boardUpdateHandler);
     if (result == DeterministicSolverResult::Solved) {
         solutions.push_back(nonogramBoard.getBoard());
         return;
@@ -45,21 +45,18 @@ void BacktrackSolver::backtrackSolve(
     if (
       result != DeterministicSolverResult::HasContradiction &&
       result != DeterministicSolverResult::Stopped) {
-        backtrackSolveRecursive(nonogramBoardSender, nonogramBoard, solutions, 0);
+        backtrackSolveRecursive(nonogramBoard, solutions, 0, boardUpdateHandler);
     }
 }
 
 void BacktrackSolver::backtrackSolveRecursive(
-  ISender<NonogramBoard> &nonogramBoardSender,
   NonogramBoard &nonogramBoard,
   std::vector<Board> &solutions,
-  int depth) {
+  int depth,
+  IBoardUpdateHandler &boardUpdateHandler) {
 
     if (stopSignal.shouldStop())
         return;
-    if (nonogramBoardSender.isRequested()) {
-        nonogramBoardSender.send(nonogramBoard);
-    }
 
     std::unique_ptr<IAssumptionPosition> assumptionPosition = assumptionSelector.select(
       nonogramBoard, AssumptionSelectionContext{depth});
@@ -79,13 +76,17 @@ void BacktrackSolver::backtrackSolveRecursive(
                 nonogramBoard.getColumnLength().getLength(), PlacementCount(0)))));
         assumption->applyTo(nonogramBoard);
 
-        switch (deterministicSolver.solve(nonogramBoardSender, nonogramBoard)) {
+        boardUpdateHandler.onBoardUpdate(
+          nonogramBoard.getBoard(), nonogramBoard.getBoard(), nonogramBoard.getBoard());
+
+
+        switch (deterministicSolver.solve(nonogramBoard, boardUpdateHandler)) {
         case DeterministicSolverResult::Solved:
             solutions.push_back(nonogramBoard.getBoard());
             break;
 
         case DeterministicSolverResult::NoMoreProgress:
-            backtrackSolveRecursive(nonogramBoardSender, nonogramBoard, solutions, depth + 1);
+            backtrackSolveRecursive(nonogramBoard, solutions, depth + 1, boardUpdateHandler);
             break;
 
         case DeterministicSolverResult::HasContradiction:
@@ -100,5 +101,8 @@ void BacktrackSolver::backtrackSolveRecursive(
         }
 
         backtrackStack.pop(nonogramBoard);
+
+        boardUpdateHandler.onBoardUpdate(
+          nonogramBoard.getBoard(), nonogramBoard.getBoard(), nonogramBoard.getBoard());
     }
 }

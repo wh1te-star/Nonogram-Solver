@@ -10,12 +10,12 @@ LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
     : stopSignal(stopSignal), lineSolver(lineSolver) {}
 
 DeterministicSolverResult LineRepeatDeterministicSolver::solve(
-  ISender<NonogramBoard> &NonogramBoardSender, NonogramBoard &nonogramBoard) {
-    return lineRepeatDeterministicSolve(NonogramBoardSender, nonogramBoard);
+  NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) {
+    return lineRepeatDeterministicSolve(nonogramBoard, boardUpdateHandler);
 }
 
 DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
-  ISender<NonogramBoard> &sharedNonogramBoard, NonogramBoard &nonogramBoard) {
+  NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) {
     RowLength rowLength = nonogramBoard.getRowLength();
     ColumnLength columnLength = nonogramBoard.getColumnLength();
 
@@ -29,7 +29,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             RowHintSetList rowHintSetList = nonogramBoard.getRowHintSetList();
             HintSet rowHintSet = rowHintSetList[rowIndex];
 
-            LineSolverResult lineSolverResult = lineSolver.solve(rowHintSet, rowLine);
+            LineSolverResult lineSolverResult = lineSolver.solve(rowHintSet, rowLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
                 break;
@@ -46,6 +46,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             if (rowLine != previousRowLine) {
                 proceeded = true;
+                boardUpdateHandler.onLineUpdate(LinePosition(Orientation::Row, rowIndex), rowLine, previousRowLine, nonogramBoard.getRowLine(rowIndex));
             }
 
             /*
@@ -64,10 +65,6 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             }
               */
 
-            if (sharedNonogramBoard.isRequested()) {
-                sharedNonogramBoard.send(nonogramBoard);
-            }
-
             if (stopSignal.shouldStop()) {
                 return DeterministicSolverResult::Stopped;
             }
@@ -82,7 +79,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             Column previousColumnLine = columnLine;
             ColumnHintSetList columnHintSetList = nonogramBoard.getColumnHintSetList();
             HintSet columnHintSet = columnHintSetList[columnIndex];
-            LineSolverResult lineSolverResult = lineSolver.solve(columnHintSet, columnLine);
+            LineSolverResult lineSolverResult = lineSolver.solve(columnHintSet, columnLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
                 break;
@@ -100,6 +97,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             if (columnLine != previousColumnLine) {
                 proceeded = true;
+                boardUpdateHandler.onLineUpdate(LinePosition(Orientation::Column, columnIndex), columnLine, previousColumnLine, currentColumnLine);
             }
 
             /*
@@ -119,9 +117,6 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             }
               */
 
-            if (sharedNonogramBoard.isRequested()) {
-                sharedNonogramBoard.send(nonogramBoard);
-            }
             if (stopSignal.shouldStop()) {
                 return DeterministicSolverResult::Stopped;
             }

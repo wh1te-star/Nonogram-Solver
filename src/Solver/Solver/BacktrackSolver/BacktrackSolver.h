@@ -2,12 +2,12 @@
 #define BACKTRACKSOLVER_H
 
 #include "Shared/StopSignal/StopSignal.h"
-#include "Solver/IBoardUpdateHandler.h"
-#include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/AssumptionEnumerator/IAssumptionEnumerator.h"
+#include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/BacktrackStack/BacktrackStack.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
+#include "Solver/IBoardUpdateHandler.h"
 #include "Solver/Solver/ISolver.h"
 
 class BacktrackSolver : public ISolver {
@@ -25,21 +25,23 @@ class BacktrackSolver : public ISolver {
       IAssumptionSelector &assumptionSelector,
       IAssumptionEnumerator &assumptionEnumerator,
       BacktrackStack &backtrackStack);
+
     void solve(
-      ISender<NonogramBoard> &nonogramBoardSender,
       NonogramBoard &nonogramBoard,
-      std::vector<Board> &solutions) override;
+      std::vector<Board> &solutions,
+      IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     void backtrackSolve(
-      ISender<NonogramBoard> &nonogramBoardSender,
-      NonogramBoard &nonogramBoard,
-      std::vector<Board> &solutions);
-    void backtrackSolveRecursive(
-      ISender<NonogramBoard> &nonogramBoardSender,
       NonogramBoard &nonogramBoard,
       std::vector<Board> &solutions,
-      int depth);
+      IBoardUpdateHandler &boardUpdateHandler);
+
+    void backtrackSolveRecursive(
+      NonogramBoard &nonogramBoard,
+      std::vector<Board> &solutions,
+      int depth,
+      IBoardUpdateHandler &boardUpdateHandler);
 };
 
 #endif

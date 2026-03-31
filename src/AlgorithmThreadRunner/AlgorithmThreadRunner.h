@@ -15,13 +15,14 @@ class AlgorithmThreadRunner {
     StopSignal &stopSignal;
 
     ISender<NonogramBoard> &nonogramBoardSender;
-    NonogramBoard nonogramBoard;
+    NonogramBoard &nonogramBoard;
+    IBoardUpdateHandler &boardUpdateHandler;
 
   public:
     AlgorithmThreadRunner::AlgorithmThreadRunner(
       StopSignal &stopSignal,
       ISender<NonogramBoard> &nonogramBoardSender,
-      NonogramBoard initialNonogramBoard);
+      NonogramBoard &initialNonogramBoard, IBoardUpdateHandler &boardUpdateHandler);
 
     void AlgorithmThreadRunner::run(ISolver &solver);
 };

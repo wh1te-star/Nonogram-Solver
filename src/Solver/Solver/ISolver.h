@@ -3,13 +3,15 @@
 
 #include "Board/NonogramBoard/NonogramBoard.h"
 #include "Shared/SharedDataAliases.h"
+#include "Solver/IBoardUpdateHandler.h"
 
 class ISolver {
-public:
-  virtual ~ISolver() = default;
-  virtual void solve(ISender<NonogramBoard> &nonogramBoardSender,
-                     NonogramBoard &nonogramBoard,
-                     std::vector<Board> &solutions) = 0;
+  public:
+    virtual ~ISolver() = default;
+    virtual void solve(
+      NonogramBoard &nonogramBoard,
+      std::vector<Board> &solutions,
+      IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
 #endif

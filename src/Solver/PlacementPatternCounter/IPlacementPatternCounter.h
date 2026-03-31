@@ -5,6 +5,7 @@
 #include "Hint/HintSet/HintSet.h"
 #include "Placement/PlacementCount/PlacementCount.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
+#include "Solver/IBoardUpdateHandler.h"
 
 class IPlacementPatternCounter {
 public:
@@ -12,7 +13,8 @@ public:
   virtual PlacementPatternCounterResult count(
     const HintSet& hintSet,
     Line& line,
-    PlacementCount& placementCount
+    PlacementCount& placementCount,
+    IBoardUpdateHandler& boardUpdateHandler
   ) = 0;
 };
 

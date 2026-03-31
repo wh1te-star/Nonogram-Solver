@@ -6,17 +6,20 @@
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
 
 class OverlapLineSolver : public ILineSolver {
-private:
-  ILeftmostPlacementFinder &leftmostPlacementFinder;
-  IRightmostPlacementFinder &rightmostPlacementFinder;
+  private:
+    ILeftmostPlacementFinder &leftmostPlacementFinder;
+    IRightmostPlacementFinder &rightmostPlacementFinder;
 
-public:
-  OverlapLineSolver(ILeftmostPlacementFinder &leftmostPlacementFinder,
-                    IRightmostPlacementFinder &rightmostPlacementFinder);
-  LineSolverResult solve(const HintSet &hintSet, Line &line) override;
+  public:
+    OverlapLineSolver(
+      ILeftmostPlacementFinder &leftmostPlacementFinder,
+      IRightmostPlacementFinder &rightmostPlacementFinder);
+    LineSolverResult
+    solve(const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler) override;
 
-private:
-  LineSolverResult overlapLineSolve(const HintSet &hintSet, Line &line);
+  private:
+    LineSolverResult
+    overlapLineSolve(const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler);
 };
 
 #endif

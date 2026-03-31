@@ -13,18 +13,19 @@ class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
   public:
     DFSRightmostPlacementFinder() = default;
     PlacementFinderResult
-    find(const HintSet &hintSet, Line &line, Placement &resultPlacement) override;
+    find(const HintSet &hintSet, Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult
-    dfsRightmostPlacementFind(const HintSet &hintSet, const Line &line, Placement &resultPlacement);
+    dfsRightmostPlacementFind(const HintSet &hintSet, const Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsRightmostPlacementFindRecursive(
       const HintSet &hintSet,
       const Line &line,
       Placement &currentPlacement,
       int currentHintIndex,
-      Placement &resultPlacement);
+      Placement &resultPlacement,
+      IBoardUpdateHandler &boardUpdateHandler);
 };
 
 #endif

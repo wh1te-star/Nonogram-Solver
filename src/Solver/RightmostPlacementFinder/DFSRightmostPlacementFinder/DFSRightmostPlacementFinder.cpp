@@ -3,18 +3,18 @@
 #include <iostream>
 
 PlacementFinderResult
-DFSRightmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement) {
+DFSRightmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
 
-    PlacementFinderResult result = dfsRightmostPlacementFind(hintSet, line, resultPlacement);
+    PlacementFinderResult result = dfsRightmostPlacementFind(hintSet, line, resultPlacement, boardUpdateHandler);
     return result;
 }
 
 PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFind(
-  const HintSet &hintSet, const Line &line, Placement &resultPlacement) {
+  const HintSet &hintSet, const Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
     Placement currentPlacement = Placement("");
     return dfsRightmostPlacementFindRecursive(
-      hintSet, line, currentPlacement, hintSet.size() - 1, resultPlacement);
+      hintSet, line, currentPlacement, hintSet.size() - 1, resultPlacement, boardUpdateHandler);
 }
 
 PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecursive(
@@ -22,7 +22,8 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
   const Line &line,
   Placement &currentPlacement,
   int currentHintIndex,
-  Placement &resultPlacement) {
+  Placement &resultPlacement,
+  IBoardUpdateHandler &boardUpdateHandler) {
     if(profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
         return PlacementFinderResult::notFound;
     }
@@ -55,7 +56,7 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
             currentPlacement = Placement("W") + currentPlacement;
         }
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
-          hintSet, line, currentPlacement, currentHintIndex - 1, resultPlacement);
+          hintSet, line, currentPlacement, currentHintIndex - 1, resultPlacement, boardUpdateHandler);
         if (result == PlacementFinderResult::success) {
             return PlacementFinderResult::success;
         }
@@ -67,7 +68,7 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
         Placement previousPlacement = currentPlacement;
         currentPlacement = Placement("W") + currentPlacement;
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
-          hintSet, line, currentPlacement, currentHintIndex, resultPlacement);
+          hintSet, line, currentPlacement, currentHintIndex, resultPlacement, boardUpdateHandler);
         if (result == PlacementFinderResult::success) {
             return PlacementFinderResult::success;
         }

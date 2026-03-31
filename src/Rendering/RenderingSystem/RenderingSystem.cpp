@@ -5,6 +5,7 @@
 #include "Rendering/TableRenderer/TableRenderer.h"
 #include "SampleData/Repository/SampleDataRepository.h"
 #include "Shared/SharedDataAliases.h"
+#include "Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 #include "Solver/Assumption/AssumptionEnumerator/LineAssumptionEnumerator/LineAssumptionEnumerator.h"
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
@@ -86,8 +87,9 @@ void RenderingSystem::renderingLoop() {
 
     BacktrackSolver solver = BacktrackSolver(
       stopSignal, deterministicSolver, assumptionSelector, assumptionEnumerator, backtrackStack);
+    RenderingBoardUpdateHandler renderingBoardUpdateHandler(sharedNonogramBoard, nonogramBoard);
     AlgorithmThreadRunner algorithm = AlgorithmThreadRunner(
-      stopSignal, sharedNonogramBoard, nonogramBoard);
+      stopSignal, sharedNonogramBoard, nonogramBoard, renderingBoardUpdateHandler);
     std::thread worker_thread(&AlgorithmThreadRunner::run, &algorithm, std::ref(solver));
 
     int count = 0;

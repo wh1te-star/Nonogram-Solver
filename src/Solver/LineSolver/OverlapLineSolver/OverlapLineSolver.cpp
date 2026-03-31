@@ -10,17 +10,19 @@ OverlapLineSolver::OverlapLineSolver(
     : leftmostPlacementFinder(leftmostPlacementFinder)
     , rightmostPlacementFinder(rightmostPlacementFinder) {}
 
-LineSolverResult OverlapLineSolver::solve(const HintSet &hintSet, Line &line) {
-    return overlapLineSolve(hintSet, line);
+LineSolverResult OverlapLineSolver::solve(
+  const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
+    return overlapLineSolve(hintSet, line, boardUpdateHandler);
 }
 
-LineSolverResult OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Line &line) {
+LineSolverResult OverlapLineSolver::overlapLineSolve(
+  const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
     Placement leftmostPlacement = Placement("");
     Placement rightmostPlacement = Placement("");
     PlacementFinderResult leftmostPlacementFinderResult = leftmostPlacementFinder.find(
-      hintSet, line, leftmostPlacement);
+      hintSet, line, leftmostPlacement, boardUpdateHandler);
     PlacementFinderResult rightmostPlacementFinderResult = rightmostPlacementFinder.find(
-      hintSet, line, rightmostPlacement);
+      hintSet, line, rightmostPlacement, boardUpdateHandler);
     if (
       leftmostPlacementFinderResult == PlacementFinderResult::notFound ||
       rightmostPlacementFinderResult == PlacementFinderResult::notFound) {
@@ -63,5 +65,6 @@ LineSolverResult OverlapLineSolver::overlapLineSolve(const HintSet &hintSet, Lin
     }
 
     line.apply(determined);
+
     return LineSolverResult::Success;
 }

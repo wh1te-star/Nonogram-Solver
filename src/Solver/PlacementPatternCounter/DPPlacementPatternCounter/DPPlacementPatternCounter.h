@@ -10,11 +10,11 @@ class DPPlacementPatternCounter : public IPlacementPatternCounter {
     DPPlacementPatternCounter();
     DPPlacementPatternCounter(int MAX_COUNT);
     PlacementPatternCounterResult
-    count(const HintSet &hintSet, Line &line, PlacementCount &placementCount) override;
+    count(const HintSet &hintSet, Line &line, PlacementCount &placementCount, IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementPatternCounterResult DPPlacementPatternCount(
-      const HintSet &hintSet, const Line &line, PlacementCount &placementCount);
+      const HintSet &hintSet, const Line &line, PlacementCount &placementCount, IBoardUpdateHandler &boardUpdateHandler);
 
     bool isSeparated(const Line &line, const CellIndex &prevCellIndex);
 
