@@ -10,8 +10,6 @@ class IBoardUpdateHandler {
   public:
     virtual ~IBoardUpdateHandler() = default;
 
-    virtual void onUpdate() = 0;
-
     virtual void onCellUpdate(
       const CellPosition &cellPosition,
       const Cell &targetCell,

@@ -4,18 +4,12 @@ RenderingBoardUpdateHandler::RenderingBoardUpdateHandler(
   ISender<NonogramBoard> &nonogramBoardSender, NonogramBoard &nonogramBoard)
     : nonogramBoardSender(nonogramBoardSender), nonogramBoard(nonogramBoard) {}
 
-void RenderingBoardUpdateHandler::onUpdate() {
-    if (nonogramBoardSender.isRequested()) {
-        nonogramBoardSender.send(nonogramBoard);
-    }
-}
-
 void RenderingBoardUpdateHandler::onCellUpdate(
   const CellPosition &cellPosition,
   const Cell &targetCell,
   const Cell &beforeCell,
   const Cell &afterCell) {
-    onUpdate();
+    checkAndSendBoard();
   }
 
 void RenderingBoardUpdateHandler::onLineUpdate(
@@ -23,10 +17,16 @@ void RenderingBoardUpdateHandler::onLineUpdate(
   const Line &targetLine,
   const Line &beforeLine,
   const Line &afterLine) {
-    onUpdate();
+    checkAndSendBoard();
   }
 
 void RenderingBoardUpdateHandler::onBoardUpdate(
   const Board &targetBoard, const Board &beforeBoard, const Board &afterBoard) {
-    onUpdate();
+    checkAndSendBoard();
   }
+
+void RenderingBoardUpdateHandler::checkAndSendBoard() {
+    if (nonogramBoardSender.isRequested()) {
+        nonogramBoardSender.send(nonogramBoard);
+    }
+}

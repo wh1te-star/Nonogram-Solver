@@ -15,9 +15,8 @@ class RenderingBoardUpdateHandler : public IBoardUpdateHandler {
     NonogramBoard &nonogramBoard;
 
   public:
-    RenderingBoardUpdateHandler(ISender<NonogramBoard> &nonogramBoardSender, NonogramBoard &nonogramBoard);
-
-    void onUpdate() override;
+    RenderingBoardUpdateHandler(
+      ISender<NonogramBoard> &nonogramBoardSender, NonogramBoard &nonogramBoard);
 
     void onCellUpdate(
       const CellPosition &cellPosition,
@@ -33,6 +32,9 @@ class RenderingBoardUpdateHandler : public IBoardUpdateHandler {
 
     void onBoardUpdate(
       const Board &targetBoard, const Board &beforeBoard, const Board &afterBoard) override;
+
+  private:
+    void checkAndSendBoard();
 };
 
 #endif
