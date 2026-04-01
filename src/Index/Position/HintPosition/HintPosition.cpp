@@ -5,17 +5,18 @@
 #include "Index/CellIndex/ColumnIndex.h"
 #include "Index/CellIndex/RowIndex.h"
 
-HintPosition::HintPosition(Orientation orientation, CellIndex index, int hintIndex)
-    : orientation(orientation), index(index), hintIndex(hintIndex) {}
+HintPosition::HintPosition(Orientation orientation, CellIndex cellIndex, int hintIndex)
+    : orientation(orientation), cellIndex(cellIndex), hintIndex(hintIndex) {}
 
 const Orientation &HintPosition::getOrientation() const { return orientation; }
 
-const CellIndex &HintPosition::getCellIndex() const { return index; }
+const CellIndex &HintPosition::getCellIndex() const { return cellIndex; }
 
 int HintPosition::getHintIndex() const { return hintIndex; }
 
 bool HintPosition::operator==(const HintPosition &other) const {
-    return orientation == other.orientation && index == other.index && hintIndex == other.hintIndex;
+    return orientation == other.orientation && cellIndex == other.cellIndex &&
+           hintIndex == other.hintIndex;
 }
 
 bool HintPosition::operator!=(const HintPosition &other) const { return !(*this == other); }

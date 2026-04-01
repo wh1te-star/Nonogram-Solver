@@ -18,11 +18,12 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
         assert(false && "Invalid assumption position type for LineAssumptionEnumerator");
         return {};
     }
-    Orientation orientation = lineAssumptionPosition->getOrientation();
-    CellIndex index = lineAssumptionPosition->getIndex();
+    LinePosition linePosition = lineAssumptionPosition->getLinePosition();
+    CellIndex cellIndex = linePosition.getCellIndex();
+    Orientation orientation = linePosition.getOrientation();
 
     if (orientation == Orientation::Row) {
-        RowIndex rowIndex = index.toRowIndex();
+        RowIndex rowIndex = cellIndex.toRowIndex();
         Line line = nonogramBoard.getRowLine(rowIndex);
         HintSet hintSet = nonogramBoard.getRowHintSetList()[rowIndex];
 
@@ -38,7 +39,7 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
         }
         return assumptions;
     } else {
-        ColumnIndex columnIndex = index.toColumnIndex();
+        ColumnIndex columnIndex = cellIndex.toColumnIndex();
         Line line = nonogramBoard.getColumnLine(columnIndex);
         HintSet hintSet = nonogramBoard.getColumnHintSetList()[columnIndex];
 

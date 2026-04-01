@@ -5,8 +5,8 @@
 #include "Index/CellIndex/ColumnIndex.h"
 #include "Index/CellIndex/RowIndex.h"
 
-LinePosition::LinePosition(Orientation orientation, CellIndex index)
-    : orientation(orientation), cellIndex(index) {}
+LinePosition::LinePosition(Orientation orientation, CellIndex cellIndex)
+    : orientation(orientation), cellIndex(cellIndex) {}
 
 const Orientation &LinePosition::getOrientation() const { return orientation; }
 

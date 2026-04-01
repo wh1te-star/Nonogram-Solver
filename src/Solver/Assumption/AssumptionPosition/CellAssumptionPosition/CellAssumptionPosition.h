@@ -8,15 +8,13 @@
 
 class CellAssumptionPosition : public IAssumptionPosition {
   private:
-    RowIndex row;
-    ColumnIndex column;
+    CellPosition cellPosition;
 
   public:
-    CellAssumptionPosition(RowIndex row, ColumnIndex column);
+    CellAssumptionPosition(CellPosition cellPosition);
     virtual ~CellAssumptionPosition() = default;
 
-    RowIndex getRowIndex() const;
-    ColumnIndex getColumnIndex() const;
+    CellPosition getCellPosition() const;
 };
 
 #endif

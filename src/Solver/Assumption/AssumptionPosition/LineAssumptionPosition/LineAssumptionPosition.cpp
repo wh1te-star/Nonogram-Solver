@@ -1,12 +1,8 @@
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 
-LineAssumptionPosition::LineAssumptionPosition(Orientation orientation, CellIndex index)
-    : orientation(orientation), index(index) {}
+LineAssumptionPosition::LineAssumptionPosition(LinePosition linePosition)
+    : linePosition(linePosition) {}
 
-Orientation LineAssumptionPosition::getOrientation() const {
-    return orientation;
-}
-
-CellIndex LineAssumptionPosition::getIndex() const {
-    return index;
+LinePosition LineAssumptionPosition::getLinePosition() const {
+    return linePosition;
 }

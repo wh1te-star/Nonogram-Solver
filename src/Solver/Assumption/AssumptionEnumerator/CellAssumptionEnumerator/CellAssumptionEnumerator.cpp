@@ -14,10 +14,7 @@ std::vector<std::unique_ptr<IAssumption>> CellAssumptionEnumerator::enumerate(
         assert(false && "Invalid assumption position type for CellAssumptionEnumerator");
         return {};
     }
-    RowIndex rowIndex = cellAssumptionPosition->getRowIndex();
-    ColumnIndex columnIndex = cellAssumptionPosition->getColumnIndex();
-
-    CellPosition cellPosition{rowIndex, columnIndex};
+    CellPosition cellPosition = cellAssumptionPosition->getCellPosition();
 
     std::vector<std::unique_ptr<IAssumption>> assumptions(2);
 

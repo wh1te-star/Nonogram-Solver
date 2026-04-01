@@ -3,19 +3,19 @@
 
 #include "Board/BoardLength/ColumnLength.h"
 #include "Board/BoardLength/RowLength.h"
-#include "Index/Position/IPosition.h"
+#include "Board/Orientation.h"
 #include "Index/CellIndex/ColumnIndex.h"
 #include "Index/CellIndex/RowIndex.h"
-#include "Board/Orientation.h"
+#include "Index/Position/IPosition.h"
 
 class HintPosition : public IPosition {
   private:
     Orientation orientation;
-    CellIndex index;
+    CellIndex cellIndex;
     int hintIndex;
 
   public:
-    explicit HintPosition(Orientation orientation, CellIndex index, int hintIndex);
+    explicit HintPosition(Orientation orientation, CellIndex cellIndex, int hintIndex);
 
   public:
     const Orientation &getOrientation() const;

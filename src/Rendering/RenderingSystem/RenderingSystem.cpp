@@ -4,10 +4,10 @@
 #include "Rendering/FontData/FontData.h"
 #include "Rendering/TableRenderer/TableRenderer.h"
 #include "SampleData/Repository/SampleDataRepository.h"
-#include "Shared/SharedDataAliases.h"
 #include "Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
-#include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
+#include "Shared/SharedDataAliases.h"
 #include "Solver/Assumption/AssumptionEnumerator/LineAssumptionEnumerator/LineAssumptionEnumerator.h"
+#include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 #include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
@@ -81,7 +81,7 @@ void RenderingSystem::renderingLoop() {
       DFSLeftmostPlacementFinder(), DFSRightmostPlacementFinder());
     LineRepeatDeterministicSolver deterministicSolver = LineRepeatDeterministicSolver(
       stopSignal, overlapLineSolver);
-    LineIndexAssumptionSelector assumptionSelector(Orientation::Row);
+    LineIndexAssumptionSelector assumptionSelector = LineIndexAssumptionSelector(Orientation::Row);
     LineAssumptionEnumerator assumptionEnumerator(exhaustivePlacementPatternFinder);
     BacktrackStack backtrackStack(assumptionSelector);
 

@@ -4,21 +4,17 @@
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Board/NonogramBoard/NonogramBoard.h"
 #include "Board/Orientation.h"
-#include "Index/CellIndex/CellIndex.h"
+#include "Index/Position/HintPosition/HintPosition.h"
 
 class HintAssumptionPosition : public IAssumptionPosition {
 private:
-    Orientation orientation;
-    CellIndex index;
-    int hintIndex;
+    HintPosition hintPosition;
 
 public:
-    HintAssumptionPosition(Orientation orientation, CellIndex index, int hintIndex);
+    HintAssumptionPosition(HintPosition hintPosition);
     virtual ~HintAssumptionPosition() = default;
 
-    Orientation getOrientation() const;
-    CellIndex getIndex() const;
-    int getHintIndex() const;
+    HintPosition getHintPosition() const;
 };
 
 #endif

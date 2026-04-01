@@ -1,8 +1,6 @@
 #include "Solver/Assumption/AssumptionPosition/CellAssumptionPosition/CellAssumptionPosition.h"
 
-CellAssumptionPosition::CellAssumptionPosition(RowIndex row, ColumnIndex column)
-    : row(row), column(column) {}
+CellAssumptionPosition::CellAssumptionPosition(CellPosition cellPosition)
+    : cellPosition(cellPosition){}
 
-RowIndex CellAssumptionPosition::getRowIndex() const { return row; }
-
-ColumnIndex CellAssumptionPosition::getColumnIndex() const { return column; }
+CellPosition CellAssumptionPosition::getCellPosition() const { return cellPosition; }

@@ -19,9 +19,7 @@ std::vector<std::unique_ptr<IAssumption>> HintAssumptionEnumerator::enumerate(
         return {};
     }
 
-    Orientation orientation = hintAssumptionPosition->getOrientation();
-    CellIndex cellIndex = hintAssumptionPosition->getIndex();
-    int hintIndex = hintAssumptionPosition->getHintIndex();
+    HintPosition hintPosition = hintAssumptionPosition->getHintPosition();
 
     // Implement later
     return {};
