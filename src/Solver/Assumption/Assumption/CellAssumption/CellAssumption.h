@@ -12,6 +12,7 @@ private:
 public:
     explicit CellAssumption(const CellPosition& cellPosition, const Cell& cell);
     virtual ~CellAssumption() = default;
+
     void applyTo(NonogramBoard& board) const override;
 };
 

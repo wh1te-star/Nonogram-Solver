@@ -23,6 +23,7 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
     Orientation orientation = linePosition.getOrientation();
 
     if (orientation == Orientation::Row) {
+        LinePosition linePosition = lineAssumptionPosition->getLinePosition();
         RowIndex rowIndex = cellIndex.toRowIndex();
         Line line = nonogramBoard.getRowLine(rowIndex);
         HintSet hintSet = nonogramBoard.getRowHintSetList()[rowIndex];
@@ -35,7 +36,7 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
         assumptions.reserve(solutions.size());
         for (int i = 0; i < solutions.size(); i++) {
             assumptions.push_back(
-              std::make_unique<LineAssumption>(rowIndex, Line(solutions[i].getPlacement())));
+              std::make_unique<LineAssumption>(linePosition, Line(solutions[i].getPlacement())));
         }
         return assumptions;
     } else {
@@ -51,7 +52,7 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
         assumptions.reserve(solutions.size());
         for (int i = 0; i < solutions.size(); i++) {
             assumptions.push_back(
-              std::make_unique<LineAssumption>(columnIndex, Line(solutions[i].getPlacement())));
+              std::make_unique<LineAssumption>(linePosition, Line(solutions[i].getPlacement())));
         }
         return assumptions;
     }

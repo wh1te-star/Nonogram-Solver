@@ -25,9 +25,11 @@ std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector::select(
 
     if (orientation == Orientation::Row) {
         const RowIndex rowIndex(currentIndex);
-        return std::make_unique<LineAssumptionPosition>(orientation, rowIndex);
+        LinePosition linePosition(orientation, rowIndex);
+        return std::make_unique<LineAssumptionPosition>(linePosition);
     } else {
         const ColumnIndex columnIndex(currentIndex);
-        return std::make_unique<LineAssumptionPosition>(orientation, columnIndex);
+        LinePosition linePosition(orientation, columnIndex);
+        return std::make_unique<LineAssumptionPosition>(linePosition);
     }
 }
