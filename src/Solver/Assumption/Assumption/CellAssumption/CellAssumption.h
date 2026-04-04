@@ -1,7 +1,7 @@
 #ifndef CELLASSUMPTION_H
 #define CELLASSUMPTION_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 
 class CellAssumption : public IAssumption {

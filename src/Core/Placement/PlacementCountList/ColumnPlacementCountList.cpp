@@ -1,7 +1,7 @@
-#include "Placement/PlacementCountList/ColumnPlacementCountList.h"
+#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
 
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Placement/PlacementCount/PlacementCount.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Placement/PlacementCount/PlacementCount.h"
 
 ColumnPlacementCountList::ColumnPlacementCountList(
     std::vector<PlacementCount> placementCountList)

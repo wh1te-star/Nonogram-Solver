@@ -2,9 +2,7 @@
 #define HINTASSUMPTIONPOSITION_H
 
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Board/Orientation.h"
-#include "Index/Position/HintPosition/HintPosition.h"
+#include "Core/Index/Position/HintPosition/HintPosition.h"
 
 class HintAssumptionPosition : public IAssumptionPosition {
 private:

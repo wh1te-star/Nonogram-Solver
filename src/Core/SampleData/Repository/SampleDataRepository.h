@@ -1,10 +1,10 @@
 #ifndef SAMPLEDATAREPOSITORY_H
 #define SAMPLEDATAREPOSITORY_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Hint/HintNumber/HintNumber.h"
-#include "Hint/HintSetList/ColumnHintSetList.h"
-#include "Hint/HintSetList/RowHintSetList.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Hint/HintNumber/HintNumber.h"
+#include "Core/Hint/HintSetList/ColumnHintSetList.h"
+#include "Core/Hint/HintSetList/RowHintSetList.h"
 #include <string>
 #include <vector>
 

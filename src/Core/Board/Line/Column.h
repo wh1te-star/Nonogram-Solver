@@ -2,7 +2,7 @@
 #define COLUMN_H
 
 
-#include "Board/Line/Line.h"
+#include "Core/Board/Line/Line.h"
 
 class Column : public Line {
 public:

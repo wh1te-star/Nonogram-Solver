@@ -1,8 +1,8 @@
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 
-#include "Index/CellIndex/CellIndex.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "Core/Index/CellIndex/CellIndex.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
 
 LineAssumption::LineAssumption(const LinePosition &linePosition, const Line &line)
     : linePosition(linePosition), line(line) {}

@@ -3,7 +3,7 @@
 
 
 #include <vector>
-#include "Cell/Cell/Cell.h"
+#include "Core/Cell/Cell/Cell.h"
 
 using CellVector2D = std::vector<std::vector<Cell>>;
 

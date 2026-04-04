@@ -1,8 +1,8 @@
 #ifndef COLUMNPLACEMENTCOUNTLIST_H
 #define COLUMNPLACEMENTCOUNTLIST_H
 
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Placement/PlacementCountList/PlacementCountList.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
 class ColumnPlacementCountList : public PlacementCountList {
 public:

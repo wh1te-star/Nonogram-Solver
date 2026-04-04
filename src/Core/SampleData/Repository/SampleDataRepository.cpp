@@ -1,7 +1,7 @@
-#include "SampleData/Repository/SampleDataRepository.h"
+#include "Core/SampleData/Repository/SampleDataRepository.h"
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Hint/HintNumber/HintNumber.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Hint/HintNumber/HintNumber.h"
 #include <cassert>
 #include <sstream>
 

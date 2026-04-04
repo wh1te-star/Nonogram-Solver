@@ -1,12 +1,12 @@
 #ifndef LINEREPEATDETERMINISTICSOLVER_H
 #define LINEREPEATDETERMINISTICSOLVER_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Shared/StopSignal/StopSignal.h"
+#include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include "Solver/LineSolver/ILineSolver.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
+class NonogramBoard;
 
 class LineRepeatDeterministicSolver : public IDeterministicSolver {
   public:

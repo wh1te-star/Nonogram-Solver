@@ -1,11 +1,11 @@
 #ifndef CELLPOSITION_H
 #define CELLPOSITION_H
 
-#include "Board/BoardLength/ColumnLength.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Index/Position/IPosition.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Index/Position/IPosition.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
 
 class CellPosition : public IPosition {
   private:

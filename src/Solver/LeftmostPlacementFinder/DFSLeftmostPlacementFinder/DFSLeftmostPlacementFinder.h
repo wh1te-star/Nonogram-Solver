@@ -1,8 +1,8 @@
 #ifndef DFSLEFTMOSTPLACEMENTFINDER_H
 #define DFSLEFTMOSTPLACEMENTFINDER_H
 
-#include "AlgorithmProfiler/AlgorithmProfiler.h"
-#include "Placement/Placement/Placement.h"
+#include "Core/AlgorithmProfiler/AlgorithmProfiler.h"
+#include "Core/Placement/Placement/Placement.h"
 #include "Solver/LeftMostPlacementFinder/ILeftMostPlacementFinder.h"
 
 class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {

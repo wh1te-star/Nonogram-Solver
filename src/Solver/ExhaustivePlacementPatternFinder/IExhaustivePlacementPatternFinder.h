@@ -1,9 +1,9 @@
 #ifndef IEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 #define IEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Placement/Placement/Placement.h"
+#include "Core/Board/Line/Line.h"
+#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Placement/Placement/Placement.h"
 #include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
 #include <vector>
 

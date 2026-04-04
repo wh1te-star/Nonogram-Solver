@@ -1,7 +1,7 @@
 #ifndef BACKTRACKSOLVER_H
 #define BACKTRACKSOLVER_H
 
-#include "Shared/StopSignal/StopSignal.h"
+#include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/Assumption/AssumptionEnumerator/IAssumptionEnumerator.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/BacktrackStack/BacktrackStack.h"

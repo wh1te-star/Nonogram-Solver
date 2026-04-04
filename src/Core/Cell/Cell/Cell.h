@@ -1,7 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include "Cell/CellColor/CellColor.h"
+#include "Core/Cell/CellColor/CellColor.h"
 #include <iostream>
 
 class Cell {

@@ -1,6 +1,6 @@
-#include "Cell/Cell/Cell.h"
+#include "Core/Cell/Cell/Cell.h"
 
-#include "Cell/CellColor/CellColor.h"
+#include "Core/Cell/CellColor/CellColor.h"
 #include <algorithm>
 #include <cassert>
 

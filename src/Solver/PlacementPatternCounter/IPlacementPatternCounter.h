@@ -1,11 +1,11 @@
 #ifndef IPLACEMENTPATTERNCOUNTER_H
 #define IPLACEMENTPATTERNCOUNTER_H
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Placement/PlacementCount/PlacementCount.h"
+#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
 #include "Solver/IBoardUpdateHandler.h"
+class Line;
 
 class IPlacementPatternCounter {
 public:

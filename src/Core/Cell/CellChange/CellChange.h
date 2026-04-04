@@ -1,8 +1,8 @@
 #ifndef CELLCHANGE_H
 #define CELLCHANGE_H
 
-#include "Cell/Cell/Cell.h"
-#include "Cell/CellLocation/CellLocation.h"
+#include "Core/Cell/Cell/Cell.h"
+#include "Core/Cell/CellLocation/CellLocation.h"
 #include <vector>
 
 class CellChange {

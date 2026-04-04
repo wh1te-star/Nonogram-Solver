@@ -2,7 +2,7 @@
 #define ROW_H
 
 
-#include "Board/Line/Line.h"
+#include "Core/Board/Line/Line.h"
 
 class Row : public Line {
 public:

@@ -1,9 +1,9 @@
-#include "Index/Position/LinePosition/LinePosition.h"
+#include "Core/Index/Position/LinePosition/LinePosition.h"
 
-#include "Board/BoardLength/ColumnLength.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
 
 LinePosition::LinePosition(Orientation orientation, CellIndex cellIndex)
     : orientation(orientation), cellIndex(cellIndex) {}

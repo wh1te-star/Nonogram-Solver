@@ -2,7 +2,7 @@
 #define COLUMNINDEX_H
 
 
-#include "Index/CellIndex/CellIndex.h"
+#include "Core/Index/CellIndex/CellIndex.h"
 class ColumnLength;
 
 class ColumnIndex : public CellIndex {

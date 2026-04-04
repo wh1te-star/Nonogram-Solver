@@ -1,12 +1,12 @@
 #ifndef RENDERINGBOARDUPDATEHANDLER_H
 #define RENDERINGBOARDUPDATEHANDLER_H
 
-#include "Board/Board/Board.h"
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Index/Position/CellPosition/CellPosition.h"
-#include "Index/Position/HintPosition/HintPosition.h"
-#include "Index/Position/LinePosition/LinePosition.h"
-#include "Shared/ISender.h"
+#include "Core/Board/Board/Board.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Index/Position/HintPosition/HintPosition.h"
+#include "Core/Index/Position/LinePosition/LinePosition.h"
+#include "Rendering/Shared/ISender.h"
 #include "Solver/IBoardUpdateHandler.h"
 
 class RenderingBoardUpdateHandler : public IBoardUpdateHandler {

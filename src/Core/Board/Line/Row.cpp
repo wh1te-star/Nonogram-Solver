@@ -1,7 +1,6 @@
-#include "Board/Line/Row.h"
+#include "Core/Board/Line/Row.h"
 
-#include "Cell/Cell/Cell.h"
-#include "Cell/CellLocation/CellLocation.h"
+#include "Core/Cell/Cell/Cell.h"
 
 Row::Row(std::vector<Cell> line) :
 	Line(line) {}

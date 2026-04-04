@@ -1,11 +1,11 @@
 #ifndef ILEFTMOSTPLACEMENTFINDER_H
 #define ILEFTMOSTPLACEMENTFINDER_H
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Placement/Placement/Placement.h"
+#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Placement/Placement/Placement.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/IBoardUpdateHandler.h"
+class Line;
 
 class ILeftmostPlacementFinder {
   public:

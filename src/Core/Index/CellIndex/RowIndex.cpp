@@ -1,7 +1,7 @@
-#include "Index/CellIndex/CellIndex.h"
+#include "Core/Index/CellIndex/CellIndex.h"
 
-#include "Board/BoardLength/RowLength.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Index/CellIndex/RowIndex.h"
 #include <algorithm>
 #include <vector>
 

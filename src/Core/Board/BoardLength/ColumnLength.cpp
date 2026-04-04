@@ -1,6 +1,6 @@
-#include "Board/BoardLength/ColumnLength.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
 
-#include "Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
 
 
 ColumnLength::ColumnLength(int length) : BoardLength(length) {}

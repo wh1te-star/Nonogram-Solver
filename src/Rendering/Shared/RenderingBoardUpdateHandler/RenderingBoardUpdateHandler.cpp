@@ -1,4 +1,4 @@
-#include "Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
+#include "Rendering/Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
 
 RenderingBoardUpdateHandler::RenderingBoardUpdateHandler(
   ISender<NonogramBoard> &nonogramBoardSender, NonogramBoard &nonogramBoard)

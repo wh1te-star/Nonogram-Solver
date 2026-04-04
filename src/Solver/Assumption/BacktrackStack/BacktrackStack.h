@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <memory>
-#include "Board/NonogramBoard/NonogramBoard.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
+class NonogramBoard;
 
 class IAssumptionSelector;
 

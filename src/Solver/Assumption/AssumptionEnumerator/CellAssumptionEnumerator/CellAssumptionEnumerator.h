@@ -1,7 +1,6 @@
 #ifndef CELLASSUMPTIONENUMERATOR_H
 #define CELLASSUMPTIONENUMERATOR_H
 
-#include "Board/Board/Board.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Solver/Assumption/AssumptionEnumerator/IAssumptionEnumerator.h"
 #include "Solver/Assumption/AssumptionPosition/CellAssumptionPosition/CellAssumptionPosition.h"

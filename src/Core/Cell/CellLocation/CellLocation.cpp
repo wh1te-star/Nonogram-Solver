@@ -1,8 +1,8 @@
-#include "Cell/CellLocation/CellLocation.h"
+#include "Core/Cell/CellLocation/CellLocation.h"
 
 #include <algorithm>
-#include "Cell/Cell/Cell.h"
-#include "Index/Position/CellPosition/CellPosition.h"
+#include "Core/Cell/Cell/Cell.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
 
 CellLocation::CellLocation(CellPosition position, Cell cell) :
     position(std::move(position)),

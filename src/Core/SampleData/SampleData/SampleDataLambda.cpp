@@ -1,4 +1,4 @@
-#include "SampleData/Repository/SampleDataRepository.h"
+#include "Core/SampleData/Repository/SampleDataRepository.h"
 
 std::string SampleDataRepository::GetLambdaColumnHintString()
 {

@@ -1,8 +1,8 @@
 #include "Solver/Assumption/Assumption/HintAssumption/HintAssumption.h"
 
-#include "Index/CellIndex/CellIndex.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "Core/Index/CellIndex/CellIndex.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
 
 HintAssumption::HintAssumption(const HintPosition &hintPosition, const HintNumber &hintNumber)
     : hintPosition(hintPosition), hintNumber(hintNumber) {}

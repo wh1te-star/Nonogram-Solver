@@ -1,10 +1,10 @@
 #ifndef LINEASSUMPTION_H
 #define LINEASSUMPTION_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Board/Orientation.h"
+#include "Core/Board/Orientation.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
+class NonogramBoard;
 
 class LineAssumption : public IAssumption {
   private:

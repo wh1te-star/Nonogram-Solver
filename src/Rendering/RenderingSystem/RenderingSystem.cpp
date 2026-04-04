@@ -1,11 +1,12 @@
 #include "RenderingSystem.h"
 
-#include "AlgorithmThreadRunner/AlgorithmThreadRunner.h"
+#include "Core/AlgorithmThreadRunner/AlgorithmThreadRunner.h"
+#include "Core/SampleData/Repository/SampleDataRepository.h"
 #include "Rendering/FontData/FontData.h"
 #include "Rendering/TableRenderer/TableRenderer.h"
-#include "SampleData/Repository/SampleDataRepository.h"
-#include "Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
-#include "Shared/SharedDataAliases.h"
+#include "Rendering/Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
+#include "Rendering/Shared/SharedDataAliases.h"
+#include "Rendering/Shared/IReceiver.h"
 #include "Solver/Assumption/AssumptionEnumerator/LineAssumptionEnumerator/LineAssumptionEnumerator.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
@@ -19,7 +20,6 @@
 #include "imgui_impl_opengl3.h"
 #include "imgui_internal.h"
 #include <GLFW/glfw3.h>
-#include <Shared/IReceiver.h>
 #include <glad/glad.h>
 #include <thread>
 

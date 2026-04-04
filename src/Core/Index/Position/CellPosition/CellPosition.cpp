@@ -1,9 +1,9 @@
-#include "Index/Position/CellPosition/CellPosition.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
 
-#include "Board/BoardLength/ColumnLength.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
 
 CellPosition::CellPosition(RowIndex rowIndex, ColumnIndex columnIndex)
     : rowIndex(rowIndex), columnIndex(columnIndex) {}

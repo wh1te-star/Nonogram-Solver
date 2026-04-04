@@ -1,12 +1,12 @@
-#include "AlgorithmThreadRunner/AlgorithmThreadRunner.h"
+#include "Core/AlgorithmThreadRunner/AlgorithmThreadRunner.h"
 
-#include "Board/Line/Line.h"
-#include "Cell/CellChange/CellChange.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Rendering/HighlightIndexes/HighlightIndexes.h"
-#include "SampleData/Repository/SampleDataRepository.h"
-#include "Shared/SharedDataAliases.h"
+#include "Core/Board/Line/Line.h"
+#include "Core/Cell/CellChange/CellChange.h"
+#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/SampleData/Repository/SampleDataRepository.h"
 #include "Solver/Solver/ISolver.h"
+#include "Rendering/Shared/SharedDataAliases.h"
+#include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include <algorithm>
 #include <chrono>
 

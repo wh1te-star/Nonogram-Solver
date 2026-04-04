@@ -1,10 +1,10 @@
 #ifndef IBOARDUPDATEHANDLER_H
 #define IBOARDUPDATEHANDLER_H
 
-#include "Board/Board/Board.h"
-#include "Index/Position/CellPosition/CellPosition.h"
-#include "Index/Position/HintPosition/HintPosition.h"
-#include "Index/Position/LinePosition/LinePosition.h"
+#include "Core/Board/Board/Board.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Index/Position/HintPosition/HintPosition.h"
+#include "Core/Index/Position/LinePosition/LinePosition.h"
 
 class IBoardUpdateHandler {
   public:

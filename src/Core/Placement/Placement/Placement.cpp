@@ -1,9 +1,9 @@
-#include "Placement/Placement/Placement.h"
+#include "Core/Placement/Placement/Placement.h"
 
-#include "Cell/Cell/Cell.h"
-#include "Index/Position/CellPosition/CellPosition.h"
-#include "Placement/Placement/ColumnPlacement.h"
-#include "Placement/Placement/RowPlacement.h"
+#include "Core/Cell/Cell/Cell.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Placement/Placement/ColumnPlacement.h"
+#include "Core/Placement/Placement/RowPlacement.h"
 #include <cassert>
 
 Placement::Placement(std::vector<Cell> placement) : placement(placement) {

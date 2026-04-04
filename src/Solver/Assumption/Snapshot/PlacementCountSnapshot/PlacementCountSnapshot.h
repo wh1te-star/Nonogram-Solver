@@ -1,10 +1,10 @@
 #ifndef PLACEMENTCOUNTSNAPSHOT_H
 #define PLACEMENTCOUNTSNAPSHOT_H
 
-#include "Board/Board/Board.h"
-#include "Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Placement/PlacementCountList/PlacementCountList.h"
-#include "Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Core/Board/Board/Board.h"
+#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
+#include "Core/Placement/PlacementCountList/PlacementCountList.h"
+#include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 
 class PlacementCountSnapshot : public ISnapshot {

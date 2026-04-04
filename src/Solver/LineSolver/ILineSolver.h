@@ -1,7 +1,7 @@
 #ifndef ILINESOLVER_H
 #define ILINESOLVER_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/LineSolverResult.h"
 

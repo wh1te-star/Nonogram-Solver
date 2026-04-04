@@ -1,7 +1,7 @@
-#include "Hint/HintSetList/RowHintSetList.h"
+#include "Core/Hint/HintSetList/RowHintSetList.h"
 
-#include "Board/BoardLength/ColumnLength.h"
-#include "Hint/HintSetList/HintSetList.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
+#include "Core/Hint/HintSetList/HintSetList.h"
 
 RowHintSetList::RowHintSetList(std::vector<HintSet> hintSetList)
     : HintSetList(hintSetList) {}

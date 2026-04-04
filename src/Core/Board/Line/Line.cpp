@@ -1,9 +1,9 @@
-#include "Board/Line/Line.h"
+#include "Core/Board/Line/Line.h"
 
-#include "Board/Line/Column.h"
-#include "Board/Line/Row.h"
-#include "Cell/Cell/Cell.h"
-#include "Index/Position/CellPosition/CellPosition.h"
+#include "Core/Board/Line/Column.h"
+#include "Core/Board/Line/Row.h"
+#include "Core/Cell/Cell/Cell.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
 #include <cassert>
 
 Line::Line(std::vector<Cell> line) : line(line) {}

@@ -1,10 +1,10 @@
 #ifndef BACKTRACKALGORITHM_H
 #define BACKTRACKALGORITHM_H
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Shared/ISender.h"
-#include "Shared/StopSignal/StopSignal.h"
+#include "Core/Board/Line/Line.h"
+#include "Core/Hint/HintSet/HintSet.h"
+#include "Rendering/Shared/ISender.h"
+#include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/Solver/ISolver.h"
 #include <atomic>
 #include <thread>

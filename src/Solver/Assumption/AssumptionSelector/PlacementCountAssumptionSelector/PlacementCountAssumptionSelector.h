@@ -1,9 +1,8 @@
 #ifndef PLACEMENTCOUNTASSUMPTIONSELECTOR_H
 #define PLACEMENTCOUNTASSUMPTIONSELECTOR_H
 
-#include "Board/Orientation.h"
-#include "Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
+#include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"

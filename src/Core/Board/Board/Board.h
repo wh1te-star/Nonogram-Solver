@@ -1,18 +1,18 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "Board/BoardLength/ColumnLength.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Board/Line/Column.h"
-#include "Board/Line/Row.h"
-#include "Cell/CellColor/CellColor.h"
-#include "Cell/CellVector2D/CellVector2D.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
-#include "Index/Position/CellPosition/CellPosition.h"
-#include "Placement/Placement/ColumnPlacement.h"
-#include "Placement/Placement/Placement.h"
-#include "Placement/Placement/RowPlacement.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Board/Line/Column.h"
+#include "Core/Board/Line/Row.h"
+#include "Core/Cell/CellColor/CellColor.h"
+#include "Core/Cell/CellVector2D/CellVector2D.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Placement/Placement/ColumnPlacement.h"
+#include "Core/Placement/Placement/Placement.h"
+#include "Core/Placement/Placement/RowPlacement.h"
 #include <vector>
 
 class Board {

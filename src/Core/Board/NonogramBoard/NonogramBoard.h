@@ -1,12 +1,12 @@
 #ifndef NONOGRAMBOARD_H
 #define NONOGRAMBOARD_H
 
-#include "Board/Board/Board.h"
-#include "Board/BoardLength/ColumnLength.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Hint/HintSetList/ColumnHintSetList.h"
-#include "Hint/HintSetList/RowHintSetList.h"
+#include "Core/Board/Board/Board.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Hint/HintSetList/ColumnHintSetList.h"
+#include "Core/Hint/HintSetList/RowHintSetList.h"
 
 class NonogramBoard {
 private:

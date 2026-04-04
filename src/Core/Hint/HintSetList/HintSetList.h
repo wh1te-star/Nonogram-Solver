@@ -1,8 +1,8 @@
 #ifndef HINTSETLIST_H
 #define HINTSETLIST_H
 
-#include "Board/BoardLength/BoardLength.h"
-#include "Hint/HintSet/HintSet.h"
+#include "Core/Board/BoardLength/BoardLength.h"
+#include "Core/Hint/HintSet/HintSet.h"
 #include <vector>
 
 class HintSetList {

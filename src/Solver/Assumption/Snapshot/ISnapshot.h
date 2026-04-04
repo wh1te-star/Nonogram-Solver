@@ -1,7 +1,7 @@
 #ifndef ISNAPSHOT_H
 #define ISNAPSHOT_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
 
 class ISnapshot {
   public:

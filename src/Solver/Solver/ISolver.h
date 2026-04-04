@@ -1,8 +1,8 @@
 #ifndef ISOLVER_H
 #define ISOLVER_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Shared/SharedDataAliases.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/IBoardUpdateHandler.h"
 
 class ISolver {

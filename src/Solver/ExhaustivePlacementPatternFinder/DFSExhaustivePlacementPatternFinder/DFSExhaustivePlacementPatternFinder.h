@@ -1,11 +1,11 @@
 #ifndef DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 #define DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 
-#include "Board/Line/Line.h"
-#include "Hint/HintSet/HintSet.h"
-#include "Placement/Placement/Placement.h"
+#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Placement/Placement/Placement.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include <vector>
+class Line;
 
 class DFSExhaustivePlacementPatternFinder : public IExhaustivePlacementPatternFinder {
   public:

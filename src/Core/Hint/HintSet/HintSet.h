@@ -1,8 +1,8 @@
 #ifndef HINTSET_H
 #define HINTSET_H
 
-#include "Hint/HintNumber/HintNumber.h"
-#include "Index/CellIndex/CellIndex.h"
+#include "Core/Hint/HintNumber/HintNumber.h"
+#include "Core/Index/CellIndex/CellIndex.h"
 #include <vector>
 
 class HintSet {

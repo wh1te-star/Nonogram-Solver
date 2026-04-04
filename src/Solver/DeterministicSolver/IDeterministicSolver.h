@@ -1,7 +1,7 @@
 #ifndef IDETERMINISTICSOLVER_H
 #define IDETERMINISTICSOLVER_H
 
-#include "Shared/SharedDataAliases.h"
+#include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
 #include "Solver/IBoardUpdateHandler.h"
 

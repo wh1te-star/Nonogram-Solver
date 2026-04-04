@@ -1,8 +1,8 @@
 #ifndef SHAREDDATA_H
 #define SHAREDDATA_H
 
-#include "Shared/IReceiver.h"
-#include "Shared/ISender.h"
+#include "Rendering/Shared/IReceiver.h"
+#include "Rendering/Shared/ISender.h"
 #include <atomic>
 #include <mutex>
 

@@ -1,6 +1,6 @@
-#include "Cell/CellChange/CellChange.h"
+#include "Core/Cell/CellChange/CellChange.h"
 
-#include "Cell/Cell/Cell.h"
+#include "Core/Cell/Cell/Cell.h"
 #include <algorithm>
 
 CellChange::CellChange(){}

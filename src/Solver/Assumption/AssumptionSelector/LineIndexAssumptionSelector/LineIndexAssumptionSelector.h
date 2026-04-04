@@ -1,7 +1,7 @@
 #ifndef LINEINDEXASSUMPTIONSELECTOR_H
 #define LINEINDEXASSUMPTIONSELECTOR_H
 
-#include "Board/Orientation.h"
+#include "Core/Board/Orientation.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"

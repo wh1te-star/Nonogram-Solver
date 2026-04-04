@@ -1,16 +1,16 @@
 #ifndef TABLERENDERER_H
 #define TABLERENDERER_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Board/Board/Board.h"
-#include "Board/BoardLength/ColumnLength.h"
-#include "Board/BoardLength/RowLength.h"
-#include "Hint/HintSetList/ColumnHintSetList.h"
-#include "Hint/HintSetList/RowHintSetList.h"
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
-#include "Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Board/Board/Board.h"
+#include "Core/Board/BoardLength/ColumnLength.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Hint/HintSetList/ColumnHintSetList.h"
+#include "Core/Hint/HintSetList/RowHintSetList.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
+#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
+#include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "imgui.h"
 #include <GLFW/glfw3.h>

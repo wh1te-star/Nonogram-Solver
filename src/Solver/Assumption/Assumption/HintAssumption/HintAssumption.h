@@ -1,11 +1,11 @@
 #ifndef HINTASSUMPTION_H
 #define HINTASSUMPTION_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
-#include "Board/Orientation.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Board/Orientation.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
-#include "Index/Position/HintPosition/HintPosition.h"
-#include "Hint/HintNumber/HintNumber.h"
+#include "Core/Index/Position/HintPosition/HintPosition.h"
+#include "Core/Hint/HintNumber/HintNumber.h"
 
 class HintAssumption : public IAssumption {
   private:

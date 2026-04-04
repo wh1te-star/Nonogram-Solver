@@ -1,8 +1,8 @@
 #ifndef CELLLOCATION_H
 #define CELLLOCATION_H
 
-#include "Cell/Cell/Cell.h"
-#include "Index/Position/CellPosition/CellPosition.h"
+#include "Core/Cell/Cell/Cell.h"
+#include "Core/Index/Position/CellPosition/CellPosition.h"
 
 class CellLocation {
 private:

@@ -1,7 +1,7 @@
 #ifndef IASSUMPTION_H
 #define IASSUMPTION_H
 
-#include "Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
 
 class IAssumption {
 public:

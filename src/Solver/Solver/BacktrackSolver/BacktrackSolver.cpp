@@ -1,8 +1,8 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
-#include "Placement/Placement/Placement.h"
-#include "Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Core/Placement/Placement/Placement.h"
+#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
+#include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"

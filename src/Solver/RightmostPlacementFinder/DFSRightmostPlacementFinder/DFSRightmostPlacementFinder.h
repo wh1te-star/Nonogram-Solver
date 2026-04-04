@@ -1,10 +1,10 @@
 #ifndef DFSRIGHTMOSTPLACEMENTFINDER_H
 #define DFSRIGHTMOSTPLACEMENTFINDER_H
 
-#include "Placement/Placement/Placement.h"
+#include "Core/Placement/Placement/Placement.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
-#include "AlgorithmProfiler/AlgorithmProfiler.h"
+#include "Core/AlgorithmProfiler/AlgorithmProfiler.h"
 
 class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
   private:

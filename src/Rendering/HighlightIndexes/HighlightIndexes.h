@@ -1,8 +1,8 @@
 #ifndef HIGHLIGHTINDEXES_H
 #define HIGHLIGHTINDEXES_H
 
-#include "Index/CellIndex/ColumnIndex.h"
-#include "Index/CellIndex/RowIndex.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Index/CellIndex/RowIndex.h"
 #include <unordered_set>
 
 class HighlightIndexes {

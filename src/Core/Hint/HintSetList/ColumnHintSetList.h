@@ -1,9 +1,9 @@
 #ifndef COLUMNHINTSETLIST_H
 #define COLUMNHINTSETLIST_H
 
-#include "Board/BoardLength/RowLength.h"
-#include "Hint/HintSetList/HintSetList.h"
-#include "Index/CellIndex/ColumnIndex.h"
+#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Hint/HintSetList/HintSetList.h"
+#include "Core/Index/CellIndex/ColumnIndex.h"
 
 class ColumnHintSetList : public HintSetList {
 public:

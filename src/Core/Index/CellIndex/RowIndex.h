@@ -1,7 +1,7 @@
 #ifndef ROWINDEX_H
 #define ROWINDEX_H
 
-#include "Index/CellIndex/CellIndex.h"
+#include "Core/Index/CellIndex/CellIndex.h"
 class RowLength;
 
 class RowIndex : public CellIndex {
