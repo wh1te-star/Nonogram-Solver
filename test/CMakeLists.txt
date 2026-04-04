@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(NonogramTests)
 
-find_package(Python3 COMPONENTS Interpreter REQUIRED)
-
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -19,7 +17,7 @@ file(MAKE_DIRECTORY ${GENERATED_DATA_DIR})
 
 add_custom_command(
   OUTPUT ${GENERATED_HINTS_FILE}
-  COMMAND "${Python3_EXECUTABLE}" 
+  COMMAND Python3::Interpreter
     "${CMAKE_SOURCE_DIR}/scripts/TestDataGenerator/generate_test_data.py"
     "${GENERATED_HINTS_FILE}"
   COMMENT "Generating combinations test data for Nonogram Solver..."
@@ -36,7 +34,8 @@ add_executable(
 add_dependencies(NonogramTests generate_test_data)
 
 target_link_libraries(NonogramTests PRIVATE
-    NonogramCoreLib
+    Core
+    Solver
     GTest::gtest_main
 )
 
