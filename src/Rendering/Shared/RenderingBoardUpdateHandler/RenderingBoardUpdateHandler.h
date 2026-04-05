@@ -1,5 +1,5 @@
-#ifndef RENDERINGBOARDUPDATEHANDLER_H
-#define RENDERINGBOARDUPDATEHANDLER_H
+#ifndef VERSAN_CORE_RENDERINGBOARDUPDATEHANDLER_H
+#define VERSAN_CORE_RENDERINGBOARDUPDATEHANDLER_H
 
 #include "Core/Board/Board/Board.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
@@ -9,32 +9,36 @@
 #include "Rendering/Shared/ISender.h"
 #include "Solver/IBoardUpdateHandler.h"
 
-class RenderingBoardUpdateHandler : public IBoardUpdateHandler {
+namespace VersaN::Rendering {
+
+class RenderingBoardUpdateHandler : public Solver::IBoardUpdateHandler {
   private:
-    ISender<NonogramBoard> &nonogramBoardSender;
-    NonogramBoard &nonogramBoard;
+    ISender<Core::NonogramBoard> &nonogramBoardSender;
+    Core::NonogramBoard &nonogramBoard;
 
   public:
     RenderingBoardUpdateHandler(
-      ISender<NonogramBoard> &nonogramBoardSender, NonogramBoard &nonogramBoard);
+      ISender<Core::NonogramBoard> &nonogramBoardSender, Core::NonogramBoard &nonogramBoard);
 
     void onCellUpdate(
-      const CellPosition &cellPosition,
-      const Cell &targetCell,
-      const Cell &beforeCell,
-      const Cell &afterCell) override;
+      const Core::CellPosition &cellPosition,
+      const Core::Cell &targetCell,
+      const Core::Cell &beforeCell,
+      const Core::Cell &afterCell) override;
 
     void onLineUpdate(
-      const LinePosition &linePosition,
-      const Line &targetLine,
-      const Line &beforeLine,
-      const Line &afterLine) override;
+      const Core::LinePosition &linePosition,
+      const Core::Line &targetLine,
+      const Core::Line &beforeLine,
+      const Core::Line &afterLine) override;
 
     void onBoardUpdate(
-      const Board &targetBoard, const Board &beforeBoard, const Board &afterBoard) override;
+      const Core::Board &targetBoard, const Core::Board &beforeBoard, const Core::Board &afterBoard) override;
 
   private:
     void checkAndSendBoard();
 };
 
-#endif
+} // namespace VersaN::Rendering
+
+#endif // VERSAN_CORE_RENDERINGBOARDUPDATEHANDLER_H

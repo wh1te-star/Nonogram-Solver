@@ -1,17 +1,21 @@
-#ifndef ISOLVER_H
-#define ISOLVER_H
+#ifndef VERSAN_CORE_ISOLVER_H
+#define VERSAN_CORE_ISOLVER_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/IBoardUpdateHandler.h"
 
+namespace VersaN::Solver {
+
 class ISolver {
   public:
     virtual ~ISolver() = default;
     virtual void solve(
-      NonogramBoard &nonogramBoard,
-      std::vector<Board> &solutions,
+      Core::NonogramBoard &nonogramBoard,
+      std::vector<Core::Board> &solutions,
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_ISOLVER_H

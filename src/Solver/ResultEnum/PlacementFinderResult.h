@@ -1,9 +1,13 @@
-#ifndef PLACEMENTFINDERRESULT_H
-#define PLACEMENTFINDERRESULT_H
+#ifndef VERSAN_CORE_PLACEMENTFINDERRESULT_H
+#define VERSAN_CORE_PLACEMENTFINDERRESULT_H
+
+namespace VersaN::Solver {
 
 enum class PlacementFinderResult {
     success,
     notFound,
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_PLACEMENTFINDERRESULT_H

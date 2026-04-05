@@ -1,5 +1,5 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef VERSAN_CORE_BOARD_H
+#define VERSAN_CORE_BOARD_H
 
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Board/BoardLength/RowLength.h"
@@ -13,7 +13,10 @@
 #include "Core/Placement/Placement/ColumnPlacement.h"
 #include "Core/Placement/Placement/Placement.h"
 #include "Core/Placement/Placement/RowPlacement.h"
+
 #include <vector>
+
+namespace VersaN::Core {
 
 class Board {
   private:
@@ -46,4 +49,6 @@ class Board {
     void applyBoard(const Board &board, bool overwriteNone);
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_BOARD_H

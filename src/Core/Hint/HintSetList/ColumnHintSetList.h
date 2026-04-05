@@ -1,19 +1,23 @@
-#ifndef COLUMNHINTSETLIST_H
-#define COLUMNHINTSETLIST_H
+#ifndef VERSAN_CORE_COLUMNHINTSETLIST_H
+#define VERSAN_CORE_COLUMNHINTSETLIST_H
 
 #include "Core/Board/BoardLength/RowLength.h"
 #include "Core/Hint/HintSetList/HintSetList.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 
+namespace VersaN::Core {
+
 class ColumnHintSetList : public HintSetList {
-public:
-  explicit ColumnHintSetList(std::vector<HintSet> hintSetList);
+  public:
+    explicit ColumnHintSetList(std::vector<HintSet> hintSetList);
 
-public:
-  HintSet operator[](ColumnIndex columnIndex) const;
+  public:
+    HintSet operator[](ColumnIndex columnIndex) const;
 
-public:
-  RowLength getMaxHintSetLength() const;
+  public:
+    RowLength getMaxHintSetLength() const;
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_COLUMNHINTSETLIST_H

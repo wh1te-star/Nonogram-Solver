@@ -1,5 +1,7 @@
 #include "Core/SampleData/Repository/SampleDataRepository.h"
 
+namespace VersaN::Core {
+
 std::string SampleDataRepository::GetDifficultColumnHintString(){
 	return R"###(
  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  1,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   
@@ -96,3 +98,4 @@ std::string SampleDataRepository::GetDifficultRowHintString(){
 	)###";
 }
 
+} // namespace VersaN::Core

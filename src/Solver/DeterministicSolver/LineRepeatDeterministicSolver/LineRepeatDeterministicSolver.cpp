@@ -1,12 +1,16 @@
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
 
-#include <cassert>
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 #include "Solver/ResultEnum/LineSolverResult.h"
 
+#include <cassert>
+
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
-  StopSignal &stopSignal, ILineSolver &lineSolver)
+  Rendering::StopSignal &stopSignal, ILineSolver &lineSolver)
     : stopSignal(stopSignal), lineSolver(lineSolver) {}
 
 DeterministicSolverResult LineRepeatDeterministicSolver::solve(
@@ -133,3 +137,5 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
     }
     return DeterministicSolverResult::NoMoreProgress;
 }
+
+} // namespace VersaN::Solver

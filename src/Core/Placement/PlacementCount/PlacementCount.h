@@ -1,30 +1,32 @@
-#ifndef PLACEMENTCOUNT_H
-#define PLACEMENTCOUNT_H
+#ifndef VERSAN_CORE_PLACEMENTCOUNT_H
+#define VERSAN_CORE_PLACEMENTCOUNT_H
 
+namespace VersaN::Core {
 
 class PlacementCount {
-private:
+  private:
     int count;
 
-public:
-	explicit PlacementCount(int count);
+  public:
+    explicit PlacementCount(int count);
 
-public:
-    PlacementCount operator+(const PlacementCount& other) const;
-    PlacementCount operator-(const PlacementCount& other) const;
-    PlacementCount& operator+=(const PlacementCount& other);
-    PlacementCount& operator-=(const PlacementCount& other);
-	bool operator<(const PlacementCount& other) const;
-	bool operator>(const PlacementCount& other) const;
-	bool operator<=(const PlacementCount& other) const;
-	bool operator>=(const PlacementCount& other) const;
-    bool operator==(const PlacementCount& other) const;
-    bool operator!=(const PlacementCount& other) const;
+  public:
+    PlacementCount operator+(const PlacementCount &other) const;
+    PlacementCount operator-(const PlacementCount &other) const;
+    PlacementCount &operator+=(const PlacementCount &other);
+    PlacementCount &operator-=(const PlacementCount &other);
+    bool operator<(const PlacementCount &other) const;
+    bool operator>(const PlacementCount &other) const;
+    bool operator<=(const PlacementCount &other) const;
+    bool operator>=(const PlacementCount &other) const;
+    bool operator==(const PlacementCount &other) const;
+    bool operator!=(const PlacementCount &other) const;
 
-public:
+  public:
     int getCount() const;
     void setCount(PlacementCount placementCount);
-
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_PLACEMENTCOUNT_H

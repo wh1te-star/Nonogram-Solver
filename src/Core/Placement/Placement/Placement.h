@@ -1,45 +1,54 @@
-#ifndef PLACEMENT_H
-#define PLACEMENT_H
+#ifndef VERSAN_CORE_PLACEMENT_H
+#define VERSAN_CORE_PLACEMENT_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Cell/CellLocation/CellLocation.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
+
 #include <vector>
+
+namespace VersaN::Core {
 class RowPlacement;
+}
+namespace VersaN::Core {
 class ColumnPlacement;
+}
+
+namespace VersaN::Core {
 
 class Placement {
-private:
-protected:
-  std::vector<Cell> placement;
+  private:
+  protected:
+    std::vector<Cell> placement;
 
-public:
-  explicit Placement(std::vector<Cell> placement);
-  explicit Placement(std::string colorString);
-  explicit Placement(HintNumber hintNumber);
-  virtual ~Placement() = default;
+  public:
+    explicit Placement(std::vector<Cell> placement);
+    explicit Placement(std::string colorString);
+    explicit Placement(HintNumber hintNumber);
+    virtual ~Placement() = default;
 
-public:
-  const std::vector<Cell> &getPlacement() const;
+  public:
+    const std::vector<Cell> &getPlacement() const;
 
-public:
-  bool operator==(const Placement &other) const;
-  bool operator!=(const Placement &other) const;
-  Cell operator[](const CellIndex &index) const;
-  Placement operator+(const Placement &other) const;
-  Placement &operator+=(const Placement &other);
+  public:
+    bool operator==(const Placement &other) const;
+    bool operator!=(const Placement &other) const;
+    Cell operator[](const CellIndex &index) const;
+    Placement operator+(const Placement &other) const;
+    Placement &operator+=(const Placement &other);
 
-private:
-  bool hasNone() const;
+  private:
+    bool hasNone() const;
 
-public:
-  const size_t size() const;
-  const std::vector<CellLocation>
-  getCellLocationList(const CellPosition &cellPosition) const;
-  const std::vector<CellIndex> getHintIndex() const;
-  RowPlacement toRowPlacement() const;
-  ColumnPlacement toColumnPlacement() const;
+  public:
+    const size_t size() const;
+    const std::vector<CellLocation> getCellLocationList(const CellPosition &cellPosition) const;
+    const std::vector<CellIndex> getHintIndex() const;
+    RowPlacement toRowPlacement() const;
+    ColumnPlacement toColumnPlacement() const;
 };
 std::ostream &operator<<(std::ostream &os, const Placement &placement);
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_PLACEMENT_H

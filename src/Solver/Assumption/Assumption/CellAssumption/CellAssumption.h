@@ -1,19 +1,23 @@
-#ifndef CELLASSUMPTION_H
-#define CELLASSUMPTION_H
+#ifndef VERSAN_CORE_CELLASSUMPTION_H
+#define VERSAN_CORE_CELLASSUMPTION_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 
-class CellAssumption : public IAssumption {
-private:
-    CellPosition cellPosition;
-    Cell cell;
+namespace VersaN::Solver {
 
-public:
-    explicit CellAssumption(const CellPosition& cellPosition, const Cell& cell);
+class CellAssumption : public IAssumption {
+  private:
+    Core::CellPosition cellPosition;
+    Core::Cell cell;
+
+  public:
+    explicit CellAssumption(const Core::CellPosition &cellPosition, const Core::Cell &cell);
     virtual ~CellAssumption() = default;
 
-    void applyTo(NonogramBoard& board) const override;
+    void applyTo(Core::NonogramBoard &board) const override;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_CELLASSUMPTION_H

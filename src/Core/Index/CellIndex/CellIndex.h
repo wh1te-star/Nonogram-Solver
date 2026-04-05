@@ -1,30 +1,37 @@
-#ifndef CELLINDEX_H
-#define CELLINDEX_H
+#ifndef VERSAN_CORE_CELLINDEX_H
+#define VERSAN_CORE_CELLINDEX_H
 
-
-#include <vector>
 #include "Core/Board/BoardLength/BoardLength.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
 #include "Core/Index/CellIndex/CellIndexType.h"
+
+#include <vector>
+
+namespace VersaN::Core {
 class RowIndex;
+}
+namespace VersaN::Core {
 class ColumnIndex;
+}
+
+namespace VersaN::Core {
 
 class CellIndex {
-protected:
+  protected:
     int index;
     CellIndexType type = CellIndexType::Unknown;
 
-public:
+  public:
     explicit CellIndex(int index);
     explicit CellIndex(int index, CellIndexType type);
 
-public:
+  public:
     int getIndex() const;
     CellIndexType getType() const;
     RowIndex toRowIndex() const;
     ColumnIndex toColumnIndex() const;
 
-public:
+  public:
     CellIndex operator+(int shift) const;
     CellIndex operator-(int shift) const;
     CellIndex operator+(BoardLength shift) const;
@@ -48,5 +55,6 @@ public:
     static std::vector<CellIndex> range(int first, int last);
 };
 
+} // namespace VersaN::Core
 
-#endif
+#endif // VERSAN_CORE_CELLINDEX_H

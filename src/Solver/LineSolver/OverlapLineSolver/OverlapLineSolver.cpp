@@ -4,6 +4,9 @@
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.h"
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 OverlapLineSolver::OverlapLineSolver(
   ILeftmostPlacementFinder &leftmostPlacementFinder,
   IRightmostPlacementFinder &rightmostPlacementFinder)
@@ -68,3 +71,5 @@ LineSolverResult OverlapLineSolver::overlapLineSolve(
 
     return LineSolverResult::Success;
 }
+
+} // namespace VersaN::Solver

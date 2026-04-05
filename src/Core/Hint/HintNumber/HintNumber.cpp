@@ -1,5 +1,7 @@
 #include "Core/Hint/HintNumber/HintNumber.h"
 
+namespace VersaN::Core {
+
 HintNumber::HintNumber(int number) : number(number) {}
 
 const int& HintNumber::getNumber() const {
@@ -13,3 +15,5 @@ bool HintNumber::operator==(const HintNumber& other) const {
 bool HintNumber::operator!=(const HintNumber& other) const {
 	return !(*this == other);
 }
+
+} // namespace VersaN::Core

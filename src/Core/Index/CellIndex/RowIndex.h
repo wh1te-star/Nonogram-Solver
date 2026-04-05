@@ -1,39 +1,46 @@
-#ifndef ROWINDEX_H
-#define ROWINDEX_H
+#ifndef VERSAN_CORE_ROWINDEX_H
+#define VERSAN_CORE_ROWINDEX_H
 
 #include "Core/Index/CellIndex/CellIndex.h"
+
+namespace VersaN::Core {
 class RowLength;
+}
+
+namespace VersaN::Core {
 
 class RowIndex : public CellIndex {
-public:
-  explicit RowIndex(int index);
+  public:
+    explicit RowIndex(int index);
 
-public:
-  RowIndex operator+(int shift) const;
-  RowIndex operator-(int shift) const;
-  RowIndex operator+(RowLength shift) const;
-  RowIndex operator-(RowLength shift) const;
-  RowIndex operator+(HintNumber shift) const;
-  RowIndex operator-(HintNumber shift) const;
-  bool operator==(const RowIndex &other) const;
-  bool operator!=(const RowIndex &other) const;
-  bool operator<(const RowIndex &other) const;
-  bool operator<=(const RowIndex &other) const;
-  bool operator>(const RowIndex &other) const;
-  bool operator>=(const RowIndex &other) const;
-  bool operator<(const RowLength &other) const;
-  bool operator<=(const RowLength &other) const;
-  bool operator>(const RowLength &other) const;
-  bool operator>=(const RowLength &other) const;
-  static std::vector<RowIndex> range(int first, int last);
+  public:
+    RowIndex operator+(int shift) const;
+    RowIndex operator-(int shift) const;
+    RowIndex operator+(RowLength shift) const;
+    RowIndex operator-(RowLength shift) const;
+    RowIndex operator+(HintNumber shift) const;
+    RowIndex operator-(HintNumber shift) const;
+    bool operator==(const RowIndex &other) const;
+    bool operator!=(const RowIndex &other) const;
+    bool operator<(const RowIndex &other) const;
+    bool operator<=(const RowIndex &other) const;
+    bool operator>(const RowIndex &other) const;
+    bool operator>=(const RowIndex &other) const;
+    bool operator<(const RowLength &other) const;
+    bool operator<=(const RowLength &other) const;
+    bool operator>(const RowLength &other) const;
+    bool operator>=(const RowLength &other) const;
+    static std::vector<RowIndex> range(int first, int last);
 };
 
+} // namespace VersaN::Core
+
 namespace std {
-template <> struct hash<RowIndex> {
-  size_t operator()(const RowIndex &rowIndex) const {
-    return std::hash<int>{}(rowIndex.getIndex());
-  }
+template <> struct hash<VersaN::Core::RowIndex> {
+    size_t operator()(const VersaN::Core::RowIndex &rowIndex) const {
+        return std::hash<int>{}(rowIndex.getIndex());
+    }
 };
 } // namespace std
 
-#endif
+#endif // VERSAN_CORE_ROWINDEX_H

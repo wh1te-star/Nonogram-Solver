@@ -4,7 +4,11 @@
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/Assumption/Assumption/CellAssumption/CellAssumption.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
+
 #include <cassert>
+
+using namespace VersaN::Core;
+namespace VersaN::Solver {
 
 std::vector<std::unique_ptr<IAssumption>> CellAssumptionEnumerator::enumerate(
   const NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) {
@@ -23,3 +27,5 @@ std::vector<std::unique_ptr<IAssumption>> CellAssumptionEnumerator::enumerate(
 
     return assumptions;
 }
+
+} // namespace VersaN::Solver

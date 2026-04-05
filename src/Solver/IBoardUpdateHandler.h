@@ -1,29 +1,35 @@
-#ifndef IBOARDUPDATEHANDLER_H
-#define IBOARDUPDATEHANDLER_H
+#ifndef VERSAN_CORE_IBOARDUPDATEHANDLER_H
+#define VERSAN_CORE_IBOARDUPDATEHANDLER_H
 
 #include "Core/Board/Board/Board.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 #include "Core/Index/Position/HintPosition/HintPosition.h"
 #include "Core/Index/Position/LinePosition/LinePosition.h"
 
+namespace VersaN::Solver {
+
 class IBoardUpdateHandler {
   public:
     virtual ~IBoardUpdateHandler() = default;
 
     virtual void onCellUpdate(
-      const CellPosition &cellPosition,
-      const Cell &targetCell,
-      const Cell &beforeCell,
-      const Cell &afterCell) = 0;
+      const Core::CellPosition &cellPosition,
+      const Core::Cell &targetCell,
+      const Core::Cell &beforeCell,
+      const Core::Cell &afterCell) = 0;
 
     virtual void onLineUpdate(
-      const LinePosition &linePosition,
-      const Line &targetLine,
-      const Line &beforeLine,
-      const Line &afterLine) = 0;
+      const Core::LinePosition &linePosition,
+      const Core::Line &targetLine,
+      const Core::Line &beforeLine,
+      const Core::Line &afterLine) = 0;
 
-    virtual void
-    onBoardUpdate(const Board &targetBoard, const Board &beforeBoard, const Board &afterBoard) = 0;
+    virtual void onBoardUpdate(
+      const Core::Board &targetBoard,
+      const Core::Board &beforeBoard,
+      const Core::Board &afterBoard) = 0;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_IBOARDUPDATEHANDLER_H

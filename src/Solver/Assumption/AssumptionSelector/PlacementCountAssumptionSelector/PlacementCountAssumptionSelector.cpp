@@ -6,20 +6,26 @@
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
+
 #include <cassert>
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 PlacementCountAssumptionSelector::PlacementCountAssumptionSelector(
-  IPlacementPatternCounter &placementPatternCounter, const Board &board)
+  IPlacementPatternCounter &placementPatternCounter, const NonogramBoard &nonogramBoard)
     : placementPatternCounter(placementPatternCounter)
     , rowPlacementCounts(
-        std::vector<PlacementCount>(board.getRowLength().getLength(), PlacementCount(0)))
+        std::vector<PlacementCount>(nonogramBoard.getRowLength().getLength(), PlacementCount(0)))
     , columnPlacementCounts(
-        std::vector<PlacementCount>(board.getColumnLength().getLength(), PlacementCount(0))) {}
+        std::vector<PlacementCount>(nonogramBoard.getColumnLength().getLength(), PlacementCount(0))) {}
 
 std::unique_ptr<IAssumptionPosition> PlacementCountAssumptionSelector::select(
-  const NonogramBoard &board, const AssumptionSelectionContext &context) {
+  const Core::NonogramBoard &board, const AssumptionSelectionContext &context) {
 
     // Todo: Implement this method to select the line with the fewest placements.
     LinePosition linePosition(Orientation::Row, RowIndex(0));
     return std::make_unique<LineAssumptionPosition>(linePosition);
 }
+
+} // namespace VersaN::Solver

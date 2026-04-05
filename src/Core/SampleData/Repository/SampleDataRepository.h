@@ -1,39 +1,43 @@
-#ifndef SAMPLEDATAREPOSITORY_H
-#define SAMPLEDATAREPOSITORY_H
+#ifndef VERSAN_CORE_SAMPLEDATAREPOSITORY_H
+#define VERSAN_CORE_SAMPLEDATAREPOSITORY_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
 #include "Core/Hint/HintSetList/ColumnHintSetList.h"
 #include "Core/Hint/HintSetList/RowHintSetList.h"
+
 #include <string>
 #include <vector>
 
+namespace VersaN::Core {
+
 class SampleDataRepository {
-public:
-  enum SampleDataType { Easy, Lambda, Large, Difficult };
+  public:
+    enum SampleDataType { Easy, Lambda, Large, Difficult };
 
-private:
-  SampleDataRepository() = delete;
+  private:
+    SampleDataRepository() = delete;
 
-  static std::string GetColumnHintString(SampleDataType type);
-  static std::string GetRowHintString(SampleDataType type);
-  static std::string GetEasyRowHintString();
-  static std::string GetEasyColumnHintString();
-  static std::string GetLambdaRowHintString();
-  static std::string GetLambdaColumnHintString();
-  static std::string GetLargeRowHintString();
-  static std::string GetLargeColumnHintString();
-  static std::string GetDifficultRowHintString();
-  static std::string GetDifficultColumnHintString();
+    static std::string GetColumnHintString(SampleDataType type);
+    static std::string GetRowHintString(SampleDataType type);
+    static std::string GetEasyRowHintString();
+    static std::string GetEasyColumnHintString();
+    static std::string GetLambdaRowHintString();
+    static std::string GetLambdaColumnHintString();
+    static std::string GetLargeRowHintString();
+    static std::string GetLargeColumnHintString();
+    static std::string GetDifficultRowHintString();
+    static std::string GetDifficultColumnHintString();
 
-  static std::vector<std::vector<HintNumber>>
-  parseHints(const std::string &hintString);
+    static std::vector<std::vector<HintNumber>> parseHints(const std::string &hintString);
 
-  static RowHintSetList getRowHintSetList(SampleDataType type);
-  static ColumnHintSetList getColumnHintSetList(SampleDataType type);
+    static RowHintSetList getRowHintSetList(SampleDataType type);
+    static ColumnHintSetList getColumnHintSetList(SampleDataType type);
 
-public:
-  static NonogramBoard getSampleData(SampleDataType type);
+  public:
+    static NonogramBoard getSampleData(SampleDataType type);
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_SAMPLEDATAREPOSITORY_H

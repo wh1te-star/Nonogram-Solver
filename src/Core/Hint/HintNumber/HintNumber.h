@@ -1,18 +1,21 @@
-#ifndef HINTNUMBER_H
-#define HINTNUMBER_H
+#ifndef VERSAN_CORE_HINTNUMBER_H
+#define VERSAN_CORE_HINTNUMBER_H
 
+namespace VersaN::Core {
 
 class HintNumber {
-private:
-	int number;
+  private:
+    int number;
 
-public:
+  public:
     explicit HintNumber(int number);
 
-    const int& getNumber() const;
+    const int &getNumber() const;
 
-    bool operator==(const HintNumber& other) const;
-    bool operator!=(const HintNumber& other) const;
+    bool operator==(const HintNumber &other) const;
+    bool operator!=(const HintNumber &other) const;
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_HINTNUMBER_H

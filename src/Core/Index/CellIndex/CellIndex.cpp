@@ -3,7 +3,10 @@
 #include "Core/Board/BoardLength/BoardLength.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
+
 #include <cassert>
+
+namespace VersaN::Core {
 
 CellIndex::CellIndex(int index) : index(index) {}
 CellIndex::CellIndex(int index, CellIndexType type)
@@ -126,3 +129,5 @@ std::vector<CellIndex> CellIndex::range(int first, int last) {
 
   return indexes;
 }
+
+} // namespace VersaN::Core

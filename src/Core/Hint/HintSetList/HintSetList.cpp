@@ -1,7 +1,10 @@
 #include "Core/Hint/HintSetList/HintSetList.h"
 
 #include "Core/Hint/HintSet/HintSet.h"
+
 #include <algorithm>
+
+namespace VersaN::Core {
 
 HintSetList::HintSetList(std::vector<HintSet> hintSetList)
     : hintSetList(hintSetList) {}
@@ -29,3 +32,5 @@ int HintSetList::getMaxItemCount() const {
   }
   return maxSize;
 }
+
+} // namespace VersaN::Core

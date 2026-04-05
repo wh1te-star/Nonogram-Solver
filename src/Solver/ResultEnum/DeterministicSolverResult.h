@@ -1,11 +1,10 @@
-#ifndef DETERMINISTICSOLVERRESULT_H
-#define DETERMINISTICSOLVERRESULT_H
+#ifndef VERSAN_CORE_DETERMINISTICSOLVERRESULT_H
+#define VERSAN_CORE_DETERMINISTICSOLVERRESULT_H
 
-enum class DeterministicSolverResult {
-    Solved,
-    NoMoreProgress,
-    HasContradiction,
-    Stopped
-};
+namespace VersaN::Solver {
 
-#endif
+enum class DeterministicSolverResult { Solved, NoMoreProgress, HasContradiction, Stopped };
+
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_DETERMINISTICSOLVERRESULT_H

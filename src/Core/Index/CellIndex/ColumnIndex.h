@@ -1,42 +1,45 @@
-#ifndef COLUMNINDEX_H
-#define COLUMNINDEX_H
-
+#ifndef VERSAN_CORE_COLUMNINDEX_H
+#define VERSAN_CORE_COLUMNINDEX_H
 
 #include "Core/Index/CellIndex/CellIndex.h"
+
+namespace VersaN::Core {
 class ColumnLength;
+}
+
+namespace VersaN::Core {
 
 class ColumnIndex : public CellIndex {
-public:
+  public:
     explicit ColumnIndex(int index);
 
-public:
+  public:
     ColumnIndex operator+(int shift) const;
     ColumnIndex operator-(int shift) const;
     ColumnIndex operator+(ColumnLength shift) const;
     ColumnIndex operator-(ColumnLength shift) const;
     ColumnIndex operator+(HintNumber shift) const;
     ColumnIndex operator-(HintNumber shift) const;
-    bool operator==(const ColumnIndex& other) const;
-    bool operator!=(const ColumnIndex& other) const;
-    bool operator<(const ColumnIndex& other) const;
-    bool operator<=(const ColumnIndex& other) const;
-    bool operator>(const ColumnIndex& other) const;
-    bool operator>=(const ColumnIndex& other) const;
-    bool operator<(const ColumnLength& other) const;
-    bool operator<=(const ColumnLength& other) const;
-    bool operator>(const ColumnLength& other) const;
-    bool operator>=(const ColumnLength& other) const;
+    bool operator==(const ColumnIndex &other) const;
+    bool operator!=(const ColumnIndex &other) const;
+    bool operator<(const ColumnIndex &other) const;
+    bool operator<=(const ColumnIndex &other) const;
+    bool operator>(const ColumnIndex &other) const;
+    bool operator>=(const ColumnIndex &other) const;
+    bool operator<(const ColumnLength &other) const;
+    bool operator<=(const ColumnLength &other) const;
+    bool operator>(const ColumnLength &other) const;
+    bool operator>=(const ColumnLength &other) const;
     static std::vector<ColumnIndex> range(int first, int last);
 };
+} // namespace VersaN::Core
 
 namespace std {
-    template <>
-    struct hash<ColumnIndex> {
-        size_t operator()(const ColumnIndex& columnIndex) const {
-            return std::hash<int>{}(columnIndex.getIndex()); 
-        }
-    };
-}
+template <> struct hash<VersaN::Core::ColumnIndex> {
+    size_t operator()(const VersaN::Core::ColumnIndex &columnIndex) const {
+        return std::hash<int>{}(columnIndex.getIndex());
+    }
+};
+} // namespace std
 
-
-#endif
+#endif // VERSAN_CORE_COLUMNINDEX_H

@@ -10,7 +10,12 @@
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
+
 #include <cassert>
+
+using namespace VersaN::Core;
+using namespace VersaN::Rendering;
+namespace VersaN::Solver {
 
 BacktrackSolver::BacktrackSolver(
   StopSignal &stopSignal,
@@ -106,3 +111,5 @@ void BacktrackSolver::backtrackSolveRecursive(
           nonogramBoard.getBoard(), nonogramBoard.getBoard(), nonogramBoard.getBoard());
     }
 }
+
+} // namespace VersaN::Solver

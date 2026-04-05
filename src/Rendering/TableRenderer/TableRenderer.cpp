@@ -7,10 +7,14 @@
 #include "Rendering/FontData/FontData.h"
 #include "imgui.h"
 #include "imgui_internal.h"
+
 #include <algorithm>
 #include <chrono>
 #include <cmath>
 #include <string>
+
+using namespace VersaN::Core;
+namespace VersaN::Rendering {
 
 TableRenderer::TableRenderer() {}
 
@@ -432,3 +436,5 @@ void TableRenderer::drawGridLineDirect(
     draw_list->AddLine(
       ImVec2(p_min.x, p_max.y), ImVec2(p_max.x, p_max.y), IM_COL32(0, 0, 0, 255), rowThickness);
 }
+
+} // namespace VersaN::Rendering

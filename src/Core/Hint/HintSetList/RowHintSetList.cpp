@@ -3,6 +3,8 @@
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Hint/HintSetList/HintSetList.h"
 
+namespace VersaN::Core {
+
 RowHintSetList::RowHintSetList(std::vector<HintSet> hintSetList)
     : HintSetList(hintSetList) {}
 
@@ -13,3 +15,5 @@ HintSet RowHintSetList::operator[](RowIndex rowIndex) const {
 ColumnLength RowHintSetList::getMaxHintSetLength() const {
   return ColumnLength(getMaxItemCount());
 }
+
+} // namespace VersaN::Core

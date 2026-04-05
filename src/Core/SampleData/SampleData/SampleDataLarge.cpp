@@ -1,5 +1,7 @@
 #include "Core/SampleData/Repository/SampleDataRepository.h"
 
+namespace VersaN::Core {
+
 std::string SampleDataRepository::GetLargeColumnHintString()
 {
 	return R"###(
@@ -39,3 +41,5 @@ std::string SampleDataRepository::GetLargeRowHintString()
 		  ,   ,   ,   ,   ,   ,  3,  1,  1,  3
 	)###";
 }
+
+} // namespace VersaN::Core

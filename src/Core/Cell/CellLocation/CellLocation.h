@@ -1,24 +1,28 @@
-#ifndef CELLLOCATION_H
-#define CELLLOCATION_H
+#ifndef VERSAN_CORE_CELLLOCATION_H
+#define VERSAN_CORE_CELLLOCATION_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 
+namespace VersaN::Core {
+
 class CellLocation {
-private:
-  CellPosition position;
-  Cell cell;
+  private:
+    CellPosition position;
+    Cell cell;
 
-public:
-  explicit CellLocation(CellPosition position, Cell cell);
+  public:
+    explicit CellLocation(CellPosition position, Cell cell);
 
-public:
-  const CellPosition &getPosition() const;
-  const Cell &getCell() const;
+  public:
+    const CellPosition &getPosition() const;
+    const Cell &getCell() const;
 
-public:
-  bool operator==(const CellLocation &other) const;
-  bool operator!=(const CellLocation &other) const;
+  public:
+    bool operator==(const CellLocation &other) const;
+    bool operator!=(const CellLocation &other) const;
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_CELLLOCATION_H

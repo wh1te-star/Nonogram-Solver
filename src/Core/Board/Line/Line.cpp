@@ -4,7 +4,10 @@
 #include "Core/Board/Line/Row.h"
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
+
 #include <cassert>
+
+namespace VersaN::Core {
 
 Line::Line(std::vector<Cell> line) : line(line) {}
 
@@ -96,3 +99,5 @@ std::ostream &operator<<(std::ostream &os, const Line &line) {
     os << "]";
     return os;
 }
+
+} // namespace VersaN::Core

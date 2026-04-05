@@ -1,10 +1,13 @@
-#ifndef PLACEMENTPATTERNCOUNTERRESULT_H
-#define PLACEMENTPATTERNCOUNTERRESULT_H
+#ifndef VERSAN_CORE_PLACEMENTPATTERNCOUNTERRESULT_H
+#define VERSAN_CORE_PLACEMENTPATTERNCOUNTERRESULT_H
+
+namespace VersaN::Solver {
 
 enum class PlacementPatternCounterResult {
     success,
     tooManyPatterns,
 };
 
-#endif
+} // namespace VersaN::Solver
 
+#endif // VERSAN_CORE_PLACEMENTPATTERNCOUNTERRESULT_H

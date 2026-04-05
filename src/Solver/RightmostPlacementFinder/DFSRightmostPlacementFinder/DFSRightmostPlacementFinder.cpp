@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 PlacementFinderResult
 DFSRightmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
@@ -77,3 +80,5 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
 
     return PlacementFinderResult::notFound;
 }
+
+} // namespace VersaN::Solver

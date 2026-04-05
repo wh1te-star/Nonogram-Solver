@@ -1,7 +1,9 @@
-#ifndef DPPLACEMENTPATTERNCOUNTER_H
-#define DPPLACEMENTPATTERNCOUNTER_H
+#ifndef VERSAN_CORE_DPPLACEMENTPATTERNCOUNTER_H
+#define VERSAN_CORE_DPPLACEMENTPATTERNCOUNTER_H
 
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"
+
+namespace VersaN::Solver {
 
 class DPPlacementPatternCounter : public IPlacementPatternCounter {
     const int MAX_COUNT = 1000000000;
@@ -9,15 +11,24 @@ class DPPlacementPatternCounter : public IPlacementPatternCounter {
   public:
     DPPlacementPatternCounter();
     DPPlacementPatternCounter(int MAX_COUNT);
-    PlacementPatternCounterResult
-    count(const HintSet &hintSet, Line &line, PlacementCount &placementCount, IBoardUpdateHandler &boardUpdateHandler) override;
+    PlacementPatternCounterResult count(
+      const Core::HintSet &hintSet,
+      Core::Line &line,
+      Core::PlacementCount &placementCount,
+      IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementPatternCounterResult DPPlacementPatternCount(
-      const HintSet &hintSet, const Line &line, PlacementCount &placementCount, IBoardUpdateHandler &boardUpdateHandler);
+      const Core::HintSet &hintSet,
+      const Core::Line &line,
+      Core::PlacementCount &placementCount,
+      IBoardUpdateHandler &boardUpdateHandler);
 
-    bool isSeparated(const Line &line, const CellIndex &prevCellIndex);
+    bool isSeparated(const Core::Line &line, const Core::CellIndex &prevCellIndex);
 
-    bool isBlockFits(const Line &line, const CellIndex &blockStart, const HintNumber &hintNumber);
+    bool isBlockFits(const Core::Line &line, const Core::CellIndex &blockStart, const Core::HintNumber &hintNumber);
 };
-#endif
+
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_DPPLACEMENTPATTERNCOUNTER_H

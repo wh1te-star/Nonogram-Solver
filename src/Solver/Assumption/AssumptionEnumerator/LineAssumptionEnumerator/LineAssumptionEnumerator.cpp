@@ -4,7 +4,11 @@
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/Assumption/Assumption/CellAssumption/CellAssumption.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
+
 #include <cassert>
+
+using namespace VersaN::Core;
+namespace VersaN::Solver {
 
 LineAssumptionEnumerator::LineAssumptionEnumerator(
   IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder)
@@ -60,3 +64,5 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
     assert(false && "Failed to enumerate line assumptions");
     return {};
 }
+
+} // namespace VersaN::Solver

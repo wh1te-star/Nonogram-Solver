@@ -1,18 +1,21 @@
-#ifndef ROWPLACEMENTCOUNTLIST_H
-#define ROWPLACEMENTCOUNTLIST_H
+#ifndef VERSAN_CORE_ROWPLACEMENTCOUNTLIST_H
+#define VERSAN_CORE_ROWPLACEMENTCOUNTLIST_H
 
 #include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
-class RowPlacementCountList : public PlacementCountList {
-public:
-  explicit RowPlacementCountList(
-      std::vector<PlacementCount> placementCountList);
+namespace VersaN::Core {
 
-public:
-  const PlacementCount &operator[](RowIndex index) const;
-  PlacementCount &operator[](RowIndex index);
+class RowPlacementCountList : public PlacementCountList {
+  public:
+    explicit RowPlacementCountList(std::vector<PlacementCount> placementCountList);
+
+  public:
+    const PlacementCount &operator[](RowIndex index) const;
+    PlacementCount &operator[](RowIndex index);
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_ROWPLACEMENTCOUNTLIST_H

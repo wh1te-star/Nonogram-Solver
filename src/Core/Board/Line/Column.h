@@ -1,13 +1,15 @@
-#ifndef COLUMN_H
-#define COLUMN_H
-
+#ifndef VERSAN_CORE_COLUMN_H
+#define VERSAN_CORE_COLUMN_H
 
 #include "Core/Board/Line/Line.h"
 
+namespace VersaN::Core {
+
 class Column : public Line {
-public:
+  public:
     explicit Column(std::vector<Cell> line);
 };
 
+} // namespace VersaN::Core
 
-#endif
+#endif // VERSAN_CORE_COLUMN_H

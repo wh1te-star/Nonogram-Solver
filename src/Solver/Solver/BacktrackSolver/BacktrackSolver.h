@@ -1,5 +1,5 @@
-#ifndef BACKTRACKSOLVER_H
-#define BACKTRACKSOLVER_H
+#ifndef VERSAN_CORE_BACKTRACKSOLVER_H
+#define VERSAN_CORE_BACKTRACKSOLVER_H
 
 #include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/Assumption/AssumptionEnumerator/IAssumptionEnumerator.h"
@@ -10,9 +10,11 @@
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/Solver/ISolver.h"
 
+namespace VersaN::Solver {
+
 class BacktrackSolver : public ISolver {
   private:
-    StopSignal &stopSignal;
+    Rendering::StopSignal &stopSignal;
     IDeterministicSolver &deterministicSolver;
     IAssumptionSelector &assumptionSelector;
     IAssumptionEnumerator &assumptionEnumerator;
@@ -20,28 +22,30 @@ class BacktrackSolver : public ISolver {
 
   public:
     BacktrackSolver(
-      StopSignal &stopSignal,
+      Rendering::StopSignal &stopSignal,
       IDeterministicSolver &deterministicSolver,
       IAssumptionSelector &assumptionSelector,
       IAssumptionEnumerator &assumptionEnumerator,
       BacktrackStack &backtrackStack);
 
     void solve(
-      NonogramBoard &nonogramBoard,
-      std::vector<Board> &solutions,
+      Core::NonogramBoard &nonogramBoard,
+      std::vector<Core::Board> &solutions,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     void backtrackSolve(
-      NonogramBoard &nonogramBoard,
-      std::vector<Board> &solutions,
+      Core::NonogramBoard &nonogramBoard,
+      std::vector<Core::Board> &solutions,
       IBoardUpdateHandler &boardUpdateHandler);
 
     void backtrackSolveRecursive(
-      NonogramBoard &nonogramBoard,
-      std::vector<Board> &solutions,
+      Core::NonogramBoard &nonogramBoard,
+      std::vector<Core::Board> &solutions,
       int depth,
       IBoardUpdateHandler &boardUpdateHandler);
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_BACKTRACKSOLVER_H

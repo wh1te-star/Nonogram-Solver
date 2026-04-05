@@ -1,5 +1,8 @@
 #include "Solver/PlacementPatternCounter/DPPlacementPatternCounter/DPPlacementPatternCounter.h"
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 DPPlacementPatternCounter::DPPlacementPatternCounter() {}
 
 DPPlacementPatternCounter::DPPlacementPatternCounter(int MAX_COUNT) : MAX_COUNT(MAX_COUNT) {}
@@ -97,3 +100,5 @@ bool DPPlacementPatternCounter::isBlockFits(
     }
     return true;
 }
+
+} // namespace VersaN::Solver

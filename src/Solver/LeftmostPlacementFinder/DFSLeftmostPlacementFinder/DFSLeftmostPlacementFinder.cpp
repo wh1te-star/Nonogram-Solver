@@ -1,5 +1,8 @@
 #include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 PlacementFinderResult
 DFSLeftmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
@@ -75,3 +78,5 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
 
     return PlacementFinderResult::notFound;
 }
+
+} // namespace VersaN::Solver

@@ -1,19 +1,22 @@
-#ifndef HINTASSUMPTIONPOSITION_H
-#define HINTASSUMPTIONPOSITION_H
+#ifndef VERSAN_CORE_HINTASSUMPTIONPOSITION_H
+#define VERSAN_CORE_HINTASSUMPTIONPOSITION_H
 
-#include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Core/Index/Position/HintPosition/HintPosition.h"
+#include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
+
+namespace VersaN::Solver {
 
 class HintAssumptionPosition : public IAssumptionPosition {
-private:
-    HintPosition hintPosition;
+  private:
+    Core::HintPosition hintPosition;
 
-public:
-    HintAssumptionPosition(HintPosition hintPosition);
+  public:
+    HintAssumptionPosition(Core::HintPosition hintPosition);
     virtual ~HintAssumptionPosition() = default;
 
-    HintPosition getHintPosition() const;
+    Core::HintPosition getHintPosition() const;
 };
 
-#endif
+} // namespace VersaN::Solver
 
+#endif // VERSAN_CORE_HINTASSUMPTIONPOSITION_H

@@ -4,7 +4,10 @@
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 #include "Core/Placement/Placement/ColumnPlacement.h"
 #include "Core/Placement/Placement/RowPlacement.h"
+
 #include <cassert>
+
+namespace VersaN::Core {
 
 Placement::Placement(std::vector<Cell> placement) : placement(placement) {
   assert(!hasNone());
@@ -115,3 +118,5 @@ std::ostream &operator<<(std::ostream &os, const Placement &placement) {
   os << "]";
   return os;
 }
+
+} // namespace VersaN::Core

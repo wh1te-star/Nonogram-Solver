@@ -1,8 +1,11 @@
 #include "Core/Cell/Cell/Cell.h"
 
 #include "Core/Cell/CellColor/CellColor.h"
+
 #include <algorithm>
 #include <cassert>
+
+namespace VersaN::Core {
 
 Cell::Cell() : color(None) {}
 
@@ -38,3 +41,5 @@ std::ostream &operator<<(std::ostream &os, const Cell &cell) {
   }
   return os;
 }
+
+} // namespace VersaN::Core

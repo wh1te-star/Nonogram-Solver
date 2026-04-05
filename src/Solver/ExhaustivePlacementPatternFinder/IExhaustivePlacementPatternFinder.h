@@ -1,16 +1,22 @@
-#ifndef IEXHAUSTIVEPLACEMENTPATTERNFINDER_H
-#define IEXHAUSTIVEPLACEMENTPATTERNFINDER_H
+#ifndef VERSAN_CORE_IEXHAUSTIVEPLACEMENTPATTERNFINDER_H
+#define VERSAN_CORE_IEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 
 #include "Core/Board/Line/Line.h"
 #include "Core/Hint/HintSet/HintSet.h"
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
+
 #include <vector>
 
+namespace VersaN::Solver {
+
 class IExhaustivePlacementPatternFinder {
-public:
-  IExhaustivePlacementPatternFinder() = default;
-  virtual ExhaustivePlacementPatternFinderResult find(const HintSet &hintSet, const Line &line, std::vector<Placement> &solutions) = 0;
+  public:
+    IExhaustivePlacementPatternFinder() = default;
+    virtual ExhaustivePlacementPatternFinderResult
+    find(const Core::HintSet &hintSet, const Core::Line &line, std::vector<Core::Placement> &solutions) = 0;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_IEXHAUSTIVEPLACEMENTPATTERNFINDER_H

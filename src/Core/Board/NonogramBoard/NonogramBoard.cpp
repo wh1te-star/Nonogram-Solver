@@ -1,5 +1,7 @@
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 
+namespace VersaN::Core {
+
 NonogramBoard::NonogramBoard(
 		Board board,
 		RowHintSetList rowHintSetList,
@@ -76,3 +78,4 @@ ColumnHintSetList NonogramBoard::getColumnHintSetList() const {
 	return columnHintSetList;
 }
 
+} // namespace VersaN::Core

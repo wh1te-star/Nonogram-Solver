@@ -1,5 +1,5 @@
-#ifndef PLACEMENTCOUNTSNAPSHOT_H
-#define PLACEMENTCOUNTSNAPSHOT_H
+#ifndef VERSAN_CORE_PLACEMENTCOUNTSNAPSHOT_H
+#define VERSAN_CORE_PLACEMENTCOUNTSNAPSHOT_H
 
 #include "Core/Board/Board/Board.h"
 #include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
@@ -7,18 +7,22 @@
 #include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 
+namespace VersaN::Solver {
+
 class PlacementCountSnapshot : public ISnapshot {
   public:
-    Board board;
-    RowPlacementCountList rowPlacementCountList;
-    ColumnPlacementCountList columnPlacementCountList;
+    Core::Board board;
+    Core::RowPlacementCountList rowPlacementCountList;
+    Core::ColumnPlacementCountList columnPlacementCountList;
 
     PlacementCountSnapshot(
-        Board board,
-        RowPlacementCountList rowPlacementCountList,
-        ColumnPlacementCountList columnPlacementCountList);
+      Core::Board board,
+      Core::RowPlacementCountList rowPlacementCountList,
+      Core::ColumnPlacementCountList columnPlacementCountList);
 
-    void restore(NonogramBoard& nonogramBoard) const override;
+    void restore(Core::NonogramBoard &nonogramBoard) const override;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_PLACEMENTCOUNTSNAPSHOT_H

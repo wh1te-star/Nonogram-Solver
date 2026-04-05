@@ -1,9 +1,10 @@
-#ifndef Orientation_H
-#define Orientation_H
+#ifndef VERSAN_CORE_Orientation_H
+#define VERSAN_CORE_Orientation_H
 
-enum class Orientation {
-    Row,
-    Column
-};
+namespace VersaN::Core {
 
-#endif
+enum class Orientation { Row, Column };
+
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_Orientation_H

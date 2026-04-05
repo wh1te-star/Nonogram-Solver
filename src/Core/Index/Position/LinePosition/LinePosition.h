@@ -1,12 +1,14 @@
-#ifndef LINEPOSITION_H
-#define LINEPOSITION_H
+#ifndef VERSAN_CORE_LINEPOSITION_H
+#define VERSAN_CORE_LINEPOSITION_H
 
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Board/BoardLength/RowLength.h"
-#include "Core/Index/Position/IPosition.h"
+#include "Core/Board/Orientation.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
-#include "Core/Board/Orientation.h"
+#include "Core/Index/Position/IPosition.h"
+
+namespace VersaN::Core {
 
 class LinePosition : public IPosition {
   private:
@@ -25,4 +27,6 @@ class LinePosition : public IPosition {
     bool operator!=(const LinePosition &other) const;
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_LINEPOSITION_H

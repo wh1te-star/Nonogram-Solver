@@ -1,5 +1,8 @@
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 
+using namespace VersaN::Core;
+
+namespace VersaN::Rendering {
 
 HighlightIndexes::HighlightIndexes(){}
 
@@ -39,3 +42,5 @@ void HighlightIndexes::clearRowIndexes() {
 void HighlightIndexes::clearColumnIndexes() {
 	columnIndexes.clear();
 }
+
+} // namespace VersaN::Rendering

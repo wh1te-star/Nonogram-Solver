@@ -1,12 +1,15 @@
-#include "FontData.h"
+#include "Rendering/FontData/FontData.h"
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_internal.h"
 #include <GLFW/glfw3.h>
-#include <ctime>
 #include <glad/glad.h>
+
+#include <ctime>
+
+namespace VersaN::Rendering {
 
 ImFont *FontData::fonts[(FontData::maxFontSize - FontData::minFontSize) /
                             FontData::fontSizeStep +
@@ -61,3 +64,5 @@ ImFont *FontData::getFontByCellSize(int cellSize) {
     return fonts[0];
   }
 }
+
+} // namespace VersaN::Rendering

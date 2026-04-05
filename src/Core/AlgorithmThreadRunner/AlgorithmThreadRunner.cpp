@@ -4,16 +4,22 @@
 #include "Core/Cell/CellChange/CellChange.h"
 #include "Core/Hint/HintSet/HintSet.h"
 #include "Core/SampleData/Repository/SampleDataRepository.h"
-#include "Solver/Solver/ISolver.h"
-#include "Rendering/Shared/SharedDataAliases.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
+#include "Rendering/Shared/SharedDataAliases.h"
+#include "Solver/Solver/ISolver.h"
+
 #include <algorithm>
 #include <chrono>
+
+using namespace VersaN::Rendering;
+using namespace VersaN::Solver;
+namespace VersaN::Core {
 
 AlgorithmThreadRunner::AlgorithmThreadRunner(
   StopSignal &stopSignal,
   ISender<NonogramBoard> &nonogramBoardSender,
-  NonogramBoard &initialNonogramBoard, IBoardUpdateHandler &boardUpdateHandler)
+  NonogramBoard &initialNonogramBoard,
+  IBoardUpdateHandler &boardUpdateHandler)
     : stopSignal(stopSignal)
     , nonogramBoardSender(nonogramBoardSender)
     , nonogramBoard(initialNonogramBoard)
@@ -27,3 +33,5 @@ void AlgorithmThreadRunner::run(ISolver &solver) {
         nonogramBoardSender.send(nonogramBoard);
     }
 }
+
+} // namespace VersaN::Core

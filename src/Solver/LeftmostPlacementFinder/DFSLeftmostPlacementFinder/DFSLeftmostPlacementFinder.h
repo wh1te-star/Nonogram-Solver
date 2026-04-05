@@ -1,36 +1,40 @@
-#ifndef DFSLEFTMOSTPLACEMENTFINDER_H
-#define DFSLEFTMOSTPLACEMENTFINDER_H
+#ifndef VERSAN_CORE_DFSLEFTMOSTPLACEMENTFINDER_H
+#define VERSAN_CORE_DFSLEFTMOSTPLACEMENTFINDER_H
 
 #include "Core/AlgorithmProfiler/AlgorithmProfiler.h"
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/LeftMostPlacementFinder/ILeftMostPlacementFinder.h"
 
+namespace VersaN::Solver {
+
 class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
   private:
-    AlgorithmProfiler profiler;
+    Core::AlgorithmProfiler profiler;
 
   public:
     DFSLeftmostPlacementFinder() = default;
     PlacementFinderResult find(
-      const HintSet &hintSet,
-      Line &line,
-      Placement &resultPlacement,
+      const Core::HintSet &hintSet,
+      Core::Line &line,
+      Core::Placement &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult dfsLeftmostPlacementFind(
-      const HintSet &hintSet,
-      Line &line,
-      Placement &resultPlacement,
+      const Core::HintSet &hintSet,
+      Core::Line &line,
+      Core::Placement &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsLeftmostPlacementFindRecursive(
-      const HintSet &hintSet,
-      const Line &line,
-      Placement &currentPlacement,
+      const Core::HintSet &hintSet,
+      const Core::Line &line,
+      Core::Placement &currentPlacement,
       int currentHintIndex,
-      Placement &resultPlacement,
+      Core::Placement &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler);
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_DFSLEFTMOSTPLACEMENTFINDER_H

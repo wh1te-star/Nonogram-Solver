@@ -1,22 +1,27 @@
-#ifndef HINTASSUMPTION_H
-#define HINTASSUMPTION_H
+#ifndef VERSAN_CORE_HINTASSUMPTION_H
+#define VERSAN_CORE_HINTASSUMPTION_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Board/Orientation.h"
-#include "Solver/Assumption/Assumption/IAssumption.h"
-#include "Core/Index/Position/HintPosition/HintPosition.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
+#include "Core/Index/Position/HintPosition/HintPosition.h"
+#include "Solver/Assumption/Assumption/IAssumption.h"
+
+namespace VersaN::Solver {
 
 class HintAssumption : public IAssumption {
   private:
-    HintPosition hintPosition;
-    HintNumber hintNumber;
+    Core::HintPosition hintPosition;
+    Core::HintNumber hintNumber;
 
   public:
-    explicit HintAssumption(const HintPosition &hintPosition, const HintNumber &hintNumber);
+    explicit HintAssumption(const Core::HintPosition &hintPosition, const Core::HintNumber &hintNumber);
     virtual ~HintAssumption() = default;
 
-    void applyTo(NonogramBoard &board) const override;
+    void applyTo(Core::NonogramBoard &board) const override;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_HINTASSUMPTION_H
+

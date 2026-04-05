@@ -6,8 +6,11 @@
 #include "Core/Cell/CellLocation/CellLocation.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
+
 #include <cassert>
 #include <typeinfo>
+
+namespace VersaN::Core {
 
 Board::Board(RowLength rowLength, ColumnLength columnLength)
     : rowLength(std::move(rowLength)), columnLength(std::move(columnLength)) {
@@ -139,3 +142,5 @@ void Board::applyBoard(const Board &board, bool overwriteNone) {
     applyRow(rowIndex, rowLine, overwriteNone);
   }
 }
+
+} // namespace VersaN::Core

@@ -4,6 +4,9 @@
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 HintAssumption::HintAssumption(const HintPosition &hintPosition, const HintNumber &hintNumber)
     : hintPosition(hintPosition), hintNumber(hintNumber) {}
 
@@ -20,3 +23,5 @@ void HintAssumption::applyTo(NonogramBoard &nonogramBoard) const {
     }
         */
 }
+
+} // namespace VersaN::Solver

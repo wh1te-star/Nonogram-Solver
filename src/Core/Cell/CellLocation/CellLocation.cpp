@@ -1,8 +1,11 @@
 #include "Core/Cell/CellLocation/CellLocation.h"
 
-#include <algorithm>
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
+
+#include <algorithm>
+
+namespace VersaN::Core {
 
 CellLocation::CellLocation(CellPosition position, Cell cell) :
     position(std::move(position)),
@@ -24,3 +27,4 @@ bool CellLocation::operator!=(const CellLocation& other) const {
     return !(*this == other);
 }
 
+} // namespace VersaN::Core

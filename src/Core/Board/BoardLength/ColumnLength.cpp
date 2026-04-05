@@ -2,6 +2,7 @@
 
 #include "Core/Index/CellIndex/ColumnIndex.h"
 
+namespace VersaN::Core {
 
 ColumnLength::ColumnLength(int length) : BoardLength(length) {}
 
@@ -52,3 +53,5 @@ bool ColumnLength::operator>(const ColumnIndex& other) const {
 bool ColumnLength::operator>=(const ColumnIndex& other) const {
 	return length >= other.getIndex();
 }
+
+} // namespace VersaN::Core

@@ -1,5 +1,7 @@
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 
+namespace VersaN::Core {
+
 PlacementCount::PlacementCount(int count) : count(count) {}
 
 PlacementCount PlacementCount::operator+(const PlacementCount& other) const {
@@ -51,3 +53,5 @@ int PlacementCount::getCount() const {
 void PlacementCount::setCount(PlacementCount placementCount) {
     count = placementCount.count;
 }
+
+} // namespace VersaN::Core

@@ -3,6 +3,8 @@
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 
+namespace VersaN::Core {
+
 ColumnPlacementCountList::ColumnPlacementCountList(
     std::vector<PlacementCount> placementCountList)
     : PlacementCountList(placementCountList) {}
@@ -15,3 +17,5 @@ ColumnPlacementCountList::operator[](ColumnIndex index) const {
 PlacementCount &ColumnPlacementCountList::operator[](ColumnIndex index) {
   return placementCountList[index.getIndex()];
 }
+
+} // namespace VersaN::Core

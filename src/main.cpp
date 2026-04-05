@@ -1,7 +1,8 @@
 ﻿#include "Rendering/RenderingSystem/RenderingSystem.h"
 
+using namespace VersaN;
 int main() {
-  RenderingSystem renderingSystem = RenderingSystem();
+  Rendering::RenderingSystem renderingSystem = Rendering::RenderingSystem();
   int initResult = renderingSystem.initialize();
   if (initResult) {
     return initResult;

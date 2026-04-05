@@ -6,7 +6,11 @@
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
+
 #include <cassert>
+
+using namespace VersaN::Core;
+namespace VersaN::Solver {
 
 LineIndexAssumptionSelector::LineIndexAssumptionSelector(Orientation orientation)
     : orientation(orientation) {}
@@ -33,3 +37,5 @@ std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector::select(
         return std::make_unique<LineAssumptionPosition>(linePosition);
     }
 }
+
+} // namespace VersaN::Solver

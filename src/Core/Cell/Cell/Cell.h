@@ -1,28 +1,33 @@
-#ifndef CELL_H
-#define CELL_H
+#ifndef VERSAN_CORE_CELL_H
+#define VERSAN_CORE_CELL_H
 
 #include "Core/Cell/CellColor/CellColor.h"
+
 #include <iostream>
 
+namespace VersaN::Core {
+
 class Cell {
-private:
-  CellColor color;
+  private:
+    CellColor color;
 
-public:
-  explicit Cell();
-  explicit Cell(CellColor color);
+  public:
+    explicit Cell();
+    explicit Cell(CellColor color);
 
-public:
-  const CellColor &getColor() const;
+  public:
+    const CellColor &getColor() const;
 
-public:
-  bool operator==(const Cell &other) const;
-  bool operator!=(const Cell &other) const;
+  public:
+    bool operator==(const Cell &other) const;
+    bool operator!=(const Cell &other) const;
 
-public:
-  bool canColor(const CellColor &newColor) const;
+  public:
+    bool canColor(const CellColor &newColor) const;
 };
 
 std::ostream &operator<<(std::ostream &os, const Cell &cell);
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_CELL_H

@@ -1,12 +1,16 @@
-#ifndef IASSUMPTION_H
-#define IASSUMPTION_H
+#ifndef VERSAN_CORE_IASSUMPTION_H
+#define VERSAN_CORE_IASSUMPTION_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 
+namespace VersaN::Solver {
+
 class IAssumption {
-public:
+  public:
     virtual ~IAssumption() = default;
-    virtual void applyTo(NonogramBoard& board) const = 0;
+    virtual void applyTo(Core::NonogramBoard &board) const = 0;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_IASSUMPTION_H

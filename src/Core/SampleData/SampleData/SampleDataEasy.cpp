@@ -1,5 +1,7 @@
 #include "Core/SampleData/Repository/SampleDataRepository.h"
 
+namespace VersaN::Core {
+
 std::string SampleDataRepository::GetEasyColumnHintString(){
 	return R"###(
 		 ,  ,  ,  , 3, 5, 6,  ,  ,  ,  ,  ,  ,  ,  
@@ -27,3 +29,5 @@ std::string SampleDataRepository::GetEasyRowHintString(){
 		 ,  , 2
 	)###";
 }
+
+} // namespace VersaN::Core

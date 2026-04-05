@@ -4,7 +4,11 @@
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/Assumption/Assumption/CellAssumption/CellAssumption.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
+
 #include <cassert>
+
+using namespace VersaN::Core;
+namespace VersaN::Solver {
 
 HintAssumptionEnumerator::HintAssumptionEnumerator()
     : IAssumptionEnumerator() {}
@@ -24,3 +28,5 @@ std::vector<std::unique_ptr<IAssumption>> HintAssumptionEnumerator::enumerate(
     // Implement later
     return {};
 }
+
+} // namespace VersaN::Solver

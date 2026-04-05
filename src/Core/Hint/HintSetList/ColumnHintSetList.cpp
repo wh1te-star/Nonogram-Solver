@@ -4,6 +4,8 @@
 #include "Core/Hint/HintSet/HintSet.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 
+namespace VersaN::Core {
+
 ColumnHintSetList::ColumnHintSetList(std::vector<HintSet> hintSetList)
     : HintSetList(hintSetList) {}
 
@@ -14,3 +16,5 @@ HintSet ColumnHintSetList::operator[](ColumnIndex columnIndex) const {
 RowLength ColumnHintSetList::getMaxHintSetLength() const {
   return RowLength(getMaxItemCount());
 }
+
+} // namespace VersaN::Core

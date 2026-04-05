@@ -1,5 +1,7 @@
 #include "Core/SampleData/Repository/SampleDataRepository.h"
 
+namespace VersaN::Core {
+
 std::string SampleDataRepository::GetLambdaColumnHintString()
 {
 	return R"###(
@@ -25,3 +27,5 @@ std::string SampleDataRepository::GetLambdaRowHintString()
 		 , 2, 2
 	)###";
 }
+
+} // namespace VersaN::Core

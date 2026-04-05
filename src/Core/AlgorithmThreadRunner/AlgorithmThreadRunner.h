@@ -1,30 +1,36 @@
-#ifndef BACKTRACKALGORITHM_H
-#define BACKTRACKALGORITHM_H
+#ifndef VERSAN_CORE_ALGORITHMTHREADRUNNER_H
+#define VERSAN_CORE_ALGORITHMTHREADRUNNER_H
 
 #include "Core/Board/Line/Line.h"
 #include "Core/Hint/HintSet/HintSet.h"
 #include "Rendering/Shared/ISender.h"
 #include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/Solver/ISolver.h"
+
 #include <atomic>
 #include <thread>
 #include <vector>
 
+namespace VersaN::Core {
+
 class AlgorithmThreadRunner {
   private:
-    StopSignal &stopSignal;
+    Rendering::StopSignal &stopSignal;
 
-    ISender<NonogramBoard> &nonogramBoardSender;
+    Rendering::ISender<NonogramBoard> &nonogramBoardSender;
     NonogramBoard &nonogramBoard;
-    IBoardUpdateHandler &boardUpdateHandler;
+    Solver::IBoardUpdateHandler &boardUpdateHandler;
 
   public:
-    AlgorithmThreadRunner::AlgorithmThreadRunner(
-      StopSignal &stopSignal,
-      ISender<NonogramBoard> &nonogramBoardSender,
-      NonogramBoard &initialNonogramBoard, IBoardUpdateHandler &boardUpdateHandler);
+    AlgorithmThreadRunner(
+      Rendering::StopSignal &stopSignal,
+      Rendering::ISender<NonogramBoard> &nonogramBoardSender,
+      NonogramBoard &initialNonogramBoard,
+      Solver::IBoardUpdateHandler &boardUpdateHandler);
 
-    void AlgorithmThreadRunner::run(ISolver &solver);
+    void run(Solver::ISolver &solver);
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_ALGORITHMTHREADRUNNER_H

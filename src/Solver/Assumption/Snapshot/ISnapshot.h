@@ -1,13 +1,17 @@
-#ifndef ISNAPSHOT_H
-#define ISNAPSHOT_H
+#ifndef VERSAN_CORE_ISNAPSHOT_H
+#define VERSAN_CORE_ISNAPSHOT_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
+
+namespace VersaN::Solver {
 
 class ISnapshot {
   public:
     virtual ~ISnapshot() = default;
 
-    virtual void restore(NonogramBoard& nonogramBoard) const = 0;
+    virtual void restore(Core::NonogramBoard &nonogramBoard) const = 0;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_ISNAPSHOT_H

@@ -1,5 +1,9 @@
 #include "Rendering/Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
 
+using namespace VersaN::Core;
+using namespace VersaN::Solver;
+namespace VersaN::Rendering {
+
 RenderingBoardUpdateHandler::RenderingBoardUpdateHandler(
   ISender<NonogramBoard> &nonogramBoardSender, NonogramBoard &nonogramBoard)
     : nonogramBoardSender(nonogramBoardSender), nonogramBoard(nonogramBoard) {}
@@ -30,3 +34,5 @@ void RenderingBoardUpdateHandler::checkAndSendBoard() {
         nonogramBoardSender.send(nonogramBoard);
     }
 }
+
+} // namespace VersaN::Rendering

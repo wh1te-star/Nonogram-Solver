@@ -1,5 +1,8 @@
 #include "Solver/Assumption/BacktrackStack/BacktrackStack.h"
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 BacktrackStack::BacktrackStack(const IAssumptionSelector &assumptionSelector)
     : assumptionSelector(assumptionSelector) {}
 
@@ -15,3 +18,5 @@ void BacktrackStack::pop(NonogramBoard &nonogramBoard) {
     history.back()->restore(nonogramBoard);
     history.pop_back();
 }
+
+} // namespace VersaN::Solver

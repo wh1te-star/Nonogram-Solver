@@ -1,11 +1,15 @@
-#ifndef COLUMNPLACEMENT_H
-#define COLUMNPLACEMENT_H
+#ifndef VERSAN_CORE_COLUMNPLACEMENT_H
+#define VERSAN_CORE_COLUMNPLACEMENT_H
 
 #include "Core/Placement/Placement/Placement.h"
 
+namespace VersaN::Core {
+
 class ColumnPlacement : public Placement {
-public:
-  explicit ColumnPlacement(std::vector<Cell> placement);
+  public:
+    explicit ColumnPlacement(std::vector<Cell> placement);
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_COLUMNPLACEMENT_H

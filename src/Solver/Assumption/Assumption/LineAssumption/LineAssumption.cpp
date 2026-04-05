@@ -4,6 +4,9 @@
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
+using namespace VersaN::Core;
+namespace VersaN::Solver {
+
 LineAssumption::LineAssumption(const LinePosition &linePosition, const Line &line)
     : linePosition(linePosition), line(line) {}
 
@@ -16,3 +19,5 @@ void LineAssumption::applyTo(NonogramBoard &nonogramBoard) const {
         nonogramBoard.applyColumn(columnIndex, static_cast<const Column &>(line), true);
     }
 }
+
+} // namespace VersaN::Solver

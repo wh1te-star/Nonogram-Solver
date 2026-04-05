@@ -1,5 +1,7 @@
-#ifndef LINESOLVERRESULT_H
-#define LINESOLVERRESULT_H
+#ifndef VERSAN_CORE_LINESOLVERRESULT_H
+#define VERSAN_CORE_LINESOLVERRESULT_H
+
+namespace VersaN::Solver {
 
 enum class LineSolverResult {
     Success,
@@ -7,4 +9,6 @@ enum class LineSolverResult {
     Stopped,
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_LINESOLVERRESULT_H

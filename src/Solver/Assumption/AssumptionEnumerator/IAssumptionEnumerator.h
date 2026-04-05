@@ -1,5 +1,5 @@
-#ifndef IASSUMPTIONENUMERATOR_H
-#define IASSUMPTIONENUMERATOR_H
+#ifndef VERSAN_CORE_IASSUMPTIONENUMERATOR_H
+#define VERSAN_CORE_IASSUMPTIONENUMERATOR_H
 
 #include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/CellAssumptionPosition/CellAssumptionPosition.h"
@@ -7,13 +7,18 @@
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
+
 #include <vector>
 
+namespace VersaN::Solver {
+
 class IAssumptionEnumerator {
-public:
+  public:
     virtual ~IAssumptionEnumerator() = default;
-    virtual std::vector<std::unique_ptr<IAssumption>> enumerate(
-        const NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) = 0;
+    virtual std::vector<std::unique_ptr<IAssumption>>
+    enumerate(const Core::NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) = 0;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_IASSUMPTIONENUMERATOR_H

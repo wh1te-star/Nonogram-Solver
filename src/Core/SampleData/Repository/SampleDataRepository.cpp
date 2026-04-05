@@ -2,8 +2,11 @@
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
+
 #include <cassert>
 #include <sstream>
+
+namespace VersaN::Core {
 
 std::vector<std::vector<HintNumber>>
 SampleDataRepository::parseHints(const std::string &hintString) {
@@ -121,3 +124,5 @@ NonogramBoard SampleDataRepository::getSampleData(SampleDataType type) {
             ColumnLength(columnHintSetList.size())),
       rowHintSetList, columnHintSetList);
 }
+
+} // namespace VersaN::Core

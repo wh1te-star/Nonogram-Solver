@@ -1,19 +1,24 @@
-#ifndef CELLCHANGE_H
-#define CELLCHANGE_H
+#ifndef VERSAN_CORE_CELLCHANGE_H
+#define VERSAN_CORE_CELLCHANGE_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Cell/CellLocation/CellLocation.h"
+
 #include <vector>
 
+namespace VersaN::Core {
+
 class CellChange {
-private:
-std::vector<CellLocation> changeLocations;
+  private:
+    std::vector<CellLocation> changeLocations;
 
-public:
-  explicit CellChange();
+  public:
+    explicit CellChange();
 
-public:
-  const std::vector<CellLocation> &getChangeLocations() const;
+  public:
+    const std::vector<CellLocation> &getChangeLocations() const;
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_CELLCHANGE_H

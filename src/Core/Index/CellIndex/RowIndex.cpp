@@ -2,8 +2,11 @@
 
 #include "Core/Board/BoardLength/RowLength.h"
 #include "Core/Index/CellIndex/RowIndex.h"
+
 #include <algorithm>
 #include <vector>
+
+namespace VersaN::Core {
 
 RowIndex::RowIndex(int index) : CellIndex(index) {}
 
@@ -88,3 +91,5 @@ std::vector<RowIndex> RowIndex::range(int first, int last) {
 
   return indexes;
 }
+
+} // namespace VersaN::Core

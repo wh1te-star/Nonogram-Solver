@@ -1,15 +1,19 @@
-#ifndef ILINESOLVER_H
-#define ILINESOLVER_H
+#ifndef VERSAN_CORE_ILINESOLVER_H
+#define VERSAN_CORE_ILINESOLVER_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/LineSolverResult.h"
 
+namespace VersaN::Solver {
+
 class ILineSolver {
   public:
     virtual ~ILineSolver() = default;
     virtual LineSolverResult
-    solve(const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler) = 0;
+    solve(const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_ILINESOLVER_H

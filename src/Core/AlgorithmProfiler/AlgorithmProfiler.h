@@ -1,8 +1,10 @@
-#ifndef ALGORITHMPROFILER_H
-#define ALGORITHMPROFILER_H
+#ifndef VERSAN_CORE_ALGORITHMPROFILER_H
+#define VERSAN_CORE_ALGORITHMPROFILER_H
 
 #include <chrono>
 #include <cstdint>
+
+namespace VersaN::Core {
 
 class AlgorithmProfiler {
   private:
@@ -21,4 +23,6 @@ class AlgorithmProfiler {
     bool isStackUsageLimitExceeded() const;
 };
 
-#endif // ALGORITHMPROFILER_H
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_ALGORITHMPROFILER_H

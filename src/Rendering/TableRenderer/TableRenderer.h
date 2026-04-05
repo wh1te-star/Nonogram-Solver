@@ -1,10 +1,10 @@
-#ifndef TABLERENDERER_H
-#define TABLERENDERER_H
+#ifndef VERSAN_CORE_TABLERENDERER_H
+#define VERSAN_CORE_TABLERENDERER_H
 
-#include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Board/Board/Board.h"
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Hint/HintSetList/ColumnHintSetList.h"
 #include "Core/Hint/HintSetList/RowHintSetList.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
@@ -15,66 +15,94 @@
 #include "imgui.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+
 #include <string>
 
+namespace VersaN::Rendering {
+
 class TableRenderer {
-private:
-  enum CellType {
-    BOARD_CELL,
-    ROW_HINT,
-    ROW_PLACEMENT_COUNT,
-    ROW_BACKTRACK_STACK,
-    COLUMN_HINT,
-    COLUMN_PLACEMENT_COUNT,
-    COLUMN_BACKTRACK_STACK,
-    OUT_OF_BOARD
-  };
+  private:
+    enum CellType {
+        BOARD_CELL,
+        ROW_HINT,
+        ROW_PLACEMENT_COUNT,
+        ROW_BACKTRACK_STACK,
+        COLUMN_HINT,
+        COLUMN_PLACEMENT_COUNT,
+        COLUMN_BACKTRACK_STACK,
+        OUT_OF_BOARD
+    };
 
-public:
-  TableRenderer();
-  void render(const NonogramBoard &nonogramBoard
-              //const SharedBacktrackStack &sharedBacktrackStack,
-              //const SharedHighlightIndexes &sharedHighlightIndexes
-              ) const;
+  public:
+    TableRenderer();
+    void render(
+      const Core::NonogramBoard &nonogramBoard
+      // const SharedBacktrackStack &sharedBacktrackStack,
+      // const SharedHighlightIndexes &sharedHighlightIndexes
+    ) const;
 
-private:
-  CellType determineCellType(RowIndex rowIndex, ColumnIndex columnIndex,
-                             RowLength columnHintLength,
-                             ColumnLength rowHintLength,
-                             RowLength boardRowLength,
-                             ColumnLength boardColumnLength,
-                             RowLength columnBacktrackStackLength,
-                             ColumnLength rowBacktrackStackLength) const;
+  private:
+    CellType determineCellType(
+      Core::RowIndex rowIndex,
+      Core::ColumnIndex columnIndex,
+      Core::RowLength columnHintLength,
+      Core::ColumnLength rowHintLength,
+      Core::RowLength boardRowLength,
+      Core::ColumnLength boardColumnLength,
+      Core::RowLength columnBacktrackStackLength,
+      Core::ColumnLength rowBacktrackStackLength) const;
 
-  void setupCellStyle(RowIndex rowIndex, ColumnIndex columnIndex,
-                      RowLength columnHintLength, ColumnLength rowHintLength,
-                      Board board, CellType cellType,
-                      HighlightIndexes highlightIndexes) const;
+    void setupCellStyle(
+      Core::RowIndex rowIndex,
+      Core::ColumnIndex columnIndex,
+      Core::RowLength columnHintLength,
+      Core::ColumnLength rowHintLength,
+      Core::Board board,
+      CellType cellType,
+      Rendering::HighlightIndexes highlightIndexes) const;
 
-  std::string setLabel(RowIndex rowIndex, ColumnIndex columnIndex,
-                       CellType cellType, RowLength columnHintLength,
-                       ColumnLength rowHintLength,
-                       RowHintSetList rowHintSetList,
-                       ColumnHintSetList columnHintSetList,
-                       RowPlacementCountList rowPlacementCountList,
-                       ColumnPlacementCountList columnPlacementCountList,
-                       float cell_size/*, BacktrackStack backtrackStack*/) const;
+    std::string setLabel(
+      Core::RowIndex rowIndex,
+      Core::ColumnIndex columnIndex,
+      CellType cellType,
+      Core::RowLength columnHintLength,
+      Core::ColumnLength rowHintLength,
+      Core::RowHintSetList rowHintSetList,
+      Core::ColumnHintSetList columnHintSetList,
+      Core::RowPlacementCountList rowPlacementCountList,
+      Core::ColumnPlacementCountList columnPlacementCountList,
+      float cell_size /*, BacktrackStack backtrackStack*/) const;
 
+    void drawGridLine(
+      Core::RowIndex rowIndex,
+      Core::ColumnIndex columnIndex,
+      Core::RowLength columnHintLength,
+      Core::ColumnLength rowHintLength,
+      Core::RowLength columnPlacementCountLength,
+      Core::ColumnLength rowPlacementCountLength) const;
 
-  void drawGridLine(RowIndex rowIndex, ColumnIndex columnIndex,
-                    RowLength columnHintLength, ColumnLength rowHintLength,
-                    RowLength columnPlacementCountLength,
-                    ColumnLength rowPlacementCountLength) const;
-  ImU32 getCellColorU32(RowIndex rowIndex, ColumnIndex columnIndex,
-                        RowLength columnHintLength, ColumnLength rowHintLength,
-                        Board board, CellType cellType,
-                        //HighlightIndexes highlightIndexes,
-                        bool isHovered) const;
-  void drawGridLineDirect(ImDrawList *draw_list, ImVec2 p_min, ImVec2 p_max,
-                          RowIndex rowIndex, ColumnIndex columnIndex,
-                          RowLength columnHintLength,
-                          ColumnLength rowHintLength, RowLength boardRowLength,
-                          ColumnLength boardColumnLength) const;
+    ImU32 getCellColorU32(
+      Core::RowIndex rowIndex,
+      Core::ColumnIndex columnIndex,
+      Core::RowLength columnHintLength,
+      Core::ColumnLength rowHintLength,
+      Core::Board board,
+      CellType cellType,
+      // Core::HighlightIndexes highlightIndexes,
+      bool isHovered) const;
+
+    void drawGridLineDirect(
+      ImDrawList *draw_list,
+      ImVec2 p_min,
+      ImVec2 p_max,
+      Core::RowIndex rowIndex,
+      Core::ColumnIndex columnIndex,
+      Core::RowLength columnHintLength,
+      Core::ColumnLength rowHintLength,
+      Core::RowLength boardRowLength,
+      Core::ColumnLength boardColumnLength) const;
 };
 
-#endif
+} // namespace VersaN::Rendering
+
+#endif // VERSAN_CORE_TABLERENDERER_H

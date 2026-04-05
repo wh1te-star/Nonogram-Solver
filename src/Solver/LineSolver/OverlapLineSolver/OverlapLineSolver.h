@@ -1,9 +1,11 @@
-#ifndef OVERLAPLINESOLVER_H
-#define OVERLAPLINESOLVER_H
+#ifndef VERSAN_CORE_OVERLAPLINESOLVER_H
+#define VERSAN_CORE_OVERLAPLINESOLVER_H
 
 #include "Solver/LeftmostPlacementFinder/ILeftmostPlacementFinder.h"
 #include "Solver/LineSolver/ILineSolver.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
+
+namespace VersaN::Solver {
 
 class OverlapLineSolver : public ILineSolver {
   private:
@@ -15,11 +17,13 @@ class OverlapLineSolver : public ILineSolver {
       ILeftmostPlacementFinder &leftmostPlacementFinder,
       IRightmostPlacementFinder &rightmostPlacementFinder);
     LineSolverResult
-    solve(const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler) override;
+    solve(const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     LineSolverResult
-    overlapLineSolve(const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler);
+    overlapLineSolve(const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler);
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_OVERLAPLINESOLVER_H

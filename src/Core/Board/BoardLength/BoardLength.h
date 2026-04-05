@@ -1,15 +1,19 @@
-#ifndef BOARDLENGTH_H
-#define BOARDLENGTH_H
+#ifndef VERSAN_CORE_BOARDLENGTH_H
+#define VERSAN_CORE_BOARDLENGTH_H
+
+namespace VersaN::Core {
 
 class BoardLength {
-protected:
+  protected:
     int length;
 
-public:
+  public:
     BoardLength(int length);
 
-public:
+  public:
     int getLength() const;
 };
 
-#endif
+} // namespace VersaN::Core
+
+#endif // VERSAN_CORE_BOARDLENGTH_H

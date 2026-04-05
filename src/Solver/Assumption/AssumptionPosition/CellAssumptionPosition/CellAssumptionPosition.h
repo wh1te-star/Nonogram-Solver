@@ -1,19 +1,22 @@
-#ifndef CELLASSUMPTIONPOSITION_H
-#define CELLASSUMPTIONPOSITION_H
+#ifndef VERSAN_CORE_CELLASSUMPTIONPOSITION_H
+#define VERSAN_CORE_CELLASSUMPTIONPOSITION_H
 
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
-
 #include "Core/Index/Position/CellPosition/CellPosition.h"
+
+namespace VersaN::Solver {
 
 class CellAssumptionPosition : public IAssumptionPosition {
   private:
-    CellPosition cellPosition;
+    Core::CellPosition cellPosition;
 
   public:
-    CellAssumptionPosition(CellPosition cellPosition);
+    CellAssumptionPosition(Core::CellPosition cellPosition);
     virtual ~CellAssumptionPosition() = default;
 
-    CellPosition getCellPosition() const;
+    Core::CellPosition getCellPosition() const;
 };
 
-#endif
+} // namespace VersaN::Solver
+
+#endif // VERSAN_CORE_CELLASSUMPTIONPOSITION_H

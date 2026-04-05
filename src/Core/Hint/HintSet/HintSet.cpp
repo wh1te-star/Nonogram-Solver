@@ -1,5 +1,8 @@
 #include "Core/Hint/HintSet/HintSet.h"
+
 #include "Core/Hint/HintNumber/HintNumber.h"
+
+namespace VersaN::Core {
 
 HintSet::HintSet(std::vector<HintNumber> numbers) : numbers(numbers) {}
 
@@ -22,3 +25,5 @@ bool HintSet::operator!=(const HintSet &other) const {
 HintNumber HintSet::operator[](int index) const { return numbers[index]; }
 
 size_t HintSet::size() const { return numbers.size(); }
+
+} // namespace VersaN::Core

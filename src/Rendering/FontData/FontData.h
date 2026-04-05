@@ -1,25 +1,27 @@
-#ifndef FONTDATA_H
-#define FONTDATA_H
+#ifndef VERSAN_CORE_FONTDATA_H
+#define VERSAN_CORE_FONTDATA_H
 
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include "imgui.h"
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+
+namespace VersaN::Rendering {
 
 class FontData {
-private:
-	static const int minFontSize = 10;
-	static const int maxFontSize = 70;
-	static const int fontSizeStep = 5;
-	static ImFont* fonts[(maxFontSize-minFontSize)/fontSizeStep+1];
-	static const ImWchar glyph_ranges_numbers[];
+  private:
+    static const int minFontSize = 10;
+    static const int maxFontSize = 70;
+    static const int fontSizeStep = 5;
+    static ImFont *fonts[(maxFontSize - minFontSize) / fontSizeStep + 1];
+    static const ImWchar glyph_ranges_numbers[];
 
-	FontData() = delete;
+    FontData() = delete;
 
-public:
-	static void initFontData();
-	static ImFont* getFontByCellSize(int cellSize);
+  public:
+    static void initFontData();
+    static ImFont *getFontByCellSize(int cellSize);
 };
 
+} // namespace VersaN::Rendering
 
-#endif
+#endif // VERSAN_CORE_FONTDATA_H
