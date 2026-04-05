@@ -42,17 +42,6 @@ Cell &Line::operator[](const CellIndex &index) { return line[index.getIndex()]; 
 
 const size_t Line::size() const { return line.size(); }
 
-const std::vector<CellLocation> Line::getCellLocationList(const CellPosition &cellPosition) const {
-    std::vector<CellLocation> cellLocationList;
-    int shift = 0;
-    for (Cell cell : line) {
-        CellPosition cellCoordinate = cellPosition.move(0, shift);
-        cellLocationList.emplace_back(cellCoordinate, cell);
-        shift++;
-    }
-    return cellLocationList;
-}
-
 bool Line::canPlaceBlock(const CellIndex &startIndex, const HintNumber &hintNumber) const {
     int start = startIndex.getIndex();
     int end = start + hintNumber.getNumber() - 1;

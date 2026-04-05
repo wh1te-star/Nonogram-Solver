@@ -3,7 +3,6 @@
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Board/BoardLength/RowLength.h"
 #include "Core/Cell/Cell/Cell.h"
-#include "Core/Cell/CellLocation/CellLocation.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 

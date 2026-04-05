@@ -2,7 +2,6 @@
 #define VERSANO_CORE_PLACEMENT_H
 
 #include "Core/Cell/Cell/Cell.h"
-#include "Core/Cell/CellLocation/CellLocation.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 
 #include <vector>
@@ -42,7 +41,6 @@ class Placement {
 
   public:
     const size_t size() const;
-    const std::vector<CellLocation> getCellLocationList(const CellPosition &cellPosition) const;
     const std::vector<CellIndex> getHintIndex() const;
     RowPlacement toRowPlacement() const;
     ColumnPlacement toColumnPlacement() const;

@@ -68,18 +68,6 @@ bool Placement::hasNone() const {
 
 const size_t Placement::size() const { return placement.size(); }
 
-const std::vector<CellLocation>
-Placement::getCellLocationList(const CellPosition &cellPosition) const {
-    std::vector<CellLocation> cellLocationList;
-    int shift = 0;
-    for (Cell cell : placement) {
-        CellPosition cellCellPosition = cellPosition.move(0, shift);
-        cellLocationList.emplace_back(cellCellPosition, cell);
-        shift++;
-    }
-    return cellLocationList;
-}
-
 const std::vector<CellIndex> Placement::getHintIndex() const {
     std::vector<CellIndex> hintIndexList;
     for (size_t i = 0; i < placement.size(); ++i) {
