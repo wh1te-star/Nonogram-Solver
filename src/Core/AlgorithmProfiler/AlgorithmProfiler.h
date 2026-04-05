@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cstdint>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class AlgorithmProfiler {
   private:
@@ -23,6 +23,6 @@ class AlgorithmProfiler {
     bool isStackUsageLimitExceeded() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_ALGORITHMPROFILER_H

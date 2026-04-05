@@ -1,23 +1,23 @@
 #include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
-#include <algorithm>
 #include "Core/Placement/PlacementCount/PlacementCount.h"
+#include <algorithm>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-PlacementCountList::PlacementCountList(std::vector<PlacementCount> placementCountList) :
-	placementCountList(placementCountList) {}
+PlacementCountList::PlacementCountList(std::vector<PlacementCount> placementCountList)
+    : placementCountList(placementCountList) {}
 
-const std::vector<PlacementCount>& PlacementCountList::getPlacementCountList() const {
-	return placementCountList;
+const std::vector<PlacementCount> &PlacementCountList::getPlacementCountList() const {
+    return placementCountList;
 }
 
-bool PlacementCountList::operator==(const PlacementCountList& other) const {
+bool PlacementCountList::operator==(const PlacementCountList &other) const {
     return placementCountList == other.placementCountList;
 }
 
-bool PlacementCountList::operator!=(const PlacementCountList& other) const {
+bool PlacementCountList::operator!=(const PlacementCountList &other) const {
     return !(*this == other);
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

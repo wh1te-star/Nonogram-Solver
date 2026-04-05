@@ -23,9 +23,9 @@
 #include <glad/glad.h>
 #include <thread>
 
-using namespace VersaN::Core;
-using namespace VersaN::Solver;
-namespace VersaN::Rendering {
+using namespace VersaNo::Core;
+using namespace VersaNo::Solver;
+namespace VersaNo::Rendering {
 
 RenderingSystem::RenderingSystem() : window(nullptr), io(nullptr) {}
 
@@ -196,4 +196,4 @@ void RenderingSystem::finalize() {
     glfwTerminate();
 }
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering

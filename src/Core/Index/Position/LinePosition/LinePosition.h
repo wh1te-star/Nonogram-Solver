@@ -8,7 +8,7 @@
 #include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Index/Position/IPosition.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class LinePosition : public IPosition {
   private:
@@ -27,6 +27,6 @@ class LinePosition : public IPosition {
     bool operator!=(const LinePosition &other) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_LINEPOSITION_H

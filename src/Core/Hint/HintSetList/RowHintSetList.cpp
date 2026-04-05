@@ -3,17 +3,14 @@
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Hint/HintSetList/HintSetList.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-RowHintSetList::RowHintSetList(std::vector<HintSet> hintSetList)
-    : HintSetList(hintSetList) {}
+RowHintSetList::RowHintSetList(std::vector<HintSet> hintSetList) : HintSetList(hintSetList) {}
 
 HintSet RowHintSetList::operator[](RowIndex rowIndex) const {
-  return hintSetList[rowIndex.getIndex()];
+    return hintSetList[rowIndex.getIndex()];
 }
 
-ColumnLength RowHintSetList::getMaxHintSetLength() const {
-  return ColumnLength(getMaxItemCount());
-}
+ColumnLength RowHintSetList::getMaxHintSetLength() const { return ColumnLength(getMaxItemCount()); }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

@@ -3,11 +3,11 @@
 
 #include "Core/Index/CellIndex/CellIndex.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class ColumnLength;
 }
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class ColumnIndex : public CellIndex {
   public:
@@ -32,11 +32,11 @@ class ColumnIndex : public CellIndex {
     bool operator>=(const ColumnLength &other) const;
     static std::vector<ColumnIndex> range(int first, int last);
 };
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 namespace std {
-template <> struct hash<VersaN::Core::ColumnIndex> {
-    size_t operator()(const VersaN::Core::ColumnIndex &columnIndex) const {
+template <> struct hash<VersaNo::Core::ColumnIndex> {
+    size_t operator()(const VersaNo::Core::ColumnIndex &columnIndex) const {
         return std::hash<int>{}(columnIndex.getIndex());
     }
 };

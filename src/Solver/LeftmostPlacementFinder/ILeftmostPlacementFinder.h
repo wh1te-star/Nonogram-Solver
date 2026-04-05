@@ -5,11 +5,11 @@
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class Line;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class ILeftmostPlacementFinder {
   public:
@@ -21,6 +21,6 @@ class ILeftmostPlacementFinder {
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_ILEFTMOSTPLACEMENTFINDER_H

@@ -6,7 +6,7 @@
 #include "Core/Index/Position/LinePosition/LinePosition.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class LineAssumptionPosition : public IAssumptionPosition {
   private:
@@ -19,6 +19,6 @@ class LineAssumptionPosition : public IAssumptionPosition {
     Core::LinePosition getLinePosition() const;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_LINEASSUMPTIONPOSITION_H

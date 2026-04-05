@@ -2,28 +2,24 @@
 
 #include "Core/Hint/HintNumber/HintNumber.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 HintSet::HintSet(std::vector<HintNumber> numbers) : numbers(numbers) {}
 
 HintSet::HintSet(std::vector<int> numbers) {
-  for (int number : numbers) {
-    this->numbers.push_back(HintNumber(number));
-  }
+    for (int number : numbers) {
+        this->numbers.push_back(HintNumber(number));
+    }
 }
 
 std::vector<HintNumber> HintSet::getNumbers() const { return numbers; }
 
-bool HintSet::operator==(const HintSet &other) const {
-  return numbers == other.numbers;
-}
+bool HintSet::operator==(const HintSet &other) const { return numbers == other.numbers; }
 
-bool HintSet::operator!=(const HintSet &other) const {
-  return !(*this == other);
-}
+bool HintSet::operator!=(const HintSet &other) const { return !(*this == other); }
 
 HintNumber HintSet::operator[](int index) const { return numbers[index]; }
 
 size_t HintSet::size() const { return numbers.size(); }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

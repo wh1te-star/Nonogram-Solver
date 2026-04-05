@@ -5,7 +5,7 @@
 #include "Solver/LineSolver/ILineSolver.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class OverlapLineSolver : public ILineSolver {
   private:
@@ -16,14 +16,16 @@ class OverlapLineSolver : public ILineSolver {
     OverlapLineSolver(
       ILeftmostPlacementFinder &leftmostPlacementFinder,
       IRightmostPlacementFinder &rightmostPlacementFinder);
-    LineSolverResult
-    solve(const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler) override;
+    LineSolverResult solve(
+      const Core::HintSet &hintSet,
+      Core::Line &line,
+      IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
-    LineSolverResult
-    overlapLineSolve(const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler);
+    LineSolverResult overlapLineSolve(
+      const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_OVERLAPLINESOLVER_H

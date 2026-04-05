@@ -9,7 +9,7 @@
 
 #include <vector>
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class PlacementCountAssumptionSelector : public IAssumptionSelector {
   private:
@@ -25,6 +25,6 @@ class PlacementCountAssumptionSelector : public IAssumptionSelector {
     select(const Core::NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_PLACEMENTCOUNTASSUMPTIONSELECTOR_H

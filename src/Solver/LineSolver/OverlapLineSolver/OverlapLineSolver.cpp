@@ -4,8 +4,8 @@
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.h"
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 OverlapLineSolver::OverlapLineSolver(
   ILeftmostPlacementFinder &leftmostPlacementFinder,
@@ -72,4 +72,4 @@ LineSolverResult OverlapLineSolver::overlapLineSolve(
     return LineSolverResult::Success;
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

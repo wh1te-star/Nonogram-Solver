@@ -1,10 +1,13 @@
 #include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
-PlacementFinderResult
-DFSLeftmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
+PlacementFinderResult DFSLeftmostPlacementFinder::find(
+  const HintSet &hintSet,
+  Line &line,
+  Placement &resultPlacement,
+  IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
 
     dfsLeftmostPlacementFind(hintSet, line, resultPlacement, boardUpdateHandler);
@@ -15,10 +18,14 @@ DFSLeftmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &
     return PlacementFinderResult::notFound;
 }
 PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFind(
-  const HintSet &hintSet, Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
+  const HintSet &hintSet,
+  Line &line,
+  Placement &resultPlacement,
+  IBoardUpdateHandler &boardUpdateHandler) {
     Placement currentPlacement = Placement("");
 
-    return dfsLeftmostPlacementFindRecursive(hintSet, line, currentPlacement, 0, resultPlacement, boardUpdateHandler);
+    return dfsLeftmostPlacementFindRecursive(
+      hintSet, line, currentPlacement, 0, resultPlacement, boardUpdateHandler);
 }
 
 PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
@@ -28,7 +35,7 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
   int currentHintIndex,
   Placement &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
-    if(profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
+    if (profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
         return PlacementFinderResult::notFound;
     }
 
@@ -58,7 +65,8 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
             currentPlacement = currentPlacement + Placement("W");
         }
         PlacementFinderResult result = dfsLeftmostPlacementFindRecursive(
-          hintSet, line, currentPlacement, currentHintIndex + 1, resultPlacement, boardUpdateHandler);
+          hintSet, line, currentPlacement, currentHintIndex + 1, resultPlacement,
+          boardUpdateHandler);
         if (result == PlacementFinderResult::success) {
             return PlacementFinderResult::success;
         }
@@ -79,4 +87,4 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
     return PlacementFinderResult::notFound;
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

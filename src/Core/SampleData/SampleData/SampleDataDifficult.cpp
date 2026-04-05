@@ -1,9 +1,9 @@
 #include "Core/SampleData/Repository/SampleDataRepository.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-std::string SampleDataRepository::GetDifficultColumnHintString(){
-	return R"###(
+std::string SampleDataRepository::GetDifficultColumnHintString() {
+    return R"###(
  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  1,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   
  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  1,  1,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  3,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   
  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  3,  3,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  1,  1,  1,  2,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   
@@ -21,8 +21,8 @@ std::string SampleDataRepository::GetDifficultColumnHintString(){
 	)###";
 }
 
-std::string SampleDataRepository::GetDifficultRowHintString(){
-	return R"###(
+std::string SampleDataRepository::GetDifficultRowHintString() {
+    return R"###(
   ,   ,   ,   ,   ,   ,   ,   ,   ,   , 12
   ,   ,   ,   ,   ,   ,   ,   ,   ,  3,  3
   ,   ,   ,   ,   ,   ,   ,   ,   ,  2,  2
@@ -98,4 +98,4 @@ std::string SampleDataRepository::GetDifficultRowHintString(){
 	)###";
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

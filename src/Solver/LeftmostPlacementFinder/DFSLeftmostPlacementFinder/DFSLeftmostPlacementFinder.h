@@ -5,7 +5,7 @@
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/LeftMostPlacementFinder/ILeftMostPlacementFinder.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
   private:
@@ -35,6 +35,6 @@ class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
       IBoardUpdateHandler &boardUpdateHandler);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_DFSLEFTMOSTPLACEMENTFINDER_H

@@ -11,7 +11,7 @@
 #include <thread>
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class AlgorithmThreadRunner {
   private:
@@ -31,6 +31,6 @@ class AlgorithmThreadRunner {
     void run(Solver::ISolver &solver);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_ALGORITHMTHREADRUNNER_H

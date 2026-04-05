@@ -3,7 +3,7 @@
 
 #include <atomic>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class StopSignal {
   private:
@@ -14,6 +14,6 @@ class StopSignal {
     bool shouldStop() const;
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
 #endif // VERSAN_CORE_STOPSIGNAL_H

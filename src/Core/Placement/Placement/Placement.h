@@ -7,14 +7,14 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class RowPlacement;
 }
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class ColumnPlacement;
 }
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Placement {
   private:
@@ -49,6 +49,6 @@ class Placement {
 };
 std::ostream &operator<<(std::ostream &os, const Placement &placement);
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_PLACEMENT_H

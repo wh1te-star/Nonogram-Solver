@@ -9,7 +9,7 @@
 #include "Rendering/Shared/ISender.h"
 #include "Solver/IBoardUpdateHandler.h"
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class RenderingBoardUpdateHandler : public Solver::IBoardUpdateHandler {
   private:
@@ -33,12 +33,14 @@ class RenderingBoardUpdateHandler : public Solver::IBoardUpdateHandler {
       const Core::Line &afterLine) override;
 
     void onBoardUpdate(
-      const Core::Board &targetBoard, const Core::Board &beforeBoard, const Core::Board &afterBoard) override;
+      const Core::Board &targetBoard,
+      const Core::Board &beforeBoard,
+      const Core::Board &afterBoard) override;
 
   private:
     void checkAndSendBoard();
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
 #endif // VERSAN_CORE_RENDERINGBOARDUPDATEHANDLER_H

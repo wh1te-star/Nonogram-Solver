@@ -8,15 +8,17 @@
 
 #include <vector>
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IExhaustivePlacementPatternFinder {
   public:
     IExhaustivePlacementPatternFinder() = default;
-    virtual ExhaustivePlacementPatternFinderResult
-    find(const Core::HintSet &hintSet, const Core::Line &line, std::vector<Core::Placement> &solutions) = 0;
+    virtual ExhaustivePlacementPatternFinderResult find(
+      const Core::HintSet &hintSet,
+      const Core::Line &line,
+      std::vector<Core::Placement> &solutions) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_IEXHAUSTIVEPLACEMENTPATTERNFINDER_H

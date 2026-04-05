@@ -5,7 +5,7 @@
 #include "Core/Hint/HintSetList/HintSetList.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class ColumnHintSetList : public HintSetList {
   public:
@@ -18,6 +18,6 @@ class ColumnHintSetList : public HintSetList {
     RowLength getMaxHintSetLength() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_COLUMNHINTSETLIST_H

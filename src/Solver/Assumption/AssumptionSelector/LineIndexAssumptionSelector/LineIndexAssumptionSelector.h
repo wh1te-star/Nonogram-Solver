@@ -6,7 +6,7 @@
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class LineIndexAssumptionSelector : public IAssumptionSelector {
   private:
@@ -18,6 +18,6 @@ class LineIndexAssumptionSelector : public IAssumptionSelector {
     select(const Core::NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_LINEINDEXASSUMPTIONSELECTOR_H

@@ -7,8 +7,8 @@
 
 #include <cassert>
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 std::vector<std::unique_ptr<IAssumption>> CellAssumptionEnumerator::enumerate(
   const NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) {
@@ -28,4 +28,4 @@ std::vector<std::unique_ptr<IAssumption>> CellAssumptionEnumerator::enumerate(
     return assumptions;
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

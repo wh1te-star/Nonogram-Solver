@@ -5,7 +5,7 @@
 #include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/IBoardUpdateHandler.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class ISolver {
   public:
@@ -16,6 +16,6 @@ class ISolver {
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_ISOLVER_H

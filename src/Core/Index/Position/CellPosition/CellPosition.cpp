@@ -5,7 +5,7 @@
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 CellPosition::CellPosition(RowIndex rowIndex, ColumnIndex columnIndex)
     : rowIndex(rowIndex), columnIndex(columnIndex) {}
@@ -28,4 +28,4 @@ CellPosition CellPosition::move(RowLength rowShift, ColumnLength columnShift) co
     return CellPosition(rowIndex + rowShift, columnIndex + columnShift);
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

@@ -8,7 +8,7 @@
 #include "Core/Hint/HintSetList/ColumnHintSetList.h"
 #include "Core/Hint/HintSetList/RowHintSetList.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class NonogramBoard {
   private:
@@ -44,6 +44,6 @@ class NonogramBoard {
     ColumnHintSetList getColumnHintSetList() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_NONOGRAMBOARD_H

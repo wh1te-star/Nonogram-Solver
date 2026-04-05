@@ -1,18 +1,16 @@
 #include "Core/SampleData/Repository/SampleDataRepository.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-std::string SampleDataRepository::GetLambdaColumnHintString()
-{
-	return R"###(
+std::string SampleDataRepository::GetLambdaColumnHintString() {
+    return R"###(
 		2, 1, 2, 3,  ,  ,  ,  ,  ,  
 		1, 3, 4, 4, 4, 3, 3, 3, 2, 2
 	)###";
 }
 
-std::string SampleDataRepository::GetLambdaRowHintString()
-{
-	return R"###(
+std::string SampleDataRepository::GetLambdaRowHintString() {
+    return R"###(
 		 ,  , 2
 		 , 1, 2
 		 , 1, 1
@@ -28,4 +26,4 @@ std::string SampleDataRepository::GetLambdaRowHintString()
 	)###";
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

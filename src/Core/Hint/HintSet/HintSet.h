@@ -6,7 +6,7 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class HintSet {
   private:
@@ -28,6 +28,6 @@ class HintSet {
     size_t size() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_HINTSET_H

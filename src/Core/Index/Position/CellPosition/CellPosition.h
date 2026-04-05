@@ -7,7 +7,7 @@
 #include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Index/Position/IPosition.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class CellPosition : public IPosition {
   private:
@@ -30,6 +30,6 @@ class CellPosition : public IPosition {
     CellPosition move(RowLength rowShift, ColumnLength columnShift) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_CELLPOSITION_H

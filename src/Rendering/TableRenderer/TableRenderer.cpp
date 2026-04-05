@@ -13,8 +13,8 @@
 #include <cmath>
 #include <string>
 
-using namespace VersaN::Core;
-namespace VersaN::Rendering {
+using namespace VersaNo::Core;
+namespace VersaNo::Rendering {
 
 TableRenderer::TableRenderer() {}
 
@@ -437,4 +437,4 @@ void TableRenderer::drawGridLineDirect(
       ImVec2(p_min.x, p_max.y), ImVec2(p_max.x, p_max.y), IM_COL32(0, 0, 0, 255), rowThickness);
 }
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering

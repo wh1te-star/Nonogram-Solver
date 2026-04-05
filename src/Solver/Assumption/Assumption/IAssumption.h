@@ -3,7 +3,7 @@
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IAssumption {
   public:
@@ -11,6 +11,6 @@ class IAssumption {
     virtual void applyTo(Core::NonogramBoard &board) const = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_IASSUMPTION_H

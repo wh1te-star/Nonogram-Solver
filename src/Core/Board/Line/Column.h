@@ -3,13 +3,13 @@
 
 #include "Core/Board/Line/Line.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Column : public Line {
   public:
     explicit Column(std::vector<Cell> line);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_COLUMN_H

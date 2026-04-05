@@ -18,7 +18,7 @@
 
 #include <string>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class TableRenderer {
   private:
@@ -103,6 +103,6 @@ class TableRenderer {
       Core::ColumnLength boardColumnLength) const;
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
 #endif // VERSAN_CORE_TABLERENDERER_H

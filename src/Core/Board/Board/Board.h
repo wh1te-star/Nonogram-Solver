@@ -16,7 +16,7 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Board {
   private:
@@ -49,6 +49,6 @@ class Board {
     void applyBoard(const Board &board, bool overwriteNone);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_BOARD_H

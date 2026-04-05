@@ -4,7 +4,7 @@
 #include "Core/Index/Position/HintPosition/HintPosition.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class HintAssumptionPosition : public IAssumptionPosition {
   private:
@@ -17,6 +17,6 @@ class HintAssumptionPosition : public IAssumptionPosition {
     Core::HintPosition getHintPosition() const;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_HINTASSUMPTIONPOSITION_H

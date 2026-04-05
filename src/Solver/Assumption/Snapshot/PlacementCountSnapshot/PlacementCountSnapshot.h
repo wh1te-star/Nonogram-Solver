@@ -7,7 +7,7 @@
 #include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class PlacementCountSnapshot : public ISnapshot {
   public:
@@ -23,6 +23,6 @@ class PlacementCountSnapshot : public ISnapshot {
     void restore(Core::NonogramBoard &nonogramBoard) const override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_PLACEMENTCOUNTSNAPSHOT_H

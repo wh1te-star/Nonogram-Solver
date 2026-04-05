@@ -6,7 +6,7 @@
 #include "Core/Index/Position/HintPosition/HintPosition.h"
 #include "Core/Index/Position/LinePosition/LinePosition.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IBoardUpdateHandler {
   public:
@@ -30,6 +30,6 @@ class IBoardUpdateHandler {
       const Core::Board &afterBoard) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_IBOARDUPDATEHANDLER_H

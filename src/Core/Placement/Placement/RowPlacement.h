@@ -3,13 +3,13 @@
 
 #include "Core/Placement/Placement/Placement.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class RowPlacement : public Placement {
   public:
     explicit RowPlacement(std::vector<Cell> placement);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_ROWPLACEMENT_H

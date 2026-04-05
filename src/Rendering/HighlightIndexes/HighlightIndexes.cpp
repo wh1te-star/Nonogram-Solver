@@ -1,46 +1,38 @@
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 
-using namespace VersaN::Core;
+using namespace VersaNo::Core;
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
-HighlightIndexes::HighlightIndexes(){}
+HighlightIndexes::HighlightIndexes() {}
 
-void HighlightIndexes::addRowIndex(const RowIndex& rowIndex) {
-	rowIndexes.insert(rowIndex);
+void HighlightIndexes::addRowIndex(const RowIndex &rowIndex) { rowIndexes.insert(rowIndex); }
+
+void HighlightIndexes::addColumnIndex(const ColumnIndex &columnIndex) {
+    columnIndexes.insert(columnIndex);
 }
 
-void HighlightIndexes::addColumnIndex(const ColumnIndex& columnIndex) {
-	columnIndexes.insert(columnIndex);
+void HighlightIndexes::deleteRowIndex(const RowIndex &rowIndex) { rowIndexes.erase(rowIndex); }
+
+void HighlightIndexes::deleteColumnIndex(const ColumnIndex &columnIndex) {
+    columnIndexes.erase(columnIndex);
 }
 
-void HighlightIndexes::deleteRowIndex(const RowIndex& rowIndex) {
-	rowIndexes.erase(rowIndex);
+bool HighlightIndexes::findRowIndex(const RowIndex &rowIndex) const {
+    return rowIndexes.find(rowIndex) != rowIndexes.end();
 }
 
-void HighlightIndexes::deleteColumnIndex(const ColumnIndex& columnIndex) {
-	columnIndexes.erase(columnIndex);
-}
-
-bool HighlightIndexes::findRowIndex(const RowIndex& rowIndex) const {
-	return rowIndexes.find(rowIndex) != rowIndexes.end();
-}
-
-bool HighlightIndexes::findColumnIndex(const ColumnIndex& columnIndex) const {
-	return columnIndexes.find(columnIndex) != columnIndexes.end();
+bool HighlightIndexes::findColumnIndex(const ColumnIndex &columnIndex) const {
+    return columnIndexes.find(columnIndex) != columnIndexes.end();
 }
 
 void HighlightIndexes::clear() {
-	rowIndexes.clear();
-	columnIndexes.clear();
+    rowIndexes.clear();
+    columnIndexes.clear();
 }
 
-void HighlightIndexes::clearRowIndexes() {
-	rowIndexes.clear();
-}
+void HighlightIndexes::clearRowIndexes() { rowIndexes.clear(); }
 
-void HighlightIndexes::clearColumnIndexes() {
-	columnIndexes.clear();
-}
+void HighlightIndexes::clearColumnIndexes() { columnIndexes.clear(); }
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering

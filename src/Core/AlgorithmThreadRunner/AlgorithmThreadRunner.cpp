@@ -11,9 +11,9 @@
 #include <algorithm>
 #include <chrono>
 
-using namespace VersaN::Rendering;
-using namespace VersaN::Solver;
-namespace VersaN::Core {
+using namespace VersaNo::Rendering;
+using namespace VersaNo::Solver;
+namespace VersaNo::Core {
 
 AlgorithmThreadRunner::AlgorithmThreadRunner(
   StopSignal &stopSignal,
@@ -34,4 +34,4 @@ void AlgorithmThreadRunner::run(ISolver &solver) {
     }
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

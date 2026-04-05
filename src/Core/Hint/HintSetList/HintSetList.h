@@ -6,7 +6,7 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class HintSetList {
   private:
@@ -30,6 +30,6 @@ class HintSetList {
     int getMaxItemCount() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_HINTSETLIST_H

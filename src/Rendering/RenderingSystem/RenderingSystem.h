@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class RenderingSystem {
   private:
@@ -21,6 +21,6 @@ class RenderingSystem {
     void finalize();
 };
 
-} // namespace VersanN::Rendering
+} // namespace VersaNo::Rendering
 
 #endif // VERSAN_CORE_RENDERINGSYSTEM_H

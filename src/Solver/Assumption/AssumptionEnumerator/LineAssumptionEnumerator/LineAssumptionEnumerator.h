@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class LineAssumptionEnumerator : public IAssumptionEnumerator {
   private:
@@ -21,10 +21,10 @@ class LineAssumptionEnumerator : public IAssumptionEnumerator {
     LineAssumptionEnumerator(IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder);
     virtual ~LineAssumptionEnumerator() = default;
 
-    virtual std::vector<std::unique_ptr<IAssumption>>
-    enumerate(const Core::NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) override;
+    virtual std::vector<std::unique_ptr<IAssumption>> enumerate(
+      const Core::NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_LINEASSUMPTIONENUMERATOR_H

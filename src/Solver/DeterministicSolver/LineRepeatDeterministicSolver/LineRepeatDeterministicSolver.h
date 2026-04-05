@@ -7,11 +7,11 @@
 #include "Solver/LineSolver/ILineSolver.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class NonogramBoard;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class LineRepeatDeterministicSolver : public IDeterministicSolver {
   public:
@@ -27,6 +27,6 @@ class LineRepeatDeterministicSolver : public IDeterministicSolver {
       Core::NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_LINEREPEATDETERMINISTICSOLVER_H

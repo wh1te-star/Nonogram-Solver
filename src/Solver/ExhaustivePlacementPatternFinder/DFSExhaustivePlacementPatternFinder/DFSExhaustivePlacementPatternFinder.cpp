@@ -1,7 +1,7 @@
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 ExhaustivePlacementPatternFinderResult DFSExhaustivePlacementPatternFinder::find(
   const HintSet &hintSet, const Line &line, std::vector<Placement> &solutions) {
@@ -61,4 +61,4 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
     return ExhaustivePlacementPatternFinderResult::success;
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

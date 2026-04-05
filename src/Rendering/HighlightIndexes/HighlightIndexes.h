@@ -6,7 +6,7 @@
 
 #include <unordered_set>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class HighlightIndexes {
   private:
@@ -34,7 +34,6 @@ class HighlightIndexes {
     void clearColumnIndexes();
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
 #endif // VERSAN_CORE_HIGHLIGHTINDEXES_H
-

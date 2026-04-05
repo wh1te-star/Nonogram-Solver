@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class SampleDataRepository {
   public:
@@ -38,6 +38,6 @@ class SampleDataRepository {
     static NonogramBoard getSampleData(SampleDataType type);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_SAMPLEDATAREPOSITORY_H

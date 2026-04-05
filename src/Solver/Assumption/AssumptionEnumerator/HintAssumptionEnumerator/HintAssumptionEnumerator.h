@@ -11,16 +11,16 @@
 
 #include <vector>
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class HintAssumptionEnumerator : public IAssumptionEnumerator {
   public:
     HintAssumptionEnumerator();
     virtual ~HintAssumptionEnumerator() = default;
-    virtual std::vector<std::unique_ptr<IAssumption>>
-    enumerate(const Core::NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) override;
+    virtual std::vector<std::unique_ptr<IAssumption>> enumerate(
+      const Core::NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_HINTASSUMPTIONENUMERATOR_H

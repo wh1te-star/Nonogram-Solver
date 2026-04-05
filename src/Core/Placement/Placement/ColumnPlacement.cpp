@@ -3,9 +3,8 @@
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Cell/CellLocation/CellLocation.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-ColumnPlacement::ColumnPlacement(std::vector<Cell> placement)
-    : Placement(placement) {}
+ColumnPlacement::ColumnPlacement(std::vector<Cell> placement) : Placement(placement) {}
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

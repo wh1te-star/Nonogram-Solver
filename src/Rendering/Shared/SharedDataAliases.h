@@ -4,10 +4,10 @@
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Rendering/Shared/SharedData.h"
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 using SharedNonogramBoard = SharedDataBuffer<Core::NonogramBoard>;
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
 #endif

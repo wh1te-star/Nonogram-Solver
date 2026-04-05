@@ -1,7 +1,7 @@
 #ifndef VERSAN_CORE_IRECEIVER_H
 #define VERSAN_CORE_IRECEIVER_H
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 template <typename T> class IReceiver {
   public:
@@ -10,6 +10,6 @@ template <typename T> class IReceiver {
     virtual T receive() const = 0;
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
 #endif // VERSAN_CORE_IRECEIVER_H

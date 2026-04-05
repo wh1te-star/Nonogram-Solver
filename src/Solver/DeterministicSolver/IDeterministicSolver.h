@@ -5,7 +5,7 @@
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IDeterministicSolver {
   public:
@@ -14,6 +14,6 @@ class IDeterministicSolver {
     solve(Core::NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_IDETERMINISTICSOLVER_H

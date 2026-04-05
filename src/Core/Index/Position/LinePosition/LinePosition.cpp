@@ -5,7 +5,7 @@
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 LinePosition::LinePosition(Orientation orientation, CellIndex cellIndex)
     : orientation(orientation), cellIndex(cellIndex) {}
@@ -15,9 +15,9 @@ const Orientation &LinePosition::getOrientation() const { return orientation; }
 const CellIndex &LinePosition::getCellIndex() const { return cellIndex; }
 
 bool LinePosition::operator==(const LinePosition &other) const {
-    return orientation== other.orientation && cellIndex == other.cellIndex;
+    return orientation == other.orientation && cellIndex == other.cellIndex;
 }
 
 bool LinePosition::operator!=(const LinePosition &other) const { return !(*this == other); }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

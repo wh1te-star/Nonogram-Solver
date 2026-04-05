@@ -5,7 +5,7 @@
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class RowPlacementCountList : public PlacementCountList {
   public:
@@ -16,6 +16,6 @@ class RowPlacementCountList : public PlacementCountList {
     PlacementCount &operator[](RowIndex index);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_ROWPLACEMENTCOUNTLIST_H

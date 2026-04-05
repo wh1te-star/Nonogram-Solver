@@ -5,15 +5,15 @@
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/LineSolverResult.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class ILineSolver {
   public:
     virtual ~ILineSolver() = default;
-    virtual LineSolverResult
-    solve(const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler) = 0;
+    virtual LineSolverResult solve(
+      const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_ILINESOLVER_H

@@ -6,7 +6,7 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class CellChange {
   private:
@@ -19,6 +19,6 @@ class CellChange {
     const std::vector<CellLocation> &getChangeLocations() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_CELLCHANGE_H

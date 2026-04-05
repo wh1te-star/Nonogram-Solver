@@ -7,8 +7,8 @@
 
 #include <cassert>
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 LineAssumptionEnumerator::LineAssumptionEnumerator(
   IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder)
@@ -65,4 +65,4 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
     return {};
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

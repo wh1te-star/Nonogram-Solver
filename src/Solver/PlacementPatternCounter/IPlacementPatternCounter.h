@@ -6,11 +6,11 @@
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class Line;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IPlacementPatternCounter {
   public:
@@ -22,6 +22,6 @@ class IPlacementPatternCounter {
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_IPLACEMENTPATTERNCOUNTER_H

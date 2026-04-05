@@ -4,10 +4,10 @@
 #include "Core/Cell/Cell/Cell.h"
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 using CellVector2D = std::vector<std::vector<Cell>>;
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_CELLVECTOR2D_H

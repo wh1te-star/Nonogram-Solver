@@ -6,14 +6,14 @@
 #include <memory>
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class NonogramBoard;
 }
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 class IAssumptionSelector;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class BacktrackStack {
     std::vector<std::unique_ptr<ISnapshot>> history;
@@ -32,6 +32,6 @@ class BacktrackStack {
     void pop(Core::NonogramBoard &nonogramBoard);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_BACKTRACKSTACK_H

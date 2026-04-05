@@ -1,7 +1,7 @@
 #ifndef VERSAN_CORE_HINTNUMBER_H
 #define VERSAN_CORE_HINTNUMBER_H
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class HintNumber {
   private:
@@ -16,6 +16,6 @@ class HintNumber {
     bool operator!=(const HintNumber &other) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_HINTNUMBER_H

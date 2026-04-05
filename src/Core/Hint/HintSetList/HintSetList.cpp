@@ -4,33 +4,30 @@
 
 #include <algorithm>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-HintSetList::HintSetList(std::vector<HintSet> hintSetList)
-    : hintSetList(hintSetList) {}
+HintSetList::HintSetList(std::vector<HintSet> hintSetList) : hintSetList(hintSetList) {}
 
 std::vector<HintSet> HintSetList::getHintSetList() const { return hintSetList; }
 
 bool HintSetList::operator==(const HintSetList &other) const {
-  return hintSetList == other.hintSetList;
+    return hintSetList == other.hintSetList;
 }
 
-bool HintSetList::operator!=(const HintSetList &other) const {
-  return !(*this == other);
-}
+bool HintSetList::operator!=(const HintSetList &other) const { return !(*this == other); }
 
 const HintSet &HintSetList::operator[](const CellIndex &index) const {
-  return hintSetList[index.getIndex()];
+    return hintSetList[index.getIndex()];
 }
 
 size_t HintSetList::size() const { return hintSetList.size(); }
 
 int HintSetList::getMaxItemCount() const {
-  int maxSize = 0;
-  for (const auto &HintSet : hintSetList) {
-    maxSize = std::max(maxSize, (int)HintSet.size());
-  }
-  return maxSize;
+    int maxSize = 0;
+    for (const auto &HintSet : hintSetList) {
+        maxSize = std::max(maxSize, (int)HintSet.size());
+    }
+    return maxSize;
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

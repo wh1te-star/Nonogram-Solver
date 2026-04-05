@@ -10,7 +10,7 @@
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/Solver/ISolver.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class BacktrackSolver : public ISolver {
   private:
@@ -46,6 +46,6 @@ class BacktrackSolver : public ISolver {
       IBoardUpdateHandler &boardUpdateHandler);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_BACKTRACKSOLVER_H

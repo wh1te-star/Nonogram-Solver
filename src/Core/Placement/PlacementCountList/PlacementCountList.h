@@ -5,7 +5,7 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class PlacementCountList {
   protected:
@@ -25,6 +25,6 @@ class PlacementCountList {
     bool operator!=(const PlacementCountList &other) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_PLACEMENTCOUNTLIST_H

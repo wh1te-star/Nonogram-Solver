@@ -4,7 +4,7 @@
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class CellAssumption : public IAssumption {
   private:
@@ -18,6 +18,6 @@ class CellAssumption : public IAssumption {
     void applyTo(Core::NonogramBoard &board) const override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
 #endif // VERSAN_CORE_CELLASSUMPTION_H

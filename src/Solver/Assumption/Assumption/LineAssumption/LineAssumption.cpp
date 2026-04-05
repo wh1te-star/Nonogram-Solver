@@ -4,8 +4,8 @@
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 LineAssumption::LineAssumption(const LinePosition &linePosition, const Line &line)
     : linePosition(linePosition), line(line) {}
@@ -20,4 +20,4 @@ void LineAssumption::applyTo(NonogramBoard &nonogramBoard) const {
     }
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

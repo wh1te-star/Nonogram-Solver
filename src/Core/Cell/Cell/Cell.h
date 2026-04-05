@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Cell {
   private:
@@ -28,6 +28,6 @@ class Cell {
 
 std::ostream &operator<<(std::ostream &os, const Cell &cell);
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
 #endif // VERSAN_CORE_CELL_H
