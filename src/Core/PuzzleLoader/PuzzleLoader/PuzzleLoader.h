@@ -1,5 +1,5 @@
-#ifndef VERSANO_CORE_SAMPLEDATAREPOSITORY_H
-#define VERSANO_CORE_SAMPLEDATAREPOSITORY_H
+#ifndef VERSANO_CORE_PUZZLELOADER_H
+#define VERSANO_CORE_PUZZLELOADER_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
@@ -11,15 +11,23 @@
 
 namespace VersaNo::Core {
 
-class SampleDataRepository {
+class PuzzleLoader {
   public:
-    enum SampleDataType { Easy, Lambda, Large, Difficult };
+    enum PuzzleType { Easy, Lambda, Large, Difficult };
+
+    static NonogramBoard getPuzzle(PuzzleType type);
 
   private:
-    SampleDataRepository() = delete;
+    PuzzleLoader() = delete;
 
-    static std::string GetColumnHintString(SampleDataType type);
-    static std::string GetRowHintString(SampleDataType type);
+    static RowHintSetList getRowHintSetList(PuzzleType type);
+    static ColumnHintSetList getColumnHintSetList(PuzzleType type);
+    static std::vector<std::vector<HintNumber>> parseHints(const std::string &hintString);
+
+    static std::string GetRowHintString(PuzzleType type);
+    static std::string GetColumnHintString(PuzzleType type);
+
+  private:
     static std::string GetEasyRowHintString();
     static std::string GetEasyColumnHintString();
     static std::string GetLambdaRowHintString();
@@ -28,16 +36,8 @@ class SampleDataRepository {
     static std::string GetLargeColumnHintString();
     static std::string GetDifficultRowHintString();
     static std::string GetDifficultColumnHintString();
-
-    static std::vector<std::vector<HintNumber>> parseHints(const std::string &hintString);
-
-    static RowHintSetList getRowHintSetList(SampleDataType type);
-    static ColumnHintSetList getColumnHintSetList(SampleDataType type);
-
-  public:
-    static NonogramBoard getSampleData(SampleDataType type);
 };
 
 } // namespace VersaNo::Core
 
-#endif // VERSANO_CORE_SAMPLEDATAREPOSITORY_H
+#endif // VERSANO_CORE_PUZZLELOADER_H

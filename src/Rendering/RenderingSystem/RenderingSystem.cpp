@@ -1,7 +1,7 @@
 #include "RenderingSystem.h"
 
 #include "Core/AlgorithmThreadRunner/AlgorithmThreadRunner.h"
-#include "Core/SampleData/Repository/SampleDataRepository.h"
+#include "Core/PuzzleLoader/PuzzleLoader/PuzzleLoader.h"
 #include "Rendering/FontData/FontData.h"
 #include "Rendering/Shared/IReceiver.h"
 #include "Rendering/Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
@@ -70,8 +70,8 @@ void RenderingSystem::renderingLoop() {
 
     StopSignal stopSignal;
 
-    SampleDataRepository::SampleDataType dataType = SampleDataRepository::Difficult;
-    NonogramBoard nonogramBoard = SampleDataRepository::getSampleData(dataType);
+    PuzzleLoader::PuzzleType dataType = PuzzleLoader::Difficult;
+    NonogramBoard nonogramBoard = PuzzleLoader::getPuzzle(dataType);
     RowPlacementCountList rowPlacementCountList = RowPlacementCountList(
       std::vector<PlacementCount>(nonogramBoard.getRowLength().getLength(), PlacementCount(0)));
     ColumnPlacementCountList columnPlacementCountList = ColumnPlacementCountList(

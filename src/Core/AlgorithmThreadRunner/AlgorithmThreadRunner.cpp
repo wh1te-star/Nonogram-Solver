@@ -3,7 +3,7 @@
 #include "Core/Board/Line/Line.h"
 #include "Core/Cell/CellChange/CellChange.h"
 #include "Core/Hint/HintSet/HintSet.h"
-#include "Core/SampleData/Repository/SampleDataRepository.h"
+#include "Core/PuzzleLoader/PuzzleLoader/PuzzleLoader.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/Solver/ISolver.h"
