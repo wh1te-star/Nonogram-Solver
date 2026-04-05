@@ -4,12 +4,10 @@
 
 #include <algorithm>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-CellChange::CellChange(){}
+CellChange::CellChange() {}
 
-const std::vector<CellLocation> &CellChange::getChangeLocations() const {
-  return changeLocations;
-}
+const std::vector<CellLocation> &CellChange::getChangeLocations() const { return changeLocations; }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

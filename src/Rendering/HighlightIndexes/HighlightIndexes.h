@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_HIGHLIGHTINDEXES_H
-#define VERSAN_CORE_HIGHLIGHTINDEXES_H
+#ifndef VERSANO_CORE_HIGHLIGHTINDEXES_H
+#define VERSANO_CORE_HIGHLIGHTINDEXES_H
 
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
 #include <unordered_set>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class HighlightIndexes {
   private:
@@ -34,7 +34,6 @@ class HighlightIndexes {
     void clearColumnIndexes();
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
-#endif // VERSAN_CORE_HIGHLIGHTINDEXES_H
-
+#endif // VERSANO_CORE_HIGHLIGHTINDEXES_H

@@ -5,26 +5,19 @@
 
 #include <algorithm>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-CellLocation::CellLocation(CellPosition position, Cell cell) :
-    position(std::move(position)),
-    cell(std::move(cell)) {}
+CellLocation::CellLocation(CellPosition position, Cell cell)
+    : position(std::move(position)), cell(std::move(cell)) {}
 
-const CellPosition& CellLocation::getPosition() const {
-    return position;
+const CellPosition &CellLocation::getPosition() const { return position; }
+
+const Cell &CellLocation::getCell() const { return cell; }
+
+bool CellLocation::operator==(const CellLocation &other) const {
+    return position == other.position && cell == other.cell;
 }
 
-const Cell& CellLocation::getCell() const {
-    return cell;
-}
+bool CellLocation::operator!=(const CellLocation &other) const { return !(*this == other); }
 
-bool CellLocation::operator==(const CellLocation& other) const {
-	return position == other.position && cell == other.cell;
-}
-
-bool CellLocation::operator!=(const CellLocation& other) const {
-    return !(*this == other);
-}
-
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

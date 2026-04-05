@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_IBOARDUPDATEHANDLER_H
-#define VERSAN_CORE_IBOARDUPDATEHANDLER_H
+#ifndef VERSANO_CORE_IBOARDUPDATEHANDLER_H
+#define VERSANO_CORE_IBOARDUPDATEHANDLER_H
 
 #include "Core/Board/Board/Board.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 #include "Core/Index/Position/HintPosition/HintPosition.h"
 #include "Core/Index/Position/LinePosition/LinePosition.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IBoardUpdateHandler {
   public:
@@ -30,6 +30,6 @@ class IBoardUpdateHandler {
       const Core::Board &afterBoard) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_IBOARDUPDATEHANDLER_H
+#endif // VERSANO_CORE_IBOARDUPDATEHANDLER_H

@@ -1,7 +1,7 @@
-#ifndef VERSAN_CORE_ISENDER_H
-#define VERSAN_CORE_ISENDER_H
+#ifndef VERSANO_CORE_ISENDER_H
+#define VERSANO_CORE_ISENDER_H
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 template <typename T> class ISender {
   public:
@@ -10,6 +10,6 @@ template <typename T> class ISender {
     virtual void send(const T &data) = 0;
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
-#endif // VERSAN_CORE_ISENDER_H
+#endif // VERSANO_CORE_ISENDER_H

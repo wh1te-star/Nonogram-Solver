@@ -1,11 +1,11 @@
-#ifndef VERSAN_CORE_PLACEMENTCOUNTLIST_H
-#define VERSAN_CORE_PLACEMENTCOUNTLIST_H
+#ifndef VERSANO_CORE_PLACEMENTCOUNTLIST_H
+#define VERSANO_CORE_PLACEMENTCOUNTLIST_H
 
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class PlacementCountList {
   protected:
@@ -25,6 +25,6 @@ class PlacementCountList {
     bool operator!=(const PlacementCountList &other) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_PLACEMENTCOUNTLIST_H
+#endif // VERSANO_CORE_PLACEMENTCOUNTLIST_H

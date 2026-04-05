@@ -1,13 +1,11 @@
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 LineAssumptionPosition::LineAssumptionPosition(LinePosition linePosition)
     : linePosition(linePosition) {}
 
-LinePosition LineAssumptionPosition::getLinePosition() const {
-    return linePosition;
-}
+LinePosition LineAssumptionPosition::getLinePosition() const { return linePosition; }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

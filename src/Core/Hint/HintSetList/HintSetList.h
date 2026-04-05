@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_HINTSETLIST_H
-#define VERSAN_CORE_HINTSETLIST_H
+#ifndef VERSANO_CORE_HINTSETLIST_H
+#define VERSANO_CORE_HINTSETLIST_H
 
 #include "Core/Board/BoardLength/BoardLength.h"
 #include "Core/Hint/HintSet/HintSet.h"
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class HintSetList {
   private:
@@ -30,6 +30,6 @@ class HintSetList {
     int getMaxItemCount() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_HINTSETLIST_H
+#endif // VERSANO_CORE_HINTSETLIST_H

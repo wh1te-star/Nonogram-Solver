@@ -1,13 +1,13 @@
-#ifndef VERSAN_CORE_COLUMNLENGTH_H
-#define VERSAN_CORE_COLUMNLENGTH_H
+#ifndef VERSANO_CORE_COLUMNLENGTH_H
+#define VERSANO_CORE_COLUMNLENGTH_H
 
 #include "Core/Board/BoardLength/BoardLength.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class ColumnIndex;
 }
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class ColumnLength : public BoardLength {
   public:
@@ -28,6 +28,6 @@ class ColumnLength : public BoardLength {
     bool operator>=(const ColumnIndex &other) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_COLUMNLENGTH_H
+#endif // VERSANO_CORE_COLUMNLENGTH_H

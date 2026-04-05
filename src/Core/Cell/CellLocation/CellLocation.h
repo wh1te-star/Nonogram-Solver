@@ -1,10 +1,10 @@
-#ifndef VERSAN_CORE_CELLLOCATION_H
-#define VERSAN_CORE_CELLLOCATION_H
+#ifndef VERSANO_CORE_CELLLOCATION_H
+#define VERSANO_CORE_CELLLOCATION_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class CellLocation {
   private:
@@ -23,6 +23,6 @@ class CellLocation {
     bool operator!=(const CellLocation &other) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_CELLLOCATION_H
+#endif // VERSANO_CORE_CELLLOCATION_H

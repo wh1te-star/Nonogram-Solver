@@ -9,8 +9,8 @@
 
 #include <cassert>
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 PlacementCountAssumptionSelector::PlacementCountAssumptionSelector(
   IPlacementPatternCounter &placementPatternCounter, const NonogramBoard &nonogramBoard)
@@ -18,7 +18,8 @@ PlacementCountAssumptionSelector::PlacementCountAssumptionSelector(
     , rowPlacementCounts(
         std::vector<PlacementCount>(nonogramBoard.getRowLength().getLength(), PlacementCount(0)))
     , columnPlacementCounts(
-        std::vector<PlacementCount>(nonogramBoard.getColumnLength().getLength(), PlacementCount(0))) {}
+        std::vector<PlacementCount>(
+          nonogramBoard.getColumnLength().getLength(), PlacementCount(0))) {}
 
 std::unique_ptr<IAssumptionPosition> PlacementCountAssumptionSelector::select(
   const Core::NonogramBoard &board, const AssumptionSelectionContext &context) {
@@ -28,4 +29,4 @@ std::unique_ptr<IAssumptionPosition> PlacementCountAssumptionSelector::select(
     return std::make_unique<LineAssumptionPosition>(linePosition);
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

@@ -1,16 +1,16 @@
-#ifndef VERSAN_CORE_IPLACEMENTPATTERNCOUNTER_H
-#define VERSAN_CORE_IPLACEMENTPATTERNCOUNTER_H
+#ifndef VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
+#define VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
 
 #include "Core/Hint/HintSet/HintSet.h"
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class Line;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IPlacementPatternCounter {
   public:
@@ -22,6 +22,6 @@ class IPlacementPatternCounter {
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_IPLACEMENTPATTERNCOUNTER_H
+#endif // VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H

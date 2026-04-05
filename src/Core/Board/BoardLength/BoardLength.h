@@ -1,7 +1,7 @@
-#ifndef VERSAN_CORE_BOARDLENGTH_H
-#define VERSAN_CORE_BOARDLENGTH_H
+#ifndef VERSANO_CORE_BOARDLENGTH_H
+#define VERSANO_CORE_BOARDLENGTH_H
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class BoardLength {
   protected:
@@ -14,6 +14,6 @@ class BoardLength {
     int getLength() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_BOARDLENGTH_H
+#endif // VERSANO_CORE_BOARDLENGTH_H

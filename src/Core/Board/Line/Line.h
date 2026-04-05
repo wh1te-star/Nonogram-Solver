@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_LINE_H
-#define VERSAN_CORE_LINE_H
+#ifndef VERSANO_CORE_LINE_H
+#define VERSANO_CORE_LINE_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Cell/CellLocation/CellLocation.h"
@@ -7,14 +7,14 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class Row;
 }
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class Column;
 }
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Line {
   private:
@@ -45,6 +45,6 @@ class Line {
 };
 std::ostream &operator<<(std::ostream &os, const Line &line);
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_LINE_H
+#endif // VERSANO_CORE_LINE_H

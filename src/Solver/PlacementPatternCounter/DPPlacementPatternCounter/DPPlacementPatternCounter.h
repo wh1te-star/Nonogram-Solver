@@ -1,9 +1,9 @@
-#ifndef VERSAN_CORE_DPPLACEMENTPATTERNCOUNTER_H
-#define VERSAN_CORE_DPPLACEMENTPATTERNCOUNTER_H
+#ifndef VERSANO_CORE_DPPLACEMENTPATTERNCOUNTER_H
+#define VERSANO_CORE_DPPLACEMENTPATTERNCOUNTER_H
 
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class DPPlacementPatternCounter : public IPlacementPatternCounter {
     const int MAX_COUNT = 1000000000;
@@ -26,9 +26,12 @@ class DPPlacementPatternCounter : public IPlacementPatternCounter {
 
     bool isSeparated(const Core::Line &line, const Core::CellIndex &prevCellIndex);
 
-    bool isBlockFits(const Core::Line &line, const Core::CellIndex &blockStart, const Core::HintNumber &hintNumber);
+    bool isBlockFits(
+      const Core::Line &line,
+      const Core::CellIndex &blockStart,
+      const Core::HintNumber &hintNumber);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_DPPLACEMENTPATTERNCOUNTER_H
+#endif // VERSANO_CORE_DPPLACEMENTPATTERNCOUNTER_H

@@ -1,10 +1,10 @@
-#ifndef VERSAN_CORE_COLUMNPLACEMENTCOUNTLIST_H
-#define VERSAN_CORE_COLUMNPLACEMENTCOUNTLIST_H
+#ifndef VERSANO_CORE_COLUMNPLACEMENTCOUNTLIST_H
+#define VERSANO_CORE_COLUMNPLACEMENTCOUNTLIST_H
 
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class ColumnPlacementCountList : public PlacementCountList {
   public:
@@ -15,6 +15,6 @@ class ColumnPlacementCountList : public PlacementCountList {
     PlacementCount &operator[](ColumnIndex index);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_COLUMNPLACEMENTCOUNTLIST_H
+#endif // VERSANO_CORE_COLUMNPLACEMENTCOUNTLIST_H

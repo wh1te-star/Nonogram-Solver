@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_LINEINDEXASSUMPTIONSELECTOR_H
-#define VERSAN_CORE_LINEINDEXASSUMPTIONSELECTOR_H
+#ifndef VERSANO_CORE_LINEINDEXASSUMPTIONSELECTOR_H
+#define VERSANO_CORE_LINEINDEXASSUMPTIONSELECTOR_H
 
 #include "Core/Board/Orientation.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class LineIndexAssumptionSelector : public IAssumptionSelector {
   private:
@@ -18,6 +18,6 @@ class LineIndexAssumptionSelector : public IAssumptionSelector {
     select(const Core::NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_LINEINDEXASSUMPTIONSELECTOR_H
+#endif // VERSANO_CORE_LINEINDEXASSUMPTIONSELECTOR_H

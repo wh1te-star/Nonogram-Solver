@@ -1,15 +1,15 @@
-#ifndef VERSAN_CORE_LINEASSUMPTION_H
-#define VERSAN_CORE_LINEASSUMPTION_H
+#ifndef VERSANO_CORE_LINEASSUMPTION_H
+#define VERSANO_CORE_LINEASSUMPTION_H
 
 #include "Core/Board/Orientation.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class NonogramBoard;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class LineAssumption : public IAssumption {
   private:
@@ -23,6 +23,6 @@ class LineAssumption : public IAssumption {
     void applyTo(Core::NonogramBoard &board) const override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_LINEASSUMPTION_H
+#endif // VERSANO_CORE_LINEASSUMPTION_H

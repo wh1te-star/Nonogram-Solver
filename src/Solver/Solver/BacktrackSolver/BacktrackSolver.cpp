@@ -13,9 +13,9 @@
 
 #include <cassert>
 
-using namespace VersaN::Core;
-using namespace VersaN::Rendering;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+using namespace VersaNo::Rendering;
+namespace VersaNo::Solver {
 
 BacktrackSolver::BacktrackSolver(
   StopSignal &stopSignal,
@@ -84,7 +84,6 @@ void BacktrackSolver::backtrackSolveRecursive(
         boardUpdateHandler.onBoardUpdate(
           nonogramBoard.getBoard(), nonogramBoard.getBoard(), nonogramBoard.getBoard());
 
-
         switch (deterministicSolver.solve(nonogramBoard, boardUpdateHandler)) {
         case DeterministicSolverResult::Solved:
             solutions.push_back(nonogramBoard.getBoard());
@@ -112,4 +111,4 @@ void BacktrackSolver::backtrackSolveRecursive(
     }
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

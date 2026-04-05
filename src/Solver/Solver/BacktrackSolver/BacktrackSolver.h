@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_BACKTRACKSOLVER_H
-#define VERSAN_CORE_BACKTRACKSOLVER_H
+#ifndef VERSANO_CORE_BACKTRACKSOLVER_H
+#define VERSANO_CORE_BACKTRACKSOLVER_H
 
 #include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/Assumption/AssumptionEnumerator/IAssumptionEnumerator.h"
@@ -10,7 +10,7 @@
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/Solver/ISolver.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class BacktrackSolver : public ISolver {
   private:
@@ -46,6 +46,6 @@ class BacktrackSolver : public ISolver {
       IBoardUpdateHandler &boardUpdateHandler);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_BACKTRACKSOLVER_H
+#endif // VERSANO_CORE_BACKTRACKSOLVER_H

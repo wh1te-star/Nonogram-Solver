@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_SHAREDDATA_H
-#define VERSAN_CORE_SHAREDDATA_H
+#ifndef VERSANO_CORE_SHAREDDATA_H
+#define VERSANO_CORE_SHAREDDATA_H
 
 #include "Rendering/Shared/IReceiver.h"
 #include "Rendering/Shared/ISender.h"
@@ -7,7 +7,7 @@
 #include <atomic>
 #include <mutex>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 template <typename T> class SharedDataBuffer : public ISender<T>, public IReceiver<T> {
   private:
@@ -32,6 +32,6 @@ template <typename T> class SharedDataBuffer : public ISender<T>, public IReceiv
     }
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
-#endif // VERSAN_CORE_SHAREDDATA_H
+#endif // VERSANO_CORE_SHAREDDATA_H

@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_HINTSET_H
-#define VERSAN_CORE_HINTSET_H
+#ifndef VERSANO_CORE_HINTSET_H
+#define VERSANO_CORE_HINTSET_H
 
 #include "Core/Hint/HintNumber/HintNumber.h"
 #include "Core/Index/CellIndex/CellIndex.h"
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class HintSet {
   private:
@@ -28,6 +28,6 @@ class HintSet {
     size_t size() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_HINTSET_H
+#endif // VERSANO_CORE_HINTSET_H

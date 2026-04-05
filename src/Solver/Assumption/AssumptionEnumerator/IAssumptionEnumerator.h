@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_IASSUMPTIONENUMERATOR_H
-#define VERSAN_CORE_IASSUMPTIONENUMERATOR_H
+#ifndef VERSANO_CORE_IASSUMPTIONENUMERATOR_H
+#define VERSANO_CORE_IASSUMPTIONENUMERATOR_H
 
 #include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/CellAssumptionPosition/CellAssumptionPosition.h"
@@ -10,15 +10,15 @@
 
 #include <vector>
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IAssumptionEnumerator {
   public:
     virtual ~IAssumptionEnumerator() = default;
-    virtual std::vector<std::unique_ptr<IAssumption>>
-    enumerate(const Core::NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) = 0;
+    virtual std::vector<std::unique_ptr<IAssumption>> enumerate(
+      const Core::NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_IASSUMPTIONENUMERATOR_H
+#endif // VERSANO_CORE_IASSUMPTIONENUMERATOR_H

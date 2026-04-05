@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_HINTPOSITION_H
-#define VERSAN_CORE_HINTPOSITION_H
+#ifndef VERSANO_CORE_HINTPOSITION_H
+#define VERSANO_CORE_HINTPOSITION_H
 
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Board/BoardLength/RowLength.h"
@@ -8,7 +8,7 @@
 #include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Index/Position/IPosition.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class HintPosition : public IPosition {
   private:
@@ -29,7 +29,6 @@ class HintPosition : public IPosition {
     bool operator!=(const HintPosition &other) const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_HINTPOSITION_H
-
+#endif // VERSANO_CORE_HINTPOSITION_H

@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_CELLCHANGE_H
-#define VERSAN_CORE_CELLCHANGE_H
+#ifndef VERSANO_CORE_CELLCHANGE_H
+#define VERSANO_CORE_CELLCHANGE_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Cell/CellLocation/CellLocation.h"
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class CellChange {
   private:
@@ -19,6 +19,6 @@ class CellChange {
     const std::vector<CellLocation> &getChangeLocations() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_CELLCHANGE_H
+#endif // VERSANO_CORE_CELLCHANGE_H

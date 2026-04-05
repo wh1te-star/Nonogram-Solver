@@ -1,13 +1,13 @@
-#ifndef VERSAN_CORE_CELLVECTOR2D_H
-#define VERSAN_CORE_CELLVECTOR2D_H
+#ifndef VERSANO_CORE_CELLVECTOR2D_H
+#define VERSANO_CORE_CELLVECTOR2D_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 using CellVector2D = std::vector<std::vector<Cell>>;
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_CELLVECTOR2D_H
+#endif // VERSANO_CORE_CELLVECTOR2D_H

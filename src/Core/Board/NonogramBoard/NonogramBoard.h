@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_NONOGRAMBOARD_H
-#define VERSAN_CORE_NONOGRAMBOARD_H
+#ifndef VERSANO_CORE_NONOGRAMBOARD_H
+#define VERSANO_CORE_NONOGRAMBOARD_H
 
 #include "Core/Board/Board/Board.h"
 #include "Core/Board/BoardLength/ColumnLength.h"
@@ -8,7 +8,7 @@
 #include "Core/Hint/HintSetList/ColumnHintSetList.h"
 #include "Core/Hint/HintSetList/RowHintSetList.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class NonogramBoard {
   private:
@@ -44,6 +44,6 @@ class NonogramBoard {
     ColumnHintSetList getColumnHintSetList() const;
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_NONOGRAMBOARD_H
+#endif // VERSANO_CORE_NONOGRAMBOARD_H

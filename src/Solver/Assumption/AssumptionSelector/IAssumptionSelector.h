@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_IASSUMPTIONSELECTOR_H
-#define VERSAN_CORE_IASSUMPTIONSELECTOR_H
+#ifndef VERSANO_CORE_IASSUMPTIONSELECTOR_H
+#define VERSANO_CORE_IASSUMPTIONSELECTOR_H
 
 #include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
@@ -8,11 +8,11 @@
 #include <memory>
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class NonogramBoard;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IAssumptionSelector {
   public:
@@ -22,6 +22,6 @@ class IAssumptionSelector {
     select(const Core::NonogramBoard &board, const AssumptionSelectionContext &context) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_IASSUMPTIONSELECTOR_H
+#endif // VERSANO_CORE_IASSUMPTIONSELECTOR_H

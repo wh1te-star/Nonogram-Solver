@@ -6,8 +6,8 @@
 
 #include <cassert>
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
   Rendering::StopSignal &stopSignal, ILineSolver &lineSolver)
@@ -33,7 +33,8 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             RowHintSetList rowHintSetList = nonogramBoard.getRowHintSetList();
             HintSet rowHintSet = rowHintSetList[rowIndex];
 
-            LineSolverResult lineSolverResult = lineSolver.solve(rowHintSet, rowLine, boardUpdateHandler);
+            LineSolverResult lineSolverResult = lineSolver.solve(
+              rowHintSet, rowLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
                 break;
@@ -50,7 +51,9 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             if (rowLine != previousRowLine) {
                 proceeded = true;
-                boardUpdateHandler.onLineUpdate(LinePosition(Orientation::Row, rowIndex), rowLine, previousRowLine, nonogramBoard.getRowLine(rowIndex));
+                boardUpdateHandler.onLineUpdate(
+                  LinePosition(Orientation::Row, rowIndex), rowLine, previousRowLine,
+                  nonogramBoard.getRowLine(rowIndex));
             }
 
             /*
@@ -83,7 +86,8 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             Column previousColumnLine = columnLine;
             ColumnHintSetList columnHintSetList = nonogramBoard.getColumnHintSetList();
             HintSet columnHintSet = columnHintSetList[columnIndex];
-            LineSolverResult lineSolverResult = lineSolver.solve(columnHintSet, columnLine, boardUpdateHandler);
+            LineSolverResult lineSolverResult = lineSolver.solve(
+              columnHintSet, columnLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
                 break;
@@ -101,7 +105,9 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             if (columnLine != previousColumnLine) {
                 proceeded = true;
-                boardUpdateHandler.onLineUpdate(LinePosition(Orientation::Column, columnIndex), columnLine, previousColumnLine, currentColumnLine);
+                boardUpdateHandler.onLineUpdate(
+                  LinePosition(Orientation::Column, columnIndex), columnLine, previousColumnLine,
+                  currentColumnLine);
             }
 
             /*
@@ -138,4 +144,4 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
     return DeterministicSolverResult::NoMoreProgress;
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

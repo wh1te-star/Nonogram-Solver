@@ -1,11 +1,11 @@
-#ifndef VERSAN_CORE_RENDERINGSYSTEM_H
-#define VERSAN_CORE_RENDERINGSYSTEM_H
+#ifndef VERSANO_CORE_RENDERINGSYSTEM_H
+#define VERSANO_CORE_RENDERINGSYSTEM_H
 
 #include "imgui.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class RenderingSystem {
   private:
@@ -21,6 +21,6 @@ class RenderingSystem {
     void finalize();
 };
 
-} // namespace VersanN::Rendering
+} // namespace VersaNo::Rendering
 
-#endif // VERSAN_CORE_RENDERINGSYSTEM_H
+#endif // VERSANO_CORE_RENDERINGSYSTEM_H

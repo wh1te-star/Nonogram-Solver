@@ -2,19 +2,26 @@
 
 #include <iostream>
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
-PlacementFinderResult
-DFSRightmostPlacementFinder::find(const HintSet &hintSet, Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
+PlacementFinderResult DFSRightmostPlacementFinder::find(
+  const HintSet &hintSet,
+  Line &line,
+  Placement &resultPlacement,
+  IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
 
-    PlacementFinderResult result = dfsRightmostPlacementFind(hintSet, line, resultPlacement, boardUpdateHandler);
+    PlacementFinderResult result = dfsRightmostPlacementFind(
+      hintSet, line, resultPlacement, boardUpdateHandler);
     return result;
 }
 
 PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFind(
-  const HintSet &hintSet, const Line &line, Placement &resultPlacement, IBoardUpdateHandler &boardUpdateHandler) {
+  const HintSet &hintSet,
+  const Line &line,
+  Placement &resultPlacement,
+  IBoardUpdateHandler &boardUpdateHandler) {
     Placement currentPlacement = Placement("");
     return dfsRightmostPlacementFindRecursive(
       hintSet, line, currentPlacement, hintSet.size() - 1, resultPlacement, boardUpdateHandler);
@@ -27,7 +34,7 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
   int currentHintIndex,
   Placement &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
-    if(profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
+    if (profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
         return PlacementFinderResult::notFound;
     }
 
@@ -59,7 +66,8 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
             currentPlacement = Placement("W") + currentPlacement;
         }
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
-          hintSet, line, currentPlacement, currentHintIndex - 1, resultPlacement, boardUpdateHandler);
+          hintSet, line, currentPlacement, currentHintIndex - 1, resultPlacement,
+          boardUpdateHandler);
         if (result == PlacementFinderResult::success) {
             return PlacementFinderResult::success;
         }
@@ -81,4 +89,4 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
     return PlacementFinderResult::notFound;
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

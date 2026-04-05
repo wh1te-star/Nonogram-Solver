@@ -1,15 +1,15 @@
-#ifndef VERSAN_CORE_ROW_H
-#define VERSAN_CORE_ROW_H
+#ifndef VERSANO_CORE_ROW_H
+#define VERSANO_CORE_ROW_H
 
 #include "Core/Board/Line/Line.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Row : public Line {
   public:
     explicit Row(std::vector<Cell> line);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_ROW_H
+#endif // VERSANO_CORE_ROW_H

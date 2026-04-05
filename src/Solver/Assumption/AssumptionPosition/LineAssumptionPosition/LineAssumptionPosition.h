@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_LINEASSUMPTIONPOSITION_H
-#define VERSAN_CORE_LINEASSUMPTIONPOSITION_H
+#ifndef VERSANO_CORE_LINEASSUMPTIONPOSITION_H
+#define VERSANO_CORE_LINEASSUMPTIONPOSITION_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Board/Orientation.h"
 #include "Core/Index/Position/LinePosition/LinePosition.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class LineAssumptionPosition : public IAssumptionPosition {
   private:
@@ -19,6 +19,6 @@ class LineAssumptionPosition : public IAssumptionPosition {
     Core::LinePosition getLinePosition() const;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_LINEASSUMPTIONPOSITION_H
+#endif // VERSANO_CORE_LINEASSUMPTIONPOSITION_H

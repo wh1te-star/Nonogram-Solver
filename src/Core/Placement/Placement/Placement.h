@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_PLACEMENT_H
-#define VERSAN_CORE_PLACEMENT_H
+#ifndef VERSANO_CORE_PLACEMENT_H
+#define VERSANO_CORE_PLACEMENT_H
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Cell/CellLocation/CellLocation.h"
@@ -7,14 +7,14 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class RowPlacement;
 }
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class ColumnPlacement;
 }
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Placement {
   private:
@@ -49,6 +49,6 @@ class Placement {
 };
 std::ostream &operator<<(std::ostream &os, const Placement &placement);
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_PLACEMENT_H
+#endif // VERSANO_CORE_PLACEMENT_H

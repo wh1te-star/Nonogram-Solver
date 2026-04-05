@@ -1,10 +1,9 @@
 #include "Core/SampleData/Repository/SampleDataRepository.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
-std::string SampleDataRepository::GetLargeColumnHintString()
-{
-	return R"###(
+std::string SampleDataRepository::GetLargeColumnHintString() {
+    return R"###(
 		  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  1,   ,   ,   ,   ,   ,   ,   ,   ,   
 		  ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  2,   ,  2,   ,   ,   ,   ,   ,   ,   ,   ,   
 		  ,   ,   ,   ,   ,   ,   ,   ,  2,  2,   ,   ,  2,   ,  2,   ,   ,  2,  2,  2,  1,  2,  1,   ,   ,   ,   ,   ,   ,   
@@ -16,9 +15,8 @@ std::string SampleDataRepository::GetLargeColumnHintString()
 	)###";
 }
 
-std::string SampleDataRepository::GetLargeRowHintString()
-{
-	return R"###(
+std::string SampleDataRepository::GetLargeRowHintString() {
+    return R"###(
 		  ,   ,   ,   ,   ,   ,   ,   ,   ,  8
 		  ,   ,   ,   ,   , 14,  2,  1,  1,  2
 		  ,   ,   ,   , 14,  2,  1,  1,  1,  2
@@ -42,4 +40,4 @@ std::string SampleDataRepository::GetLargeRowHintString()
 	)###";
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

@@ -1,9 +1,9 @@
-#ifndef VERSAN_CORE_STOPSIGNAL_H
-#define VERSAN_CORE_STOPSIGNAL_H
+#ifndef VERSANO_CORE_STOPSIGNAL_H
+#define VERSANO_CORE_STOPSIGNAL_H
 
 #include <atomic>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class StopSignal {
   private:
@@ -14,6 +14,6 @@ class StopSignal {
     bool shouldStop() const;
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
-#endif // VERSAN_CORE_STOPSIGNAL_H
+#endif // VERSANO_CORE_STOPSIGNAL_H

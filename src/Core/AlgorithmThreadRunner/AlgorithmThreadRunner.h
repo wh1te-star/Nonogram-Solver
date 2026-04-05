@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_ALGORITHMTHREADRUNNER_H
-#define VERSAN_CORE_ALGORITHMTHREADRUNNER_H
+#ifndef VERSANO_CORE_ALGORITHMTHREADRUNNER_H
+#define VERSANO_CORE_ALGORITHMTHREADRUNNER_H
 
 #include "Core/Board/Line/Line.h"
 #include "Core/Hint/HintSet/HintSet.h"
@@ -11,7 +11,7 @@
 #include <thread>
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class AlgorithmThreadRunner {
   private:
@@ -31,6 +31,6 @@ class AlgorithmThreadRunner {
     void run(Solver::ISolver &solver);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_ALGORITHMTHREADRUNNER_H
+#endif // VERSANO_CORE_ALGORITHMTHREADRUNNER_H

@@ -9,8 +9,8 @@
 
 #include <cassert>
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 LineIndexAssumptionSelector::LineIndexAssumptionSelector(Orientation orientation)
     : orientation(orientation) {}
@@ -38,4 +38,4 @@ std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector::select(
     }
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

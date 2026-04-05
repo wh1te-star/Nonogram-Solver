@@ -1,19 +1,19 @@
-#ifndef VERSAN_CORE_BACKTRACKSTACK_H
-#define VERSAN_CORE_BACKTRACKSTACK_H
+#ifndef VERSANO_CORE_BACKTRACKSTACK_H
+#define VERSANO_CORE_BACKTRACKSTACK_H
 
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 
 #include <memory>
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class NonogramBoard;
 }
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 class IAssumptionSelector;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class BacktrackStack {
     std::vector<std::unique_ptr<ISnapshot>> history;
@@ -32,6 +32,6 @@ class BacktrackStack {
     void pop(Core::NonogramBoard &nonogramBoard);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_BACKTRACKSTACK_H
+#endif // VERSANO_CORE_BACKTRACKSTACK_H

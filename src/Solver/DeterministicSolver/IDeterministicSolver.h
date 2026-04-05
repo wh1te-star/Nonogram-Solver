@@ -1,11 +1,11 @@
-#ifndef VERSAN_CORE_IDETERMINISTICSOLVER_H
-#define VERSAN_CORE_IDETERMINISTICSOLVER_H
+#ifndef VERSANO_CORE_IDETERMINISTICSOLVER_H
+#define VERSANO_CORE_IDETERMINISTICSOLVER_H
 
 #include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IDeterministicSolver {
   public:
@@ -14,6 +14,6 @@ class IDeterministicSolver {
     solve(Core::NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_IDETERMINISTICSOLVER_H
+#endif // VERSANO_CORE_IDETERMINISTICSOLVER_H

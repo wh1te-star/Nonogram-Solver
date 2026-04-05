@@ -1,13 +1,13 @@
-#ifndef VERSAN_CORE_IASSUMPTIONPOSITION_H
-#define VERSAN_CORE_IASSUMPTIONPOSITION_H
+#ifndef VERSANO_CORE_IASSUMPTIONPOSITION_H
+#define VERSANO_CORE_IASSUMPTIONPOSITION_H
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IAssumptionPosition {
   public:
     virtual ~IAssumptionPosition() = default;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_IASSUMPTIONPOSITION_H
+#endif // VERSANO_CORE_IASSUMPTIONPOSITION_H

@@ -2,12 +2,12 @@
 
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 CellAssumptionPosition::CellAssumptionPosition(CellPosition cellPosition)
-    : cellPosition(cellPosition){}
+    : cellPosition(cellPosition) {}
 
 CellPosition CellAssumptionPosition::getCellPosition() const { return cellPosition; }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

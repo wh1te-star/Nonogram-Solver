@@ -1,7 +1,7 @@
 #include "Solver/PlacementPatternCounter/DPPlacementPatternCounter/DPPlacementPatternCounter.h"
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
 DPPlacementPatternCounter::DPPlacementPatternCounter() {}
 
@@ -101,4 +101,4 @@ bool DPPlacementPatternCounter::isBlockFits(
     return true;
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

@@ -1,11 +1,11 @@
-#ifndef VERSAN_CORE_ROWPLACEMENTCOUNTLIST_H
-#define VERSAN_CORE_ROWPLACEMENTCOUNTLIST_H
+#ifndef VERSANO_CORE_ROWPLACEMENTCOUNTLIST_H
+#define VERSANO_CORE_ROWPLACEMENTCOUNTLIST_H
 
 #include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class RowPlacementCountList : public PlacementCountList {
   public:
@@ -16,6 +16,6 @@ class RowPlacementCountList : public PlacementCountList {
     PlacementCount &operator[](RowIndex index);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_ROWPLACEMENTCOUNTLIST_H
+#endif // VERSANO_CORE_ROWPLACEMENTCOUNTLIST_H

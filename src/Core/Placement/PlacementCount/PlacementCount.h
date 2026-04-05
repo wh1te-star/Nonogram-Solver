@@ -1,7 +1,7 @@
-#ifndef VERSAN_CORE_PLACEMENTCOUNT_H
-#define VERSAN_CORE_PLACEMENTCOUNT_H
+#ifndef VERSANO_CORE_PLACEMENTCOUNT_H
+#define VERSANO_CORE_PLACEMENTCOUNT_H
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class PlacementCount {
   private:
@@ -27,6 +27,6 @@ class PlacementCount {
     void setCount(PlacementCount placementCount);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_PLACEMENTCOUNT_H
+#endif // VERSANO_CORE_PLACEMENTCOUNT_H

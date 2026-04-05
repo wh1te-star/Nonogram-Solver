@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_SAMPLEDATAREPOSITORY_H
-#define VERSAN_CORE_SAMPLEDATAREPOSITORY_H
+#ifndef VERSANO_CORE_SAMPLEDATAREPOSITORY_H
+#define VERSANO_CORE_SAMPLEDATAREPOSITORY_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class SampleDataRepository {
   public:
@@ -38,6 +38,6 @@ class SampleDataRepository {
     static NonogramBoard getSampleData(SampleDataType type);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_SAMPLEDATAREPOSITORY_H
+#endif // VERSANO_CORE_SAMPLEDATAREPOSITORY_H

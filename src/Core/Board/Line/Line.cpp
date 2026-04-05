@@ -7,7 +7,7 @@
 
 #include <cassert>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 Line::Line(std::vector<Cell> line) : line(line) {}
 
@@ -100,4 +100,4 @@ std::ostream &operator<<(std::ostream &os, const Line &line) {
     return os;
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

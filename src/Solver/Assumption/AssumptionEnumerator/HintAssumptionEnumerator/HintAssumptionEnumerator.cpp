@@ -7,11 +7,10 @@
 
 #include <cassert>
 
-using namespace VersaN::Core;
-namespace VersaN::Solver {
+using namespace VersaNo::Core;
+namespace VersaNo::Solver {
 
-HintAssumptionEnumerator::HintAssumptionEnumerator()
-    : IAssumptionEnumerator() {}
+HintAssumptionEnumerator::HintAssumptionEnumerator() : IAssumptionEnumerator() {}
 
 std::vector<std::unique_ptr<IAssumption>> HintAssumptionEnumerator::enumerate(
   const NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) {
@@ -29,4 +28,4 @@ std::vector<std::unique_ptr<IAssumption>> HintAssumptionEnumerator::enumerate(
     return {};
 }
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver

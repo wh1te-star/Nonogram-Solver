@@ -1,12 +1,12 @@
-#ifndef VERSAN_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H
-#define VERSAN_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H
+#ifndef VERSANO_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H
+#define VERSANO_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H
 
 #include "Core/AlgorithmProfiler/AlgorithmProfiler.h"
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
   private:
@@ -36,6 +36,6 @@ class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
       IBoardUpdateHandler &boardUpdateHandler);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H
+#endif // VERSANO_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H

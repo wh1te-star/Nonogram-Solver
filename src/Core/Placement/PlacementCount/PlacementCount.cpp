@@ -1,57 +1,41 @@
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 PlacementCount::PlacementCount(int count) : count(count) {}
 
-PlacementCount PlacementCount::operator+(const PlacementCount& other) const {
+PlacementCount PlacementCount::operator+(const PlacementCount &other) const {
     return PlacementCount(count + other.count);
 }
 
-PlacementCount PlacementCount::operator-(const PlacementCount& other) const {
+PlacementCount PlacementCount::operator-(const PlacementCount &other) const {
     return PlacementCount(count - other.count);
 }
 
-PlacementCount& PlacementCount::operator+=(const PlacementCount& other) {
+PlacementCount &PlacementCount::operator+=(const PlacementCount &other) {
     count += other.count;
     return *this;
 }
 
-PlacementCount& PlacementCount::operator-=(const PlacementCount& other) {
+PlacementCount &PlacementCount::operator-=(const PlacementCount &other) {
     count -= other.count;
     return *this;
 }
 
-bool PlacementCount::operator<(const PlacementCount& other) const {
-	return count < other.count;
-}
+bool PlacementCount::operator<(const PlacementCount &other) const { return count < other.count; }
 
-bool PlacementCount::operator>(const PlacementCount& other) const {
-	return count > other.count;
-}
+bool PlacementCount::operator>(const PlacementCount &other) const { return count > other.count; }
 
-bool PlacementCount::operator<=(const PlacementCount& other) const {
-	return count <= other.count;
-}
+bool PlacementCount::operator<=(const PlacementCount &other) const { return count <= other.count; }
 
-bool PlacementCount::operator>=(const PlacementCount& other) const {
-	return count >= other.count;
-}
+bool PlacementCount::operator>=(const PlacementCount &other) const { return count >= other.count; }
 
-bool PlacementCount::operator==(const PlacementCount& other) const {
-    return count == other.count;
-}
+bool PlacementCount::operator==(const PlacementCount &other) const { return count == other.count; }
 
-bool PlacementCount::operator!=(const PlacementCount& other) const {
-	return !(*this == other);
-}
+bool PlacementCount::operator!=(const PlacementCount &other) const { return !(*this == other); }
 
-int PlacementCount::getCount() const {
-    return count;
-}
+int PlacementCount::getCount() const { return count; }
 
-void PlacementCount::setCount(PlacementCount placementCount) {
-    count = placementCount.count;
-}
+void PlacementCount::setCount(PlacementCount placementCount) { count = placementCount.count; }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

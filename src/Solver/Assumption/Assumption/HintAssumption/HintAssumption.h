@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_HINTASSUMPTION_H
-#define VERSAN_CORE_HINTASSUMPTION_H
+#ifndef VERSANO_CORE_HINTASSUMPTION_H
+#define VERSANO_CORE_HINTASSUMPTION_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Board/Orientation.h"
@@ -7,7 +7,7 @@
 #include "Core/Index/Position/HintPosition/HintPosition.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class HintAssumption : public IAssumption {
   private:
@@ -15,13 +15,13 @@ class HintAssumption : public IAssumption {
     Core::HintNumber hintNumber;
 
   public:
-    explicit HintAssumption(const Core::HintPosition &hintPosition, const Core::HintNumber &hintNumber);
+    explicit HintAssumption(
+      const Core::HintPosition &hintPosition, const Core::HintNumber &hintNumber);
     virtual ~HintAssumption() = default;
 
     void applyTo(Core::NonogramBoard &board) const override;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_HINTASSUMPTION_H
-
+#endif // VERSANO_CORE_HINTASSUMPTION_H

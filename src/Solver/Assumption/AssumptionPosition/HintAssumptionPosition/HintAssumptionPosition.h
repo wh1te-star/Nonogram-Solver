@@ -1,10 +1,10 @@
-#ifndef VERSAN_CORE_HINTASSUMPTIONPOSITION_H
-#define VERSAN_CORE_HINTASSUMPTIONPOSITION_H
+#ifndef VERSANO_CORE_HINTASSUMPTIONPOSITION_H
+#define VERSANO_CORE_HINTASSUMPTIONPOSITION_H
 
 #include "Core/Index/Position/HintPosition/HintPosition.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class HintAssumptionPosition : public IAssumptionPosition {
   private:
@@ -17,6 +17,6 @@ class HintAssumptionPosition : public IAssumptionPosition {
     Core::HintPosition getHintPosition() const;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_HINTASSUMPTIONPOSITION_H
+#endif // VERSANO_CORE_HINTASSUMPTIONPOSITION_H

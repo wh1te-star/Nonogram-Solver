@@ -1,11 +1,11 @@
-#ifndef VERSAN_CORE_CELL_H
-#define VERSAN_CORE_CELL_H
+#ifndef VERSANO_CORE_CELL_H
+#define VERSANO_CORE_CELL_H
 
 #include "Core/Cell/CellColor/CellColor.h"
 
 #include <iostream>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class Cell {
   private:
@@ -28,6 +28,6 @@ class Cell {
 
 std::ostream &operator<<(std::ostream &os, const Cell &cell);
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_CELL_H
+#endif // VERSANO_CORE_CELL_H

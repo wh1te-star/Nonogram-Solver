@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_CELLINDEX_H
-#define VERSAN_CORE_CELLINDEX_H
+#ifndef VERSANO_CORE_CELLINDEX_H
+#define VERSANO_CORE_CELLINDEX_H
 
 #include "Core/Board/BoardLength/BoardLength.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
@@ -7,14 +7,14 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class RowIndex;
 }
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class ColumnIndex;
 }
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 class CellIndex {
   protected:
@@ -55,6 +55,6 @@ class CellIndex {
     static std::vector<CellIndex> range(int first, int last);
 };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_CELLINDEX_H
+#endif // VERSANO_CORE_CELLINDEX_H

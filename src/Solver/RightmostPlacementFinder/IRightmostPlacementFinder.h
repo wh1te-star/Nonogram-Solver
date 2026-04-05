@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_IRIGHTMOSTPLACEMENTFINDER_H
-#define VERSAN_CORE_IRIGHTMOSTPLACEMENTFINDER_H
+#ifndef VERSANO_CORE_IRIGHTMOSTPLACEMENTFINDER_H
+#define VERSANO_CORE_IRIGHTMOSTPLACEMENTFINDER_H
 
 #include "Core/Board/Line/Line.h"
 #include "Core/Hint/HintSet/HintSet.h"
@@ -7,7 +7,7 @@
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class IRightmostPlacementFinder {
   public:
@@ -19,6 +19,6 @@ class IRightmostPlacementFinder {
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_IRIGHTMOSTPLACEMENTFINDER_H
+#endif // VERSANO_CORE_IRIGHTMOSTPLACEMENTFINDER_H

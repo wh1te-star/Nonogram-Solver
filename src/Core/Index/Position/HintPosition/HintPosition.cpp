@@ -5,7 +5,7 @@
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 HintPosition::HintPosition(Orientation orientation, CellIndex cellIndex, int hintIndex)
     : orientation(orientation), cellIndex(cellIndex), hintIndex(hintIndex) {}
@@ -23,4 +23,4 @@ bool HintPosition::operator==(const HintPosition &other) const {
 
 bool HintPosition::operator!=(const HintPosition &other) const { return !(*this == other); }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

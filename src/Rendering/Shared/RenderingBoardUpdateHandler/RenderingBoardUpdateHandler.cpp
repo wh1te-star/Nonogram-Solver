@@ -1,8 +1,8 @@
 #include "Rendering/Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
 
-using namespace VersaN::Core;
-using namespace VersaN::Solver;
-namespace VersaN::Rendering {
+using namespace VersaNo::Core;
+using namespace VersaNo::Solver;
+namespace VersaNo::Rendering {
 
 RenderingBoardUpdateHandler::RenderingBoardUpdateHandler(
   ISender<NonogramBoard> &nonogramBoardSender, NonogramBoard &nonogramBoard)
@@ -14,7 +14,7 @@ void RenderingBoardUpdateHandler::onCellUpdate(
   const Cell &beforeCell,
   const Cell &afterCell) {
     checkAndSendBoard();
-  }
+}
 
 void RenderingBoardUpdateHandler::onLineUpdate(
   const LinePosition &linePosition,
@@ -22,12 +22,12 @@ void RenderingBoardUpdateHandler::onLineUpdate(
   const Line &beforeLine,
   const Line &afterLine) {
     checkAndSendBoard();
-  }
+}
 
 void RenderingBoardUpdateHandler::onBoardUpdate(
   const Board &targetBoard, const Board &beforeBoard, const Board &afterBoard) {
     checkAndSendBoard();
-  }
+}
 
 void RenderingBoardUpdateHandler::checkAndSendBoard() {
     if (nonogramBoardSender.isRequested()) {
@@ -35,4 +35,4 @@ void RenderingBoardUpdateHandler::checkAndSendBoard() {
     }
 }
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering

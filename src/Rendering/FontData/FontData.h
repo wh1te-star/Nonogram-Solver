@@ -1,11 +1,11 @@
-#ifndef VERSAN_CORE_FONTDATA_H
-#define VERSAN_CORE_FONTDATA_H
+#ifndef VERSANO_CORE_FONTDATA_H
+#define VERSANO_CORE_FONTDATA_H
 
 #include "imgui.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace VersaN::Rendering {
+namespace VersaNo::Rendering {
 
 class FontData {
   private:
@@ -22,6 +22,6 @@ class FontData {
     static ImFont *getFontByCellSize(int cellSize);
 };
 
-} // namespace VersaN::Rendering
+} // namespace VersaNo::Rendering
 
-#endif // VERSAN_CORE_FONTDATA_H
+#endif // VERSANO_CORE_FONTDATA_H

@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <cassert>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 Cell::Cell() : color(None) {}
 
@@ -18,28 +18,28 @@ bool Cell::operator==(const Cell &other) const { return color == other.color; }
 bool Cell::operator!=(const Cell &other) const { return !(*this == other); }
 
 bool Cell::canColor(const CellColor &newColor) const {
-  if (color == None) {
-    return true;
-  }
-  return color == newColor;
+    if (color == None) {
+        return true;
+    }
+    return color == newColor;
 }
 
 std::ostream &operator<<(std::ostream &os, const Cell &cell) {
-  switch (cell.getColor()) {
-  case CellColor::Black:
-    os << "B";
-    break;
-  case CellColor::White:
-    os << "W";
-    break;
-  case CellColor::None:
-    os << ".";
-    break;
-  default:
-    assert(false);
-    break;
-  }
-  return os;
+    switch (cell.getColor()) {
+    case CellColor::Black:
+        os << "B";
+        break;
+    case CellColor::White:
+        os << "W";
+        break;
+    case CellColor::None:
+        os << ".";
+        break;
+    default:
+        assert(false);
+        break;
+    }
+    return os;
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core

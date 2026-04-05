@@ -1,5 +1,5 @@
-#ifndef VERSAN_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
-#define VERSAN_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
+#ifndef VERSANO_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
+#define VERSANO_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 
 #include "Core/Hint/HintSet/HintSet.h"
 #include "Core/Placement/Placement/Placement.h"
@@ -7,21 +7,25 @@
 
 #include <vector>
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 class Line;
 }
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class DFSExhaustivePlacementPatternFinder : public IExhaustivePlacementPatternFinder {
   public:
     DFSExhaustivePlacementPatternFinder() = default;
-    virtual ExhaustivePlacementPatternFinderResult
-    find(const Core::HintSet &hintSet, const Core::Line &line, std::vector<Core::Placement> &solutions) override;
+    virtual ExhaustivePlacementPatternFinderResult find(
+      const Core::HintSet &hintSet,
+      const Core::Line &line,
+      std::vector<Core::Placement> &solutions) override;
 
   private:
     ExhaustivePlacementPatternFinderResult dfsExhaustivePlacementFind(
-      const Core::HintSet &hintSet, const Core::Line &line, std::vector<Core::Placement> &solutions);
+      const Core::HintSet &hintSet,
+      const Core::Line &line,
+      std::vector<Core::Placement> &solutions);
 
     ExhaustivePlacementPatternFinderResult dfsExhaustivePlacementFindRecursive(
       const Core::HintSet &hintSet,
@@ -31,6 +35,6 @@ class DFSExhaustivePlacementPatternFinder : public IExhaustivePlacementPatternFi
       int currentHintIndex);
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
+#endif // VERSANO_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H

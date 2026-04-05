@@ -1,11 +1,11 @@
-#ifndef VERSAN_CORE_ISOLVER_H
-#define VERSAN_CORE_ISOLVER_H
+#ifndef VERSANO_CORE_ISOLVER_H
+#define VERSANO_CORE_ISOLVER_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/IBoardUpdateHandler.h"
 
-namespace VersaN::Solver {
+namespace VersaNo::Solver {
 
 class ISolver {
   public:
@@ -16,6 +16,6 @@ class ISolver {
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
-} // namespace VersaN::Solver
+} // namespace VersaNo::Solver
 
-#endif // VERSAN_CORE_ISOLVER_H
+#endif // VERSANO_CORE_ISOLVER_H

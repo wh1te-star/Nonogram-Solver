@@ -1,10 +1,10 @@
-#ifndef VERSAN_CORE_CELLINDEXTYPE_H
-#define VERSAN_CORE_CELLINDEXTYPE_H
+#ifndef VERSANO_CORE_CELLINDEXTYPE_H
+#define VERSANO_CORE_CELLINDEXTYPE_H
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 enum class CellIndexType { Unknown, Row, Column };
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
 
-#endif // VERSAN_CORE_CELLINDEXTYPE_H
+#endif // VERSANO_CORE_CELLINDEXTYPE_H

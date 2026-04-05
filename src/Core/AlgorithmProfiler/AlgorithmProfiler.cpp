@@ -1,6 +1,6 @@
 #include "Core/AlgorithmProfiler/AlgorithmProfiler.h"
 
-namespace VersaN::Core {
+namespace VersaNo::Core {
 
 AlgorithmProfiler::AlgorithmProfiler(double timeLimitMs, size_t stackLimitBytes)
     : timeLimitMilliseconds(timeLimitMs)
@@ -31,4 +31,4 @@ bool AlgorithmProfiler::isStackUsageLimitExceeded() const {
     return currentUsage > stackUsageLimitBytes;
 }
 
-} // namespace VersaN::Core
+} // namespace VersaNo::Core
