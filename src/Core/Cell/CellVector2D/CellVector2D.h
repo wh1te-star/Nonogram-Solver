@@ -2,6 +2,7 @@
 #define VERSANO_CORE_CELLVECTOR2D_H
 
 #include "Core/Cell/Cell/Cell.h"
+
 #include <vector>
 
 namespace VersaNo::Core {
