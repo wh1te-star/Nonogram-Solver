@@ -30,11 +30,11 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             Row rowLine = nonogramBoard.getRowLine(rowIndex);
             Row previousRowLine = rowLine;
-            RowHintSetList rowHintSetList = nonogramBoard.getRowHintSetList();
-            HintSet rowHintSet = rowHintSetList[rowIndex];
+            RowHintGroup rowHintGroup = nonogramBoard.getRowHintGroup();
+            HintList rowHintList = rowHintGroup[rowIndex];
 
             LineSolverResult lineSolverResult = lineSolver.solve(
-              rowHintSet, rowLine, boardUpdateHandler);
+              rowHintList, rowLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
                 break;
@@ -58,7 +58,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             /*
             PlacementCount count = PlacementPatternCountAlgorithm::run(rowLine,
-            rowHintSet); nonogramBoard.setRowPlacementCount(rowIndex, count);
+            rowHintList); nonogramBoard.setRowPlacementCount(rowIndex, count);
 
             if (count == PlacementCount(0)) {
               return false;
@@ -67,7 +67,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
               DFSExhaustivePlacementPatternFinder finder =
                   DFSExhaustivePlacementPatternFinder();
               RowPlacement finalPlacement =
-                  finder.find(rowHintSet, rowLine)[0].toRowPlacement();
+                  finder.find(rowHintList, rowLine)[0].toRowPlacement();
               nonogramBoard.applyRow(rowIndex, finalPlacement);
             }
               */
@@ -84,10 +84,10 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             Column columnLine = nonogramBoard.getColumnLine(columnIndex);
             Column previousColumnLine = columnLine;
-            ColumnHintSetList columnHintSetList = nonogramBoard.getColumnHintSetList();
-            HintSet columnHintSet = columnHintSetList[columnIndex];
+            ColumnHintGroup columnHintGroup = nonogramBoard.getColumnHintGroup();
+            HintList columnHintList = columnHintGroup[columnIndex];
             LineSolverResult lineSolverResult = lineSolver.solve(
-              columnHintSet, columnLine, boardUpdateHandler);
+              columnHintList, columnLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
                 break;
@@ -112,7 +112,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
             /*
             PlacementCount count =
-                PlacementPatternCountAlgorithm::run(columnLine, columnHintSet);
+                PlacementPatternCountAlgorithm::run(columnLine, columnHintList);
 
             nonogramBoard.setColumnPlacementCount(columnIndex, count);
 
@@ -121,7 +121,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             if (count == PlacementCount(1)) {
               ColumnPlacement finalPlacement =
                   ExhaustivePlacementPatternFinder::run(columnLine,
-                                                               columnHintSet)[0]
+                                                               columnHintList)[0]
                       .toColumnPlacement();
               nonogramBoard.applyColumn(columnIndex, finalPlacement);
             }

@@ -8,20 +8,20 @@
 
 namespace VersaNo::Core {
 
-class HintSet {
+class HintList {
   private:
     std::vector<HintNumber> numbers;
 
   public:
-    HintSet(std::vector<HintNumber> numbers);
-    HintSet(std::vector<int> numbers);
+    HintList(std::vector<HintNumber> numbers);
+    HintList(std::vector<int> numbers);
 
   public:
     std::vector<HintNumber> getNumbers() const;
 
   public:
-    bool operator==(const HintSet &other) const;
-    bool operator!=(const HintSet &other) const;
+    bool operator==(const HintList &other) const;
+    bool operator!=(const HintList &other) const;
     HintNumber operator[](int index) const;
 
   public:

@@ -14,18 +14,18 @@ OverlapLineSolver::OverlapLineSolver(
     , rightmostPlacementFinder(rightmostPlacementFinder) {}
 
 LineSolverResult OverlapLineSolver::solve(
-  const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
-    return overlapLineSolve(hintSet, line, boardUpdateHandler);
+  const HintList &hintList, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
+    return overlapLineSolve(hintList, line, boardUpdateHandler);
 }
 
 LineSolverResult OverlapLineSolver::overlapLineSolve(
-  const HintSet &hintSet, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
+  const HintList &hintList, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
     Placement leftmostPlacement = Placement("");
     Placement rightmostPlacement = Placement("");
     PlacementFinderResult leftmostPlacementFinderResult = leftmostPlacementFinder.find(
-      hintSet, line, leftmostPlacement, boardUpdateHandler);
+      hintList, line, leftmostPlacement, boardUpdateHandler);
     PlacementFinderResult rightmostPlacementFinderResult = rightmostPlacementFinder.find(
-      hintSet, line, rightmostPlacement, boardUpdateHandler);
+      hintList, line, rightmostPlacement, boardUpdateHandler);
     if (
       leftmostPlacementFinderResult == PlacementFinderResult::notFound ||
       rightmostPlacementFinderResult == PlacementFinderResult::notFound) {
@@ -40,13 +40,13 @@ LineSolverResult OverlapLineSolver::overlapLineSolve(
         CellIndex cellIndex = CellIndex(i);
         determined[cellIndex] = Cell(White);
     }
-    for (int i = (rightmostHintIndex.back() + hintSet.getNumbers().back()).getIndex();
+    for (int i = (rightmostHintIndex.back() + hintList.getNumbers().back()).getIndex();
          i < line.size(); i++) {
         CellIndex cellIndex = CellIndex(i);
         determined[cellIndex] = Cell(White);
     }
-    for (int hintIndex = 0; hintIndex < hintSet.size(); hintIndex++) {
-        HintNumber hintNumber = hintSet[hintIndex];
+    for (int hintIndex = 0; hintIndex < hintList.size(); hintIndex++) {
+        HintNumber hintNumber = hintList[hintIndex];
         CellIndex leftStart = leftmostHintIndex[hintIndex];
         CellIndex leftEnd = leftStart + hintNumber - 1;
         CellIndex rightStart = rightmostHintIndex[hintIndex];

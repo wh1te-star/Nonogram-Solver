@@ -2,9 +2,9 @@
 #define VERSANO_CORE_PUZZLELOADER_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Hint/HintGroup/ColumnHintGroup.h"
+#include "Core/Hint/HintGroup/RowHintGroup.h"
 #include "Core/Hint/HintNumber/HintNumber.h"
-#include "Core/Hint/HintSetList/ColumnHintSetList.h"
-#include "Core/Hint/HintSetList/RowHintSetList.h"
 
 #include <string>
 #include <vector>
@@ -20,8 +20,8 @@ class PuzzleLoader {
   private:
     PuzzleLoader() = delete;
 
-    static RowHintSetList getRowHintSetList(PuzzleType type);
-    static ColumnHintSetList getColumnHintSetList(PuzzleType type);
+    static RowHintGroup getRowHintGroup(PuzzleType type);
+    static ColumnHintGroup getColumnHintGroup(PuzzleType type);
     static std::vector<std::vector<HintNumber>> parseHints(const std::string &hintString);
 
     static std::string GetRowHintString(PuzzleType type);

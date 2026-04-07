@@ -6,29 +6,29 @@ using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
 PlacementFinderResult DFSRightmostPlacementFinder::find(
-  const HintSet &hintSet,
+  const HintList &hintList,
   Line &line,
   Placement &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
 
     PlacementFinderResult result = dfsRightmostPlacementFind(
-      hintSet, line, resultPlacement, boardUpdateHandler);
+      hintList, line, resultPlacement, boardUpdateHandler);
     return result;
 }
 
 PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFind(
-  const HintSet &hintSet,
+  const HintList &hintList,
   const Line &line,
   Placement &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
     Placement currentPlacement = Placement("");
     return dfsRightmostPlacementFindRecursive(
-      hintSet, line, currentPlacement, hintSet.size() - 1, resultPlacement, boardUpdateHandler);
+      hintList, line, currentPlacement, hintList.size() - 1, resultPlacement, boardUpdateHandler);
 }
 
 PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecursive(
-  const HintSet &hintSet,
+  const HintList &hintList,
   const Line &line,
   Placement &currentPlacement,
   int currentHintIndex,
@@ -56,7 +56,7 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
         return PlacementFinderResult::success;
     }
 
-    HintNumber hintNumber = hintSet[currentHintIndex];
+    HintNumber hintNumber = hintList[currentHintIndex];
     CellIndex currentBlockIndex = CellIndex(
       line.size() - currentPlacement.size() - hintNumber.getNumber());
     if (line.canPlaceBlock(currentBlockIndex, hintNumber)) {
@@ -66,7 +66,7 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
             currentPlacement = Placement("W") + currentPlacement;
         }
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
-          hintSet, line, currentPlacement, currentHintIndex - 1, resultPlacement,
+          hintList, line, currentPlacement, currentHintIndex - 1, resultPlacement,
           boardUpdateHandler);
         if (result == PlacementFinderResult::success) {
             return PlacementFinderResult::success;
@@ -79,7 +79,7 @@ PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecu
         Placement previousPlacement = currentPlacement;
         currentPlacement = Placement("W") + currentPlacement;
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
-          hintSet, line, currentPlacement, currentHintIndex, resultPlacement, boardUpdateHandler);
+          hintList, line, currentPlacement, currentHintIndex, resultPlacement, boardUpdateHandler);
         if (result == PlacementFinderResult::success) {
             return PlacementFinderResult::success;
         }

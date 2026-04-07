@@ -1,7 +1,7 @@
 #include "Solver/Assumption/AssumptionSelector/PlacementCountAssumptionSelector/PlacementCountAssumptionSelector.h"
 
 #include "Core/Board/Line/Line.h"
-#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Hint/HintList/HintList.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"

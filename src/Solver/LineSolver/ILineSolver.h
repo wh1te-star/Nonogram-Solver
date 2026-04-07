@@ -11,7 +11,9 @@ class ILineSolver {
   public:
     virtual ~ILineSolver() = default;
     virtual LineSolverResult solve(
-      const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler) = 0;
+      const Core::HintList &hintList,
+      Core::Line &line,
+      IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
 } // namespace VersaNo::Solver

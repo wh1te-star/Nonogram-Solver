@@ -12,14 +12,14 @@ class DPPlacementPatternCounter : public IPlacementPatternCounter {
     DPPlacementPatternCounter();
     DPPlacementPatternCounter(int MAX_COUNT);
     PlacementPatternCounterResult count(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       Core::Line &line,
       Core::PlacementCount &placementCount,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementPatternCounterResult DPPlacementPatternCount(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       const Core::Line &line,
       Core::PlacementCount &placementCount,
       IBoardUpdateHandler &boardUpdateHandler);

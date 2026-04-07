@@ -3,10 +3,10 @@
 namespace VersaNo::Core {
 
 NonogramBoard::NonogramBoard(
-  Board board, RowHintSetList rowHintSetList, ColumnHintSetList columnHintSetList)
+  Board board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup)
     : board(std::move(board))
-    , rowHintSetList(std::move(rowHintSetList))
-    , columnHintSetList(std::move(columnHintSetList)) {}
+    , rowHintGroup(std::move(rowHintGroup))
+    , columnHintGroup(std::move(columnHintGroup)) {}
 
 RowLength NonogramBoard::getRowLength() const { return board.getRowLength(); }
 
@@ -54,8 +54,8 @@ void NonogramBoard::applyBoard(const Board &board, bool overwriteNone) {
     return this->board.applyBoard(board, overwriteNone);
 }
 
-RowHintSetList NonogramBoard::getRowHintSetList() const { return rowHintSetList; }
+RowHintGroup NonogramBoard::getRowHintGroup() const { return rowHintGroup; }
 
-ColumnHintSetList NonogramBoard::getColumnHintSetList() const { return columnHintSetList; }
+ColumnHintGroup NonogramBoard::getColumnHintGroup() const { return columnHintGroup; }
 
 } // namespace VersaNo::Core

@@ -5,8 +5,8 @@
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Board/BoardLength/RowLength.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
-#include "Core/Hint/HintSetList/ColumnHintSetList.h"
-#include "Core/Hint/HintSetList/RowHintSetList.h"
+#include "Core/Hint/HintGroup/ColumnHintGroup.h"
+#include "Core/Hint/HintGroup/RowHintGroup.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
@@ -67,8 +67,8 @@ class TableRenderer {
       CellType cellType,
       Core::RowLength columnHintLength,
       Core::ColumnLength rowHintLength,
-      Core::RowHintSetList rowHintSetList,
-      Core::ColumnHintSetList columnHintSetList,
+      Core::RowHintGroup rowHintGroup,
+      Core::ColumnHintGroup columnHintGroup,
       Core::RowPlacementCountList rowPlacementCountList,
       Core::ColumnPlacementCountList columnPlacementCountList,
       float cell_size /*, BacktrackStack backtrackStack*/) const;

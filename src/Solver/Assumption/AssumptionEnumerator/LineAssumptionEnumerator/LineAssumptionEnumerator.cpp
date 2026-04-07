@@ -30,11 +30,11 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
         LinePosition linePosition = lineAssumptionPosition->getLinePosition();
         RowIndex rowIndex = cellIndex.toRowIndex();
         Line line = nonogramBoard.getRowLine(rowIndex);
-        HintSet hintSet = nonogramBoard.getRowHintSetList()[rowIndex];
+        HintList hintList = nonogramBoard.getRowHintGroup()[rowIndex];
 
         std::vector<Placement> solutions;
         ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
-          hintSet, line, solutions);
+          hintList, line, solutions);
 
         std::vector<std::unique_ptr<IAssumption>> assumptions;
         assumptions.reserve(solutions.size());
@@ -46,11 +46,11 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
     } else {
         ColumnIndex columnIndex = cellIndex.toColumnIndex();
         Line line = nonogramBoard.getColumnLine(columnIndex);
-        HintSet hintSet = nonogramBoard.getColumnHintSetList()[columnIndex];
+        HintList hintList = nonogramBoard.getColumnHintGroup()[columnIndex];
 
         std::vector<Placement> solutions;
         ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
-          hintSet, line, solutions);
+          hintList, line, solutions);
 
         std::vector<std::unique_ptr<IAssumption>> assumptions;
         assumptions.reserve(solutions.size());

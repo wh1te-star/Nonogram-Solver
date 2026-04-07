@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
 #define VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
 
-#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Hint/HintList/HintList.h"
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
@@ -16,7 +16,7 @@ class IPlacementPatternCounter {
   public:
     IPlacementPatternCounter() = default;
     virtual PlacementPatternCounterResult count(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       Core::Line &line,
       Core::PlacementCount &placementCount,
       IBoardUpdateHandler &boardUpdateHandler) = 0;

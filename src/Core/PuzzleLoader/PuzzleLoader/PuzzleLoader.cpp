@@ -9,50 +9,50 @@
 namespace VersaNo::Core {
 
 NonogramBoard PuzzleLoader::getPuzzle(PuzzleType type) {
-    RowHintSetList rowHintSetList = getRowHintSetList(type);
-    ColumnHintSetList columnHintSetList = getColumnHintSetList(type);
+    RowHintGroup rowHintGroup = getRowHintGroup(type);
+    ColumnHintGroup columnHintGroup = getColumnHintGroup(type);
     return NonogramBoard(
-      Board(RowLength(rowHintSetList.size()), ColumnLength(columnHintSetList.size())),
-      rowHintSetList, columnHintSetList);
+      Board(RowLength(rowHintGroup.size()), ColumnLength(columnHintGroup.size())), rowHintGroup,
+      columnHintGroup);
 }
 
-RowHintSetList PuzzleLoader::getRowHintSetList(PuzzleType type) {
+RowHintGroup PuzzleLoader::getRowHintGroup(PuzzleType type) {
     std::string rowHintNumbersString = GetRowHintString(type);
     std::vector<std::vector<HintNumber>> tempRowHintNumbers = parseHints(rowHintNumbersString);
 
-    std::vector<HintSet> HintSetListVector;
+    std::vector<HintList> HintGroupVector;
     for (int k = 0; k < tempRowHintNumbers.size(); k++) {
-        std::vector<HintNumber> HintSetVector;
+        std::vector<HintNumber> HintListVector;
         for (int i = 0; i < tempRowHintNumbers[k].size(); i++) {
             if (tempRowHintNumbers[k][i] == HintNumber(0))
                 continue;
-            HintSetVector.push_back(tempRowHintNumbers[k][i]);
+            HintListVector.push_back(tempRowHintNumbers[k][i]);
         }
-        HintSetListVector.emplace_back(HintSetVector);
+        HintGroupVector.emplace_back(HintListVector);
     }
 
-    RowHintSetList rowHintSetList(HintSetListVector);
-    return rowHintSetList;
+    RowHintGroup rowHintGroup(HintGroupVector);
+    return rowHintGroup;
 }
 
-ColumnHintSetList PuzzleLoader::getColumnHintSetList(PuzzleType type) {
+ColumnHintGroup PuzzleLoader::getColumnHintGroup(PuzzleType type) {
     std::string columnHintNumbersString = GetColumnHintString(type);
     std::vector<std::vector<HintNumber>> tempColumnHintNumbers = parseHints(
       columnHintNumbersString);
 
-    std::vector<HintSet> HintSetListVector;
+    std::vector<HintList> HintGroupVector;
     for (int k = 0; k < tempColumnHintNumbers[0].size(); k++) {
-        std::vector<HintNumber> HintSetVector;
+        std::vector<HintNumber> HintListVector;
         for (int i = 0; i < tempColumnHintNumbers.size(); i++) {
             if (tempColumnHintNumbers[i][k] == HintNumber(0))
                 continue;
-            HintSetVector.push_back(tempColumnHintNumbers[i][k]);
+            HintListVector.push_back(tempColumnHintNumbers[i][k]);
         }
-        HintSetListVector.emplace_back(HintSetVector);
+        HintGroupVector.emplace_back(HintListVector);
     }
 
-    ColumnHintSetList columnHintSetList(HintSetListVector);
-    return columnHintSetList;
+    ColumnHintGroup columnHintGroup(HintGroupVector);
+    return columnHintGroup;
 }
 
 std::vector<std::vector<HintNumber>> PuzzleLoader::parseHints(const std::string &hintString) {

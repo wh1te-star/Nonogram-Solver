@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_ILEFTMOSTPLACEMENTFINDER_H
 #define VERSANO_CORE_ILEFTMOSTPLACEMENTFINDER_H
 
-#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Hint/HintList/HintList.h"
 #include "Core/Placement/Placement/Placement.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
@@ -15,7 +15,7 @@ class ILeftmostPlacementFinder {
   public:
     ILeftmostPlacementFinder() = default;
     virtual PlacementFinderResult find(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       Core::Line &line,
       Core::Placement &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler) = 0;

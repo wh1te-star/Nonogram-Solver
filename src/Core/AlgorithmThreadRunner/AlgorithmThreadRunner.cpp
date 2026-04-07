@@ -1,7 +1,7 @@
 #include "Core/AlgorithmThreadRunner/AlgorithmThreadRunner.h"
 
 #include "Core/Board/Line/Line.h"
-#include "Core/Hint/HintSet/HintSet.h"
+#include "Core/Hint/HintList/HintList.h"
 #include "Core/PuzzleLoader/PuzzleLoader/PuzzleLoader.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "Rendering/Shared/SharedDataAliases.h"

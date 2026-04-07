@@ -2,20 +2,20 @@
 #define VERSANO_CORE_COLUMNHINTSETLIST_H
 
 #include "Core/Board/BoardLength/RowLength.h"
-#include "Core/Hint/HintSetList/HintSetList.h"
+#include "Core/Hint/HintGroup/HintGroup.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 
 namespace VersaNo::Core {
 
-class ColumnHintSetList : public HintSetList {
+class ColumnHintGroup : public HintGroup {
   public:
-    explicit ColumnHintSetList(std::vector<HintSet> hintSetList);
+    explicit ColumnHintGroup(std::vector<HintList> hintGroup);
 
   public:
-    HintSet operator[](ColumnIndex columnIndex) const;
+    HintList operator[](ColumnIndex columnIndex) const;
 
   public:
-    RowLength getMaxHintSetLength() const;
+    RowLength getMaxHintListLength() const;
 };
 
 } // namespace VersaNo::Core

@@ -17,13 +17,13 @@ class OverlapLineSolver : public ILineSolver {
       ILeftmostPlacementFinder &leftmostPlacementFinder,
       IRightmostPlacementFinder &rightmostPlacementFinder);
     LineSolverResult solve(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       Core::Line &line,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     LineSolverResult overlapLineSolve(
-      const Core::HintSet &hintSet, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler);
+      const Core::HintList &hintList, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler);
 };
 
 } // namespace VersaNo::Solver

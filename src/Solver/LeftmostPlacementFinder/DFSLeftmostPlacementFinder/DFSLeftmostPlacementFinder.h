@@ -14,20 +14,20 @@ class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
   public:
     DFSLeftmostPlacementFinder() = default;
     PlacementFinderResult find(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       Core::Line &line,
       Core::Placement &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult dfsLeftmostPlacementFind(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       Core::Line &line,
       Core::Placement &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsLeftmostPlacementFindRecursive(
-      const Core::HintSet &hintSet,
+      const Core::HintList &hintList,
       const Core::Line &line,
       Core::Placement &currentPlacement,
       int currentHintIndex,

@@ -4,21 +4,20 @@
 #include "Core/Board/Board/Board.h"
 #include "Core/Board/BoardLength/ColumnLength.h"
 #include "Core/Board/BoardLength/RowLength.h"
-#include "Core/Hint/HintSet/HintSet.h"
-#include "Core/Hint/HintSetList/ColumnHintSetList.h"
-#include "Core/Hint/HintSetList/RowHintSetList.h"
+#include "Core/Hint/HintGroup/ColumnHintGroup.h"
+#include "Core/Hint/HintGroup/RowHintGroup.h"
+#include "Core/Hint/HintList/HintList.h"
 
 namespace VersaNo::Core {
 
 class NonogramBoard {
   private:
     Board board;
-    RowHintSetList rowHintSetList;
-    ColumnHintSetList columnHintSetList;
+    RowHintGroup rowHintGroup;
+    ColumnHintGroup columnHintGroup;
 
   public:
-    explicit NonogramBoard(
-      Board board, RowHintSetList rowHintSetList, ColumnHintSetList columnHintSetList);
+    explicit NonogramBoard(Board board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup);
 
   public:
     RowLength getRowLength() const;
@@ -40,8 +39,8 @@ class NonogramBoard {
     void applyBoard(const Board &board, bool overwriteNone);
 
   public:
-    RowHintSetList getRowHintSetList() const;
-    ColumnHintSetList getColumnHintSetList() const;
+    RowHintGroup getRowHintGroup() const;
+    ColumnHintGroup getColumnHintGroup() const;
 };
 
 } // namespace VersaNo::Core

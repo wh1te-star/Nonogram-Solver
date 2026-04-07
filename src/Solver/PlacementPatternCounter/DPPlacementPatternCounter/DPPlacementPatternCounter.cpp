@@ -8,20 +8,20 @@ DPPlacementPatternCounter::DPPlacementPatternCounter() {}
 DPPlacementPatternCounter::DPPlacementPatternCounter(int MAX_COUNT) : MAX_COUNT(MAX_COUNT) {}
 
 PlacementPatternCounterResult DPPlacementPatternCounter::count(
-  const HintSet &hintSet,
+  const HintList &hintList,
   Line &line,
   PlacementCount &placementCount,
   IBoardUpdateHandler &boardUpdateHandler) {
-    auto result = DPPlacementPatternCount(hintSet, line, placementCount, boardUpdateHandler);
+    auto result = DPPlacementPatternCount(hintList, line, placementCount, boardUpdateHandler);
     return result;
 }
 
 PlacementPatternCounterResult DPPlacementPatternCounter::DPPlacementPatternCount(
-  const HintSet &hintSet,
+  const HintList &hintList,
   const Line &line,
   PlacementCount &placementCount,
   IBoardUpdateHandler &boardUpdateHandler) {
-    int hintsCount = hintSet.size();
+    int hintsCount = hintList.size();
     int totalLength = line.size();
     std::vector<std::vector<PlacementCount>> partialCount(
       hintsCount + 1, std::vector<PlacementCount>(totalLength + 1, PlacementCount(0)));
@@ -40,7 +40,7 @@ PlacementPatternCounterResult DPPlacementPatternCounter::DPPlacementPatternCount
     }
 
     for (int hintNumberIndexInt = 1; hintNumberIndexInt <= hintsCount; hintNumberIndexInt++) {
-        HintNumber hintNumber = hintSet[hintNumberIndexInt - 1];
+        HintNumber hintNumber = hintList[hintNumberIndexInt - 1];
 
         for (int cellIndexInt = 1; cellIndexInt <= totalLength; cellIndexInt++) {
             CellIndex cellIndex = CellIndex(cellIndexInt);

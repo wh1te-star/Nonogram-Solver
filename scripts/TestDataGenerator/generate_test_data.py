@@ -68,12 +68,12 @@ def main():
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
     hintCount = random.randrange(2, 4)
-    hintSet = [random.randrange(1, 5) for _ in range(hintCount)]
+    hintList = [random.randrange(1, 5) for _ in range(hintCount)]
     
-    min_length = sum(hintSet) + len(hintSet) - 1
+    min_length = sum(hintList) + len(hintList) - 1
     lineLength = min_length + random.randrange(0, 5)
     
-    generate_combinations_data(lineLength, hintSet, output_file)
+    generate_combinations_data(lineLength, hintList, output_file)
 
 if __name__ == "__main__":
     main()

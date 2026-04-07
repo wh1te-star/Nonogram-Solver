@@ -33,8 +33,8 @@ void TableRenderer::render(
     // sharedHighlightIndexes.getHighlightIndexes(); const BacktrackStack
     // backtrackStack = sharedBacktrackStack.getBacktrackStack();
     const Board board = nonogramBoard.getBoard();
-    const RowHintSetList rowHintSetList = nonogramBoard.getRowHintSetList();
-    const ColumnHintSetList columnHintSetList = nonogramBoard.getColumnHintSetList();
+    const RowHintGroup rowHintGroup = nonogramBoard.getRowHintGroup();
+    const ColumnHintGroup columnHintGroup = nonogramBoard.getColumnHintGroup();
     // const RowPlacementCountList rowPlacementCountList = nonogramBoard.getRowPlacementCountList();
     // const ColumnPlacementCountList columnPlacementCountList =
     // nonogramBoard.getColumnPlacementCountList();
@@ -48,8 +48,8 @@ void TableRenderer::render(
     // --- Length Calculations (Same as before) ---
     const RowLength boardRowLength = board.getRowLength();
     const ColumnLength boardColumnLength = board.getColumnLength();
-    const RowLength columnHintLength = columnHintSetList.getMaxHintSetLength();
-    const ColumnLength rowHintLength = rowHintSetList.getMaxHintSetLength();
+    const RowLength columnHintLength = columnHintGroup.getMaxHintListLength();
+    const ColumnLength rowHintLength = rowHintGroup.getMaxHintListLength();
     const RowLength columnPlacementCountLength = RowLength(1);
     const ColumnLength rowPlacementCountLength = ColumnLength(1);
     const RowLength columnBacktrackStackLength = RowLength(1);
@@ -143,12 +143,12 @@ void TableRenderer::render(
 
             // 3. Draw Label (Text)
             // std::string label = setLabel( rowIndex, columnIndex, cellType,
-            // columnHintLength, rowHintLength, rowHintSetList, columnHintSetList,
+            // columnHintLength, rowHintLength, rowHintGroup, columnHintGroup,
             // rowPlacementCountList, columnPlacementCountList, cell_size,
             // backtrackStack);
             std::string label = setLabel(
-              rowIndex, columnIndex, cellType, columnHintLength, rowHintLength, rowHintSetList,
-              columnHintSetList, rowPlacementCountList, columnPlacementCountList,
+              rowIndex, columnIndex, cellType, columnHintLength, rowHintLength, rowHintGroup,
+              columnHintGroup, rowPlacementCountList, columnPlacementCountList,
               cell_size); //, backtrackStack);
 
             if (!label.empty()) {
@@ -321,8 +321,8 @@ std::string TableRenderer::setLabel(
   CellType cellType,
   RowLength columnHintLength,
   ColumnLength rowHintLength,
-  RowHintSetList rowHintSetList,
-  ColumnHintSetList columnHintSetList,
+  RowHintGroup rowHintGroup,
+  ColumnHintGroup columnHintGroup,
   RowPlacementCountList rowPlacementCountList,
   ColumnPlacementCountList columnPlacementCountList,
   float cell_size) const {
@@ -336,25 +336,25 @@ std::string TableRenderer::setLabel(
       cellType == COLUMN_BACKTRACK_STACK) {
 
         if (cellType == ROW_HINT) {
-            RowIndex HintSetIndex = rowIndex - columnHintLength;
-            HintSet HintSet = rowHintSetList[HintSetIndex];
+            RowIndex HintListIndex = rowIndex - columnHintLength;
+            HintList HintList = rowHintGroup[HintListIndex];
             ColumnIndex HintNumberIndex = ColumnIndex(
-              columnIndex.getIndex() + HintSet.size() - rowHintLength.getLength());
+              columnIndex.getIndex() + HintList.size() - rowHintLength.getLength());
 
             if (HintNumberIndex >= ColumnIndex(0)) {
-                // assert(HintNumberIndex < ColumnLength((int)HintSet.size()));
+                // assert(HintNumberIndex < ColumnLength((int)HintList.size()));
                 // kept your logic, assuming bounds are safe or assert exists
-                return std::to_string(HintSet[HintNumberIndex.getIndex()].getNumber());
+                return std::to_string(HintList[HintNumberIndex.getIndex()].getNumber());
             }
         }
 
         if (cellType == COLUMN_HINT) {
-            ColumnIndex HintSetIndex = columnIndex - rowHintLength;
-            HintSet HintSet = columnHintSetList[HintSetIndex];
+            ColumnIndex HintListIndex = columnIndex - rowHintLength;
+            HintList HintList = columnHintGroup[HintListIndex];
             RowIndex HintNumberIndex = RowIndex(
-              rowIndex.getIndex() + HintSet.size() - columnHintLength.getLength());
+              rowIndex.getIndex() + HintList.size() - columnHintLength.getLength());
             if (HintNumberIndex >= RowIndex(0)) {
-                return std::to_string(HintSet[HintNumberIndex.getIndex()].getNumber());
+                return std::to_string(HintList[HintNumberIndex.getIndex()].getNumber());
             }
         }
 

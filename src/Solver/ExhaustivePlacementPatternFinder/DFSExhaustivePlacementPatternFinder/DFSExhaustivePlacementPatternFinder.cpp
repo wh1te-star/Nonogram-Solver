@@ -4,20 +4,20 @@ using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
 ExhaustivePlacementPatternFinderResult DFSExhaustivePlacementPatternFinder::find(
-  const HintSet &hintSet, const Line &line, std::vector<Placement> &solutions) {
-    return dfsExhaustivePlacementFind(hintSet, line, solutions);
+  const HintList &hintList, const Line &line, std::vector<Placement> &solutions) {
+    return dfsExhaustivePlacementFind(hintList, line, solutions);
 }
 
 ExhaustivePlacementPatternFinderResult
 DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFind(
-  const HintSet &hintSet, const Line &line, std::vector<Placement> &solutions) {
+  const HintList &hintList, const Line &line, std::vector<Placement> &solutions) {
     Placement currentPlacement = Placement("");
-    return dfsExhaustivePlacementFindRecursive(hintSet, line, solutions, currentPlacement, 0);
+    return dfsExhaustivePlacementFindRecursive(hintList, line, solutions, currentPlacement, 0);
 }
 
 ExhaustivePlacementPatternFinderResult
 DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
-  const HintSet &hintSet,
+  const HintList &hintList,
   const Line &line,
   std::vector<Placement> &solutions,
   Placement &currentPlacement,
@@ -25,7 +25,7 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
     if (currentPlacement.size() > line.size()) {
         return ExhaustivePlacementPatternFinderResult::notFound;
     }
-    if (currentHintIndex >= hintSet.size()) {
+    if (currentHintIndex >= hintList.size()) {
         Placement foundPlacement = currentPlacement;
         for (CellIndex i = CellIndex(currentPlacement.size()); i < line.size(); i = i + 1) {
             if (!line[i].canColor(White)) {
@@ -37,7 +37,7 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
         return ExhaustivePlacementPatternFinderResult::success;
     }
 
-    HintNumber hintNumber = hintSet[currentHintIndex];
+    HintNumber hintNumber = hintList[currentHintIndex];
     CellIndex currentIndex = CellIndex(currentPlacement.size());
     if (line.canPlaceBlock(currentIndex, hintNumber)) {
         Placement previousPlacement = currentPlacement;
@@ -46,7 +46,7 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
             currentPlacement = currentPlacement + Placement("W");
         }
         dfsExhaustivePlacementFindRecursive(
-          hintSet, line, solutions, currentPlacement, currentHintIndex + 1);
+          hintList, line, solutions, currentPlacement, currentHintIndex + 1);
         currentPlacement = previousPlacement;
     }
 
@@ -54,7 +54,7 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
         Placement previousPlacement = currentPlacement;
         currentPlacement = currentPlacement + Placement("W");
         dfsExhaustivePlacementFindRecursive(
-          hintSet, line, solutions, currentPlacement, currentHintIndex);
+          hintList, line, solutions, currentPlacement, currentHintIndex);
         currentPlacement = previousPlacement;
     }
 
