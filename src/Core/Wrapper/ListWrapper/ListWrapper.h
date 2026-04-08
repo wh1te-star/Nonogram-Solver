@@ -3,22 +3,22 @@
 
 namespace VersaNo::Core {
 
-template <typename Implementation, typename Tag>
+template <typename T, typename Idx>
 class ListWrapper {
 protected:
-    Implementation impl;
-
+    std::vector<T> data;
 public:
-    explicit ListWrapper(Implementation i);
+    ListWrapper() = default;
+    explicit ListWrapper(size_t size) : data(size) {}
+    explicit ListWrapper(std::vector<T> v) : data(std::move(v)) {}
 
-    size_t size() const;
-    const Cell& operator[](size_t i) const;
-    
-    const Implementation& getImpl() const;
-    Implementation& getImpl();
+    T& operator[](Idx i) { return data[i.value]; }
+    const T& operator[](Idx i) const { return data[i.value]; }
+    size_t size() const { return data.size(); }
+    auto begin() { return data.begin(); }
+    auto end() { return data.end(); }
 };
 
 } // namespace VersaNo::Core
 
 #endif // VERSANO_CORE_LISTWRAPPER_H
-
