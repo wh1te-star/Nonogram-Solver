@@ -1,5 +1,5 @@
-#ifndef VERSANO_CORE_LENGTHWRAPPER_H
-#define VERSANO_CORE_LENGTHWRAPPER_H
+#ifndef VERSANO_CORE_LENGTHTYPE_H
+#define VERSANO_CORE_LENGTHTYPE_H
 
 namespace VersaNo::Core {
 
@@ -13,4 +13,4 @@ template <typename Derived, typename Tag> struct LengthType : IntType<Derived, T
 
 } // namespace VersaNo::Core
 
-#endif // VERSANO_CORE_LENGTHWRAPPER_H
+#endif // VERSANO_CORE_LENGTHTYPE_H

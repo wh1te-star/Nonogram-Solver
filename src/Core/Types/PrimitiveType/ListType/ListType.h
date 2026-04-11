@@ -1,5 +1,5 @@
-#ifndef VERSANO_CORE_LISTWRAPPER_H
-#define VERSANO_CORE_LISTWRAPPER_H
+#ifndef VERSANO_CORE_LISTTYPE_H
+#define VERSANO_CORE_LISTTYPE_H
 
 namespace VersaNo::Core {
 
@@ -21,4 +21,4 @@ template <typename T, typename Idx> class ListType {
 
 } // namespace VersaNo::Core
 
-#endif // VERSANO_CORE_LISTWRAPPER_H
+#endif // VERSANO_CORE_LISTTYPE_H

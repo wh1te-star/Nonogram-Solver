@@ -1,5 +1,5 @@
-#ifndef VERSANO_CORE_INTWRAPPER_H
-#define VERSANO_CORE_INTWRAPPER_H
+#ifndef VERSANO_CORE_INTTYPE_H
+#define VERSANO_CORE_INTTYPE_H
 
 namespace VersaNo::Core {
 
@@ -26,4 +26,4 @@ template <typename Derived, typename Tag> struct IntType {
 
 } // namespace VersaNo::Core
 
-#endif // VERSANO_CORE_INTWRAPPER_H
+#endif // VERSANO_CORE_INTTYPE_H

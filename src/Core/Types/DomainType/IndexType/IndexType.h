@@ -1,5 +1,5 @@
-#ifndef VERSANO_CORE_INDEXWRAPPER_H
-#define VERSANO_CORE_INDEXWRAPPER_H
+#ifndef VERSANO_CORE_INDEXTYPE_H
+#define VERSANO_CORE_INDEXTYPE_H
 
 namespace VersaNo::Core {
 
@@ -18,4 +18,4 @@ template <typename Derived, typename Tag, typename L> struct IndexType : IntType
 
 } // namespace VersaNo::Core
 
-#endif // VERSANO_CORE_INDEXWRAPPER_H
+#endif // VERSANO_CORE_INDEXTYPE_H
