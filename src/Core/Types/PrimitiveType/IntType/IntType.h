@@ -5,23 +5,13 @@ namespace VersaNo::Core {
 
 template <typename Derived, typename Tag> struct IntType {
     int value;
-    explicit IntType(int v = 0) : value(v) {}
+    using TagType = Tag;
 
-    bool operator==(const IntType &other) const { return value == other.value; }
-    bool operator!=(const IntType &other) const { return value != other.value; }
-    bool operator<(const IntType &other) const { return value < other.value; }
-    bool operator>(const IntType &other) const { return value > other.value; }
-    bool operator<=(const IntType &other) const { return value <= other.value; }
-    bool operator>=(const IntType &other) const { return value >= other.value; }
-    Derived &operator++() {
-        ++value;
-        return static_cast<Derived &>(*this);
-    }
-    Derived operator++(int) {
-        Derived temp = static_cast<Derived &>(*this);
-        ++value;
-        return temp;
-    }
+    explicit constexpr IntType(int v = 0) : value(v) {}
+
+    bool operator==(const Derived &rhs) const { return value == rhs.value; }
+    bool operator!=(const Derived &rhs) const { return value != rhs.value; }
+    bool operator<(const Derived &rhs) const { return value < rhs.value; }
 };
 
 } // namespace VersaNo::Core
