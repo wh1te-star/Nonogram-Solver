@@ -3,17 +3,26 @@
 
 namespace VersaNo::Core {
 
-template <typename Derived, typename Tag, typename L> struct IndexType : IntType<Derived, Tag> {
+template <typename Derived, typename Tag, typename L = void>
+struct IndexType : IntType<Derived, Tag> {
     using IntType<Derived, Tag>::IntType;
 
-    // Index - Index = Length
-    L operator-(const Derived &rhs) const { return L(this->value - rhs.value); }
-    // Index + Length = Index
-    Derived operator+(const L &len) const { return Derived(this->value + len.value); }
-    // Index + int (オフセット移動)
-    Derived operator+(int offset) const { return Derived(this->value + offset); }
-    // Index < Length (境界チェック用)
-    bool operator<(const L &len) const { return this->value < len.value; }
+    Derived &operator++() {
+        ++this->value;
+        return static_cast<Derived &>(*this);
+    }
+
+    // Shift by offset (Index + Length = Index)
+    template <typename U = L, typename = std::enable_if_t<!std::is_same_v<U, void>>>
+    Derived operator+(const U &len) const {
+        return Derived(this->value + len.value);
+    }
+
+    // Distance between indices (Index - Index = Length)
+    template <typename U = L, typename = std::enable_if_t<!std::is_same_v<U, void>>>
+    U operator-(const Derived &rhs) const {
+        return U(this->value - rhs.value);
+    }
 };
 
 } // namespace VersaNo::Core

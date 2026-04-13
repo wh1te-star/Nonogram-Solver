@@ -12,6 +12,9 @@ template <typename Derived, typename Tag> struct IntType {
     bool operator==(const Derived &rhs) const { return value == rhs.value; }
     bool operator!=(const Derived &rhs) const { return value != rhs.value; }
     bool operator<(const Derived &rhs) const { return value < rhs.value; }
+    bool operator>(const Derived &rhs) const { return value > rhs.value; }
+    bool operator<=(const Derived &rhs) const { return value <= rhs.value; }
+    bool operator>=(const Derived &rhs) const { return value >= rhs.value; }
 };
 
 } // namespace VersaNo::Core
