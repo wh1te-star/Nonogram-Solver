@@ -1,6 +1,8 @@
 #ifndef VERSANO_CORE_APPLIEDTYPE_H
 #define VERSANO_CORE_APPLIEDTYPE_H
 
+#include "Core/Cell/Cell/Cell.h"
+
 namespace VersaNo::Core {
 
 // Tags
@@ -22,10 +24,6 @@ struct PlacementCount : IntType<PlacementCount, HintTag> { using IntType::IntTyp
 
 template <typename T>
 using CellIndex = std::enable_if_t<std::is_base_of_v<BoardTag, typename T::TagType>, T>;
-
-using RowLine = ListType<Cell, RowIndex>;
-using ColLine = ListType<Cell, ColIndex>;
-using HintList = ListType<HintNumber, HintIndex>;
 
 } // namespace VersaNo::Core
 
