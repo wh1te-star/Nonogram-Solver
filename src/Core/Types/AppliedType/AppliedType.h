@@ -36,9 +36,6 @@ struct PlacementCount : IntType<PlacementCount, HintTag> {
     using IntType::IntType;
 };
 
-template <typename T>
-using CellIndex = std::enable_if_t<std::is_base_of_v<BoardTag, typename T::TagType>, T>;
-
 } // namespace VersaNo::Core
 
 #endif // VERSANO_CORE_APPLIEDTYPE_H
