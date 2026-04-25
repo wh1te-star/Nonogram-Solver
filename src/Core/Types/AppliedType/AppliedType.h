@@ -36,6 +36,17 @@ struct PlacementCount : IntType<PlacementCount, HintTag> {
     using IntType::IntType;
 };
 
+struct AppliedType {
+    using RowLength = VersaNo::Core::RowLength;
+    using RowIndex = VersaNo::Core::RowIndex;
+    using ColumnLength = VersaNo::Core::ColumnLength;
+    using ColumnIndex = VersaNo::Core::ColumnIndex;
+    using HintIndex = VersaNo::Core::HintIndex;
+    using HintNumber = VersaNo::Core::HintNumber;
+    using PlacementCount = VersaNo::Core::PlacementCount;
+};
+
+
 } // namespace VersaNo::Core
 
 #endif // VERSANO_CORE_APPLIEDTYPE_H
