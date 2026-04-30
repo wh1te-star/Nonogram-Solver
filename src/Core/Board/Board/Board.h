@@ -1,14 +1,11 @@
 #ifndef VERSANO_CORE_BOARD_H
 #define VERSANO_CORE_BOARD_H
 
-#include "Core/Board/BoardLength/ColumnLength.h"
-#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/Line/Column.h"
 #include "Core/Board/Line/Row.h"
 #include "Core/Cell/CellColor/CellColor.h"
 #include "Core/Cell/CellVector2D/CellVector2D.h"
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Index/Position/CellPosition/CellPosition.h"
 #include "Core/Placement/Placement/ColumnPlacement.h"
 #include "Core/Placement/Placement/Placement.h"
