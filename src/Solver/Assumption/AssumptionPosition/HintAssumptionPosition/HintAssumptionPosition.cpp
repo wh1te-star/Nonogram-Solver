@@ -1,5 +1,7 @@
 #include "Solver/Assumption/AssumptionPosition/HintAssumptionPosition/HintAssumptionPosition.h"
 
+#include "Core/Types/AppliedType/AppliedType.h"
+
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 

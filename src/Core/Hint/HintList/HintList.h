@@ -7,6 +7,7 @@
 
 namespace VersaNo::Core {
 
+
 class HintList {
   private:
     std::vector<HintNumber> numbers;
@@ -27,6 +28,8 @@ class HintList {
     size_t size() const;
 };
 
+
 } // namespace VersaNo::Core
+
 
 #endif // VERSANO_CORE_HINTSET_H

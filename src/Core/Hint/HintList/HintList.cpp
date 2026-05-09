@@ -1,7 +1,5 @@
 #include "Core/Hint/HintList/HintList.h"
 
-#include "Core/Hint/HintNumber/HintNumber.h"
-
 namespace VersaNo::Core {
 
 HintList::HintList(std::vector<HintNumber> numbers) : numbers(numbers) {}

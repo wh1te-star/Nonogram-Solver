@@ -1,12 +1,8 @@
 #ifndef VERSANO_CORE_LINEPOSITION_H
 #define VERSANO_CORE_LINEPOSITION_H
 
-#include "Core/Board/BoardLength/ColumnLength.h"
-#include "Core/Board/BoardLength/RowLength.h"
-#include "Core/Board/Orientation.h"
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
-#include "Core/Index/Position/IPosition.h"
+#include "Core/Types/AppliedType/AppliedType.h"
+#include "Core/Position/IPosition.h"
 
 namespace VersaNo::Core {
 

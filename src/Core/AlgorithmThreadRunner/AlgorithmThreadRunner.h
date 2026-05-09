@@ -1,8 +1,6 @@
 #ifndef VERSANO_CORE_ALGORITHMTHREADRUNNER_H
 #define VERSANO_CORE_ALGORITHMTHREADRUNNER_H
 
-#include "Core/Board/Line/Line.h"
-#include "Core/Hint/HintList/HintList.h"
 #include "Rendering/Shared/ISender.h"
 #include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/Solver/ISolver.h"

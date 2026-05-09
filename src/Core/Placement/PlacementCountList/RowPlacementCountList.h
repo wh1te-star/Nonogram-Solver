@@ -2,15 +2,24 @@
 #define VERSANO_CORE_ROWPLACEMENTCOUNTLIST_H
 
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Placement/PlacementCountList/PlacementCountList.h"
+
+#include <vector>
 
 namespace VersaNo::Core {
 
-class RowPlacementCountList : public PlacementCountList {
+class RowPlacementCountList {
+  private:
+    std::vector<PlacementCount> placementCountList;
+
   public:
     explicit RowPlacementCountList(std::vector<PlacementCount> placementCountList);
 
   public:
+    const std::vector<PlacementCount> &getPlacementCountList() const;
+
+  public:
+    bool operator==(const RowPlacementCountList &other) const;
+    bool operator!=(const RowPlacementCountList &other) const;
     const PlacementCount &operator[](RowIndex index) const;
     PlacementCount &operator[](RowIndex index);
 };

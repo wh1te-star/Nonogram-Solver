@@ -1,7 +1,6 @@
 #include "Core/Position/HintPosition/HintPosition.h"
 
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 
 namespace VersaNo::Core {
 
