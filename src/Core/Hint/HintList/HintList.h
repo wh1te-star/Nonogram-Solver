@@ -1,8 +1,7 @@
 #ifndef VERSANO_CORE_HINTSET_H
 #define VERSANO_CORE_HINTSET_H
 
-#include "Core/Hint/HintNumber/HintNumber.h"
-#include "Core/Index/CellIndex/CellIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 
 #include <vector>
 

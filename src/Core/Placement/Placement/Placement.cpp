@@ -1,7 +1,7 @@
 #include "Core/Placement/Placement/Placement.h"
 
 #include "Core/Cell/Cell/Cell.h"
-#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Position/CellPosition/CellPosition.h"
 #include "Core/Placement/Placement/ColumnPlacement.h"
 #include "Core/Placement/Placement/RowPlacement.h"
 

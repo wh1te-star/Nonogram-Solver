@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_HINTASSUMPTIONPOSITION_H
 #define VERSANO_CORE_HINTASSUMPTIONPOSITION_H
 
-#include "Core/Index/Position/HintPosition/HintPosition.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 
 namespace VersaNo::Solver {

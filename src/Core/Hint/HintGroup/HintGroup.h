@@ -1,7 +1,6 @@
 #ifndef VERSANO_CORE_HINTSETLIST_H
 #define VERSANO_CORE_HINTSETLIST_H
 
-#include "Core/Board/BoardLength/BoardLength.h"
 #include "Core/Hint/HintList/HintList.h"
 
 #include <vector>

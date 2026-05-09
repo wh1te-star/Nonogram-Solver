@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_CELLASSUMPTIONPOSITION_H
 #define VERSANO_CORE_CELLASSUMPTIONPOSITION_H
 
-#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Position/CellPosition/CellPosition.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 
 namespace VersaNo::Solver {

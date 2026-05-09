@@ -1,7 +1,6 @@
 #ifndef VERSANO_CORE_COLUMNHINTSETLIST_H
 #define VERSANO_CORE_COLUMNHINTSETLIST_H
 
-#include "Core/Board/BoardLength/RowLength.h"
 #include "Core/Hint/HintGroup/HintGroup.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 

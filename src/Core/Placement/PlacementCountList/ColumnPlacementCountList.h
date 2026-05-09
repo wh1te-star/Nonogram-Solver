@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_COLUMNPLACEMENTCOUNTLIST_H
 #define VERSANO_CORE_COLUMNPLACEMENTCOUNTLIST_H
 
-#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
 namespace VersaNo::Core {

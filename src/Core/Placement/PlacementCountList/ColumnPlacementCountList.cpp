@@ -1,6 +1,6 @@
 #include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
 
-#include "Core/Index/CellIndex/ColumnIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Placement/PlacementCount/PlacementCount.h"
 
 namespace VersaNo::Core {

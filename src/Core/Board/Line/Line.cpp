@@ -3,7 +3,7 @@
 #include "Core/Board/Line/Column.h"
 #include "Core/Board/Line/Row.h"
 #include "Core/Cell/Cell/Cell.h"
-#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Position/CellPosition/CellPosition.h"
 
 #include <cassert>
 

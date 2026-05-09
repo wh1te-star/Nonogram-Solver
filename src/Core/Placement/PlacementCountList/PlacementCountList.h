@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_PLACEMENTCOUNTLIST_H
 #define VERSANO_CORE_PLACEMENTCOUNTLIST_H
 
-#include "Core/Placement/PlacementCount/PlacementCount.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 
 #include <vector>
 

@@ -1,8 +1,7 @@
 #ifndef VERSANO_CORE_ROWPLACEMENTCOUNTLIST_H
 #define VERSANO_CORE_ROWPLACEMENTCOUNTLIST_H
 
-#include "Core/Index/CellIndex/RowIndex.h"
-#include "Core/Placement/PlacementCount/PlacementCount.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Placement/PlacementCountList/PlacementCountList.h"
 
 namespace VersaNo::Core {

@@ -2,7 +2,6 @@
 #define VERSANO_CORE_PLACEMENT_H
 
 #include "Core/Cell/Cell/Cell.h"
-#include "Core/Index/Position/CellPosition/CellPosition.h"
 
 #include <vector>
 

@@ -1,7 +1,5 @@
-#include "Core/Index/Position/LinePosition/LinePosition.h"
+#include "Core/Position/LinePosition/LinePosition.h"
 
-#include "Core/Board/BoardLength/ColumnLength.h"
-#include "Core/Board/BoardLength/RowLength.h"
 #include "Core/Index/CellIndex/ColumnIndex.h"
 #include "Core/Index/CellIndex/RowIndex.h"
 
