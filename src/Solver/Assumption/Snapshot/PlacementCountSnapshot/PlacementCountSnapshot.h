@@ -1,9 +1,9 @@
 #ifndef VERSANO_CORE_PLACEMENTCOUNTSNAPSHOT_H
 #define VERSANO_CORE_PLACEMENTCOUNTSNAPSHOT_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/Board/Board.h"
 #include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Core/Placement/PlacementCountList/PlacementCountList.h"
 #include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 

@@ -6,22 +6,33 @@
 
 namespace VersaNo::Core {
 
+template <typename TOrientation>
 class LinePosition : public IPosition {
-  private:
-    Orientation orientation;
-    CellIndex cellIndex;
+public:
+    using Index = typename LineTraits<TOrientation>::Index;
 
-  public:
-    explicit LinePosition(Orientation orientation, CellIndex index);
+private:
+    Index index;
 
-  public:
-    const Orientation &getOrientation() const;
-    const CellIndex &getCellIndex() const;
+public:
+    explicit LinePosition(Index index) : index(index) {}
 
-  public:
-    bool operator==(const LinePosition &other) const;
-    bool operator!=(const LinePosition &other) const;
+    static constexpr EOrientation getOrientation() {
+        return std::is_same_v<TOrientation, RowOrientation> ? EOrientation::Row : EOrientation::Column;
+    }
+
+    const Index& getIndex() const { return index; }
+
+    bool operator==(const LinePosition& other) const {
+        return index == other.index;
+    }
+    bool operator!=(const LinePosition& other) const {
+        return !(*this == other);
+    }
 };
+
+using RowPosition = LinePosition<RowOrientation>;
+using ColPosition = LinePosition<ColumnOrientation>;
 
 } // namespace VersaNo::Core
 

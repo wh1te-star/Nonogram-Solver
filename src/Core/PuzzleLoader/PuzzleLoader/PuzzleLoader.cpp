@@ -1,7 +1,8 @@
 #include "Core/PuzzleLoader/PuzzleLoader/PuzzleLoader.h"
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
-#include "Core/Hint/HintNumber/HintNumber.h"
+#include "Core/Types/AppliedType/AppliedType.h"
+
 
 #include <cassert>
 #include <sstream>

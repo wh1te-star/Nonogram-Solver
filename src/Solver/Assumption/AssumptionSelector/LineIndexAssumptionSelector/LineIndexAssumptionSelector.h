@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_LINEINDEXASSUMPTIONSELECTOR_H
 #define VERSANO_CORE_LINEINDEXASSUMPTIONSELECTOR_H
 
-#include "Core/Board/Orientation.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"

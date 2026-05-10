@@ -1,9 +1,6 @@
 #include "Rendering/TableRenderer/TableRenderer.h"
 
-#include "Core/Board/BoardLength/ColumnLength.h"
-#include "Core/Board/BoardLength/RowLength.h"
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Rendering/FontData/FontData.h"
 #include "imgui.h"
 #include "imgui_internal.h"

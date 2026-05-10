@@ -1,8 +1,8 @@
 #ifndef VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
 #define VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Hint/HintList/HintList.h"
-#include "Core/Placement/PlacementCount/PlacementCount.h"
 #include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
 

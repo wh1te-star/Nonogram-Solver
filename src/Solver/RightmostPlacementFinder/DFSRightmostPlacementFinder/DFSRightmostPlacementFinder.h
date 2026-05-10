@@ -1,8 +1,8 @@
 #ifndef VERSANO_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H
 #define VERSANO_CORE_DFSRIGHTMOSTPLACEMENTFINDER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/AlgorithmProfiler/AlgorithmProfiler.h"
-#include "Core/Placement/Placement/Placement.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
 

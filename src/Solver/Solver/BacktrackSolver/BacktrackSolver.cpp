@@ -1,6 +1,6 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
-#include "Core/Placement/Placement/Placement.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
 #include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"

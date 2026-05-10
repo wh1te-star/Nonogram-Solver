@@ -1,10 +1,10 @@
 #ifndef VERSANO_CORE_PUZZLELOADER_H
 #define VERSANO_CORE_PUZZLELOADER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Hint/HintGroup/ColumnHintGroup.h"
 #include "Core/Hint/HintGroup/RowHintGroup.h"
-#include "Core/Hint/HintNumber/HintNumber.h"
 
 #include <string>
 #include <vector>

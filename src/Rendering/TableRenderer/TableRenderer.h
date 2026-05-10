@@ -2,13 +2,10 @@
 #define VERSANO_CORE_TABLERENDERER_H
 
 #include "Core/Board/Board/Board.h"
-#include "Core/Board/BoardLength/ColumnLength.h"
-#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Hint/HintGroup/ColumnHintGroup.h"
 #include "Core/Hint/HintGroup/RowHintGroup.h"
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
 #include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
 #include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
 #include "Rendering/HighlightIndexes/HighlightIndexes.h"

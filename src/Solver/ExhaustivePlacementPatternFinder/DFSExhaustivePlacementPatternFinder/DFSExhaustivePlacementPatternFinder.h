@@ -1,8 +1,8 @@
 #ifndef VERSANO_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 #define VERSANO_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Hint/HintList/HintList.h"
-#include "Core/Placement/Placement/Placement.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 
 #include <vector>

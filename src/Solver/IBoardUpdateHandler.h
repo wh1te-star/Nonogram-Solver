@@ -1,10 +1,11 @@
 #ifndef VERSANO_CORE_IBOARDUPDATEHANDLER_H
 #define VERSANO_CORE_IBOARDUPDATEHANDLER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/Board/Board.h"
-#include "Core/Index/Position/CellPosition/CellPosition.h"
-#include "Core/Index/Position/HintPosition/HintPosition.h"
-#include "Core/Index/Position/LinePosition/LinePosition.h"
+#include "Core/Position/CellPosition/CellPosition.h"
+#include "Core/Position/HintPosition/HintPosition.h"
+#include "Core/Position/LinePosition/LinePosition.h"
 
 namespace VersaNo::Solver {
 

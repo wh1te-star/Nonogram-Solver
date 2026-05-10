@@ -1,10 +1,7 @@
 #include "Core/Board/Board/Board.h"
 
-#include "Core/Board/BoardLength/ColumnLength.h"
-#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Cell/Cell/Cell.h"
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
 
 #include <cassert>
 #include <typeinfo>

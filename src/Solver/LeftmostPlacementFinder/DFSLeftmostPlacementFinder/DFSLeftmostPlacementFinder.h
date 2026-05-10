@@ -1,8 +1,8 @@
 #ifndef VERSANO_CORE_DFSLEFTMOSTPLACEMENTFINDER_H
 #define VERSANO_CORE_DFSLEFTMOSTPLACEMENTFINDER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/AlgorithmProfiler/AlgorithmProfiler.h"
-#include "Core/Placement/Placement/Placement.h"
 #include "Solver/LeftMostPlacementFinder/ILeftMostPlacementFinder.h"
 
 namespace VersaNo::Solver {

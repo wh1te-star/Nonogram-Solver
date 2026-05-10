@@ -1,6 +1,6 @@
 #include "Solver/Assumption/AssumptionPosition/CellAssumptionPosition/CellAssumptionPosition.h"
 
-#include "Core/Index/Position/CellPosition/CellPosition.h"
+#include "Core/Position/CellPosition/CellPosition.h"
 
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {

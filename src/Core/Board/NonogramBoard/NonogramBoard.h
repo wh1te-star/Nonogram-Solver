@@ -2,8 +2,7 @@
 #define VERSANO_CORE_NONOGRAMBOARD_H
 
 #include "Core/Board/Board/Board.h"
-#include "Core/Board/BoardLength/ColumnLength.h"
-#include "Core/Board/BoardLength/RowLength.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Hint/HintGroup/ColumnHintGroup.h"
 #include "Core/Hint/HintGroup/RowHintGroup.h"
 #include "Core/Hint/HintList/HintList.h"

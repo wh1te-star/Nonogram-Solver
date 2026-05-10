@@ -1,7 +1,7 @@
 #include "Solver/Assumption/AssumptionEnumerator/HintAssumptionEnumerator/HintAssumptionEnumerator.h"
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/Board/Board.h"
-#include "Core/Placement/Placement/Placement.h"
 #include "Solver/Assumption/Assumption/CellAssumption/CellAssumption.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 

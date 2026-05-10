@@ -1,10 +1,9 @@
 #ifndef VERSANO_CORE_HINTASSUMPTION_H
 #define VERSANO_CORE_HINTASSUMPTION_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
-#include "Core/Board/Orientation.h"
-#include "Core/Hint/HintNumber/HintNumber.h"
-#include "Core/Index/Position/HintPosition/HintPosition.h"
+#include "Core/Position/HintPosition/HintPosition.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 
 namespace VersaNo::Solver {

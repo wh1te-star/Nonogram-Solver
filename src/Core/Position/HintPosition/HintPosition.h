@@ -6,24 +6,36 @@
 
 namespace VersaNo::Core {
 
+template <typename TOrientation>
 class HintPosition : public IPosition {
-  private:
-    Orientation orientation;
-    CellIndex cellIndex;
-    int hintIndex;
+public:
+    using LineIndex = typename LineTraits<TOrientation>::Index;
 
-  public:
-    explicit HintPosition(Orientation orientation, CellIndex cellIndex, int hintIndex);
+private:
+    LineIndex lineIndex;
+    HintIndex hintIndex;
 
-  public:
-    const Orientation &getOrientation() const;
-    const CellIndex &getCellIndex() const;
-    int getHintIndex() const;
+public:
+    explicit HintPosition(LineIndex lineIndex, HintIndex hintIndex)
+        : lineIndex(lineIndex), hintIndex(hintIndex) {}
 
-  public:
-    bool operator==(const HintPosition &other) const;
-    bool operator!=(const HintPosition &other) const;
+    static constexpr EOrientation getOrientation() {
+        return std::is_same_v<TOrientation, RowOrientation> ? EOrientation::Row : EOrientation::Column;
+    }
+
+    const LineIndex& getLineIndex() const { return lineIndex; }
+    const HintIndex& getHintIndex() const { return hintIndex; }
+
+    bool operator==(const HintPosition& other) const {
+        return lineIndex == other.lineIndex && hintIndex == other.hintIndex;
+    }
+    bool operator!=(const HintPosition& other) const {
+        return !(*this == other);
+    }
 };
+
+using RowHintPosition = HintPosition<RowOrientation>;
+using ColHintPosition = HintPosition<ColumnOrientation>;
 
 } // namespace VersaNo::Core
 

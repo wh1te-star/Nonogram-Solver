@@ -1,6 +1,6 @@
 #include "Solver/DeterministicSolver/LineRepeatDeterministicSolver/LineRepeatDeterministicSolver.h"
 
-#include "Core/Placement/PlacementCount/PlacementCount.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/ExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder/DFSExhaustivePlacementPatternFinder.h"
 #include "Solver/ResultEnum/LineSolverResult.h"
 

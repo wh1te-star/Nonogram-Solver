@@ -8,7 +8,6 @@
 #include "Core/Cell/CellVector2D/CellVector2D.h"
 #include "Core/Position/CellPosition/CellPosition.h"
 #include "Core/Placement/Placement/ColumnPlacement.h"
-#include "Core/Placement/Placement/Placement.h"
 #include "Core/Placement/Placement/RowPlacement.h"
 
 #include <vector>

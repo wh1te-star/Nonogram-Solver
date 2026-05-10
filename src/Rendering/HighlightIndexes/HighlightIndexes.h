@@ -1,8 +1,7 @@
 #ifndef VERSANO_CORE_HIGHLIGHTINDEXES_H
 #define VERSANO_CORE_HIGHLIGHTINDEXES_H
 
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 
 #include <unordered_set>
 

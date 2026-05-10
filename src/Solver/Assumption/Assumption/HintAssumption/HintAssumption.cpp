@@ -1,8 +1,6 @@
 #include "Solver/Assumption/Assumption/HintAssumption/HintAssumption.h"
 
-#include "Core/Index/CellIndex/CellIndex.h"
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {

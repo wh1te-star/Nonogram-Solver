@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_LINEASSUMPTION_H
 #define VERSANO_CORE_LINEASSUMPTION_H
 
-#include "Core/Board/Orientation.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/Assumption/Assumption/IAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 
