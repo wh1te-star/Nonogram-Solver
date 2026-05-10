@@ -3,7 +3,6 @@
 #include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Hint/HintList/HintList.h"
 #include "Core/PuzzleLoader/PuzzleLoader/PuzzleLoader.h"
-#include "Rendering/HighlightIndexes/HighlightIndexes.h"
 #include "Rendering/Shared/SharedDataAliases.h"
 #include "Solver/Solver/ISolver.h"
 
