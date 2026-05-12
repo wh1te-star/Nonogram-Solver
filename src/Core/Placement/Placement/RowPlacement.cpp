@@ -58,29 +58,8 @@ RowPlacement &RowPlacement::operator+=(const RowPlacement &other) {
     return *this;
 }
 
-bool RowPlacement::hasNone() const {
-    bool hasNoneColor = false;
-    for (Cell cell : placement) {
-        if (cell.getColor() == CellColor::None) {
-            hasNoneColor = true;
-            break;
-        }
-    }
-    return hasNoneColor;
-}
 
 const size_t RowPlacement::size() const { return placement.size(); }
 
-const std::vector<ColumnIndex> RowPlacement::getHintIndex() const {
-    std::vector<ColumnIndex> hintIndexList;
-    for (size_t i = 0; i < placement.size(); ++i) {
-        if (i <= 0 || placement[i - 1].getColor() != CellColor::Black) {
-            if (placement[i].getColor() == CellColor::Black) {
-                hintIndexList.emplace_back(static_cast<int>(i));
-            }
-        }
-    }
-    return hintIndexList;
-}
 
 } // namespace VersaNo::Core

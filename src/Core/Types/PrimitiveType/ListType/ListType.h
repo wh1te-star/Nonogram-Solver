@@ -2,23 +2,29 @@
 #define VERSANO_CORE_LISTTYPE_H
 
 namespace VersaNo::Core {
+    
+#include <vector>
 
-template <typename T, typename Idx> class ListType {
-  protected:
+template <typename T, typename TIndex>
+class ListType {
+protected:
     std::vector<T> data;
 
-  public:
-    ListType() = default;
-    explicit ListType(size_t size) : data(size) {}
-    explicit ListType(std::vector<T> v) : data(std::move(v)) {}
+public:
+    explicit ListType(std::vector<T> d) : data(std::move(d)) {}
+    virtual ~ListType() = default;
 
-    T &operator[](Idx i) { return data[i.value]; }
-    const T &operator[](Idx i) const { return data[i.value]; }
+    const T& operator[](TIndex index) const { return data[index.value]; }
+    T& operator[](TIndex index) { return data[index.value]; }
+
     size_t size() const { return data.size(); }
     auto begin() { return data.begin(); }
     auto end() { return data.end(); }
+    
+    bool operator==(const ListType& other) const { return data == other.data; }
+    bool operator!=(const ListType& other) const { return !(*this == other); }
 };
 
-} // namespace VersaNo::Core
+}
 
 #endif // VERSANO_CORE_LISTTYPE_H
