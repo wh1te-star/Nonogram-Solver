@@ -7,76 +7,89 @@
 #include "Core/Types/DomainType/LengthType/LengthType.h"
 #include "Core/Types/DomainType/PlacementType/PlacementType.h"
 #include "Core/Types/DomainType/LineType/LineType.h"
-#include "Core/Types/DomainType/HintList/HintList.h"
+#include "Core/Types/DomainType/HintListType/HintListType.h"
 
 namespace VersaNo::Core {
 
+// ============================================================================
+// Domain Tags & Enums
+// ============================================================================
 
-// Tags
 struct BoardTag {};
 struct RowTag : BoardTag {};
-struct ColTag : BoardTag {};
+struct ColumnTag : BoardTag {};
 struct HintTag {};
 
-// Orientations (Row/Column)
 enum class EOrientation { Row, Column };
-
 struct RowOrientation {};
 struct ColumnOrientation {};
 
 
 
-// ========== Row Types ==========
+// ============================================================================
+// Row-Specific Scalar Types
+// ============================================================================
+
 struct RowLength : LengthType<RowLength, RowTag> {
     using LengthType::LengthType;
 };
+
 struct RowIndex : IndexType<RowIndex, RowTag, RowLength> {
     using IndexType::IndexType;
 };
-struct RowPlacement : Placement<ColumnIndex> {
-    using Placement::Placement;
-};
-struct Row : Line<ColumnIndex> {
-    using Line::Line;
-};
 
 
 
-// ========== Column Types ==========
-struct ColumnLength : LengthType<ColumnLength, ColTag> {
+// ============================================================================
+// Column-Specific Scalar Types
+// ============================================================================
+
+struct ColumnLength : LengthType<ColumnLength, ColumnTag> {
     using LengthType::LengthType;
 };
-struct ColumnIndex : IndexType<ColumnIndex, ColTag, ColumnLength> {
+
+struct ColumnIndex : IndexType<ColumnIndex, ColumnTag, ColumnLength> {
     using IndexType::IndexType;
 };
-struct ColumnPlacement : Placement<RowIndex> {
-    using Placement::Placement;
-};
-struct Column : Line<RowIndex> {
-    using Line::Line;
-};
 
 
 
-// ========== Hint Types ==========
+// ============================================================================
+// Hint & Logic Scalar Types
+// ============================================================================
+
 struct HintIndex : IndexType<HintIndex, HintTag> {
     using IndexType::IndexType;
 };
+
 struct HintNumber : IntType<HintNumber, HintTag> {
     using IntType::IntType;
 };
-using HintList = HintListType<HintNumber, HintIndex>;
 
-
-
-// ========== Placement Type ==========
 struct PlacementCount : IntType<PlacementCount, HintTag> {
     using IntType::IntType;
 };
 
 
 
-// ========== Orientations traits ==========
+// ============================================================================
+// Composite Line Types (Container Wrappers)
+// ============================================================================
+
+using Row = Line<ColumnIndex>;
+using RowPlacement = Placement<ColumnIndex>;
+
+using Column = Line<RowIndex>;
+using ColumnPlacement = Placement<RowIndex>;
+
+using HintList = HintListType<HintNumber, HintIndex>;
+
+
+
+// ============================================================================
+// Orientation Traits (Type Resolver)
+// ============================================================================
+
 template <typename TOrientation> struct LineTraits;
 
 template <> struct LineTraits<RowOrientation> {
@@ -85,7 +98,9 @@ template <> struct LineTraits<RowOrientation> {
     using Length = RowLength;
     using PeerLength = ColumnLength;
     using Line = Row;
+    using PeerLine = Column;
     using Placement = RowPlacement;
+    using PeerPlacement = ColumnPlacement;
 };
 
 template <> struct LineTraits<ColumnOrientation> {
@@ -94,11 +109,10 @@ template <> struct LineTraits<ColumnOrientation> {
     using Length = ColumnLength;
     using PeerLength = RowLength;
     using Line = Column;
+    using PeerLine = Row;
     using Placement = ColumnPlacement;
+    using PeerPlacement = RowPlacement;
 };
-
-
-
 
 
 } // namespace VersaNo::Core

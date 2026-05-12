@@ -1,17 +1,18 @@
 #ifndef VERSANO_CORE_LINETYPE_H
 #define VERSANO_CORE_LINETYPE_H
 
-namespace VersaNo::Core {
-
 #include "Core/Types/PrimitiveType/ListType/ListType.h"
 #include "Core/Cell/Cell/Cell.h"
+
+namespace VersaNo::Core {
 
 template <typename TIndex> class Line : public ListType<Cell, TIndex> {
   public:
     using Base = ListType<Cell, TIndex>;
     using Base::Base;
 
-    bool canPlaceBlock(TIndex startIndex, HintNumber hintNumber) const {
+    template <typename THintNumber>
+    bool canPlaceBlock(TIndex startIndex, THintNumber hintNumber) const {
         int start = startIndex.value;
         int end = start + hintNumber.value - 1;
         if (start < 0 || static_cast<int>(line.size()) <= end) {

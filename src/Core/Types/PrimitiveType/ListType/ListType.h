@@ -1,9 +1,9 @@
 #ifndef VERSANO_CORE_LISTTYPE_H
 #define VERSANO_CORE_LISTTYPE_H
 
-namespace VersaNo::Core {
-    
 #include <vector>
+
+namespace VersaNo::Core {
 
 template <typename T, typename TIndex>
 class ListType {
