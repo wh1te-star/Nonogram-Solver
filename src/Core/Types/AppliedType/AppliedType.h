@@ -8,6 +8,7 @@
 #include "Core/Types/DomainType/PlacementType/PlacementType.h"
 #include "Core/Types/DomainType/LineType/LineType.h"
 #include "Core/Types/DomainType/HintListType/HintListType.h"
+#include "Core/Types/DomainType/HintGroupType/HintGroupType.h"
 
 namespace VersaNo::Core {
 
@@ -83,6 +84,17 @@ using Column = Line<RowIndex>;
 using ColumnPlacement = Placement<RowIndex>;
 
 using HintList = HintListType<HintNumber, HintIndex>;
+
+
+
+// ============================================================================
+// Hint Group Types (List of HintLists)
+// ============================================================================
+
+using RowHintGroup = HintGroupType<HintList, RowIndex>;
+
+using ColumnHintGroup = HintGroupType<HintList, ColumnIndex>;
+
 
 
 
