@@ -71,6 +71,9 @@ struct PlacementCount : IntType<PlacementCount, HintTag> {
     using IntType::IntType;
 };
 
+using RowPlacementCountList = ListType<PlacementCount, RowIndex>;
+using ColumnPlacementCountList = ListType<PlacementCount, ColumnIndex>;
+
 
 
 // ============================================================================
