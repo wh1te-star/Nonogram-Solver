@@ -2,14 +2,9 @@
 #define VERSANO_CORE_BOARD_H
 
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Board/Line/Column.h"
-#include "Core/Board/Line/Row.h"
 #include "Core/Cell/CellColor/CellColor.h"
 #include "Core/Cell/CellVector2D/CellVector2D.h"
 #include "Core/Position/CellPosition/CellPosition.h"
-#include "Core/Placement/Placement/ColumnPlacement.h"
-#include "Core/Placement/Placement/RowPlacement.h"
-
 #include <vector>
 
 namespace VersaNo::Core {
@@ -23,26 +18,32 @@ class Board {
   public:
     Board(RowLength rowLength, ColumnLength columnLength);
 
-  public:
     bool operator==(const Board &other) const;
     bool operator!=(const Board &other) const;
 
-  public:
     RowLength getRowLength() const;
     ColumnLength getColumnLength() const;
     Cell getCell(CellPosition coordinate) const;
-    Row getRowLine(RowIndex rowIndex) const;
-    Column getColumnLine(ColumnIndex columnIndex) const;
-    bool isInRange(CellPosition coordinate) const;
-    bool isSolved() const;
 
   public:
+    template <typename TOrientation>
+    typename LineTraits<TOrientation>::Line getLine(typename LineTraits<TOrientation>::Index index) const;
+
     void applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false);
-    void applyRow(RowIndex rowIndex, const Row &row, bool overwriteNone);
-    void applyRow(RowIndex rowIndex, const RowPlacement &rowPlacement);
-    void applyColumn(ColumnIndex columnIndex, const Column &column, bool overwriteNone);
-    void applyColumn(ColumnIndex columnIndex, const ColumnPlacement &columnPlacement);
+
+    template <typename TOrientation>
+    void applyLine(typename LineTraits<TOrientation>::Index index, 
+                   const typename LineTraits<TOrientation>::Line &line, 
+                   bool overwriteNone);
+    template <typename TOrientation>
+    void applyPlacement(typename LineTraits<TOrientation>::Index index, 
+                        const typename LineTraits<TOrientation>::Placement &placement);
+
     void applyBoard(const Board &board, bool overwriteNone);
+
+  public:
+    bool isInRange(CellPosition coordinate) const;
+    bool isSolved() const;
 };
 
 } // namespace VersaNo::Core
