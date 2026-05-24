@@ -10,24 +10,25 @@ template <typename TOrientation>
 class HintPosition : public IPosition {
 public:
     using LineIndex = typename LineTraits<TOrientation>::Index;
+    using PeerIndex = typename LineTraits<TOrientation>::PeerIndex;
 
 private:
     LineIndex lineIndex;
-    HintIndex hintIndex;
+    PeerIndex inlineIndex;
 
 public:
-    explicit HintPosition(LineIndex lineIndex, HintIndex hintIndex)
-        : lineIndex(lineIndex), hintIndex(hintIndex) {}
+    explicit HintPosition(LineIndex lineIndex, PeerIndex inlineIndex)
+        : lineIndex(lineIndex), inlineIndex(inlineIndex) {}
 
     static constexpr EOrientation getOrientation() {
         return std::is_same_v<TOrientation, RowOrientation> ? EOrientation::Row : EOrientation::Column;
     }
 
     const LineIndex& getLineIndex() const { return lineIndex; }
-    const HintIndex& getHintIndex() const { return hintIndex; }
+    const PeerIndex& getInlineIndex() const { return inlineIndex; }
 
     bool operator==(const HintPosition& other) const {
-        return lineIndex == other.lineIndex && hintIndex == other.hintIndex;
+        return lineIndex == other.lineIndex && inlineIndex == other.inlineIndex;
     }
     bool operator!=(const HintPosition& other) const {
         return !(*this == other);

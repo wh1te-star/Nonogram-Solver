@@ -24,11 +24,9 @@ Column NonogramBoard::getColumnLine(ColumnIndex columnIndex) const {
     return board.getColumnLine(columnIndex);
 }
 
-bool NonogramBoard::isInRange(CellPosition cellPosition) const {
-    return board.isInRange(cellPosition);
-}
+RowHintGroup NonogramBoard::getRowHintGroup() const { return rowHintGroup; }
 
-bool NonogramBoard::isSolved() const { return board.isSolved(); }
+ColumnHintGroup NonogramBoard::getColumnHintGroup() const { return columnHintGroup; }
 
 void NonogramBoard::applyCell(CellPosition cellPosition, const Cell &cell, bool overwriteNone) {
     board.applyCell(cellPosition, cell, overwriteNone);
@@ -54,8 +52,12 @@ void NonogramBoard::applyBoard(const Board &board, bool overwriteNone) {
     return this->board.applyBoard(board, overwriteNone);
 }
 
-RowHintGroup NonogramBoard::getRowHintGroup() const { return rowHintGroup; }
+bool NonogramBoard::isInRange(CellPosition cellPosition) const {
+    return board.isInRange(cellPosition);
+}
 
-ColumnHintGroup NonogramBoard::getColumnHintGroup() const { return columnHintGroup; }
+bool NonogramBoard::isSolved() const { return board.isSolved(); }
+
+
 
 } // namespace VersaNo::Core

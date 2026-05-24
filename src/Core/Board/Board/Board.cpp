@@ -1,7 +1,7 @@
 #include "Core/Board/Board/Board.h"
 
-#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Cell/Cell/Cell.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 
 #include <cassert>
 #include <typeinfo>
@@ -28,24 +28,35 @@ Cell Board::getCell(CellPosition cellPosition) const {
     return board[rowIndex.value][columnIndex.value];
 }
 
-Row Board::getRowLine(RowIndex rowIndex) const {
-    std::vector<Cell> row;
-    for (ColumnIndex columnIndex : ColumnIndex::range(0, columnLength.value - 1)) {
-        CellPosition cellPosition = CellPosition(rowIndex, columnIndex);
-        Cell cell = getCell(cellPosition);
-        row.push_back(cell);
-    }
-    return Row(row);
-}
+template <typename TOrientation>
+typename LineTraits<TOrientation>::Line
+Board::getLine(typename LineTraits<TOrientation>::Index index) const {
+    using Traits = LineTraits<TOrientation>;
+    using LineType = typename Traits::Line;
+    using PeerIndex = typename Traits::PeerIndex;
+    using PeerLength = typename Traits::PeerLength;
 
-Column Board::getColumnLine(ColumnIndex columnIndex) const {
-    std::vector<Cell> column;
-    for (RowIndex rowIndex : RowIndex::range(0, rowLength.value - 1)) {
-        CellPosition cellPosition = CellPosition(rowIndex, columnIndex);
-        Cell cell = getCell(cellPosition);
-        column.push_back(cell);
+    PeerLength peerLength;
+    if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+        peerLength = getColumnLength();
+    } else {
+        peerLength = getRowLength();
     }
-    return Column(column);
+
+    std::vector<Cell> cells;
+
+    for (PeerIndex peerIndex : PeerIndex::closedRange(0, peerLength.value - 1)) {
+        Cell cell;
+        if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+            cell = getCell(CellPosition(index, peerIndex));
+        } else {
+            cell = getCell(CellPosition(peerIndex, index));
+        }
+
+        cells.push_back(cell);
+    }
+
+    return LineType(cells);
 }
 
 void Board::applyCell(CellPosition cellPosition, const Cell &cell, bool overwriteNone) {
@@ -58,53 +69,92 @@ void Board::applyCell(CellPosition cellPosition, const Cell &cell, bool overwrit
 
     RowIndex rowIndex = cellPosition.getRowIndex();
     ColumnIndex columnIndex = cellPosition.getColumnIndex();
-    board[rowIndex.getIndex()][columnIndex.getIndex()] = cell;
+    board[rowIndex.value][columnIndex.value] = cell;
 }
 
-void Board::applyRow(RowIndex rowIndex, const Row &row, bool overwriteNone) {
-    assert(row.size() == columnLength.value);
+template <typename TOrientation>
+void Board::applyLine(
+  typename LinePosition<TOrientation> linePosition,
+  const typename LineTraits<TOrientation>::Line &line,
+  bool overwriteNone) {
+    using Traits = LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
+    using PeerIndex = typename Traits::PeerIndex;
 
-    for (ColumnIndex columnIndex : ColumnIndex::range(0, row.size() - 1)) {
-        CellPosition cellPosition = CellPosition(rowIndex, columnIndex);
-        Cell cell = row[columnIndex];
-        applyCell(cellPosition, cell, overwriteNone);
+    if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+        assert(line.size() == columnLength.value);
+    } else {
+        assert(line.size() == rowLength.value);
+    }
+
+    Index lineIndex = linePosition.getIndex();
+
+for (PeerIndex peerIndex : PeerIndex::closedRange(0, line.size() - 1)) {
+        Cell cell = line[peerIndex];
+
+        if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+            CellPosition cellPosition(lineIndex, peerIndex);
+            applyCell(cellPosition, cell, overwriteNone);
+        } else {
+            CellPosition cellPosition(peerIndex, lineIndex);
+            applyCell(cellPosition, cell, overwriteNone);
+        }
     }
 }
 
-void Board::applyRow(RowIndex rowIndex, const RowPlacement &rowPlacement) {
-    assert(rowPlacement.size() == columnLength.value);
+template <typename TOrientation>
+void Board::applyPlacement(
+  typename LinePosition<TOrientation> linePosition,
+  const typename LineTraits<TOrientation>::Placement &placement) {
+    using Traits = LineTraits<TOrientation>;
+    using PeerIndex = typename Traits::PeerIndex;
 
-    for (ColumnIndex columnIndex : ColumnIndex::range(0, rowPlacement.size() - 1)) {
-        CellPosition cellPosition = CellPosition(rowIndex, columnIndex);
-        Cell cell = rowPlacement[columnIndex];
+    if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+        assert(placement.size() == columnLength.value);
+    } else {
+        assert(placement.size() == rowLength.value);
+    }
+
+    for (PeerIndex peerIndex : PeerIndex::closedRange(0, placement.size() - 1)) {
+        CellPosition cellPosition;
+        if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+            cellPosition = CellPosition(linePosition, peerIndex);
+        } else {
+            cellPosition = CellPosition(peerIndex, linePosition);
+        }
+
+        Cell cell = placement[peerIndex];
         applyCell(cellPosition, cell);
     }
 }
 
-void Board::applyColumn(ColumnIndex columnIndex, const Column &column, bool overwriteNone) {
-    assert(column.size() == rowLength.value);
+template <typename TOrientation>
+void Board::applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
+    using Traits = LineTraits<TOrientation>;
+    using PeerIndex = typename Traits::PeerIndex;
 
-    for (RowIndex rowIndex : RowIndex::range(0, column.size() - 1)) {
-        CellPosition cellPosition = CellPosition(rowIndex, columnIndex);
-        Cell cell = column[rowIndex];
-        applyCell(cellPosition, cell, overwriteNone);
-    }
-}
+    typename Traits::Index lineIndex = hintPosition.getLineIndex();
 
-void Board::applyColumn(ColumnIndex columnIndex, const ColumnPlacement &columnPlacement) {
-    assert(columnPlacement.size() == rowLength.value);
+    PeerIndex startIndex = hintPosition.getInlineIndex();
+    PeerIndex lastIndex = startIndex + (hintNumber - 1);
 
-    for (RowIndex rowIndex : RowIndex::range(0, columnPlacement.size() - 1)) {
-        CellPosition cellPosition = CellPosition(rowIndex, columnIndex);
-        Cell cell = columnPlacement[rowIndex];
-        applyCell(cellPosition, cell);
+    for (PeerIndex peerIndex : PeerIndex::closedRange(startIndex, lastIndex)) {
+        CellPosition cellPosition;
+        if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+            cellPosition = CellPosition(lineIndex, peerIndex);
+        } else {
+            cellPosition = CellPosition(peerIndex, lineIndex);
+        }
+
+        applyCell(cellPosition, Cell::Black());
     }
 }
 
 void Board::applyBoard(const Board &board, bool overwriteNone) {
-    for (RowIndex rowIndex : RowIndex::range(0, rowLength.value - 1)) {
-        Row rowLine = board.getRowLine(rowIndex);
-        applyRow(rowIndex, rowLine, overwriteNone);
+    for (RowIndex rowIndex : RowIndex::closedRange(0, rowLength.value - 1)) {
+        Row rowLine = board.getLine<RowOrientation>(rowIndex);
+        LinePosition<RowOrientation> rowLinePosition(rowIndex);
+        applyLine<RowOrientation>(rowLinePosition, rowLine, overwriteNone);
     }
 }
 
@@ -130,6 +180,5 @@ bool Board::isSolved() const {
     }
     return true;
 }
-
 
 } // namespace VersaNo::Core

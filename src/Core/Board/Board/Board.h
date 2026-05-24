@@ -5,6 +5,8 @@
 #include "Core/Cell/CellColor/CellColor.h"
 #include "Core/Cell/CellVector2D/CellVector2D.h"
 #include "Core/Position/CellPosition/CellPosition.h"
+#include "Core/Position/LinePosition/LinePosition.h"
+#include "Core/Position/HintPosition/HintPosition.h"
 #include <vector>
 
 namespace VersaNo::Core {
@@ -32,12 +34,16 @@ class Board {
     void applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false);
 
     template <typename TOrientation>
-    void applyLine(typename LineTraits<TOrientation>::Index index, 
+    void applyLine(typename LinePosition<TOrientation> linePosition, 
                    const typename LineTraits<TOrientation>::Line &line, 
                    bool overwriteNone);
     template <typename TOrientation>
-    void applyPlacement(typename LineTraits<TOrientation>::Index index, 
+    void applyPlacement(typename LinePosition<TOrientation> linePosition, 
                         const typename LineTraits<TOrientation>::Placement &placement);
+
+    template <typename TOrientation>
+    void applyHint(typename HintPosition<TOrientation> hintPosition, 
+                   HintNumber hintNumber);
 
     void applyBoard(const Board &board, bool overwriteNone);
 

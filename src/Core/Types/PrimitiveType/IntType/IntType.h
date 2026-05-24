@@ -4,8 +4,9 @@
 namespace VersaNo::Core {
 
 template <typename Derived, typename Tag> struct IntType {
-    int value;
     using TagType = Tag;
+
+    int value;
 
     explicit constexpr IntType(int v = 0) : value(v) {}
 
