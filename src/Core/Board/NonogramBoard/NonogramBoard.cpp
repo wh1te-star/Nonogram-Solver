@@ -18,10 +18,10 @@ Board &NonogramBoard::getBoard() { return board; }
 
 Cell NonogramBoard::getCell(CellPosition cellPosition) const { return board.getCell(cellPosition); }
 
-Row NonogramBoard::getRowLine(RowIndex rowIndex) const { return board.getRowLine(rowIndex); }
-
-Column NonogramBoard::getColumnLine(ColumnIndex columnIndex) const {
-    return board.getColumnLine(columnIndex);
+template <typename TOrientation>
+typename LineTraits<TOrientation>::Line
+NonogramBoard::getLine(typename LineTraits<TOrientation>::Index index) const {
+    return board.getLine<TOrientation>(index);
 }
 
 RowHintGroup NonogramBoard::getRowHintGroup() const { return rowHintGroup; }
@@ -32,20 +32,24 @@ void NonogramBoard::applyCell(CellPosition cellPosition, const Cell &cell, bool 
     board.applyCell(cellPosition, cell, overwriteNone);
 }
 
-void NonogramBoard::applyRow(RowIndex rowIndex, const Row &row, bool overwriteNone) {
-    return board.applyRow(rowIndex, row, overwriteNone);
+template <typename TOrientation>
+void NonogramBoard::applyLine(
+  typename LinePosition<TOrientation> linePosition,
+  const typename LineTraits<TOrientation>::Line &line,
+  bool overwriteNone) {
+    return board.applyLine<TOrientation>(linePosition, line, overwriteNone);
 }
 
-void NonogramBoard::applyRow(RowIndex rowIndex, const RowPlacement &rowPlacement) {
-    return board.applyRow(rowIndex, rowPlacement);
+template <typename TOrientation>
+void NonogramBoard::applyPlacement(
+  typename LinePosition<TOrientation> linePosition,
+  const typename LineTraits<TOrientation>::Placement &placement) {
+    return board.applyPlacement<TOrientation>(linePosition, placement);
 }
 
-void NonogramBoard::applyColumn(ColumnIndex columnIndex, const Column &column, bool overwriteNone) {
-    return board.applyColumn(columnIndex, column, overwriteNone);
-}
-
-void NonogramBoard::applyColumn(ColumnIndex columnIndex, const ColumnPlacement &columnPlacement) {
-    return board.applyColumn(columnIndex, columnPlacement);
+template <typename TOrientation>
+void NonogramBoard::applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
+    return board.applyHint<TOrientation>(hintPosition, hintNumber);
 }
 
 void NonogramBoard::applyBoard(const Board &board, bool overwriteNone) {
@@ -57,7 +61,5 @@ bool NonogramBoard::isInRange(CellPosition cellPosition) const {
 }
 
 bool NonogramBoard::isSolved() const { return board.isSolved(); }
-
-
 
 } // namespace VersaNo::Core

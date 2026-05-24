@@ -22,8 +22,9 @@ class NonogramBoard {
     Board getBoard() const;
     Board &getBoard();
     Cell getCell(CellPosition cellPosition) const;
-    Row getRowLine(RowIndex rowIndex) const;
-    Column getColumnLine(ColumnIndex columnIndex) const;
+    template <typename TOrientation>
+    typename LineTraits<TOrientation>::Line
+    getLine(typename LineTraits<TOrientation>::Index index) const;
 
     // Nonogram Board specific getters
   public:
