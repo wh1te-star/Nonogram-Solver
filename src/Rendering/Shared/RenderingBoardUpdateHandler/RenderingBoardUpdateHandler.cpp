@@ -16,11 +16,12 @@ void RenderingBoardUpdateHandler::onCellUpdate(
     checkAndSendBoard();
 }
 
+template <typename TOrientation>
 void RenderingBoardUpdateHandler::onLineUpdate(
-  const LinePosition &linePosition,
-  const Line &targetLine,
-  const Line &beforeLine,
-  const Line &afterLine) {
+  typename Core::LineTraits<TOrientation>::Index index,
+  const typename Core::LineTraits<TOrientation>::Line &targetLine,
+  const typename Core::LineTraits<TOrientation>::Line &beforeLine,
+  const typename Core::LineTraits<TOrientation>::Line &afterLine) {
     checkAndSendBoard();
 }
 
@@ -34,5 +35,20 @@ void RenderingBoardUpdateHandler::checkAndSendBoard() {
         nonogramBoardSender.send(nonogramBoard);
     }
 }
+
+// Explicit template instantiations for RowOrientation and ColumnOrientation.
+// This is for separating the declaration and definition,
+// and is enabled by the fact that TOrientation can be RowOrientation or ColumnOrientation.
+template void RenderingBoardUpdateHandler::onLineUpdate<RowOrientation>(
+    RowIndex, 
+    const LineTraits<RowOrientation>::Line&, 
+    const LineTraits<RowOrientation>::Line&, 
+    const LineTraits<RowOrientation>::Line&);
+
+template void RenderingBoardUpdateHandler::onLineUpdate<ColumnOrientation>(
+    ColumnIndex, 
+    const LineTraits<ColumnOrientation>::Line&, 
+    const LineTraits<ColumnOrientation>::Line&, 
+    const LineTraits<ColumnOrientation>::Line&);
 
 } // namespace VersaNo::Rendering
