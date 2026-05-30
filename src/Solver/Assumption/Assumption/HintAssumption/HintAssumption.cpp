@@ -5,10 +5,13 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-HintAssumption::HintAssumption(const HintPosition &hintPosition, const HintNumber &hintNumber)
+template <typename TOrientation>
+HintAssumption<TOrientation>::HintAssumption(
+  const HintPosition<TOrientation> &hintPosition, const HintNumber &hintNumber)
     : hintPosition(hintPosition), hintNumber(hintNumber) {}
 
-void HintAssumption::applyTo(NonogramBoard &nonogramBoard) const {
+template <typename TOrientation>
+void HintAssumption<TOrientation>::applyTo(NonogramBoard &nonogramBoard) const {
     // Implement later
     /*
     if (hintPosition.getOrientation() == Orientation::Row) {
@@ -21,5 +24,9 @@ void HintAssumption::applyTo(NonogramBoard &nonogramBoard) const {
     }
         */
 }
+
+// explicit template instantiation
+template class HintAssumption<RowOrientation>;
+template class HintAssumption<ColumnOrientation>;
 
 } // namespace VersaNo::Solver

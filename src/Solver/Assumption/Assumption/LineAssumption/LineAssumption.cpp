@@ -1,23 +1,18 @@
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 
-#include "Core/Index/CellIndex/CellIndex.h"
-#include "Core/Index/CellIndex/ColumnIndex.h"
-#include "Core/Index/CellIndex/RowIndex.h"
+#include "Core/Types/AppliedType/AppliedType.h"
+#include "Core/Board/NonogramBoard/NonogramBoard.h"
 
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-LineAssumption::LineAssumption(const LinePosition &linePosition, const Line &line)
+template <typename TOrientation>
+LineAssumption<TOrientation>::LineAssumption(const LinePosition<TOrientation> &linePosition, const Line<TOrientation> &line)
     : linePosition(linePosition), line(line) {}
 
-void LineAssumption::applyTo(NonogramBoard &nonogramBoard) const {
-    if (linePosition.getOrientation() == Orientation::Row) {
-        RowIndex rowIndex = RowIndex(linePosition.getCellIndex().getIndex());
-        nonogramBoard.applyRow(rowIndex, static_cast<const Row &>(line), true);
-    } else {
-        ColumnIndex columnIndex = ColumnIndex(linePosition.getCellIndex().getIndex());
-        nonogramBoard.applyColumn(columnIndex, static_cast<const Column &>(line), true);
-    }
+template <typename TOrientation>
+void LineAssumption<TOrientation>::applyTo(NonogramBoard &nonogramBoard) const {
+    nonogramBoard.applyLine(linePosition, line, true);
 }
 
 } // namespace VersaNo::Solver
