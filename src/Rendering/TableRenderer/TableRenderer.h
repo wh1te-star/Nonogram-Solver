@@ -2,13 +2,8 @@
 #define VERSANO_CORE_TABLERENDERER_H
 
 #include "Core/Board/Board/Board.h"
-#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
-#include "Core/Hint/HintGroup/ColumnHintGroup.h"
-#include "Core/Hint/HintGroup/RowHintGroup.h"
-#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
-#include "Rendering/HighlightIndexes/HighlightIndexes.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "imgui.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
@@ -55,8 +50,7 @@ class TableRenderer {
       Core::RowLength columnHintLength,
       Core::ColumnLength rowHintLength,
       Core::Board board,
-      CellType cellType,
-      Rendering::HighlightIndexes highlightIndexes) const;
+      CellType cellType) const;
 
     std::string setLabel(
       Core::RowIndex rowIndex,

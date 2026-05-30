@@ -36,17 +36,17 @@ void TableRenderer::render(
     // const ColumnPlacementCountList columnPlacementCountList =
     // nonogramBoard.getColumnPlacementCountList();
     const RowPlacementCountList rowPlacementCountList = RowPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getRowLength().getLength(), PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getRowLength().value, PlacementCount(0)));
     const ColumnPlacementCountList columnPlacementCountList = ColumnPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getColumnLength().getLength(), PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getColumnLength().value, PlacementCount(0)));
 
     auto end_data_copy = std::chrono::high_resolution_clock::now();
 
     // --- Length Calculations (Same as before) ---
     const RowLength boardRowLength = board.getRowLength();
     const ColumnLength boardColumnLength = board.getColumnLength();
-    const RowLength columnHintLength = columnHintGroup.getMaxHintListLength();
-    const ColumnLength rowHintLength = rowHintGroup.getMaxHintListLength();
+    const RowLength columnHintLength = RowLength((int)columnHintGroup.getMaxHintListSize());
+    const ColumnLength rowHintLength = ColumnLength((int)rowHintGroup.getMaxHintListSize());
     const RowLength columnPlacementCountLength = RowLength(1);
     const ColumnLength rowPlacementCountLength = ColumnLength(1);
     const RowLength columnBacktrackStackLength = RowLength(1);
@@ -62,14 +62,13 @@ void TableRenderer::render(
 
     // Determine cell size
     float min_container_dim = ImMin(
-      container_size.x / totalColumnLength.getLength(),
-      container_size.y / totalRowLength.getLength());
+      container_size.x / totalColumnLength.value, container_size.y / totalRowLength.value);
     float cell_size = round(min_container_dim);
     if (cell_size < 1.0f)
         cell_size = 1.0f;
 
-    float table_width = cell_size * totalColumnLength.getLength();
-    float table_height = cell_size * totalRowLength.getLength();
+    float table_width = cell_size * totalColumnLength.value;
+    float table_height = cell_size * totalRowLength.value;
 
     // --- Centering Logic (Fixed) ---
     // Instead of moving cursor screen pos manually and risking bounds error,
@@ -104,8 +103,8 @@ void TableRenderer::render(
     auto start_draw_loop = std::chrono::high_resolution_clock::now();
 
     // --- Main Rendering Loop ---
-    for (int r = 0; r < totalRowLength.getLength(); ++r) {
-        for (int c = 0; c < totalColumnLength.getLength(); ++c) {
+    for (int r = 0; r < totalRowLength.value; ++r) {
+        for (int c = 0; c < totalColumnLength.value; ++c) {
 
             RowIndex rowIndex = RowIndex(r);
             ColumnIndex columnIndex = ColumnIndex(c);
@@ -333,38 +332,39 @@ std::string TableRenderer::setLabel(
       cellType == COLUMN_BACKTRACK_STACK) {
 
         if (cellType == ROW_HINT) {
-            RowIndex HintListIndex = rowIndex - columnHintLength;
-            HintList HintList = rowHintGroup[HintListIndex];
-            ColumnIndex HintNumberIndex = ColumnIndex(
-              columnIndex.getIndex() + HintList.size() - rowHintLength.getLength());
+            RowIndex hintListIndex = rowIndex - columnHintLength;
+            HintList hintList = rowHintGroup[hintListIndex];
+            ColumnLength hintLength = ColumnLength((int)hintList.size());
+            ColumnIndex hintNumberIndex = columnIndex + hintLength - rowHintLength;
 
-            if (HintNumberIndex >= ColumnIndex(0)) {
-                // assert(HintNumberIndex < ColumnLength((int)HintList.size()));
-                // kept your logic, assuming bounds are safe or assert exists
-                return std::to_string(HintList[HintNumberIndex.getIndex()].getNumber());
+            if (hintNumberIndex >= ColumnIndex(0)) {
+              HintIndex hintIndex = HintIndex(hintNumberIndex.value);
+                // assert(hintNumberIndex < ColumnLength((int)HintList.size()));
+                return std::to_string(hintList[hintIndex].value);
             }
         }
 
         if (cellType == COLUMN_HINT) {
-            ColumnIndex HintListIndex = columnIndex - rowHintLength;
-            HintList HintList = columnHintGroup[HintListIndex];
-            RowIndex HintNumberIndex = RowIndex(
-              rowIndex.getIndex() + HintList.size() - columnHintLength.getLength());
-            if (HintNumberIndex >= RowIndex(0)) {
-                return std::to_string(HintList[HintNumberIndex.getIndex()].getNumber());
+            ColumnIndex hintListIndex = columnIndex - rowHintLength;
+            HintList hintList = columnHintGroup[hintListIndex];
+            RowLength hintLength = RowLength((int)hintList.size());
+            RowIndex hintNumberIndex = rowIndex + hintLength - columnHintLength;
+            if (hintNumberIndex >= RowIndex(0)) {
+                HintIndex hintIndex = HintIndex(hintNumberIndex.value);
+                return std::to_string(hintList[hintIndex].value);
             }
         }
 
         if (cellType == ROW_PLACEMENT_COUNT) {
             RowIndex placementCountIndex = rowIndex - columnHintLength;
             PlacementCount placementCount = rowPlacementCountList[placementCountIndex];
-            return std::to_string(placementCount.getCount());
+            return std::to_string(placementCount.value);
         }
 
         if (cellType == COLUMN_PLACEMENT_COUNT) {
             ColumnIndex placementCountIndex = columnIndex - rowHintLength;
             PlacementCount placementCount = columnPlacementCountList[placementCountIndex];
-            return std::to_string(placementCount.getCount());
+            return std::to_string(placementCount.value);
         }
 
         /*
@@ -400,14 +400,14 @@ void TableRenderer::drawGridLineDirect(
     // Calculate thickness logic based on your original rules
     float columnThickness = 1.0f;
     if (
-      columnIndex.getIndex() >= rowHintLength.getLength() &&
-      (columnIndex.getIndex() - rowHintLength.getLength()) % 5 == 4) {
+      columnIndex.value >= rowHintLength.value &&
+      (columnIndex.value - rowHintLength.value) % 5 == 4) {
         columnThickness = 3.0f;
     }
-    if (columnIndex.getIndex() == rowHintLength.getLength() - 1) {
+    if (columnIndex.value == rowHintLength.value - 1) {
         columnThickness = 6.0f;
     }
-    if (columnIndex.getIndex() == rowHintLength.getLength() + boardColumnLength.getLength() - 1) {
+    if (columnIndex.value == rowHintLength.value + boardColumnLength.value - 1) {
         columnThickness = 6.0f;
     }
 
@@ -418,14 +418,14 @@ void TableRenderer::drawGridLineDirect(
     // Calculate thickness for rows
     float rowThickness = 1.0f;
     if (
-      rowIndex.getIndex() >= columnHintLength.getLength() &&
-      (rowIndex.getIndex() - columnHintLength.getLength()) % 5 == 4) {
+      rowIndex.value >= columnHintLength.value &&
+      (rowIndex.value - columnHintLength.value) % 5 == 4) {
         rowThickness = 3.0f;
     }
-    if (rowIndex.getIndex() == columnHintLength.getLength() - 1) {
+    if (rowIndex.value == columnHintLength.value - 1) {
         rowThickness = 6.0f;
     }
-    if (rowIndex.getIndex() == columnHintLength.getLength() + boardRowLength.getLength() - 1) {
+    if (rowIndex.value == columnHintLength.value + boardRowLength.value - 1) {
         rowThickness = 6.0f;
     }
 

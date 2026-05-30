@@ -20,6 +20,11 @@ struct IndexType : IntType<Derived, Tag> {
     Derived operator+(const U &len) const {
         return Derived(this->value + len.value);
     }
+    // Shift by offset (Index - Length = Index)
+    template <typename U = L, typename = std::enable_if_t<!std::is_same_v<U, void>>>
+    Derived operator-(const U &len) const {
+        return Derived(this->value - len.value);
+    }
 
     // Distance between indices (Index - Index = Length)
     template <typename U = L, typename = std::enable_if_t<!std::is_same_v<U, void>>>
