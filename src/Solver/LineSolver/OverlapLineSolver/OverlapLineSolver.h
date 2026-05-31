@@ -7,23 +7,25 @@
 
 namespace VersaNo::Solver {
 
-class OverlapLineSolver : public ILineSolver {
+template <typename TOrientation> class OverlapLineSolver : public ILineSolver<TOrientation> {
   private:
-    ILeftmostPlacementFinder &leftmostPlacementFinder;
-    IRightmostPlacementFinder &rightmostPlacementFinder;
+    ILeftmostPlacementFinder<TOrientation> &leftmostPlacementFinder;
+    IRightmostPlacementFinder<TOrientation> &rightmostPlacementFinder;
 
   public:
     OverlapLineSolver(
-      ILeftmostPlacementFinder &leftmostPlacementFinder,
-      IRightmostPlacementFinder &rightmostPlacementFinder);
+      ILeftmostPlacementFinder<TOrientation> &leftmostPlacementFinder,
+      IRightmostPlacementFinder<TOrientation> &rightmostPlacementFinder);
     LineSolverResult solve(
       const Core::HintList &hintList,
-      Core::Line &line,
+      Core::Line<TOrientation> &line,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     LineSolverResult overlapLineSolve(
-      const Core::HintList &hintList, Core::Line &line, IBoardUpdateHandler &boardUpdateHandler);
+      const Core::HintList &hintList,
+      Core::Line<TOrientation> &line,
+      IBoardUpdateHandler &boardUpdateHandler);
 };
 
 } // namespace VersaNo::Solver

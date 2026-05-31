@@ -16,7 +16,7 @@ namespace VersaNo::Solver {
 class LineRepeatDeterministicSolver : public IDeterministicSolver {
   public:
     Rendering::StopSignal &stopSignal;
-    ILineSolver &lineSolver;
+    ILineSolver<RowOrientation> &rowLineSolver;
 
     LineRepeatDeterministicSolver(Rendering::StopSignal &stopSignal, ILineSolver &lineSolver);
     DeterministicSolverResult

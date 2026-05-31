@@ -7,21 +7,24 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-OverlapLineSolver::OverlapLineSolver(
-  ILeftmostPlacementFinder &leftmostPlacementFinder,
-  IRightmostPlacementFinder &rightmostPlacementFinder)
+  template <typename TOrientation>
+OverlapLineSolver<TOrientation>::OverlapLineSolver(
+  ILeftmostPlacementFinder<TOrientation> &leftmostPlacementFinder,
+  IRightmostPlacementFinder<TOrientation> &rightmostPlacementFinder)
     : leftmostPlacementFinder(leftmostPlacementFinder)
     , rightmostPlacementFinder(rightmostPlacementFinder) {}
 
-LineSolverResult OverlapLineSolver::solve(
-  const HintList &hintList, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
+template <typename TOrientation>
+LineSolverResult OverlapLineSolver<TOrientation>::solve(
+  const HintList &hintList, Line<TOrientation> &line, IBoardUpdateHandler &boardUpdateHandler) {
     return overlapLineSolve(hintList, line, boardUpdateHandler);
 }
 
-LineSolverResult OverlapLineSolver::overlapLineSolve(
-  const HintList &hintList, Line &line, IBoardUpdateHandler &boardUpdateHandler) {
-    Placement leftmostPlacement = Placement("");
-    Placement rightmostPlacement = Placement("");
+template <typename TOrientation>
+LineSolverResult OverlapLineSolver<TOrientation>::overlapLineSolve(
+  const HintList &hintList, Line<TOrientation> &line, IBoardUpdateHandler &boardUpdateHandler) {
+    Placement<TOrientation> leftmostPlacement = Placement<TOrientation>("");
+    Placement<TOrientation> rightmostPlacement = Placement<TOrientation>("");
     PlacementFinderResult leftmostPlacementFinderResult = leftmostPlacementFinder.find(
       hintList, line, leftmostPlacement, boardUpdateHandler);
     PlacementFinderResult rightmostPlacementFinderResult = rightmostPlacementFinder.find(
@@ -35,15 +38,15 @@ LineSolverResult OverlapLineSolver::overlapLineSolve(
     std::vector<CellIndex> leftmostHintIndex = leftmostPlacement.getHintIndex();
     std::vector<CellIndex> rightmostHintIndex = rightmostPlacement.getHintIndex();
 
-    Line determined(std::vector<Cell>(line.size(), Cell(CellColor::None)));
+    Line<TOrientation> determined(std::vector<Cell<TOrientation>>(line.size(), Cell<TOrientation>(CellColor::None)));
     for (int i = 0; i < leftmostHintIndex.front().getIndex(); i++) {
         CellIndex cellIndex = CellIndex(i);
-        determined[cellIndex] = Cell(White);
+        determined[cellIndex] = Cell<TOrientation>(CellColor::White);
     }
     for (int i = (rightmostHintIndex.back() + hintList.getNumbers().back()).getIndex();
          i < line.size(); i++) {
         CellIndex cellIndex = CellIndex(i);
-        determined[cellIndex] = Cell(White);
+        determined[cellIndex] = Cell<TOrientation>(CellColor::White);
     }
     for (int hintIndex = 0; hintIndex < hintList.size(); hintIndex++) {
         HintNumber hintNumber = hintList[hintIndex];
@@ -52,17 +55,17 @@ LineSolverResult OverlapLineSolver::overlapLineSolve(
         CellIndex rightStart = rightmostHintIndex[hintIndex];
         CellIndex rightEnd = rightStart + hintNumber - 1;
         for (CellIndex cellIndex = rightStart; cellIndex <= leftEnd; cellIndex++) {
-            determined[cellIndex] = Cell(Black);
+            determined[cellIndex] = Cell<TOrientation>(CellColor::Black);
         }
 
         if (leftStart == rightStart) {
             CellIndex leftAdjacent = leftStart - 1;
             CellIndex rightAdjacent = leftStart + hintNumber;
             if (leftAdjacent >= 0) {
-                determined[leftAdjacent] = Cell(White);
+                determined[leftAdjacent] = Cell<TOrientation>(CellColor::White);
             }
             if (rightAdjacent < line.size()) {
-                determined[rightAdjacent] = Cell(White);
+                determined[rightAdjacent] = Cell<TOrientation>(CellColor::White);
             }
         }
     }

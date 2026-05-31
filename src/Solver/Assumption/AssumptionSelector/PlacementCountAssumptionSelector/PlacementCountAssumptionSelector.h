@@ -1,8 +1,7 @@
 #ifndef VERSANO_CORE_PLACEMENTCOUNTASSUMPTIONSELECTOR_H
 #define VERSANO_CORE_PLACEMENTCOUNTASSUMPTIONSELECTOR_H
 
-#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/PlacementPatternCounter/IPlacementPatternCounter.h"

@@ -3,35 +3,38 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-ExhaustivePlacementPatternFinderResult DFSExhaustivePlacementPatternFinder::find(
-  const HintList &hintList, const Line &line, std::vector<Placement> &solutions) {
+template <typename TOrientation>
+ExhaustivePlacementPatternFinderResult DFSExhaustivePlacementPatternFinder<TOrientation>::find(
+  const HintList &hintList, const Line<TOrientation> &line, std::vector<Placement<TOrientation>> &solutions) {
     return dfsExhaustivePlacementFind(hintList, line, solutions);
 }
 
+template <typename TOrientation>
 ExhaustivePlacementPatternFinderResult
-DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFind(
-  const HintList &hintList, const Line &line, std::vector<Placement> &solutions) {
-    Placement currentPlacement = Placement("");
+DFSExhaustivePlacementPatternFinder<TOrientation>::dfsExhaustivePlacementFind(
+  const HintList &hintList, const Line<TOrientation> &line, std::vector<Placement<TOrientation>> &solutions) {
+    Placement<TOrientation> currentPlacement = Placement<TOrientation>("");
     return dfsExhaustivePlacementFindRecursive(hintList, line, solutions, currentPlacement, 0);
 }
 
+template <typename TOrientation>
 ExhaustivePlacementPatternFinderResult
-DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
+DFSExhaustivePlacementPatternFinder<TOrientation>::dfsExhaustivePlacementFindRecursive(
   const HintList &hintList,
-  const Line &line,
-  std::vector<Placement> &solutions,
-  Placement &currentPlacement,
+  const Line<TOrientation> &line,
+  std::vector<Placement<TOrientation>> &solutions,
+  Placement<TOrientation> &currentPlacement,
   int currentHintIndex) {
     if (currentPlacement.size() > line.size()) {
         return ExhaustivePlacementPatternFinderResult::notFound;
     }
     if (currentHintIndex >= hintList.size()) {
-        Placement foundPlacement = currentPlacement;
+        Placement<TOrientation> foundPlacement = currentPlacement;
         for (CellIndex i = CellIndex(currentPlacement.size()); i < line.size(); i = i + 1) {
             if (!line[i].canColor(White)) {
                 return ExhaustivePlacementPatternFinderResult::notFound;
             }
-            foundPlacement = foundPlacement + Placement("W");
+            foundPlacement = foundPlacement + Placement<TOrientation>("W");
         }
         solutions.push_back(foundPlacement);
         return ExhaustivePlacementPatternFinderResult::success;
@@ -40,10 +43,10 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
     HintNumber hintNumber = hintList[currentHintIndex];
     CellIndex currentIndex = CellIndex(currentPlacement.size());
     if (line.canPlaceBlock(currentIndex, hintNumber)) {
-        Placement previousPlacement = currentPlacement;
-        currentPlacement = currentPlacement + Placement(hintNumber);
+        Placement<TOrientation> previousPlacement = currentPlacement;
+        currentPlacement = currentPlacement + Placement<TOrientation>(hintNumber);
         if (currentPlacement.size() < line.size()) {
-            currentPlacement = currentPlacement + Placement("W");
+            currentPlacement = currentPlacement + Placement<TOrientation>("W");
         }
         dfsExhaustivePlacementFindRecursive(
           hintList, line, solutions, currentPlacement, currentHintIndex + 1);
@@ -51,8 +54,8 @@ DFSExhaustivePlacementPatternFinder::dfsExhaustivePlacementFindRecursive(
     }
 
     if (currentIndex < line.size() && line[currentIndex].canColor(White)) {
-        Placement previousPlacement = currentPlacement;
-        currentPlacement = currentPlacement + Placement("W");
+        Placement<TOrientation> previousPlacement = currentPlacement;
+        currentPlacement = currentPlacement + Placement<TOrientation>("W");
         dfsExhaustivePlacementFindRecursive(
           hintList, line, solutions, currentPlacement, currentHintIndex);
         currentPlacement = previousPlacement;

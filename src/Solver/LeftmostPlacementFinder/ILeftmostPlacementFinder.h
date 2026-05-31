@@ -1,23 +1,20 @@
 #ifndef VERSANO_CORE_ILEFTMOSTPLACEMENTFINDER_H
 #define VERSANO_CORE_ILEFTMOSTPLACEMENTFINDER_H
 
+#include "Core/NamespaceInterface/SolverInterface/BoardUpdateHandler.h"
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Hint/HintList/HintList.h"
-#include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
-namespace VersaNo::Core {
-class Line;
-}
+
 
 namespace VersaNo::Solver {
 
-class ILeftmostPlacementFinder {
+template <typename TOrientation> class ILeftmostPlacementFinder {
   public:
     ILeftmostPlacementFinder() = default;
     virtual PlacementFinderResult find(
       const Core::HintList &hintList,
-      Core::Line &line,
-      Core::Placement &resultPlacement,
+      Core::Line<TOrientation> &line,
+      Core::Placement<TOrientation> &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 

@@ -1,13 +1,13 @@
 #ifndef VERSANO_CORE_BACKTRACKSOLVER_H
 #define VERSANO_CORE_BACKTRACKSOLVER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/Assumption/AssumptionEnumerator/IAssumptionEnumerator.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/BacktrackStack/BacktrackStack.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
-#include "Solver/IBoardUpdateHandler.h"
 #include "Solver/Solver/ISolver.h"
 
 namespace VersaNo::Solver {

@@ -3,22 +3,27 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-DPPlacementPatternCounter::DPPlacementPatternCounter() {}
+template <typename TOrientation>
+DPPlacementPatternCounter<TOrientation>::DPPlacementPatternCounter() {}
 
-DPPlacementPatternCounter::DPPlacementPatternCounter(int MAX_COUNT) : MAX_COUNT(MAX_COUNT) {}
+template <typename TOrientation>
+DPPlacementPatternCounter<TOrientation>::DPPlacementPatternCounter(int MAX_COUNT)
+    : MAX_COUNT(MAX_COUNT) {}
 
-PlacementPatternCounterResult DPPlacementPatternCounter::count(
+template <typename TOrientation>
+PlacementPatternCounterResult DPPlacementPatternCounter<TOrientation>::count(
   const HintList &hintList,
-  Line &line,
+  Line<TOrientation> &line,
   PlacementCount &placementCount,
   IBoardUpdateHandler &boardUpdateHandler) {
     auto result = DPPlacementPatternCount(hintList, line, placementCount, boardUpdateHandler);
     return result;
 }
 
-PlacementPatternCounterResult DPPlacementPatternCounter::DPPlacementPatternCount(
+template <typename TOrientation>
+PlacementPatternCounterResult DPPlacementPatternCounter<TOrientation>::DPPlacementPatternCount(
   const HintList &hintList,
-  const Line &line,
+  const Line<TOrientation> &line,
   PlacementCount &placementCount,
   IBoardUpdateHandler &boardUpdateHandler) {
     int hintsCount = hintList.size();
@@ -81,7 +86,10 @@ PlacementPatternCounterResult DPPlacementPatternCounter::DPPlacementPatternCount
     return PlacementPatternCounterResult::success;
 }
 
-bool DPPlacementPatternCounter::isSeparated(const Line &line, const CellIndex &prevCellIndex) {
+template <typename TOrientation>
+bool DPPlacementPatternCounter<TOrientation>::isSeparated(
+  const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,
+  const typename Core::LineTraits<TOrientation>::PeerIndex &prevCellIndex) {
     if (prevCellIndex < 0) {
         return true;
     }
@@ -89,8 +97,11 @@ bool DPPlacementPatternCounter::isSeparated(const Line &line, const CellIndex &p
     return prevCell.canColor(White);
 }
 
-bool DPPlacementPatternCounter::isBlockFits(
-  const Line &line, const CellIndex &blockStart, const HintNumber &hintNumber) {
+template <typename TOrientation>
+bool DPPlacementPatternCounter<TOrientation>::isBlockFits(
+      const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,
+      const typename Core::LineTraits<TOrientation>::PeerIndex &blockStart,
+      const Core::HintNumber &hintNumber) {
     for (int offset = 0; offset < hintNumber.getNumber(); offset++) {
         CellIndex cellIndex = blockStart + offset;
         Cell cell = line[cellIndex];

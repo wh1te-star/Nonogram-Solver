@@ -8,15 +8,16 @@
 
 namespace VersaNo::Solver {
 
+template <typename TOrientation>
 class LineAssumptionPosition : public IAssumptionPosition {
   private:
-    Core::LinePosition linePosition;
+    Core::LinePosition<TOrientation> linePosition;
 
   public:
-    LineAssumptionPosition(Core::LinePosition linePosition);
+    explicit LineAssumptionPosition(Core::LinePosition<TOrientation> linePosition);
     virtual ~LineAssumptionPosition() = default;
 
-    Core::LinePosition getLinePosition() const;
+    Core::LinePosition<TOrientation> getLinePosition() const;
 };
 
 } // namespace VersaNo::Solver

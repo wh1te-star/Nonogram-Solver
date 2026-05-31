@@ -5,7 +5,8 @@
 
 namespace VersaNo::Solver {
 
-class DPPlacementPatternCounter : public IPlacementPatternCounter {
+template <typename TOrientation>
+class DPPlacementPatternCounter : public IPlacementPatternCounter<TOrientation> {
     const int MAX_COUNT = 1000000000;
 
   public:
@@ -13,22 +14,24 @@ class DPPlacementPatternCounter : public IPlacementPatternCounter {
     DPPlacementPatternCounter(int MAX_COUNT);
     PlacementPatternCounterResult count(
       const Core::HintList &hintList,
-      Core::Line &line,
+      Core::Line<TOrientation> &line,
       Core::PlacementCount &placementCount,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementPatternCounterResult DPPlacementPatternCount(
       const Core::HintList &hintList,
-      const Core::Line &line,
+      const Core::Line<TOrientation> &line,
       Core::PlacementCount &placementCount,
       IBoardUpdateHandler &boardUpdateHandler);
 
-    bool isSeparated(const Core::Line &line, const Core::CellIndex &prevCellIndex);
+    bool isSeparated(
+      const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,
+      const typename Core::LineTraits<TOrientation>::PeerIndex &prevCellIndex);
 
     bool isBlockFits(
-      const Core::Line &line,
-      const Core::CellIndex &blockStart,
+      const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,
+      const typename Core::LineTraits<TOrientation>::PeerIndex &blockStart,
       const Core::HintNumber &hintNumber);
 };
 

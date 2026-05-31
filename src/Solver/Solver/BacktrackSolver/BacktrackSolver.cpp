@@ -1,14 +1,12 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Placement/PlacementCountList/ColumnPlacementCountList.h"
-#include "Core/Placement/PlacementCountList/RowPlacementCountList.h"
+#include "Core/NamespaceInterface/SolverInterface/BoardUpdateHandler.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 #include "Solver/Assumption/Snapshot/PlacementCountSnapshot/PlacementCountSnapshot.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
-#include "Solver/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
 
 #include <cassert>
@@ -75,10 +73,10 @@ void BacktrackSolver::backtrackSolveRecursive(
             nonogramBoard.getBoard(),
             RowPlacementCountList(
               std::vector<PlacementCount>(
-                nonogramBoard.getRowLength().getLength(), PlacementCount(0))),
+                nonogramBoard.getRowLength().value, PlacementCount(0))),
             ColumnPlacementCountList(
               std::vector<PlacementCount>(
-                nonogramBoard.getColumnLength().getLength(), PlacementCount(0)))));
+                nonogramBoard.getColumnLength().value, PlacementCount(0)))));
         assumption->applyTo(nonogramBoard);
 
         boardUpdateHandler.onBoardUpdate(

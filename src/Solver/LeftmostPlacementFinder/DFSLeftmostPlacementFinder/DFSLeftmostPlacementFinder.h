@@ -7,7 +7,8 @@
 
 namespace VersaNo::Solver {
 
-class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
+  template <typename TOrientation>
+class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder<TOrientation> {
   private:
     Core::AlgorithmProfiler profiler;
 
@@ -15,23 +16,23 @@ class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder {
     DFSLeftmostPlacementFinder() = default;
     PlacementFinderResult find(
       const Core::HintList &hintList,
-      Core::Line &line,
-      Core::Placement &resultPlacement,
+      Core::Line<TOrientation> &line,
+      Core::Placement<TOrientation> &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult dfsLeftmostPlacementFind(
       const Core::HintList &hintList,
-      Core::Line &line,
-      Core::Placement &resultPlacement,
+      Core::Line<TOrientation> &line,
+      Core::Placement<TOrientation> &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsLeftmostPlacementFindRecursive(
       const Core::HintList &hintList,
-      const Core::Line &line,
-      Core::Placement &currentPlacement,
+      const Core::Line<TOrientation> &line,
+      Core::Placement<TOrientation> &currentPlacement,
       int currentHintIndex,
-      Core::Placement &resultPlacement,
+      Core::Placement<TOrientation> &resultPlacement,
       IBoardUpdateHandler &boardUpdateHandler);
 };
 

@@ -7,7 +7,7 @@
 #include "Core/Position/HintPosition/HintPosition.h"
 #include "Core/Position/LinePosition/LinePosition.h"
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/NamespaceInterface/SolverInterface/BoardUpdateHandlerBase.h"
+#include "Core/NamespaceInterface/SolverInterface/BoardUpdateHandler.h"
 #include "Rendering/Shared/ISender.h"
 
 namespace VersaNo::Rendering {

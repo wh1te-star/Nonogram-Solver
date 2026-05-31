@@ -2,20 +2,19 @@
 #define VERSANO_CORE_IEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Hint/HintList/HintList.h"
 #include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
 
 #include <vector>
 
 namespace VersaNo::Solver {
 
-class IExhaustivePlacementPatternFinder {
+template <typename TOrientation> class IExhaustivePlacementPatternFinder {
   public:
     IExhaustivePlacementPatternFinder() = default;
     virtual ExhaustivePlacementPatternFinderResult find(
       const Core::HintList &hintList,
-      const Core::Line &line,
-      std::vector<Core::Placement> &solutions) = 0;
+      const Core::Line<TOrientation> &line,
+      std::vector<Core::Placement<TOrientation>> &solutions) = 0;
 };
 
 } // namespace VersaNo::Solver

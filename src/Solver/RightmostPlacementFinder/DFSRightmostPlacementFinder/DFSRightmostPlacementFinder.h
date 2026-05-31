@@ -8,7 +8,8 @@
 
 namespace VersaNo::Solver {
 
-class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
+  template <typename TOrientation>
+class DFSRightmostPlacementFinder : public IRightmostPlacementFinder<TOrientation> {
   private:
     Core::AlgorithmProfiler profiler;
 
@@ -16,24 +17,24 @@ class DFSRightmostPlacementFinder : public IRightmostPlacementFinder {
     DFSRightmostPlacementFinder() = default;
     PlacementFinderResult find(
       const Core::HintList &hintList,
-      Core::Line &line,
-      Core::Placement &resultPlacement,
-      IBoardUpdateHandler &boardUpdateHandler) override;
+      Core::Line<TOrientation> &line,
+      Core::Placement<TOrientation> &resultPlacement,
+      Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult dfsRightmostPlacementFind(
       const Core::HintList &hintList,
-      const Core::Line &line,
-      Core::Placement &resultPlacement,
-      IBoardUpdateHandler &boardUpdateHandler);
+      const Core::Line<TOrientation> &line,
+      Core::Placement<TOrientation> &resultPlacement,
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsRightmostPlacementFindRecursive(
       const Core::HintList &hintList,
-      const Core::Line &line,
-      Core::Placement &currentPlacement,
+      const Core::Line<TOrientation> &line,
+      Core::Placement<TOrientation> &currentPlacement,
       int currentHintIndex,
-      Core::Placement &resultPlacement,
-      IBoardUpdateHandler &boardUpdateHandler);
+      Core::Placement<TOrientation> &resultPlacement,
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 };
 
 } // namespace VersaNo::Solver

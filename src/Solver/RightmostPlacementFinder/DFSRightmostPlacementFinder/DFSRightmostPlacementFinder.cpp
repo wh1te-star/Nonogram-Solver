@@ -5,10 +5,11 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-PlacementFinderResult DFSRightmostPlacementFinder::find(
+template <typename TOrientation>
+PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::find(
   const HintList &hintList,
-  Line &line,
-  Placement &resultPlacement,
+  Line<TOrientation> &line,
+  Placement<TOrientation> &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
 
@@ -17,22 +18,24 @@ PlacementFinderResult DFSRightmostPlacementFinder::find(
     return result;
 }
 
-PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFind(
+template <typename TOrientation>
+PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::dfsRightmostPlacementFind(
   const HintList &hintList,
-  const Line &line,
-  Placement &resultPlacement,
+  const Line<TOrientation> &line,
+  Placement<TOrientation> &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
-    Placement currentPlacement = Placement("");
+    Placement currentPlacement = Placement<TOrientation>("");
     return dfsRightmostPlacementFindRecursive(
       hintList, line, currentPlacement, hintList.size() - 1, resultPlacement, boardUpdateHandler);
 }
 
-PlacementFinderResult DFSRightmostPlacementFinder::dfsRightmostPlacementFindRecursive(
+template <typename TOrientation>
+PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::dfsRightmostPlacementFindRecursive(
   const HintList &hintList,
-  const Line &line,
-  Placement &currentPlacement,
+  const Line<TOrientation> &line,
+  Placement<TOrientation> &currentPlacement,
   int currentHintIndex,
-  Placement &resultPlacement,
+  Placement<TOrientation> &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
     if (profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
         return PlacementFinderResult::notFound;

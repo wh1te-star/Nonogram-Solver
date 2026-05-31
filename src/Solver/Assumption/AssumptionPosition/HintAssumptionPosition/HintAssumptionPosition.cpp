@@ -5,9 +5,14 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-HintAssumptionPosition::HintAssumptionPosition(HintPosition hintPosition)
+template <typename TOrientation>
+HintAssumptionPosition<TOrientation>::HintAssumptionPosition(
+  Core::HintPosition<TOrientation> hintPosition)
     : hintPosition(hintPosition) {}
 
-HintPosition HintAssumptionPosition::getHintPosition() const { return hintPosition; }
+template <typename TOrientation>
+Core::HintPosition<TOrientation> HintAssumptionPosition<TOrientation>::getHintPosition() const {
+    return hintPosition;
+}
 
 } // namespace VersaNo::Solver

@@ -3,9 +3,13 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-LineAssumptionPosition::LineAssumptionPosition(LinePosition linePosition)
+template <typename TOrientation>
+LineAssumptionPosition<TOrientation>::LineAssumptionPosition(Core::LinePosition<TOrientation> linePosition)
     : linePosition(linePosition) {}
 
-LinePosition LineAssumptionPosition::getLinePosition() const { return linePosition; }
+template <typename TOrientation>
+Core::LinePosition<TOrientation> LineAssumptionPosition<TOrientation>::getLinePosition() const {
+    return linePosition;
+}
 
 } // namespace VersaNo::Solver

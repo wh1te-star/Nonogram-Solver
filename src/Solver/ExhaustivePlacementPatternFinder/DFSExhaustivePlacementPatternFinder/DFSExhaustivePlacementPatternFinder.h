@@ -2,36 +2,32 @@
 #define VERSANO_CORE_DFSEXHAUSTIVEPLACEMENTPATTERNFINDER_H
 
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Hint/HintList/HintList.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 
 #include <vector>
 
-namespace VersaNo::Core {
-class Line;
-}
-
 namespace VersaNo::Solver {
 
-class DFSExhaustivePlacementPatternFinder : public IExhaustivePlacementPatternFinder {
+template <typename TOrientation>
+class DFSExhaustivePlacementPatternFinder : public IExhaustivePlacementPatternFinder<TOrientation> {
   public:
     DFSExhaustivePlacementPatternFinder() = default;
     virtual ExhaustivePlacementPatternFinderResult find(
       const Core::HintList &hintList,
-      const Core::Line &line,
-      std::vector<Core::Placement> &solutions) override;
+      const Core::Line<TOrientation> &line,
+      std::vector<Core::Placement<TOrientation>> &solutions) override;
 
   private:
     ExhaustivePlacementPatternFinderResult dfsExhaustivePlacementFind(
       const Core::HintList &hintList,
-      const Core::Line &line,
-      std::vector<Core::Placement> &solutions);
+      const Core::Line<TOrientation> &line,
+      std::vector<Core::Placement<TOrientation>> &solutions);
 
     ExhaustivePlacementPatternFinderResult dfsExhaustivePlacementFindRecursive(
       const Core::HintList &hintList,
-      const Core::Line &line,
-      std::vector<Core::Placement> &solutions,
-      Core::Placement &currentPlacement,
+      const Core::Line<TOrientation> &line,
+      std::vector<Core::Placement<TOrientation>> &solutions,
+      Core::Placement<TOrientation> &currentPlacement,
       int currentHintIndex);
 };
 

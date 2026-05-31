@@ -3,10 +3,11 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-PlacementFinderResult DFSLeftmostPlacementFinder::find(
+template <typename TOrientation>
+PlacementFinderResult DFSLeftmostPlacementFinder<TOrientation>::find(
   const HintList &hintList,
-  Line &line,
-  Placement &resultPlacement,
+  Line<TOrientation> &line,
+  Placement<TOrientation> &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
 
@@ -17,23 +18,26 @@ PlacementFinderResult DFSLeftmostPlacementFinder::find(
     }
     return PlacementFinderResult::notFound;
 }
-PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFind(
+
+template <typename TOrientation>
+PlacementFinderResult DFSLeftmostPlacementFinder<TOrientation>::dfsLeftmostPlacementFind(
   const HintList &hintList,
-  Line &line,
-  Placement &resultPlacement,
+  Line<TOrientation> &line,
+  Placement<TOrientation> &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
-    Placement currentPlacement = Placement("");
+    Placement<TOrientation> currentPlacement = Placement<TOrientation>("");
 
     return dfsLeftmostPlacementFindRecursive(
       hintList, line, currentPlacement, 0, resultPlacement, boardUpdateHandler);
 }
 
-PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecursive(
+template <typename TOrientation>
+PlacementFinderResult DFSLeftmostPlacementFinder<TOrientation>::dfsLeftmostPlacementFindRecursive(
   const HintList &hintList,
-  const Line &line,
-  Placement &currentPlacement,
+  const Line<TOrientation> &line,
+  Placement<TOrientation> &currentPlacement,
   int currentHintIndex,
-  Placement &resultPlacement,
+  Placement<TOrientation> &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
     if (profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
         return PlacementFinderResult::notFound;
@@ -43,13 +47,13 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
         return PlacementFinderResult::notFound;
     }
     if (currentHintIndex >= hintList.size()) {
-        Placement foundPlacement = currentPlacement;
+        Placement<TOrientation> foundPlacement = currentPlacement;
         if (currentPlacement.size() < line.size()) {
             for (CellIndex cellIndex : CellIndex::range(currentPlacement.size(), line.size() - 1)) {
                 if (!line[cellIndex].canColor(White)) {
                     return PlacementFinderResult::notFound;
                 }
-                foundPlacement = foundPlacement + Placement("W");
+                foundPlacement = foundPlacement + Placement<TOrientation>("W");
             }
         }
         resultPlacement = foundPlacement;
@@ -59,10 +63,10 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
     HintNumber hintNumber = hintList[currentHintIndex];
     CellIndex currentIndex = CellIndex(currentPlacement.size());
     if (line.canPlaceBlock(currentIndex, hintNumber)) {
-        Placement previousPlacement = currentPlacement;
-        currentPlacement = currentPlacement + Placement(hintNumber);
+        Placement<TOrientation> previousPlacement = currentPlacement;
+        currentPlacement = currentPlacement + Placement<TOrientation>(hintNumber);
         if (currentPlacement.size() < line.size()) {
-            currentPlacement = currentPlacement + Placement("W");
+            currentPlacement = currentPlacement + Placement<TOrientation>("W");
         }
         PlacementFinderResult result = dfsLeftmostPlacementFindRecursive(
           hintList, line, currentPlacement, currentHintIndex + 1, resultPlacement,
@@ -74,8 +78,8 @@ PlacementFinderResult DFSLeftmostPlacementFinder::dfsLeftmostPlacementFindRecurs
     }
 
     if (currentIndex < line.size() && line[currentIndex].canColor(White)) {
-        Placement previousPlacement = currentPlacement;
-        currentPlacement = currentPlacement + Placement("W");
+        Placement<TOrientation> previousPlacement = currentPlacement;
+        currentPlacement = currentPlacement + Placement<TOrientation>("W");
         PlacementFinderResult result = dfsLeftmostPlacementFindRecursive(
           hintList, line, currentPlacement, currentHintIndex, resultPlacement, boardUpdateHandler);
         if (result == PlacementFinderResult::success) {

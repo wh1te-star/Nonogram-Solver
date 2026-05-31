@@ -7,15 +7,16 @@
 
 namespace VersaNo::Solver {
 
+template <typename TOrientation>
 class HintAssumptionPosition : public IAssumptionPosition {
   private:
-    Core::HintPosition hintPosition;
+    Core::HintPosition<TOrientation> hintPosition;
 
   public:
-    HintAssumptionPosition(Core::HintPosition hintPosition);
+    explicit HintAssumptionPosition(Core::HintPosition<TOrientation> hintPosition);
     virtual ~HintAssumptionPosition() = default;
 
-    Core::HintPosition getHintPosition() const;
+    Core::HintPosition<TOrientation> getHintPosition() const;
 };
 
 } // namespace VersaNo::Solver
