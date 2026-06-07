@@ -10,15 +10,17 @@
 
 namespace VersaNo::Solver {
 
+template <typename TOrientation>
 class PlacementCountAssumptionSelector : public IAssumptionSelector {
   private:
-    IPlacementPatternCounter &placementPatternCounter;
+    IPlacementPatternCounter<TOrientation> &placementPatternCounter;
     Core::RowPlacementCountList rowPlacementCounts;
     Core::ColumnPlacementCountList columnPlacementCounts;
 
   public:
     PlacementCountAssumptionSelector(
-      IPlacementPatternCounter &placementPatternCounter, const Core::NonogramBoard &board);
+      IPlacementPatternCounter<TOrientation> &placementPatternCounter,
+      const Core::NonogramBoard &board);
 
     std::unique_ptr<IAssumptionPosition>
     select(const Core::NonogramBoard &board, const AssumptionSelectionContext &context) override;

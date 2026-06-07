@@ -10,8 +10,8 @@ using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
 LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
-  Rendering::StopSignal &stopSignal, ILineSolver &lineSolver)
-    : stopSignal(stopSignal), lineSolver(lineSolver) {}
+  Rendering::StopSignal &stopSignal, BothLineSolver &bothLineSolver)
+    : stopSignal(stopSignal), bothLineSolver(bothLineSolver) {}
 
 DeterministicSolverResult LineRepeatDeterministicSolver::solve(
   NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) {
@@ -25,15 +25,17 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
 
     while (true) {
         bool proceeded = false;
-        for (RowIndex rowIndex : RowIndex::range(0, rowLength.getLength() - 1)) {
+        for (RowIndex rowIndex : RowIndex::closedRange(0, rowLength.value - 1)) {
             // localHighlightIndexes.addRowIndex(rowIndex);
 
-            Row rowLine = nonogramBoard.getRowLine(rowIndex);
+            RowPosition rowPosition(rowIndex);
+            Row rowLine = nonogramBoard.getLine<RowOrientation>(rowIndex);
             Row previousRowLine = rowLine;
             RowHintGroup rowHintGroup = nonogramBoard.getRowHintGroup();
             HintList rowHintList = rowHintGroup[rowIndex];
+            ILineSolver<RowOrientation> &rowLineSolver = bothLineSolver.rowLineSolver;
 
-            LineSolverResult lineSolverResult = lineSolver.solve(
+            LineSolverResult lineSolverResult = rowLineSolver.solve(
               rowHintList, rowLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
@@ -47,13 +49,13 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
                 break;
             }
 
-            nonogramBoard.applyRow(rowIndex, rowLine, false);
+            nonogramBoard.applyLine<RowOrientation>(rowPosition, rowLine, false);
 
             if (rowLine != previousRowLine) {
                 proceeded = true;
-                boardUpdateHandler.onLineUpdate(
-                  LinePosition(Orientation::Row, rowIndex), rowLine, previousRowLine,
-                  nonogramBoard.getRowLine(rowIndex));
+                boardUpdateHandler.onRowUpdate(
+                  rowIndex, rowLine, previousRowLine,
+                  nonogramBoard.getLine<RowOrientation>(rowIndex));
             }
 
             /*
@@ -79,14 +81,17 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             // localHighlightIndexes.deleteRowIndex(rowIndex);
         }
 
-        for (ColumnIndex columnIndex : ColumnIndex::range(0, columnLength.getLength() - 1)) {
+        for (ColumnIndex columnIndex : ColumnIndex::closedRange(0, columnLength.value - 1)) {
             // localHighlightIndexes.addColumnIndex(columnIndex);
 
-            Column columnLine = nonogramBoard.getColumnLine(columnIndex);
+            ColumnPosition columnPosition(columnIndex);
+            Column columnLine = nonogramBoard.getLine<ColumnOrientation>(columnIndex);
             Column previousColumnLine = columnLine;
             ColumnHintGroup columnHintGroup = nonogramBoard.getColumnHintGroup();
             HintList columnHintList = columnHintGroup[columnIndex];
-            LineSolverResult lineSolverResult = lineSolver.solve(
+            ILineSolver<ColumnOrientation> &columnLineSolver = bothLineSolver.columnLineSolver;
+
+            LineSolverResult lineSolverResult = columnLineSolver.solve(
               columnHintList, columnLine, boardUpdateHandler);
             switch (lineSolverResult) {
             case LineSolverResult::Success:
@@ -100,13 +105,13 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
                 break;
             }
 
-            Column currentColumnLine = nonogramBoard.getColumnLine(columnIndex);
-            nonogramBoard.applyColumn(columnIndex, columnLine, false);
+            Column currentColumnLine = nonogramBoard.getLine<ColumnOrientation>(columnIndex);
+            nonogramBoard.applyLine<ColumnOrientation>(columnPosition, columnLine, false);
 
             if (columnLine != previousColumnLine) {
                 proceeded = true;
-                boardUpdateHandler.onLineUpdate(
-                  LinePosition(Orientation::Column, columnIndex), columnLine, previousColumnLine,
+                boardUpdateHandler.onColumnUpdate(
+                  columnIndex, columnLine, previousColumnLine,
                   currentColumnLine);
             }
 

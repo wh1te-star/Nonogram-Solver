@@ -18,13 +18,13 @@ template <typename TOrientation> class OverlapLineSolver : public ILineSolver<TO
       IRightmostPlacementFinder<TOrientation> &rightmostPlacementFinder);
     LineSolverResult solve(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
+      typename Core::LineTraits<TOrientation>::Line &line,
       IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     LineSolverResult overlapLineSolve(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
+      typename Core::LineTraits<TOrientation>::Line &line,
       IBoardUpdateHandler &boardUpdateHandler);
 };
 

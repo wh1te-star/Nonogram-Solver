@@ -4,7 +4,7 @@
 #include "Rendering/Shared/StopSignal/StopSignal.h"
 #include "Solver/DeterministicSolver/IDeterministicSolver.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
-#include "Solver/LineSolver/ILineSolver.h"
+#include "Solver/BothLineSolver/BothLineSolver.h"
 #include "Solver/ResultEnum/DeterministicSolverResult.h"
 
 namespace VersaNo::Core {
@@ -16,9 +16,10 @@ namespace VersaNo::Solver {
 class LineRepeatDeterministicSolver : public IDeterministicSolver {
   public:
     Rendering::StopSignal &stopSignal;
-    ILineSolver<RowOrientation> &rowLineSolver;
+    BothLineSolver &bothLineSolver;
 
-    LineRepeatDeterministicSolver(Rendering::StopSignal &stopSignal, ILineSolver &lineSolver);
+    LineRepeatDeterministicSolver(
+      Rendering::StopSignal &stopSignal, BothLineSolver &bothLineSolver);
     DeterministicSolverResult
     solve(Core::NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) override;
 

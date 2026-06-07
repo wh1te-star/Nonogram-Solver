@@ -1,39 +1,41 @@
 #include "Solver/Assumption/AssumptionSelector/LineIndexAssumptionSelector/LineIndexAssumptionSelector.h"
 
-#include "Core/Board/Line/Line.h"
-#include "Core/Hint/HintList/HintList.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 #include "Solver/Assumption/AssumptionPosition/LineAssumptionPosition/LineAssumptionPosition.h"
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
 
+#include <type_traits>
 #include <cassert>
 
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-LineIndexAssumptionSelector::LineIndexAssumptionSelector(Orientation orientation)
-    : orientation(orientation) {}
+template <typename TOrientation>
+LineIndexAssumptionSelector<TOrientation>::LineIndexAssumptionSelector() {}
 
-std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector::select(
+template <typename TOrientation>
+std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector<TOrientation>::select(
   const NonogramBoard &board, const AssumptionSelectionContext &context) {
-    std::vector<std::unique_ptr<IAssumption>> assumptions;
-
+    
     int currentIndex = context.depth;
 
-    int lineCount = (orientation == Orientation::Row) ? board.getRowLength().getLength()
-                                                      : board.getColumnLength().getLength();
+    using Traits = Core::LineTraits<TOrientation>;
+    using IndexType = typename Traits::Index;
+
+    int lineCount = Traits::Length(board).getLength(); // Assuming length can be fetched via traits
     if (currentIndex >= lineCount) {
         assert(false);
     }
 
-    if (orientation == Orientation::Row) {
-        const RowIndex rowIndex(currentIndex);
-        LinePosition linePosition(orientation, rowIndex);
+    if (std::is_same<TOrientation, Core::RowOrientation>::value) {
+        const Core::RowIndex rowIndex(currentIndex);
+        LinePosition linePosition(Core::EOrientation::Row, rowIndex);
         return std::make_unique<LineAssumptionPosition>(linePosition);
     } else {
-        const ColumnIndex columnIndex(currentIndex);
-        LinePosition linePosition(orientation, columnIndex);
+        const Core::ColumnIndex columnIndex(currentIndex);
+        LinePosition linePosition(Core::EOrientation::Column, columnIndex);
         return std::make_unique<LineAssumptionPosition>(linePosition);
     }
 }

@@ -16,13 +16,13 @@ OverlapLineSolver<TOrientation>::OverlapLineSolver(
 
 template <typename TOrientation>
 LineSolverResult OverlapLineSolver<TOrientation>::solve(
-  const HintList &hintList, Line<TOrientation> &line, IBoardUpdateHandler &boardUpdateHandler) {
+  const HintList &hintList, typename Core::LineTraits<TOrientation>::Line &line, IBoardUpdateHandler &boardUpdateHandler) {
     return overlapLineSolve(hintList, line, boardUpdateHandler);
 }
 
 template <typename TOrientation>
 LineSolverResult OverlapLineSolver<TOrientation>::overlapLineSolve(
-  const HintList &hintList, Line<TOrientation> &line, IBoardUpdateHandler &boardUpdateHandler) {
+  const HintList &hintList, typename Core::LineTraits<TOrientation>::Line &line, IBoardUpdateHandler &boardUpdateHandler) {
     Placement<TOrientation> leftmostPlacement = Placement<TOrientation>("");
     Placement<TOrientation> rightmostPlacement = Placement<TOrientation>("");
     PlacementFinderResult leftmostPlacementFinderResult = leftmostPlacementFinder.find(

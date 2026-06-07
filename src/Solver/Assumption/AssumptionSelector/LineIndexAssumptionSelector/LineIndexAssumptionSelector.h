@@ -8,12 +8,10 @@
 
 namespace VersaNo::Solver {
 
+template <typename TOrientation>
 class LineIndexAssumptionSelector : public IAssumptionSelector {
-  private:
-    Core::Orientation orientation;
-
   public:
-    LineIndexAssumptionSelector(Core::Orientation orientation);
+    LineIndexAssumptionSelector();
     std::unique_ptr<IAssumptionPosition>
     select(const Core::NonogramBoard &board, const AssumptionSelectionContext &context) override;
 };

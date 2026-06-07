@@ -32,7 +32,7 @@ public:
 };
 
 using RowPosition = LinePosition<RowOrientation>;
-using ColPosition = LinePosition<ColumnOrientation>;
+using ColumnPosition = LinePosition<ColumnOrientation>;
 
 } // namespace VersaNo::Core
 

@@ -12,7 +12,7 @@ template <typename TOrientation> class ILineSolver {
     virtual ~ILineSolver() = default;
     virtual LineSolverResult solve(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
+      typename Core::LineTraits<TOrientation>::Line &line,
       IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
