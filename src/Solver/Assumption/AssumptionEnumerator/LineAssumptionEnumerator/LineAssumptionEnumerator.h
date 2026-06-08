@@ -13,7 +13,7 @@
 
 namespace VersaNo::Solver {
 
-class LineAssumptionEnumerator : public IAssumptionEnumerator {
+template <typename TOrientation> class LineAssumptionEnumerator : public IAssumptionEnumerator {
   private:
     IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
 
