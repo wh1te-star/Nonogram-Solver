@@ -10,11 +10,13 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-LineAssumptionEnumerator::LineAssumptionEnumerator(
-  IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder)
+  template <typename TOrientation>
+LineAssumptionEnumerator<TOrientation>::LineAssumptionEnumerator(
+  IExhaustivePlacementPatternFinder<TOrientation> &exhaustivePlacementPatternFinder)
     : exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder) {}
 
-std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator::enumerate(
+  template <typename TOrientation>
+std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator<TOrientation>::enumerate(
   const NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) {
     const auto *lineAssumptionPosition = dynamic_cast<const LineAssumptionPosition *>(
       &assumptionPosition);

@@ -15,10 +15,10 @@ namespace VersaNo::Solver {
 
 template <typename TOrientation> class LineAssumptionEnumerator : public IAssumptionEnumerator {
   private:
-    IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder;
+    IExhaustivePlacementPatternFinder<TOrientation> &exhaustivePlacementPatternFinder;
 
   public:
-    LineAssumptionEnumerator(IExhaustivePlacementPatternFinder &exhaustivePlacementPatternFinder);
+    LineAssumptionEnumerator(IExhaustivePlacementPatternFinder<TOrientation> &exhaustivePlacementPatternFinder);
     virtual ~LineAssumptionEnumerator() = default;
 
     virtual std::vector<std::unique_ptr<IAssumption>> enumerate(
