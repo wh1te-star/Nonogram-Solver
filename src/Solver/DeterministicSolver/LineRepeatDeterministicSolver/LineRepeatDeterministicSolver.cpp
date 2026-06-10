@@ -111,8 +111,7 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             if (columnLine != previousColumnLine) {
                 proceeded = true;
                 boardUpdateHandler.onColumnUpdate(
-                  columnIndex, columnLine, previousColumnLine,
-                  currentColumnLine);
+                  columnIndex, columnLine, previousColumnLine, currentColumnLine);
             }
 
             /*

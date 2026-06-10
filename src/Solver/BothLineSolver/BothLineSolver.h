@@ -13,8 +13,8 @@ class BothLineSolver {
     ILineSolver<Core::ColumnOrientation> &columnLineSolver;
 
     BothLineSolver(
-      const ILineSolver<Core::RowOrientation> &row,
-      const ILineSolver<Core::ColumnOrientation> &col);
+      ILineSolver<Core::RowOrientation> &rowLineSolver,
+      ILineSolver<Core::ColumnOrientation> &columnLineSolver);
 };
 
 } // namespace VersaNo::Solver

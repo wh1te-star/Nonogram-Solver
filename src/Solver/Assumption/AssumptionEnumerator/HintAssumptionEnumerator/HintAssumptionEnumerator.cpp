@@ -14,6 +14,8 @@ HintAssumptionEnumerator::HintAssumptionEnumerator() : IAssumptionEnumerator() {
 
 std::vector<std::unique_ptr<IAssumption>> HintAssumptionEnumerator::enumerate(
   const NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) {
+    // Implement later
+    /*
     const auto *hintAssumptionPosition = dynamic_cast<const HintAssumptionPosition *>(
       &assumptionPosition);
 
@@ -21,10 +23,9 @@ std::vector<std::unique_ptr<IAssumption>> HintAssumptionEnumerator::enumerate(
         assert(false && "Invalid assumption position type for HintAssumptionEnumerator");
         return {};
     }
-
     HintPosition hintPosition = hintAssumptionPosition->getHintPosition();
+    */
 
-    // Implement later
     return {};
 }
 
