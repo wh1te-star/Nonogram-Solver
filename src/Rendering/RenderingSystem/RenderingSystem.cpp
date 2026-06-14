@@ -2,6 +2,7 @@
 
 #include "Core/AlgorithmThreadRunner/AlgorithmThreadRunner.h"
 #include "Core/PuzzleLoader/PuzzleLoader/PuzzleLoader.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Rendering/FontData/FontData.h"
 #include "Rendering/Shared/IReceiver.h"
 #include "Rendering/Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
@@ -73,9 +74,9 @@ void RenderingSystem::renderingLoop() {
     PuzzleLoader::PuzzleType dataType = PuzzleLoader::Difficult;
     NonogramBoard nonogramBoard = PuzzleLoader::getPuzzle(dataType);
     RowPlacementCountList rowPlacementCountList = RowPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getRowLength().getLength(), PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getRowLength().value, PlacementCount(0)));
     ColumnPlacementCountList columnPlacementCountList = ColumnPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getColumnLength().getLength(), PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getColumnLength().value, PlacementCount(0)));
     SharedNonogramBoard sharedNonogramBoard = SharedNonogramBoard(nonogramBoard);
     IReceiver<NonogramBoard> &receiver = sharedNonogramBoard;
 
