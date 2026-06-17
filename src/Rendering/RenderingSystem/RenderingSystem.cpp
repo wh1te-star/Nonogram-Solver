@@ -80,18 +80,31 @@ void RenderingSystem::renderingLoop() {
     SharedNonogramBoard sharedNonogramBoard = SharedNonogramBoard(nonogramBoard);
     IReceiver<NonogramBoard> &receiver = sharedNonogramBoard;
 
-    DFSExhaustivePlacementPatternFinder exhaustivePlacementPatternFinder =
-      DFSExhaustivePlacementPatternFinder();
-    OverlapLineSolver overlapLineSolver = OverlapLineSolver(
-      DFSLeftmostPlacementFinder(), DFSRightmostPlacementFinder());
-    LineRepeatDeterministicSolver deterministicSolver = LineRepeatDeterministicSolver(
-      stopSignal, overlapLineSolver);
-    LineIndexAssumptionSelector assumptionSelector = LineIndexAssumptionSelector(Orientation::Row);
-    LineAssumptionEnumerator assumptionEnumerator(exhaustivePlacementPatternFinder);
-    BacktrackStack backtrackStack(assumptionSelector);
+    // RowOrientation
+    DFSExhaustivePlacementPatternFinder<RowOrientation> rowExhaustivePlacementPatternFinder =
+      DFSExhaustivePlacementPatternFinder<RowOrientation>();
+    OverlapLineSolver<RowOrientation> rowOverlapLineSolver = OverlapLineSolver(
+      DFSLeftmostPlacementFinder<RowOrientation>(), DFSRightmostPlacementFinder<RowOrientation>());
+    LineRepeatDeterministicSolver rowDeterministicSolver = LineRepeatDeterministicSolver(
+      stopSignal, rowOverlapLineSolver);
+    LineIndexAssumptionSelector rowAssumptionSelector = LineIndexAssumptionSelector(Orientation::Row);
+    LineAssumptionEnumerator rowAssumptionEnumerator(rowExhaustivePlacementPatternFinder);
+
+    // ColumnOrientation
+    DFSExhaustivePlacementPatternFinder<ColumnOrientation> columnExhaustivePlacementPatternFinder =
+      DFSExhaustivePlacementPatternFinder<ColumnOrientation>();
+    OverlapLineSolver<ColumnOrientation> columnOverlapLineSolver = OverlapLineSolver(
+      DFSLeftmostPlacementFinder<ColumnOrientation>(), DFSRightmostPlacementFinder<ColumnOrientation>());
+    LineRepeatDeterministicSolver columnDeterministicSolver = LineRepeatDeterministicSolver(
+      stopSignal, columnOverlapLineSolver);
+    LineIndexAssumptionSelector columnAssumptionSelector = LineIndexAssumptionSelector(Orientation::Column);
+    LineAssumptionEnumerator columnAssumptionEnumerator(columnExhaustivePlacementPatternFinder);
+
+    // ColumnOrientation
+    BacktrackStack backtrackStack(columnAssumptionSelector);
 
     BacktrackSolver solver = BacktrackSolver(
-      stopSignal, deterministicSolver, assumptionSelector, assumptionEnumerator, backtrackStack);
+      stopSignal, columnDeterministicSolver, columnAssumptionSelector, columnAssumptionEnumerator, backtrackStack);
     RenderingBoardUpdateHandler renderingBoardUpdateHandler(sharedNonogramBoard, nonogramBoard);
     AlgorithmThreadRunner algorithm = AlgorithmThreadRunner(
       stopSignal, sharedNonogramBoard, nonogramBoard, renderingBoardUpdateHandler);
