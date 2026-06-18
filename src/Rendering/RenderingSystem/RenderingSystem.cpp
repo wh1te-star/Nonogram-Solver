@@ -85,8 +85,6 @@ void RenderingSystem::renderingLoop() {
       DFSExhaustivePlacementPatternFinder<RowOrientation>();
     OverlapLineSolver<RowOrientation> rowOverlapLineSolver = OverlapLineSolver(
       DFSLeftmostPlacementFinder<RowOrientation>(), DFSRightmostPlacementFinder<RowOrientation>());
-    LineRepeatDeterministicSolver rowDeterministicSolver = LineRepeatDeterministicSolver(
-      stopSignal, rowOverlapLineSolver);
     LineIndexAssumptionSelector rowAssumptionSelector = LineIndexAssumptionSelector(Orientation::Row);
     LineAssumptionEnumerator rowAssumptionEnumerator(rowExhaustivePlacementPatternFinder);
 
@@ -95,16 +93,17 @@ void RenderingSystem::renderingLoop() {
       DFSExhaustivePlacementPatternFinder<ColumnOrientation>();
     OverlapLineSolver<ColumnOrientation> columnOverlapLineSolver = OverlapLineSolver(
       DFSLeftmostPlacementFinder<ColumnOrientation>(), DFSRightmostPlacementFinder<ColumnOrientation>());
-    LineRepeatDeterministicSolver columnDeterministicSolver = LineRepeatDeterministicSolver(
-      stopSignal, columnOverlapLineSolver);
     LineIndexAssumptionSelector columnAssumptionSelector = LineIndexAssumptionSelector(Orientation::Column);
     LineAssumptionEnumerator columnAssumptionEnumerator(columnExhaustivePlacementPatternFinder);
 
-    // ColumnOrientation
-    BacktrackStack backtrackStack(columnAssumptionSelector);
+    LineRepeatDeterministicSolver deterministicSolver = LineRepeatDeterministicSolver(
+      stopSignal, columnOverlapLineSolver);
+    BothLineSolver bothLineSolver = BothLineSolver(rowOverlapLineSolver, columnOverlapLineSolver);
+
+    BacktrackStack backtrackStack(deterministicSolver);
 
     BacktrackSolver solver = BacktrackSolver(
-      stopSignal, columnDeterministicSolver, columnAssumptionSelector, columnAssumptionEnumerator, backtrackStack);
+      stopSignal, deterministicSolver, columnAssumptionSelector, columnAssumptionEnumerator, backtrackStack);
     RenderingBoardUpdateHandler renderingBoardUpdateHandler(sharedNonogramBoard, nonogramBoard);
     AlgorithmThreadRunner algorithm = AlgorithmThreadRunner(
       stopSignal, sharedNonogramBoard, nonogramBoard, renderingBoardUpdateHandler);
