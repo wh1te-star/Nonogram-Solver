@@ -1,7 +1,6 @@
 #include "Rendering/Shared/RenderingBoardUpdateHandler/RenderingBoardUpdateHandler.h"
 
 using namespace VersaNo::Core;
-using namespace VersaNo::Solver;
 namespace VersaNo::Rendering {
 
 RenderingBoardUpdateHandler::RenderingBoardUpdateHandler(
@@ -40,15 +39,15 @@ void RenderingBoardUpdateHandler::checkAndSendBoard() {
 // This is for separating the declaration and definition,
 // and is enabled by the fact that TOrientation can be RowOrientation or ColumnOrientation.
 template void RenderingBoardUpdateHandler::onLineUpdate<RowOrientation>(
-    RowIndex, 
-    const LineTraits<RowOrientation>::Line&, 
-    const LineTraits<RowOrientation>::Line&, 
-    const LineTraits<RowOrientation>::Line&);
+  RowIndex,
+  const LineTraits<RowOrientation>::Line &,
+  const LineTraits<RowOrientation>::Line &,
+  const LineTraits<RowOrientation>::Line &);
 
 template void RenderingBoardUpdateHandler::onLineUpdate<ColumnOrientation>(
-    ColumnIndex, 
-    const LineTraits<ColumnOrientation>::Line&, 
-    const LineTraits<ColumnOrientation>::Line&, 
-    const LineTraits<ColumnOrientation>::Line&);
+  ColumnIndex,
+  const LineTraits<ColumnOrientation>::Line &,
+  const LineTraits<ColumnOrientation>::Line &,
+  const LineTraits<ColumnOrientation>::Line &);
 
 } // namespace VersaNo::Rendering

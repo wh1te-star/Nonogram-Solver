@@ -31,19 +31,19 @@ class BacktrackSolver : public ISolver {
     void solve(
       Core::NonogramBoard &nonogramBoard,
       std::vector<Core::Board> &solutions,
-      IBoardUpdateHandler &boardUpdateHandler) override;
+      Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     void backtrackSolve(
       Core::NonogramBoard &nonogramBoard,
       std::vector<Core::Board> &solutions,
-      IBoardUpdateHandler &boardUpdateHandler);
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 
     void backtrackSolveRecursive(
       Core::NonogramBoard &nonogramBoard,
       std::vector<Core::Board> &solutions,
       int depth,
-      IBoardUpdateHandler &boardUpdateHandler);
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 };
 
 } // namespace VersaNo::Solver

@@ -18,14 +18,14 @@ class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder<TOrientation>
       const Core::HintList &hintList,
       Core::Line<TOrientation> &line,
       Core::Placement<TOrientation> &resultPlacement,
-      IBoardUpdateHandler &boardUpdateHandler) override;
+      Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult dfsLeftmostPlacementFind(
       const Core::HintList &hintList,
       Core::Line<TOrientation> &line,
       Core::Placement<TOrientation> &resultPlacement,
-      IBoardUpdateHandler &boardUpdateHandler);
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsLeftmostPlacementFindRecursive(
       const Core::HintList &hintList,
@@ -33,7 +33,7 @@ class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder<TOrientation>
       Core::Placement<TOrientation> &currentPlacement,
       int currentHintIndex,
       Core::Placement<TOrientation> &resultPlacement,
-      IBoardUpdateHandler &boardUpdateHandler);
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 };
 
 } // namespace VersaNo::Solver

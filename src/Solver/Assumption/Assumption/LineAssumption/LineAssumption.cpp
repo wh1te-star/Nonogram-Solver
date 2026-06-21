@@ -12,7 +12,11 @@ LineAssumption<TOrientation>::LineAssumption(const LinePosition<TOrientation> &l
 
 template <typename TOrientation>
 void LineAssumption<TOrientation>::applyTo(NonogramBoard &nonogramBoard) const {
-    nonogramBoard.applyLine(linePosition, line, true);
+    nonogramBoard.applyLine<TOrientation>(linePosition, line, true);
 }
+
+// explicit template instantiation
+template class LineAssumption<Core::RowOrientation>;
+template class LineAssumption<Core::ColumnOrientation>;
 
 } // namespace VersaNo::Solver

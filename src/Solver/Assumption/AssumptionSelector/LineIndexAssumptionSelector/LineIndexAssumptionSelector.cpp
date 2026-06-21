@@ -40,4 +40,7 @@ std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector<TOrientation>::
     }
 }
 
+template class LineIndexAssumptionSelector<Core::RowOrientation>;
+template class LineIndexAssumptionSelector<Core::ColumnOrientation>;
+
 } // namespace VersaNo::Solver

@@ -14,7 +14,7 @@ template <typename TOrientation> class IPlacementPatternCounter {
       const Core::HintList &hintList,
       Core::Line<TOrientation> &line,
       Core::PlacementCount &placementCount,
-      IBoardUpdateHandler &boardUpdateHandler) = 0;
+      Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
 } // namespace VersaNo::Solver

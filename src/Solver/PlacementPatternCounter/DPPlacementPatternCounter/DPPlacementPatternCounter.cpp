@@ -112,4 +112,7 @@ bool DPPlacementPatternCounter<TOrientation>::isBlockFits(
     return true;
 }
 
+template class DPPlacementPatternCounter<Core::RowOrientation>;
+template class DPPlacementPatternCounter<Core::ColumnOrientation>;
+
 } // namespace VersaNo::Solver

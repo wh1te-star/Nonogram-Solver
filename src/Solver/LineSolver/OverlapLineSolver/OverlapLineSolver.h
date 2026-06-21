@@ -19,13 +19,13 @@ template <typename TOrientation> class OverlapLineSolver : public ILineSolver<TO
     LineSolverResult solve(
       const Core::HintList &hintList,
       typename Core::LineTraits<TOrientation>::Line &line,
-      IBoardUpdateHandler &boardUpdateHandler) override;
+      Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     LineSolverResult overlapLineSolve(
       const Core::HintList &hintList,
       typename Core::LineTraits<TOrientation>::Line &line,
-      IBoardUpdateHandler &boardUpdateHandler);
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 };
 
 } // namespace VersaNo::Solver

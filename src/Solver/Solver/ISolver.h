@@ -13,7 +13,7 @@ class ISolver {
     virtual void solve(
       Core::NonogramBoard &nonogramBoard,
       std::vector<Core::Board> &solutions,
-      Solver::IBoardUpdateHandler &boardUpdateHandler) = 0;
+      Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
 } // namespace VersaNo::Solver

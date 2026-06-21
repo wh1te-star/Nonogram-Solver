@@ -10,8 +10,10 @@ using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
 LineRepeatDeterministicSolver::LineRepeatDeterministicSolver(
-  Rendering::StopSignal &stopSignal, BothLineSolver &bothLineSolver)
-    : stopSignal(stopSignal), bothLineSolver(bothLineSolver) {}
+  Rendering::StopSignal &stopSignal,
+  ILineSolver<RowOrientation> &rowLineSolver,
+  ILineSolver<ColumnOrientation> &columnLineSolver)
+    : stopSignal(stopSignal), rowLineSolver(rowLineSolver), columnLineSolver(columnLineSolver) {}
 
 DeterministicSolverResult LineRepeatDeterministicSolver::solve(
   NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) {
@@ -33,7 +35,6 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             Row previousRowLine = rowLine;
             RowHintGroup rowHintGroup = nonogramBoard.getRowHintGroup();
             HintList rowHintList = rowHintGroup[rowIndex];
-            ILineSolver<RowOrientation> &rowLineSolver = bothLineSolver.rowLineSolver;
 
             LineSolverResult lineSolverResult = rowLineSolver.solve(
               rowHintList, rowLine, boardUpdateHandler);
@@ -89,7 +90,6 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             Column previousColumnLine = columnLine;
             ColumnHintGroup columnHintGroup = nonogramBoard.getColumnHintGroup();
             HintList columnHintList = columnHintGroup[columnIndex];
-            ILineSolver<ColumnOrientation> &columnLineSolver = bothLineSolver.columnLineSolver;
 
             LineSolverResult lineSolverResult = columnLineSolver.solve(
               columnHintList, columnLine, boardUpdateHandler);

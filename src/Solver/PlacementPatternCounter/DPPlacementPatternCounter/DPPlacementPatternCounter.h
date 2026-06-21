@@ -16,14 +16,14 @@ class DPPlacementPatternCounter : public IPlacementPatternCounter<TOrientation> 
       const Core::HintList &hintList,
       Core::Line<TOrientation> &line,
       Core::PlacementCount &placementCount,
-      IBoardUpdateHandler &boardUpdateHandler) override;
+      Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementPatternCounterResult DPPlacementPatternCount(
       const Core::HintList &hintList,
       const Core::Line<TOrientation> &line,
       Core::PlacementCount &placementCount,
-      IBoardUpdateHandler &boardUpdateHandler);
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 
     bool isSeparated(
       const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,

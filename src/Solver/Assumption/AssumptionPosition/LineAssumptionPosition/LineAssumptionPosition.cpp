@@ -12,4 +12,7 @@ Core::LinePosition<TOrientation> LineAssumptionPosition<TOrientation>::getLinePo
     return linePosition;
 }
 
+template class LineAssumptionPosition<Core::RowOrientation>;
+template class LineAssumptionPosition<Core::ColumnOrientation>;
+
 } // namespace VersaNo::Solver

@@ -12,7 +12,7 @@
 
 namespace VersaNo::Rendering {
 
-class RenderingBoardUpdateHandler : public Solver::BoardUpdateHandler<RenderingBoardUpdateHandler> {
+class RenderingBoardUpdateHandler : public Core::BoardUpdateHandler<RenderingBoardUpdateHandler> {
   private:
     ISender<Core::NonogramBoard> &nonogramBoardSender;
     Core::NonogramBoard &nonogramBoard;

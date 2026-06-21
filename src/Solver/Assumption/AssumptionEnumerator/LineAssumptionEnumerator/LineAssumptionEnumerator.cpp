@@ -1,7 +1,7 @@
 #include "Solver/Assumption/AssumptionEnumerator/LineAssumptionEnumerator/LineAssumptionEnumerator.h"
 
-#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/Board/Board.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/Assumption/Assumption/CellAssumption/CellAssumption.h"
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 
@@ -10,12 +10,12 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-  template <typename TOrientation>
+template <typename TOrientation>
 LineAssumptionEnumerator<TOrientation>::LineAssumptionEnumerator(
   IExhaustivePlacementPatternFinder<TOrientation> &exhaustivePlacementPatternFinder)
     : exhaustivePlacementPatternFinder(exhaustivePlacementPatternFinder) {}
 
-  template <typename TOrientation>
+template <typename TOrientation>
 std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator<TOrientation>::enumerate(
   const NonogramBoard &nonogramBoard, IAssumptionPosition &assumptionPosition) {
     const auto *lineAssumptionPosition = dynamic_cast<const LineAssumptionPosition *>(
@@ -66,5 +66,8 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator<TOrientation>
     assert(false && "Failed to enumerate line assumptions");
     return {};
 }
+
+template class LineAssumptionEnumerator<Core::RowOrientation>;
+template class LineAssumptionEnumerator<Core::ColumnOrientation>;
 
 } // namespace VersaNo::Solver

@@ -15,7 +15,7 @@ template <typename TOrientation> class ILeftmostPlacementFinder {
       const Core::HintList &hintList,
       Core::Line<TOrientation> &line,
       Core::Placement<TOrientation> &resultPlacement,
-      IBoardUpdateHandler &boardUpdateHandler) = 0;
+      Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
 } // namespace VersaNo::Solver

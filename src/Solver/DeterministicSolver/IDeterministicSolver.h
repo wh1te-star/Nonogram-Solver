@@ -11,7 +11,7 @@ class IDeterministicSolver {
   public:
     virtual ~IDeterministicSolver() = default;
     virtual DeterministicSolverResult
-    solve(Core::NonogramBoard &nonogramBoard, Solver::IBoardUpdateHandler &boardUpdateHandler) = 0;
+    solve(Core::NonogramBoard &nonogramBoard, Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
 } // namespace VersaNo::Solver

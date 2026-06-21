@@ -75,4 +75,7 @@ LineSolverResult OverlapLineSolver<TOrientation>::overlapLineSolve(
     return LineSolverResult::Success;
 }
 
+template class OverlapLineSolver<Core::RowOrientation>;
+template class OverlapLineSolver<Core::ColumnOrientation>;
+
 } // namespace VersaNo::Solver

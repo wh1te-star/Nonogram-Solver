@@ -35,11 +35,11 @@ class Board {
 
     template <typename TOrientation>
     void applyLine(typename LinePosition<TOrientation> linePosition, 
-                   const typename LineTraits<TOrientation>::Line &line, 
+                   const typename Line<TOrientation> &line, 
                    bool overwriteNone);
     template <typename TOrientation>
     void applyPlacement(typename LinePosition<TOrientation> linePosition, 
-                        const typename LineTraits<TOrientation>::Placement &placement);
+                        const typename Placement<TOrientation> &placement);
 
     template <typename TOrientation>
     void applyHint(typename HintPosition<TOrientation> hintPosition, 

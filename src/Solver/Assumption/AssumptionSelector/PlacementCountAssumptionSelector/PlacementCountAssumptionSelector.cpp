@@ -30,4 +30,7 @@ std::unique_ptr<IAssumptionPosition> PlacementCountAssumptionSelector<TOrientati
     // return std::make_unique<LineAssumptionPosition>(linePosition);
 }
 
+template class PlacementCountAssumptionSelector<Core::RowOrientation>;
+template class PlacementCountAssumptionSelector<Core::ColumnOrientation>;
+
 } // namespace VersaNo::Solver

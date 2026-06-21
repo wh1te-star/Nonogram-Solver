@@ -5,7 +5,7 @@
 #include "Core/Board/Board/Board.h"
 #include "Core/Position/CellPosition/CellPosition.h"
 
-namespace VersaNo::Solver {
+namespace VersaNo::Core {
 
 class IBoardUpdateHandler {
 public:

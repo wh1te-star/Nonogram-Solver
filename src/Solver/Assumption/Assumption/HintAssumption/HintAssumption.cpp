@@ -26,7 +26,7 @@ void HintAssumption<TOrientation>::applyTo(NonogramBoard &nonogramBoard) const {
 }
 
 // explicit template instantiation
-template class HintAssumption<RowOrientation>;
-template class HintAssumption<ColumnOrientation>;
+template class HintAssumption<Core::RowOrientation>;
+template class HintAssumption<Core::ColumnOrientation>;
 
 } // namespace VersaNo::Solver

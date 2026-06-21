@@ -17,14 +17,14 @@ class AlgorithmThreadRunner {
 
     Rendering::ISender<NonogramBoard> &nonogramBoardSender;
     NonogramBoard &nonogramBoard;
-    Solver::IBoardUpdateHandler &boardUpdateHandler;
+    Core::IBoardUpdateHandler &boardUpdateHandler;
 
   public:
     AlgorithmThreadRunner(
       Rendering::StopSignal &stopSignal,
       Rendering::ISender<NonogramBoard> &nonogramBoardSender,
       NonogramBoard &initialNonogramBoard,
-      Solver::IBoardUpdateHandler &boardUpdateHandler);
+      Core::IBoardUpdateHandler &boardUpdateHandler);
 
     void run(Solver::ISolver &solver);
 };

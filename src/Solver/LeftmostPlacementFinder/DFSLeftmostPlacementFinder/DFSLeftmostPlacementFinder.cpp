@@ -91,4 +91,7 @@ PlacementFinderResult DFSLeftmostPlacementFinder<TOrientation>::dfsLeftmostPlace
     return PlacementFinderResult::notFound;
 }
 
+template class DFSLeftmostPlacementFinder<Core::RowOrientation>;
+template class DFSLeftmostPlacementFinder<Core::ColumnOrientation>;
+
 } // namespace VersaNo::Solver

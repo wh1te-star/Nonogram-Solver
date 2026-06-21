@@ -13,7 +13,7 @@ template <typename TOrientation> class ILineSolver {
     virtual LineSolverResult solve(
       const Core::HintList &hintList,
       typename Core::LineTraits<TOrientation>::Line &line,
-      IBoardUpdateHandler &boardUpdateHandler) = 0;
+      Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 
 } // namespace VersaNo::Solver

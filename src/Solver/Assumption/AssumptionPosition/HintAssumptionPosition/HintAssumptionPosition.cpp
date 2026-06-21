@@ -15,4 +15,8 @@ Core::HintPosition<TOrientation> HintAssumptionPosition<TOrientation>::getHintPo
     return hintPosition;
 }
 
+template class HintAssumptionPosition<Core::RowOrientation>;
+template class HintAssumptionPosition<Core::ColumnOrientation>;
+
+
 } // namespace VersaNo::Solver

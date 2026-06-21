@@ -64,4 +64,7 @@ DFSExhaustivePlacementPatternFinder<TOrientation>::dfsExhaustivePlacementFindRec
     return ExhaustivePlacementPatternFinderResult::success;
 }
 
+template class DFSExhaustivePlacementPatternFinder<Core::RowOrientation>;
+template class DFSExhaustivePlacementPatternFinder<Core::ColumnOrientation>;
+
 } // namespace VersaNo::Solver

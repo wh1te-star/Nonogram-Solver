@@ -35,7 +35,7 @@ void NonogramBoard::applyCell(CellPosition cellPosition, const Cell &cell, bool 
 template <typename TOrientation>
 void NonogramBoard::applyLine(
   typename LinePosition<TOrientation> linePosition,
-  const typename LineTraits<TOrientation>::Line &line,
+  const typename Line<TOrientation> &line,
   bool overwriteNone) {
     return board.applyLine<TOrientation>(linePosition, line, overwriteNone);
 }
@@ -43,7 +43,7 @@ void NonogramBoard::applyLine(
 template <typename TOrientation>
 void NonogramBoard::applyPlacement(
   typename LinePosition<TOrientation> linePosition,
-  const typename LineTraits<TOrientation>::Placement &placement) {
+  const typename Placement<TOrientation> &placement) {
     return board.applyPlacement<TOrientation>(linePosition, placement);
 }
 
@@ -61,5 +61,22 @@ bool NonogramBoard::isInRange(CellPosition cellPosition) const {
 }
 
 bool NonogramBoard::isSolved() const { return board.isSolved(); }
+
+
+// Explicit instantiations
+template typename LineTraits<RowOrientation>::Line 
+NonogramBoard::getLine<RowOrientation>(typename LineTraits<RowOrientation>::Index) const;
+template typename LineTraits<ColumnOrientation>::Line 
+NonogramBoard::getLine<ColumnOrientation>(typename LineTraits<ColumnOrientation>::Index) const;
+template void NonogramBoard::applyLine<RowOrientation>(
+    LinePosition<RowOrientation>, const Line<RowOrientation> &, bool);
+template void NonogramBoard::applyLine<ColumnOrientation>(
+    LinePosition<ColumnOrientation>, const Line<ColumnOrientation> &, bool);
+template void NonogramBoard::applyPlacement<RowOrientation>(
+    LinePosition<RowOrientation>, const Placement<RowOrientation> &);
+template void NonogramBoard::applyPlacement<ColumnOrientation>(
+    LinePosition<ColumnOrientation>, const Placement<ColumnOrientation> &);
+template void NonogramBoard::applyHint<RowOrientation>(HintPosition<RowOrientation>, HintNumber);
+template void NonogramBoard::applyHint<ColumnOrientation>(HintPosition<ColumnOrientation>, HintNumber);
 
 } // namespace VersaNo::Core

@@ -75,7 +75,7 @@ void Board::applyCell(CellPosition cellPosition, const Cell &cell, bool overwrit
 template <typename TOrientation>
 void Board::applyLine(
   typename LinePosition<TOrientation> linePosition,
-  const typename LineTraits<TOrientation>::Line &line,
+  const typename Line<TOrientation> &line,
   bool overwriteNone) {
     using Traits = LineTraits<TOrientation>;
     using Index = typename Traits::Index;
@@ -105,7 +105,7 @@ for (PeerIndex peerIndex : PeerIndex::closedRange(0, line.size() - 1)) {
 template <typename TOrientation>
 void Board::applyPlacement(
   typename LinePosition<TOrientation> linePosition,
-  const typename LineTraits<TOrientation>::Placement &placement) {
+  const typename Placement<TOrientation> &placement) {
     using Traits = LineTraits<TOrientation>;
     using PeerIndex = typename Traits::PeerIndex;
 
