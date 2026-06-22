@@ -17,8 +17,7 @@ class NonogramBoard {
 
     // Board getters (method forwarding)
   public:
-    RowLength getRowLength() const;
-    ColumnLength getColumnLength() const;
+    template <typename TOrientation> typename LineTraits<TOrientation>::Length getLength() const;
     Board getBoard() const;
     Board &getBoard();
     Cell getCell(CellPosition cellPosition) const;
@@ -28,8 +27,8 @@ class NonogramBoard {
 
     // Nonogram Board specific getters
   public:
-    RowHintGroup getRowHintGroup() const;
-    ColumnHintGroup getColumnHintGroup() const;
+    template <typename TOrientation>
+    typename LineTraits<TOrientation>::HintGroup getHintGroup() const;
 
     // Apply operations
   public:
@@ -38,12 +37,12 @@ class NonogramBoard {
     template <typename TOrientation>
     void applyLine(
       typename LinePosition<TOrientation> linePosition,
-      const typename Line<TOrientation> &line,
+      const typename LineTraits<TOrientation>::Line &line,
       bool overwriteNone);
     template <typename TOrientation>
     void applyPlacement(
       typename LinePosition<TOrientation> linePosition,
-      const typename Placement<TOrientation> &placement);
+      const typename LineTraits<TOrientation>::Placement &placement);
 
     template <typename TOrientation>
     void applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber);

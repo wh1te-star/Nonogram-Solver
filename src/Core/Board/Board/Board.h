@@ -23,8 +23,7 @@ class Board {
     bool operator==(const Board &other) const;
     bool operator!=(const Board &other) const;
 
-    RowLength getRowLength() const;
-    ColumnLength getColumnLength() const;
+    template <typename TOrientation> typename LineTraits<TOrientation>::Length getLength() const;
     Cell getCell(CellPosition coordinate) const;
 
   public:
@@ -35,11 +34,11 @@ class Board {
 
     template <typename TOrientation>
     void applyLine(typename LinePosition<TOrientation> linePosition, 
-                   const typename Line<TOrientation> &line, 
+                   const typename LineTraits<TOrientation>::Line &line, 
                    bool overwriteNone);
     template <typename TOrientation>
     void applyPlacement(typename LinePosition<TOrientation> linePosition, 
-                        const typename Placement<TOrientation> &placement);
+                        const typename LineTraits<TOrientation>::Placement &placement);
 
     template <typename TOrientation>
     void applyHint(typename HintPosition<TOrientation> hintPosition, 

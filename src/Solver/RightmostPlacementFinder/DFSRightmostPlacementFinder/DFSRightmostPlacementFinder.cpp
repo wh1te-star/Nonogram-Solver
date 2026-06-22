@@ -13,9 +13,8 @@ PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::find(
   IBoardUpdateHandler &boardUpdateHandler) {
     profiler.startMeasurement();
 
-    PlacementFinderResult result = dfsRightmostPlacementFind(
+    return dfsRightmostPlacementFind(
       hintList, line, resultPlacement, boardUpdateHandler);
-    return result;
 }
 
 template <typename TOrientation>
@@ -34,7 +33,7 @@ PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::dfsRightmostPla
   const HintList &hintList,
   const Line<TOrientation> &line,
   Placement<TOrientation> &currentPlacement,
-  int currentHintIndex,
+  HintIndex currentHintIndex,
   Placement<TOrientation> &resultPlacement,
   IBoardUpdateHandler &boardUpdateHandler) {
     if (profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {

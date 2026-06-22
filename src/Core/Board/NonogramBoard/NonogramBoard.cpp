@@ -8,9 +8,10 @@ NonogramBoard::NonogramBoard(
     , rowHintGroup(std::move(rowHintGroup))
     , columnHintGroup(std::move(columnHintGroup)) {}
 
-RowLength NonogramBoard::getRowLength() const { return board.getRowLength(); }
-
-ColumnLength NonogramBoard::getColumnLength() const { return board.getColumnLength(); }
+template <typename TOrientation>
+typename LineTraits<TOrientation>::Length NonogramBoard::getLength() const {
+    return board.getLength<TOrientation>();
+}
 
 Board NonogramBoard::getBoard() const { return board; }
 
@@ -24,9 +25,16 @@ NonogramBoard::getLine(typename LineTraits<TOrientation>::Index index) const {
     return board.getLine<TOrientation>(index);
 }
 
-RowHintGroup NonogramBoard::getRowHintGroup() const { return rowHintGroup; }
+template <>
+typename LineTraits<RowOrientation>::HintGroup NonogramBoard::getHintGroup<RowOrientation>() const {
+    return rowHintGroup;
+}
 
-ColumnHintGroup NonogramBoard::getColumnHintGroup() const { return columnHintGroup; }
+template <>
+typename LineTraits<ColumnOrientation>::HintGroup
+NonogramBoard::getHintGroup<ColumnOrientation>() const {
+    return columnHintGroup;
+}
 
 void NonogramBoard::applyCell(CellPosition cellPosition, const Cell &cell, bool overwriteNone) {
     board.applyCell(cellPosition, cell, overwriteNone);
@@ -35,7 +43,7 @@ void NonogramBoard::applyCell(CellPosition cellPosition, const Cell &cell, bool 
 template <typename TOrientation>
 void NonogramBoard::applyLine(
   typename LinePosition<TOrientation> linePosition,
-  const typename Line<TOrientation> &line,
+  const typename LineTraits<TOrientation>::Line &line,
   bool overwriteNone) {
     return board.applyLine<TOrientation>(linePosition, line, overwriteNone);
 }
@@ -43,12 +51,13 @@ void NonogramBoard::applyLine(
 template <typename TOrientation>
 void NonogramBoard::applyPlacement(
   typename LinePosition<TOrientation> linePosition,
-  const typename Placement<TOrientation> &placement) {
+  const typename LineTraits<TOrientation>::Placement &placement) {
     return board.applyPlacement<TOrientation>(linePosition, placement);
 }
 
 template <typename TOrientation>
-void NonogramBoard::applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
+void NonogramBoard::applyHint(
+  typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
     return board.applyHint<TOrientation>(hintPosition, hintNumber);
 }
 
@@ -62,21 +71,31 @@ bool NonogramBoard::isInRange(CellPosition cellPosition) const {
 
 bool NonogramBoard::isSolved() const { return board.isSolved(); }
 
-
 // Explicit instantiations
-template typename LineTraits<RowOrientation>::Line 
-NonogramBoard::getLine<RowOrientation>(typename LineTraits<RowOrientation>::Index) const;
-template typename LineTraits<ColumnOrientation>::Line 
-NonogramBoard::getLine<ColumnOrientation>(typename LineTraits<ColumnOrientation>::Index) const;
+template RowLength NonogramBoard::getLength<RowOrientation>() const;
+template ColumnLength NonogramBoard::getLength<ColumnOrientation>() const;
+template RowHintGroup NonogramBoard::getHintGroup<RowOrientation>() const;
+template ColumnHintGroup NonogramBoard::getHintGroup<ColumnOrientation>() const;
+
+template typename LineTraits<RowOrientation>::Line
+  NonogramBoard::getLine<RowOrientation>(typename LineTraits<RowOrientation>::Index) const;
+template typename LineTraits<ColumnOrientation>::Line
+  NonogramBoard::getLine<ColumnOrientation>(typename LineTraits<ColumnOrientation>::Index) const;
 template void NonogramBoard::applyLine<RowOrientation>(
-    LinePosition<RowOrientation>, const Line<RowOrientation> &, bool);
+  typename LinePosition<RowOrientation>, const typename LineTraits<RowOrientation>::Line &, bool);
 template void NonogramBoard::applyLine<ColumnOrientation>(
-    LinePosition<ColumnOrientation>, const Line<ColumnOrientation> &, bool);
+  typename LinePosition<ColumnOrientation>,
+  const typename LineTraits<ColumnOrientation>::Line &,
+  bool);
 template void NonogramBoard::applyPlacement<RowOrientation>(
-    LinePosition<RowOrientation>, const Placement<RowOrientation> &);
+  typename LinePosition<RowOrientation> linePosition,
+  const typename LineTraits<RowOrientation>::Placement &);
 template void NonogramBoard::applyPlacement<ColumnOrientation>(
-    LinePosition<ColumnOrientation>, const Placement<ColumnOrientation> &);
-template void NonogramBoard::applyHint<RowOrientation>(HintPosition<RowOrientation>, HintNumber);
-template void NonogramBoard::applyHint<ColumnOrientation>(HintPosition<ColumnOrientation>, HintNumber);
+  typename LinePosition<ColumnOrientation> linePosition,
+  const typename LineTraits<ColumnOrientation>::Placement &);
+template void
+  NonogramBoard::applyHint<RowOrientation>(typename HintPosition<RowOrientation>, HintNumber);
+template void
+  NonogramBoard::applyHint<ColumnOrientation>(typename HintPosition<ColumnOrientation>, HintNumber);
 
 } // namespace VersaNo::Core

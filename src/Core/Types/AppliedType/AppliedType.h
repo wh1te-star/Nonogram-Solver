@@ -2,13 +2,13 @@
 #define VERSANO_CORE_APPLIEDTYPE_H
 
 #include "Core/Cell/Cell/Cell.h"
-#include "Core/Types/PrimitiveType/IntType/IntType.h"
+#include "Core/Types/DomainType/HintGroupType/HintGroupType.h"
+#include "Core/Types/DomainType/HintListType/HintListType.h"
 #include "Core/Types/DomainType/IndexType/IndexType.h"
 #include "Core/Types/DomainType/LengthType/LengthType.h"
-#include "Core/Types/DomainType/PlacementType/PlacementType.h"
 #include "Core/Types/DomainType/LineType/LineType.h"
-#include "Core/Types/DomainType/HintListType/HintListType.h"
-#include "Core/Types/DomainType/HintGroupType/HintGroupType.h"
+#include "Core/Types/DomainType/PlacementType/PlacementType.h"
+#include "Core/Types/PrimitiveType/IntType/IntType.h"
 
 namespace VersaNo::Core {
 
@@ -25,8 +25,6 @@ enum class EOrientation { Row, Column };
 struct RowOrientation {};
 struct ColumnOrientation {};
 
-
-
 // ============================================================================
 // Row-Specific Scalar Types
 // ============================================================================
@@ -39,8 +37,6 @@ struct RowIndex : IndexType<RowIndex, RowTag, RowLength> {
     using IndexType::IndexType;
 };
 
-
-
 // ============================================================================
 // Column-Specific Scalar Types
 // ============================================================================
@@ -52,8 +48,6 @@ struct ColumnLength : LengthType<ColumnLength, ColumnTag> {
 struct ColumnIndex : IndexType<ColumnIndex, ColumnTag, ColumnLength> {
     using IndexType::IndexType;
 };
-
-
 
 // ============================================================================
 // Hint & Logic Scalar Types
@@ -74,8 +68,6 @@ struct PlacementCount : IntType<PlacementCount, HintTag> {
 using RowPlacementCountList = ListType<PlacementCount, RowIndex>;
 using ColumnPlacementCountList = ListType<PlacementCount, ColumnIndex>;
 
-
-
 // ============================================================================
 // Composite Line Types (Container Wrappers)
 // ============================================================================
@@ -88,8 +80,6 @@ using ColumnPlacement = Placement<RowIndex>;
 
 using HintList = HintListType<HintNumber, HintIndex>;
 
-
-
 // ============================================================================
 // Hint Group Types (List of HintLists)
 // ============================================================================
@@ -98,9 +88,6 @@ using RowHintGroup = HintGroupType<HintList, RowIndex>;
 
 using ColumnHintGroup = HintGroupType<HintList, ColumnIndex>;
 
-
-
-
 // ============================================================================
 // Orientation Traits (Type Resolver)
 // ============================================================================
@@ -108,6 +95,7 @@ using ColumnHintGroup = HintGroupType<HintList, ColumnIndex>;
 template <typename TOrientation> struct LineTraits;
 
 template <> struct LineTraits<RowOrientation> {
+    using PeerOrientation = ColumnOrientation;
     using Index = RowIndex;
     using PeerIndex = ColumnIndex;
     using Length = RowLength;
@@ -116,9 +104,12 @@ template <> struct LineTraits<RowOrientation> {
     using PeerLine = Column;
     using Placement = RowPlacement;
     using PeerPlacement = ColumnPlacement;
+    using HintGroup = RowHintGroup;
+    using PeerHintGroup = ColumnHintGroup;
 };
 
 template <> struct LineTraits<ColumnOrientation> {
+    using PeerOrientation = RowOrientation;
     using Index = ColumnIndex;
     using PeerIndex = RowIndex;
     using Length = ColumnLength;
@@ -127,8 +118,9 @@ template <> struct LineTraits<ColumnOrientation> {
     using PeerLine = Row;
     using Placement = ColumnPlacement;
     using PeerPlacement = RowPlacement;
+    using HintGroup = ColumnHintGroup;
+    using PeerHintGroup = RowHintGroup;
 };
-
 
 } // namespace VersaNo::Core
 

@@ -17,9 +17,14 @@ bool Board::operator==(const Board &other) const { return board == other.board; 
 
 bool Board::operator!=(const Board &other) const { return !(*this == other); }
 
-RowLength Board::getRowLength() const { return rowLength; }
-
-ColumnLength Board::getColumnLength() const { return columnLength; }
+template <typename TOrientation>
+typename LineTraits<TOrientation>::Length Board::getLength() const {
+    if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+        return rowLength;
+    } else {
+        return columnLength;
+    }
+}
 
 Cell Board::getCell(CellPosition cellPosition) const {
     assert(isInRange(cellPosition));
@@ -32,16 +37,12 @@ template <typename TOrientation>
 typename LineTraits<TOrientation>::Line
 Board::getLine(typename LineTraits<TOrientation>::Index index) const {
     using Traits = LineTraits<TOrientation>;
+    using PeerOrientation = typename Traits::PeerOrientation;
     using LineType = typename Traits::Line;
     using PeerIndex = typename Traits::PeerIndex;
     using PeerLength = typename Traits::PeerLength;
 
-    PeerLength peerLength;
-    if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
-        peerLength = getColumnLength();
-    } else {
-        peerLength = getRowLength();
-    }
+    PeerLength peerLength = getLength<PeerOrientation>();
 
     std::vector<Cell> cells;
 
@@ -75,7 +76,7 @@ void Board::applyCell(CellPosition cellPosition, const Cell &cell, bool overwrit
 template <typename TOrientation>
 void Board::applyLine(
   typename LinePosition<TOrientation> linePosition,
-  const typename Line<TOrientation> &line,
+  const typename LineTraits<TOrientation>::Line &line,
   bool overwriteNone) {
     using Traits = LineTraits<TOrientation>;
     using Index = typename Traits::Index;
@@ -89,7 +90,7 @@ void Board::applyLine(
 
     Index lineIndex = linePosition.getIndex();
 
-for (PeerIndex peerIndex : PeerIndex::closedRange(0, line.size() - 1)) {
+    for (PeerIndex peerIndex : PeerIndex::closedRange(0, line.size() - 1)) {
         Cell cell = line[peerIndex];
 
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
@@ -105,7 +106,7 @@ for (PeerIndex peerIndex : PeerIndex::closedRange(0, line.size() - 1)) {
 template <typename TOrientation>
 void Board::applyPlacement(
   typename LinePosition<TOrientation> linePosition,
-  const typename Placement<TOrientation> &placement) {
+  const typename LineTraits<TOrientation>::Placement &placement) {
     using Traits = LineTraits<TOrientation>;
     using PeerIndex = typename Traits::PeerIndex;
 

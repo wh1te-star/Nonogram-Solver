@@ -1,6 +1,7 @@
 #ifndef VERSANO_CORE_INDEXTYPE_H
 #define VERSANO_CORE_INDEXTYPE_H
 
+#include "Core/Types/PrimitiveType/IntType/IntType.h"
 #include "Core/ClosedRange/ClosedRange.h"
 
 namespace VersaNo::Core {

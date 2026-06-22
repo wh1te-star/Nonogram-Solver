@@ -1,13 +1,15 @@
 #include "Solver/Assumption/Assumption/LineAssumption/LineAssumption.h"
 
-#include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
 template <typename TOrientation>
-LineAssumption<TOrientation>::LineAssumption(const LinePosition<TOrientation> &linePosition, const Line<TOrientation> &line)
+LineAssumption<TOrientation>::LineAssumption(
+  const LinePosition<TOrientation> &linePosition,
+  const typename LineTraits<TOrientation>::Line &line)
     : linePosition(linePosition), line(line) {}
 
 template <typename TOrientation>

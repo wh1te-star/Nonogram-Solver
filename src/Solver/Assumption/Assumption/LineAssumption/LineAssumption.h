@@ -14,11 +14,12 @@ namespace VersaNo::Solver {
 template <typename TOrientation> class LineAssumption : public IAssumption {
   private:
     Core::LinePosition<TOrientation> linePosition;
-    Core::Line<TOrientation> line;
+    typename Core::LineTraits<TOrientation>::Line line;
 
   public:
     explicit LineAssumption(
-      const Core::LinePosition<TOrientation> &linePosition, const Core::Line<TOrientation> &line);
+      const Core::LinePosition<TOrientation> &linePosition,
+      const typename Core::LineTraits<TOrientation>::Line &line);
     virtual ~LineAssumption() = default;
 
     void applyTo(Core::NonogramBoard &board) const override;
