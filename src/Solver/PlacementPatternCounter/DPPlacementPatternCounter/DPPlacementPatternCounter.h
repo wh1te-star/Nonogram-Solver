@@ -14,14 +14,14 @@ class DPPlacementPatternCounter : public IPlacementPatternCounter<TOrientation> 
     DPPlacementPatternCounter(int MAX_COUNT);
     PlacementPatternCounterResult count(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
+      typename Core::LineTraits<TOrientation>::Line &line,
       Core::PlacementCount &placementCount,
       Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementPatternCounterResult DPPlacementPatternCount(
       const Core::HintList &hintList,
-      const Core::Line<TOrientation> &line,
+      typename Core::LineTraits<TOrientation>::Line &line,
       Core::PlacementCount &placementCount,
       Core::IBoardUpdateHandler &boardUpdateHandler);
 

@@ -30,21 +30,21 @@ void TableRenderer::render(
     // sharedHighlightIndexes.getHighlightIndexes(); const BacktrackStack
     // backtrackStack = sharedBacktrackStack.getBacktrackStack();
     const Board board = nonogramBoard.getBoard();
-    const RowHintGroup rowHintGroup = nonogramBoard.getRowHintGroup();
-    const ColumnHintGroup columnHintGroup = nonogramBoard.getColumnHintGroup();
+    const RowHintGroup rowHintGroup = nonogramBoard.getHintGroup<RowOrientation>();
+    const ColumnHintGroup columnHintGroup = nonogramBoard.getHintGroup<ColumnOrientation>();
     // const RowPlacementCountList rowPlacementCountList = nonogramBoard.getRowPlacementCountList();
     // const ColumnPlacementCountList columnPlacementCountList =
     // nonogramBoard.getColumnPlacementCountList();
     const RowPlacementCountList rowPlacementCountList = RowPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getRowLength().value, PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getLength<RowOrientation>().value, PlacementCount(0)));
     const ColumnPlacementCountList columnPlacementCountList = ColumnPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getColumnLength().value, PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getLength<ColumnOrientation>().value, PlacementCount(0)));
 
     auto end_data_copy = std::chrono::high_resolution_clock::now();
 
     // --- Length Calculations (Same as before) ---
-    const RowLength boardRowLength = board.getRowLength();
-    const ColumnLength boardColumnLength = board.getColumnLength();
+    const RowLength boardRowLength = board.getLength<RowOrientation>();
+    const ColumnLength boardColumnLength = board.getLength<ColumnOrientation>();
     const RowLength columnHintLength = RowLength((int)columnHintGroup.getMaxHintListSize());
     const ColumnLength rowHintLength = ColumnLength((int)rowHintGroup.getMaxHintListSize());
     const RowLength columnPlacementCountLength = RowLength(1);
@@ -94,7 +94,7 @@ void TableRenderer::render(
 
     // Prepare for Drawing
     ImDrawList *draw_list = ImGui::GetWindowDrawList();
-    ImFont *font = FontData::getFontByCellSize(cell_size);
+    ImFont *font = FontData::getFontByCellSize((int)cell_size);
 
     // Mouse Interaction Variables
     ImVec2 mousePos = ImGui::GetMousePos();

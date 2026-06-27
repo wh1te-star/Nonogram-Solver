@@ -1,6 +1,7 @@
 #ifndef VERSANO_CORE_OVERLAPLINESOLVER_H
 #define VERSANO_CORE_OVERLAPLINESOLVER_H
 
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/LeftmostPlacementFinder/ILeftmostPlacementFinder.h"
 #include "Solver/LineSolver/ILineSolver.h"
 #include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"

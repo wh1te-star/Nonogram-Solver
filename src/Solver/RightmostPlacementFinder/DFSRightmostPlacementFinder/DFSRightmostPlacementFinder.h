@@ -17,23 +17,23 @@ class DFSRightmostPlacementFinder : public IRightmostPlacementFinder<TOrientatio
     DFSRightmostPlacementFinder() = default;
     PlacementFinderResult find(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
-      Core::Placement<TOrientation> &resultPlacement,
+      typename Core::LineTraits<TOrientation>::Line &line,
+      typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
       Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult dfsRightmostPlacementFind(
       const Core::HintList &hintList,
-      const Core::Line<TOrientation> &line,
-      Core::Placement<TOrientation> &resultPlacement,
+      const typename Core::LineTraits<TOrientation>::Line &line,
+      typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
       Core::IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsRightmostPlacementFindRecursive(
       const Core::HintList &hintList,
-      const Core::Line<TOrientation> &line,
-      Core::Placement<TOrientation> &currentPlacement,
-      HintIndex currentHintIndex,
-      Core::Placement<TOrientation> &resultPlacement,
+      const typename Core::LineTraits<TOrientation>::Line &line,
+      typename Core::LineTraits<TOrientation>::Placement &currentPlacement,
+      Core::HintIndex currentHintIndex,
+      typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
       Core::IBoardUpdateHandler &boardUpdateHandler);
 };
 

@@ -8,6 +8,7 @@
 #include "Core/Types/DomainType/LengthType/LengthType.h"
 #include "Core/Types/DomainType/LineType/LineType.h"
 #include "Core/Types/DomainType/PlacementType/PlacementType.h"
+#include "Core/Types/DomainType/AdditiveIntType/AdditiveIntType.h"
 #include "Core/Types/PrimitiveType/IntType/IntType.h"
 
 namespace VersaNo::Core {
@@ -61,8 +62,8 @@ struct HintNumber : IntType<HintNumber, HintTag> {
     using IntType::IntType;
 };
 
-struct PlacementCount : IntType<PlacementCount, HintTag> {
-    using IntType::IntType;
+struct PlacementCount : AdditiveIntType<PlacementCount, HintTag> {
+    using AdditiveIntType::AdditiveIntType;
 };
 
 using RowPlacementCountList = ListType<PlacementCount, RowIndex>;

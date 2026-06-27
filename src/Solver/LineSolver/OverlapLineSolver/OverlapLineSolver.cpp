@@ -1,13 +1,17 @@
 #include "Solver/LineSolver/OverlapLineSolver/OverlapLineSolver.h"
 
-#include "Solver/LeftmostPlacementFinder/DFSLeftmostPlacementFinder/DFSLeftmostPlacementFinder.h"
+#include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/ResultEnum/PlacementFinderResult.h"
-#include "Solver/RightmostPlacementFinder/DFSRightmostPlacementFinder/DFSRightmostPlacementFinder.h"
+#include "Solver/LeftmostPlacementFinder/ILeftmostPlacementFinder.h"
+#include "Solver/RightmostPlacementFinder/IRightmostPlacementFinder.h"
 
-using namespace VersaNo::Core;
+#include <vector>
+
+
 namespace VersaNo::Solver {
+using namespace VersaNo::Core;
 
-  template <typename TOrientation>
+template <typename TOrientation>
 OverlapLineSolver<TOrientation>::OverlapLineSolver(
   ILeftmostPlacementFinder<TOrientation> &leftmostPlacementFinder,
   IRightmostPlacementFinder<TOrientation> &rightmostPlacementFinder)
@@ -16,15 +20,25 @@ OverlapLineSolver<TOrientation>::OverlapLineSolver(
 
 template <typename TOrientation>
 LineSolverResult OverlapLineSolver<TOrientation>::solve(
-  const HintList &hintList, typename Core::LineTraits<TOrientation>::Line &line, IBoardUpdateHandler &boardUpdateHandler) {
+  const HintList &hintList,
+  typename Core::LineTraits<TOrientation>::Line &line,
+  IBoardUpdateHandler &boardUpdateHandler) {
     return overlapLineSolve(hintList, line, boardUpdateHandler);
 }
 
 template <typename TOrientation>
 LineSolverResult OverlapLineSolver<TOrientation>::overlapLineSolve(
-  const HintList &hintList, typename Core::LineTraits<TOrientation>::Line &line, IBoardUpdateHandler &boardUpdateHandler) {
-    Placement<TOrientation> leftmostPlacement = Placement<TOrientation>("");
-    Placement<TOrientation> rightmostPlacement = Placement<TOrientation>("");
+  const HintList &hintList,
+  typename Core::LineTraits<TOrientation>::Line &line,
+  IBoardUpdateHandler &boardUpdateHandler) {
+    using Traits = typename Core::LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
+    using PeerIndex = typename Traits::PeerIndex;
+    using Line = typename Traits::Line;
+    using Placement = typename Traits::Placement;
+
+    Placement leftmostPlacement = Placement(std::vector<Cell>());
+    Placement rightmostPlacement = Placement(std::vector<Cell>());
     PlacementFinderResult leftmostPlacementFinderResult = leftmostPlacementFinder.find(
       hintList, line, leftmostPlacement, boardUpdateHandler);
     PlacementFinderResult rightmostPlacementFinderResult = rightmostPlacementFinder.find(
@@ -35,37 +49,35 @@ LineSolverResult OverlapLineSolver<TOrientation>::overlapLineSolve(
         return LineSolverResult::HasContradiction;
     }
 
-    std::vector<CellIndex> leftmostHintIndex = leftmostPlacement.getHintIndex();
-    std::vector<CellIndex> rightmostHintIndex = rightmostPlacement.getHintIndex();
+    std::vector<PeerIndex> leftmostHintIndex = leftmostPlacement.getHintIndex();
+    std::vector<PeerIndex> rightmostHintIndex = rightmostPlacement.getHintIndex();
 
-    Line<TOrientation> determined(std::vector<Cell<TOrientation>>(line.size(), Cell<TOrientation>(CellColor::None)));
-    for (int i = 0; i < leftmostHintIndex.front().getIndex(); i++) {
-        CellIndex cellIndex = CellIndex(i);
-        determined[cellIndex] = Cell<TOrientation>(CellColor::White);
+    Line determined = Line(std::vector<Cell>(line.size(), Cell(CellColor::None)));
+    for (PeerIndex index : PeerIndex::closedRangeUp(0, leftmostHintIndex.front().value - 1)) {
+        determined[index] = Cell(CellColor::White);
     }
-    for (int i = (rightmostHintIndex.back() + hintList.getNumbers().back()).getIndex();
-         i < line.size(); i++) {
-        CellIndex cellIndex = CellIndex(i);
-        determined[cellIndex] = Cell<TOrientation>(CellColor::White);
+    for (PeerIndex index : PeerIndex::closedRangeUp(rightmostHintIndex.back().value + hintList.back().value, (int)line.size() - 1)) {
+        determined[index] = Cell(CellColor::White);
     }
-    for (int hintIndex = 0; hintIndex < hintList.size(); hintIndex++) {
+    for (HintIndex hintIndex : Core::HintIndex::closedRangeUp(0, (int)hintList.size() - 1)) {
         HintNumber hintNumber = hintList[hintIndex];
-        CellIndex leftStart = leftmostHintIndex[hintIndex];
-        CellIndex leftEnd = leftStart + hintNumber - 1;
-        CellIndex rightStart = rightmostHintIndex[hintIndex];
-        CellIndex rightEnd = rightStart + hintNumber - 1;
-        for (CellIndex cellIndex = rightStart; cellIndex <= leftEnd; cellIndex++) {
-            determined[cellIndex] = Cell<TOrientation>(CellColor::Black);
+        PeerIndex leftStart = leftmostHintIndex[hintIndex.value];
+        PeerIndex leftEnd = leftStart + hintNumber.value - 1;
+        PeerIndex rightStart = rightmostHintIndex[hintIndex.value];
+        PeerIndex rightEnd = rightStart + hintNumber.value - 1;
+        for (PeerIndex index : PeerIndex::closedRangeUp(rightStart.value, leftEnd.value)) {
+            determined[index] = Cell(CellColor::Black);
         }
 
+        // If the leftmost and rightmost placements of a block are the same, mark the adjacent cells as white
         if (leftStart == rightStart) {
-            CellIndex leftAdjacent = leftStart - 1;
-            CellIndex rightAdjacent = leftStart + hintNumber;
-            if (leftAdjacent >= 0) {
-                determined[leftAdjacent] = Cell<TOrientation>(CellColor::White);
+            PeerIndex leftAdjacent = leftStart - 1;
+            PeerIndex rightAdjacent = leftStart + hintNumber.value;
+            if (leftAdjacent >= PeerIndex(0)) {
+                determined[leftAdjacent] = Cell(CellColor::White);
             }
-            if (rightAdjacent < line.size()) {
-                determined[rightAdjacent] = Cell<TOrientation>(CellColor::White);
+            if (rightAdjacent.value < line.size()) {
+                determined[rightAdjacent] = Cell(CellColor::White);
             }
         }
     }

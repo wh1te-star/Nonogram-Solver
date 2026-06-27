@@ -13,7 +13,7 @@ DPPlacementPatternCounter<TOrientation>::DPPlacementPatternCounter(int MAX_COUNT
 template <typename TOrientation>
 PlacementPatternCounterResult DPPlacementPatternCounter<TOrientation>::count(
   const HintList &hintList,
-  Line<TOrientation> &line,
+  typename Core::LineTraits<TOrientation>::Line &line,
   PlacementCount &placementCount,
   IBoardUpdateHandler &boardUpdateHandler) {
     auto result = DPPlacementPatternCount(hintList, line, placementCount, boardUpdateHandler);
@@ -23,59 +23,63 @@ PlacementPatternCounterResult DPPlacementPatternCounter<TOrientation>::count(
 template <typename TOrientation>
 PlacementPatternCounterResult DPPlacementPatternCounter<TOrientation>::DPPlacementPatternCount(
   const HintList &hintList,
-  const Line<TOrientation> &line,
+  typename Core::LineTraits<TOrientation>::Line &line,
   PlacementCount &placementCount,
   IBoardUpdateHandler &boardUpdateHandler) {
-    int hintsCount = hintList.size();
-    int totalLength = line.size();
+    using Traits = typename Core::LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
+    using PeerIndex = typename Traits::PeerIndex;
+    using Length = typename Traits::Length;
+    using PeerLength = typename Traits::PeerLength;
+    using Line = typename Traits::Line;
+
+    size_t hintsCount = hintList.size();
+    size_t totalLength = line.size();
     std::vector<std::vector<PlacementCount>> partialCount(
       hintsCount + 1, std::vector<PlacementCount>(totalLength + 1, PlacementCount(0)));
 
     partialCount[0][0] = PlacementCount(1);
 
-    for (int cellIndexInt = 1; cellIndexInt <= totalLength; cellIndexInt++) {
-        CellIndex cellIndex = CellIndex(cellIndexInt - 1);
-        Cell cell = line[cellIndex];
+    for (PeerIndex index : PeerIndex::closedRangeUp(1, (int)totalLength)) {
+        Cell cell = line[index];
 
         if (cell.canColor(White)) {
-            partialCount[0][cellIndexInt] = PlacementCount(1);
+            partialCount[0][index.value] = PlacementCount(1);
         } else {
             break;
         }
     }
 
-    for (int hintNumberIndexInt = 1; hintNumberIndexInt <= hintsCount; hintNumberIndexInt++) {
-        HintNumber hintNumber = hintList[hintNumberIndexInt - 1];
+    for (HintIndex hintIndex : HintIndex::closedRangeUp(1, (int)hintsCount)) {
+        HintNumber hintNumber = hintList[hintIndex - 1];
 
-        for (int cellIndexInt = 1; cellIndexInt <= totalLength; cellIndexInt++) {
-            CellIndex cellIndex = CellIndex(cellIndexInt);
-
-            if (line[cellIndex - 1].canColor(White)) {
-                partialCount[hintNumberIndexInt][cellIndexInt] =
-                  partialCount[hintNumberIndexInt][cellIndexInt - 1];
+        for (PeerIndex index : PeerIndex::closedRangeUp(1, (int)totalLength)) {
+            if (line[index - 1].canColor(White)) {
+                partialCount[hintIndex.value][index.value] =
+                  partialCount[hintIndex.value][index.value - 1];
             }
 
-            if (cellIndex >= BoardLength(hintNumber.getNumber())) {
-                CellIndex prevCellIndex = cellIndex - hintNumber - 1;
+            if (index >= PeerLength(hintNumber.value)) {
+                PeerIndex prevCellIndex = index - hintNumber.value - 1;
 
-                CellIndex blockStart = cellIndex - hintNumber;
+                PeerIndex blockStart = index - hintNumber.value;
 
                 bool canPlaceBlock = true;
                 canPlaceBlock &= isBlockFits(line, blockStart, hintNumber);
                 canPlaceBlock &= isSeparated(line, prevCellIndex);
 
                 if (canPlaceBlock) {
-                    if (prevCellIndex < 0) {
-                        partialCount[hintNumberIndexInt][cellIndexInt] +=
-                          partialCount[hintNumberIndexInt - 1][0];
+                    if (prevCellIndex < PeerLength(0)) {
+                        partialCount[hintIndex.value][index.value] +=
+                          partialCount[hintIndex.value - 1][0];
                     } else {
-                        partialCount[hintNumberIndexInt][cellIndexInt] +=
-                          partialCount[hintNumberIndexInt - 1][prevCellIndex.getIndex()];
+                        partialCount[hintIndex.value][index.value] +=
+                          partialCount[hintIndex.value - 1][prevCellIndex.value];
                     }
                 }
             }
 
-            if (partialCount[hintNumberIndexInt][cellIndexInt] > PlacementCount(MAX_COUNT)) {
+            if (partialCount[hintIndex.value][index.value] > PlacementCount(MAX_COUNT)) {
                 placementCount = PlacementCount(MAX_COUNT);
                 return PlacementPatternCounterResult::tooManyPatterns;
             }
@@ -90,7 +94,11 @@ template <typename TOrientation>
 bool DPPlacementPatternCounter<TOrientation>::isSeparated(
   const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,
   const typename Core::LineTraits<TOrientation>::PeerIndex &prevCellIndex) {
-    if (prevCellIndex < 0) {
+    using Traits = typename Core::LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
+    using PeerIndex = typename Traits::PeerIndex;
+
+    if (prevCellIndex < PeerIndex(0)) {
         return true;
     }
     Cell prevCell = line[prevCellIndex];
@@ -99,12 +107,18 @@ bool DPPlacementPatternCounter<TOrientation>::isSeparated(
 
 template <typename TOrientation>
 bool DPPlacementPatternCounter<TOrientation>::isBlockFits(
-      const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,
-      const typename Core::LineTraits<TOrientation>::PeerIndex &blockStart,
-      const Core::HintNumber &hintNumber) {
-    for (int offset = 0; offset < hintNumber.getNumber(); offset++) {
-        CellIndex cellIndex = blockStart + offset;
-        Cell cell = line[cellIndex];
+  const Core::Line<typename Core::LineTraits<TOrientation>::PeerIndex> &line,
+  const typename Core::LineTraits<TOrientation>::PeerIndex &blockStart,
+  const Core::HintNumber &hintNumber) {
+    using Traits = typename Core::LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
+    using PeerIndex = typename Traits::PeerIndex;
+    using Length = typename Traits::Length;
+    using PeerLength = typename Traits::PeerLength;
+
+    for (PeerIndex index :
+         PeerIndex::closedRangeUp(blockStart.value, blockStart.value + hintNumber.value - 1)) {
+        Cell cell = line[index];
         if (!cell.canColor(Black)) {
             return false;
         }

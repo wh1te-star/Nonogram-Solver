@@ -7,35 +7,48 @@ namespace VersaNo::Solver {
 
 template <typename TOrientation>
 PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::find(
-  const HintList &hintList,
-  Line<TOrientation> &line,
-  Placement<TOrientation> &resultPlacement,
-  IBoardUpdateHandler &boardUpdateHandler) {
+  const Core::HintList &hintList,
+  typename Core::LineTraits<TOrientation>::Line &line,
+  typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
+  Core::IBoardUpdateHandler &boardUpdateHandler) {
+    using Traits = typename Core::LineTraits<TOrientation>;
+
     profiler.startMeasurement();
 
-    return dfsRightmostPlacementFind(
-      hintList, line, resultPlacement, boardUpdateHandler);
+    return dfsRightmostPlacementFind(hintList, line, resultPlacement, boardUpdateHandler);
 }
 
 template <typename TOrientation>
 PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::dfsRightmostPlacementFind(
-  const HintList &hintList,
-  const Line<TOrientation> &line,
-  Placement<TOrientation> &resultPlacement,
-  IBoardUpdateHandler &boardUpdateHandler) {
-    Placement currentPlacement = Placement<TOrientation>("");
+  const Core::HintList &hintList,
+  const typename Core::LineTraits<TOrientation>::Line &line,
+  typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
+  Core::IBoardUpdateHandler &boardUpdateHandler) {
+    using Traits = typename Core::LineTraits<TOrientation>;
+    using Placement = typename Traits::Placement;
+
+    Placement initialPlacement = Placement(std::vector<Cell>());
+
+    int indexValue = hintList.size() == 0 ? -1 : static_cast<int>(hintList.size() - 1);
+    HintIndex initialHintIndex = HintIndex(indexValue);
+
     return dfsRightmostPlacementFindRecursive(
-      hintList, line, currentPlacement, hintList.size() - 1, resultPlacement, boardUpdateHandler);
+      hintList, line, initialPlacement, initialHintIndex, resultPlacement, boardUpdateHandler);
 }
 
 template <typename TOrientation>
 PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::dfsRightmostPlacementFindRecursive(
-  const HintList &hintList,
-  const Line<TOrientation> &line,
-  Placement<TOrientation> &currentPlacement,
-  HintIndex currentHintIndex,
-  Placement<TOrientation> &resultPlacement,
-  IBoardUpdateHandler &boardUpdateHandler) {
+  const Core::HintList &hintList,
+  const typename Core::LineTraits<TOrientation>::Line &line,
+  typename Core::LineTraits<TOrientation>::Placement &currentPlacement,
+  Core::HintIndex currentHintIndex,
+  typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
+  Core::IBoardUpdateHandler &boardUpdateHandler) {
+    using Traits = typename Core::LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
+    using PeerIndex = typename Traits::PeerIndex;
+    using Placement = typename Traits::Placement;
+
     if (profiler.isTimeLimitExceeded() || profiler.isStackUsageLimitExceeded()) {
         return PlacementFinderResult::notFound;
     }
@@ -43,29 +56,38 @@ PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::dfsRightmostPla
     if (currentPlacement.size() > line.size()) {
         return PlacementFinderResult::notFound;
     }
-    if (currentHintIndex < 0) {
+    if (currentHintIndex < HintIndex(0)) {
         Placement foundPlacement = currentPlacement;
         if (currentPlacement.size() < line.size()) {
-            for (CellIndex cellIndex :
-                 CellIndex::range(line.size() - currentPlacement.size() - 1, 0)) {
-                if (!line[cellIndex].canColor(White)) {
+            for (PeerIndex index :
+                 PeerIndex::closedRangeDown((int)line.size() - (int)currentPlacement.size() - 1, 0)) {
+                if (!line[index].canColor(White)) {
                     return PlacementFinderResult::notFound;
                 }
-                foundPlacement = Placement("W") + foundPlacement;
+
+                const Placement WhiteSpace = Placement(
+                  std::vector<Cell>(1, Cell(CellColor::White)));
+                foundPlacement = WhiteSpace + foundPlacement;
             }
         }
         resultPlacement = foundPlacement;
         return PlacementFinderResult::success;
     }
 
+    // Try to place the current hint block at the rightmost possible position
     HintNumber hintNumber = hintList[currentHintIndex];
-    CellIndex currentBlockIndex = CellIndex(
-      line.size() - currentPlacement.size() - hintNumber.getNumber());
+    PeerIndex currentBlockIndex = PeerIndex(
+      (int)line.size() - (int)currentPlacement.size() - hintNumber.value);
     if (line.canPlaceBlock(currentBlockIndex, hintNumber)) {
         Placement previousPlacement = currentPlacement;
-        currentPlacement = Placement(hintNumber) + currentPlacement;
+
+        Placement blockPlacement = Placement(
+          std::vector<Cell>(hintNumber.value, Cell(CellColor::Black)));
+        currentPlacement = blockPlacement + currentPlacement;
         if (currentPlacement.size() < line.size()) {
-            currentPlacement = Placement("W") + currentPlacement;
+
+            const Placement WhiteSpace = Placement(std::vector<Cell>(1, Cell(CellColor::White)));
+            currentPlacement = WhiteSpace + currentPlacement;
         }
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
           hintList, line, currentPlacement, currentHintIndex - 1, resultPlacement,
@@ -73,13 +95,17 @@ PlacementFinderResult DFSRightmostPlacementFinder<TOrientation>::dfsRightmostPla
         if (result == PlacementFinderResult::success) {
             return PlacementFinderResult::success;
         }
+
         currentPlacement = previousPlacement;
     }
 
-    CellIndex currentAdjacentIndex = CellIndex(line.size() - currentPlacement.size() - 1);
-    if (currentAdjacentIndex >= 0 && line[currentAdjacentIndex].canColor(White)) {
+    // Try to place a white space at the rightmost possible position
+    PeerIndex currentAdjacentIndex = PeerIndex((int)line.size() - (int)currentPlacement.size() - 1);
+    if (currentAdjacentIndex >= PeerIndex(0) && line[currentAdjacentIndex].canColor(White)) {
         Placement previousPlacement = currentPlacement;
-        currentPlacement = Placement("W") + currentPlacement;
+
+        const Placement WhiteSpace = Placement(std::vector<Cell>(1, Cell(CellColor::White)));
+        currentPlacement = WhiteSpace + currentPlacement;
         PlacementFinderResult result = dfsRightmostPlacementFindRecursive(
           hintList, line, currentPlacement, currentHintIndex, resultPlacement, boardUpdateHandler);
         if (result == PlacementFinderResult::success) {

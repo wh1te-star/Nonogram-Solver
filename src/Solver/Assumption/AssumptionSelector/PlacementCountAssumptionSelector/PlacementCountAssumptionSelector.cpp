@@ -11,23 +11,28 @@
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
-  template <typename TOrientation>
+template <typename TOrientation>
 PlacementCountAssumptionSelector<TOrientation>::PlacementCountAssumptionSelector(
-  IPlacementPatternCounter<TOrientation> &placementPatternCounter, const NonogramBoard &nonogramBoard)
+  IPlacementPatternCounter<TOrientation> &placementPatternCounter,
+  const NonogramBoard &nonogramBoard)
     : placementPatternCounter(placementPatternCounter)
     , rowPlacementCounts(
-        std::vector<PlacementCount>(nonogramBoard.getRowLength().getLength(), PlacementCount(0)))
+        std::vector<PlacementCount>(
+          nonogramBoard.getLength<RowOrientation>().value, PlacementCount(0)))
     , columnPlacementCounts(
         std::vector<PlacementCount>(
-          nonogramBoard.getColumnLength().getLength(), PlacementCount(0))) {}
+          nonogramBoard.getLength<ColumnOrientation>().value, PlacementCount(0))) {}
 
-  template <typename TOrientation>
+template <typename TOrientation>
 std::unique_ptr<IAssumptionPosition> PlacementCountAssumptionSelector<TOrientation>::select(
   const Core::NonogramBoard &board, const AssumptionSelectionContext &context) {
+    using Traits = typename Core::LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
 
     // Todo: Implement this method to select the line with the fewest placements.
     // LinePosition linePosition(Orientation::Row, RowIndex(0));
-    // return std::make_unique<LineAssumptionPosition>(linePosition);
+    return std::make_unique<LineAssumptionPosition<TOrientation>>(
+      LineAssumptionPosition<TOrientation>(LinePosition<TOrientation>(Index(0))));
 }
 
 template class PlacementCountAssumptionSelector<Core::RowOrientation>;

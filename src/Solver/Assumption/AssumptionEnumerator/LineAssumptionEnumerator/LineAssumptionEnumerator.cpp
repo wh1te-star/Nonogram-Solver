@@ -21,6 +21,7 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator<TOrientation>
     using Traits = LineTraits<TOrientation>;
     using Index = typename Traits::Index;
     using Line = typename Traits::Line;
+    using Placement = typename Traits::Placement;
 
     const auto *lineAssumptionPosition = dynamic_cast<const LineAssumptionPosition<TOrientation> *>(
       &assumptionPosition);
@@ -34,15 +35,15 @@ std::vector<std::unique_ptr<IAssumption>> LineAssumptionEnumerator<TOrientation>
     Line line = nonogramBoard.getLine<TOrientation>(index);
     HintList hintList = nonogramBoard.getHintGroup<TOrientation>()[index];
 
-    std::vector<Placement<TOrientation>> solutions;
-    ExhaustivePlacementPatternFinderResult result =
-      exhaustivePlacementPatternFinder.find<TOrientation>(hintList, line, solutions);
+    std::vector<Placement> solutions;
+    ExhaustivePlacementPatternFinderResult result = exhaustivePlacementPatternFinder.find(
+      hintList, line, solutions);
 
     std::vector<std::unique_ptr<IAssumption>> assumptions;
     assumptions.reserve(solutions.size());
     for (int i = 0; i < solutions.size(); i++) {
-        assumptions.push_back(
-          std::make_unique<LineAssumption>(linePosition, Line(solutions[i].getPlacement())));
+        Line line = Line(solutions[i].list());
+        assumptions.push_back(std::make_unique<LineAssumption<TOrientation>>(linePosition, line));
     }
     return assumptions;
 

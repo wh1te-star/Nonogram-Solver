@@ -13,7 +13,7 @@ NonogramBoard PuzzleLoader::getPuzzle(PuzzleType type) {
     RowHintGroup rowHintGroup = getRowHintGroup(type);
     ColumnHintGroup columnHintGroup = getColumnHintGroup(type);
     return NonogramBoard(
-      Board(RowLength(rowHintGroup.size()), ColumnLength(columnHintGroup.size())), rowHintGroup,
+      Board(RowLength((int)rowHintGroup.size()), ColumnLength((int)columnHintGroup.size())), rowHintGroup,
       columnHintGroup);
 }
 

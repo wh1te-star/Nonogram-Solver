@@ -12,7 +12,7 @@ template <typename TOrientation> class IPlacementPatternCounter {
     IPlacementPatternCounter() = default;
     virtual PlacementPatternCounterResult count(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
+      typename Core::LineTraits<TOrientation>::Line &line,
       Core::PlacementCount &placementCount,
       Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };

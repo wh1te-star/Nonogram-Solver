@@ -6,8 +6,8 @@
 #include "Solver/ExhaustivePlacementPatternFinder/IExhaustivePlacementPatternFinder.h"
 #include "Solver/ResultEnum/ExhaustivePlacementPatternFinderResult.h"
 
-#include <type_traits>
 #include <cassert>
+#include <type_traits>
 
 using namespace VersaNo::Core;
 namespace VersaNo::Solver {
@@ -18,26 +18,21 @@ LineIndexAssumptionSelector<TOrientation>::LineIndexAssumptionSelector() {}
 template <typename TOrientation>
 std::unique_ptr<IAssumptionPosition> LineIndexAssumptionSelector<TOrientation>::select(
   const NonogramBoard &board, const AssumptionSelectionContext &context) {
-    
+    using Traits = Core::LineTraits<TOrientation>;
+    using PeerOrientation = typename Traits::PeerOrientation;
+    using Index = typename Traits::Index;
+    using Length = typename Traits::Length;
+
     int currentIndex = context.depth;
 
-    using Traits = Core::LineTraits<TOrientation>;
-    using IndexType = typename Traits::Index;
-
-    int lineCount = Traits::Length(board).getLength(); // Assuming length can be fetched via traits
+    int lineCount = board.getLength<TOrientation>().value;
     if (currentIndex >= lineCount) {
         assert(false);
     }
 
-    if (std::is_same<TOrientation, Core::RowOrientation>::value) {
-        const Core::RowIndex rowIndex(currentIndex);
-        LinePosition linePosition(Core::EOrientation::Row, rowIndex);
-        return std::make_unique<LineAssumptionPosition>(linePosition);
-    } else {
-        const Core::ColumnIndex columnIndex(currentIndex);
-        LinePosition linePosition(Core::EOrientation::Column, columnIndex);
-        return std::make_unique<LineAssumptionPosition>(linePosition);
-    }
+    Index lineIndex(currentIndex);
+    LinePosition<TOrientation> linePosition(lineIndex);
+    return std::make_unique<LineAssumptionPosition<TOrientation>>(linePosition);
 }
 
 template class LineIndexAssumptionSelector<Core::RowOrientation>;

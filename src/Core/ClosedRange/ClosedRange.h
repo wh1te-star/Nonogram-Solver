@@ -10,9 +10,37 @@ private:
     int lastValue;
     bool isReverse;
 
+    ClosedRange(int start, int last, bool reverse) 
+        : startValue(start), lastValue(last), isReverse(reverse) {
+        
+        // If direction is Up but start > last (e.g., 0 -> -1)
+        if (!isReverse && start > last) {
+            // Make it empty by setting lastValue to be smaller than startValue
+            // This ensures (current <= other.current) is false on the very first check
+            lastValue = start - 1; 
+        }
+        // If direction is Down but start < last (e.g., -1 -> 0)
+        else if (isReverse && start < last) {
+            // Make it empty by setting lastValue to be larger than startValue
+            // This ensures (current >= other.current) is false on the very first check
+            lastValue = start + 1;
+        }
+    }
+
 public:
+    // Legacy constructor (auto-detects direction)
     ClosedRange(int start, int last) 
         : startValue(start), lastValue(last), isReverse(start > last) {}
+
+    // Factory method for strict ascending range
+    static ClosedRange Up(int start, int last) {
+        return ClosedRange(start, last, false);
+    }
+
+    // Factory method for strict descending range
+    static ClosedRange Down(int start, int last) {
+        return ClosedRange(start, last, true);
+    }
 
     struct Iterator {
         int current;
@@ -29,7 +57,7 @@ public:
             return *this;
         }
 
-        // 終了判定（lastを通り過ぎたら終了）
+        // Comparison for loop termination
         bool operator!=(const Iterator& other) const {
             if (reverse) {
                 return current >= other.current;

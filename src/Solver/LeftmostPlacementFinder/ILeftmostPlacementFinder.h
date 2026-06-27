@@ -13,8 +13,8 @@ template <typename TOrientation> class ILeftmostPlacementFinder {
     ILeftmostPlacementFinder() = default;
     virtual PlacementFinderResult find(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
-      Core::Placement<TOrientation> &resultPlacement,
+      typename Core::LineTraits<TOrientation>::Line &line,
+      typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
       Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 

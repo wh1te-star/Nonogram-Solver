@@ -22,18 +22,18 @@ DeterministicSolverResult LineRepeatDeterministicSolver::solve(
 
 DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministicSolve(
   NonogramBoard &nonogramBoard, IBoardUpdateHandler &boardUpdateHandler) {
-    RowLength rowLength = nonogramBoard.getRowLength();
-    ColumnLength columnLength = nonogramBoard.getColumnLength();
+    RowLength rowLength = nonogramBoard.getLength<RowOrientation>();
+    ColumnLength columnLength = nonogramBoard.getLength<ColumnOrientation>();
 
     while (true) {
         bool proceeded = false;
-        for (RowIndex rowIndex : RowIndex::closedRange(0, rowLength.value - 1)) {
+        for (RowIndex rowIndex : RowIndex::closedRangeUp(0, rowLength.value - 1)) {
             // localHighlightIndexes.addRowIndex(rowIndex);
 
             RowPosition rowPosition(rowIndex);
             Row rowLine = nonogramBoard.getLine<RowOrientation>(rowIndex);
             Row previousRowLine = rowLine;
-            RowHintGroup rowHintGroup = nonogramBoard.getRowHintGroup();
+            RowHintGroup rowHintGroup = nonogramBoard.getHintGroup<RowOrientation>();
             HintList rowHintList = rowHintGroup[rowIndex];
 
             LineSolverResult lineSolverResult = rowLineSolver.solve(
@@ -82,13 +82,13 @@ DeterministicSolverResult LineRepeatDeterministicSolver::lineRepeatDeterministic
             // localHighlightIndexes.deleteRowIndex(rowIndex);
         }
 
-        for (ColumnIndex columnIndex : ColumnIndex::closedRange(0, columnLength.value - 1)) {
+        for (ColumnIndex columnIndex : ColumnIndex::closedRangeUp(0, columnLength.value - 1)) {
             // localHighlightIndexes.addColumnIndex(columnIndex);
 
             ColumnPosition columnPosition(columnIndex);
             Column columnLine = nonogramBoard.getLine<ColumnOrientation>(columnIndex);
             Column previousColumnLine = columnLine;
-            ColumnHintGroup columnHintGroup = nonogramBoard.getColumnHintGroup();
+            ColumnHintGroup columnHintGroup = nonogramBoard.getHintGroup<ColumnOrientation>();
             HintList columnHintList = columnHintGroup[columnIndex];
 
             LineSolverResult lineSolverResult = columnLineSolver.solve(

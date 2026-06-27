@@ -16,23 +16,23 @@ class DFSLeftmostPlacementFinder : public ILeftmostPlacementFinder<TOrientation>
     DFSLeftmostPlacementFinder() = default;
     PlacementFinderResult find(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
-      Core::Placement<TOrientation> &resultPlacement,
+      typename Core::LineTraits<TOrientation>::Line &line,
+      typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
       Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     PlacementFinderResult dfsLeftmostPlacementFind(
       const Core::HintList &hintList,
-      Core::Line<TOrientation> &line,
-      Core::Placement<TOrientation> &resultPlacement,
+      typename Core::LineTraits<TOrientation>::Line &line,
+      typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
       Core::IBoardUpdateHandler &boardUpdateHandler);
 
     PlacementFinderResult dfsLeftmostPlacementFindRecursive(
       const Core::HintList &hintList,
-      const Core::Line<TOrientation> &line,
-      Core::Placement<TOrientation> &currentPlacement,
-      int currentHintIndex,
-      Core::Placement<TOrientation> &resultPlacement,
+      const typename Core::LineTraits<TOrientation>::Line &line,
+      typename Core::LineTraits<TOrientation>::Placement &currentPlacement,
+      Core::HintIndex currentHintIndex,
+      typename Core::LineTraits<TOrientation>::Placement &resultPlacement,
       Core::IBoardUpdateHandler &boardUpdateHandler);
 };
 

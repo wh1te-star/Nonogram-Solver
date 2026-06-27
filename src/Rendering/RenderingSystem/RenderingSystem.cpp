@@ -74,9 +74,9 @@ void RenderingSystem::renderingLoop() {
     PuzzleLoader::PuzzleType dataType = PuzzleLoader::Difficult;
     NonogramBoard nonogramBoard = PuzzleLoader::getPuzzle(dataType);
     RowPlacementCountList rowPlacementCountList = RowPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getRowLength().value, PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getLength<RowOrientation>().value, PlacementCount(0)));
     ColumnPlacementCountList columnPlacementCountList = ColumnPlacementCountList(
-      std::vector<PlacementCount>(nonogramBoard.getColumnLength().value, PlacementCount(0)));
+      std::vector<PlacementCount>(nonogramBoard.getLength<ColumnOrientation>().value, PlacementCount(0)));
     SharedNonogramBoard sharedNonogramBoard = SharedNonogramBoard(nonogramBoard);
     IReceiver<NonogramBoard> &receiver = sharedNonogramBoard;
 

@@ -46,7 +46,7 @@ Board::getLine(typename LineTraits<TOrientation>::Index index) const {
 
     std::vector<Cell> cells;
 
-    for (PeerIndex peerIndex : PeerIndex::closedRange(0, peerLength.value - 1)) {
+    for (PeerIndex peerIndex : PeerIndex::closedRangeUp(0, peerLength.value - 1)) {
         Cell cell;
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
             cell = getCell(CellPosition(index, peerIndex));
@@ -90,7 +90,7 @@ void Board::applyLine(
 
     Index lineIndex = linePosition.getIndex();
 
-    for (PeerIndex peerIndex : PeerIndex::closedRange(0, line.size() - 1)) {
+    for (PeerIndex peerIndex : PeerIndex::closedRangeUp(0, (int)line.size() - 1)) {
         Cell cell = line[peerIndex];
 
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
@@ -108,6 +108,7 @@ void Board::applyPlacement(
   typename LinePosition<TOrientation> linePosition,
   const typename LineTraits<TOrientation>::Placement &placement) {
     using Traits = LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
     using PeerIndex = typename Traits::PeerIndex;
 
     if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
@@ -116,43 +117,43 @@ void Board::applyPlacement(
         assert(placement.size() == rowLength.value);
     }
 
-    for (PeerIndex peerIndex : PeerIndex::closedRange(0, placement.size() - 1)) {
-        CellPosition cellPosition;
-        if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
-            cellPosition = CellPosition(linePosition, peerIndex);
-        } else {
-            cellPosition = CellPosition(peerIndex, linePosition);
-        }
-
+    for (PeerIndex peerIndex : PeerIndex::closedRangeUp(0, (int)placement.size() - 1)) {
+        Index index = linePosition.getIndex();
         Cell cell = placement[peerIndex];
-        applyCell(cellPosition, cell);
+        if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+            CellPosition cellPosition(index, peerIndex);
+            applyCell(cellPosition, cell);
+        } else {
+            CellPosition cellPosition(peerIndex, index);
+            applyCell(cellPosition, cell);
+        }
     }
 }
 
 template <typename TOrientation>
 void Board::applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
     using Traits = LineTraits<TOrientation>;
+    using Index = typename Traits::Index;
     using PeerIndex = typename Traits::PeerIndex;
 
-    typename Traits::Index lineIndex = hintPosition.getLineIndex();
-
+    Index inlineIndex = hintPosition.getLineIndex();
     PeerIndex startIndex = hintPosition.getInlineIndex();
-    PeerIndex lastIndex = startIndex + (hintNumber - 1);
+    PeerIndex lastIndex = startIndex + (hintNumber.value - 1);
+    Cell cell = Cell(CellColor::Black);
 
-    for (PeerIndex peerIndex : PeerIndex::closedRange(startIndex, lastIndex)) {
-        CellPosition cellPosition;
+    for (PeerIndex peerIndex : PeerIndex::closedRangeUp(startIndex.value, lastIndex.value)) {
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
-            cellPosition = CellPosition(lineIndex, peerIndex);
+            CellPosition cellPosition = CellPosition(inlineIndex, peerIndex);
+            applyCell(cellPosition, cell);
         } else {
-            cellPosition = CellPosition(peerIndex, lineIndex);
+            CellPosition cellPosition = CellPosition(peerIndex, inlineIndex);
+            applyCell(cellPosition, cell);
         }
-
-        applyCell(cellPosition, Cell::Black());
     }
 }
 
 void Board::applyBoard(const Board &board, bool overwriteNone) {
-    for (RowIndex rowIndex : RowIndex::closedRange(0, rowLength.value - 1)) {
+    for (RowIndex rowIndex : RowIndex::closedRangeUp(0, rowLength.value - 1)) {
         Row rowLine = board.getLine<RowOrientation>(rowIndex);
         LinePosition<RowOrientation> rowLinePosition(rowIndex);
         applyLine<RowOrientation>(rowLinePosition, rowLine, overwriteNone);
@@ -181,5 +182,23 @@ bool Board::isSolved() const {
     }
     return true;
 }
+
+// Explicit Instantiations
+template RowLength Board::getLength<RowOrientation>() const;
+template ColumnLength Board::getLength<ColumnOrientation>() const;
+template LineTraits<RowOrientation>::Line
+  Board::getLine<RowOrientation>(LineTraits<RowOrientation>::Index) const;
+template LineTraits<ColumnOrientation>::Line
+  Board::getLine<ColumnOrientation>(LineTraits<ColumnOrientation>::Index) const;
+template void Board::applyLine<RowOrientation>(
+  LinePosition<RowOrientation>, const LineTraits<RowOrientation>::Line &, bool);
+template void Board::applyLine<ColumnOrientation>(
+  LinePosition<ColumnOrientation>, const LineTraits<ColumnOrientation>::Line &, bool);
+template void Board::applyPlacement<RowOrientation>(
+  LinePosition<RowOrientation>, const LineTraits<RowOrientation>::Placement &);
+template void Board::applyPlacement<ColumnOrientation>(
+  LinePosition<ColumnOrientation>, const LineTraits<ColumnOrientation>::Placement &);
+template void Board::applyHint<RowOrientation>(HintPosition<RowOrientation>, HintNumber);
+template void Board::applyHint<ColumnOrientation>(HintPosition<ColumnOrientation>, HintNumber);
 
 } // namespace VersaNo::Core

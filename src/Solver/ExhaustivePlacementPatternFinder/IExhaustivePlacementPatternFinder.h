@@ -13,8 +13,8 @@ template <typename TOrientation> class IExhaustivePlacementPatternFinder {
     IExhaustivePlacementPatternFinder() = default;
     virtual ExhaustivePlacementPatternFinderResult find(
       const Core::HintList &hintList,
-      const Core::Line<TOrientation> &line,
-      std::vector<Core::Placement<TOrientation>> &solutions) = 0;
+      const typename Core::LineTraits<TOrientation>::Line &line,
+      std::vector<typename Core::LineTraits<TOrientation>::Placement> &solutions) = 0;
 };
 
 } // namespace VersaNo::Solver
