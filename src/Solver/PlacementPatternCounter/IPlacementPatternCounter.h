@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
 #define VERSANO_CORE_IPLACEMENTPATTERNCOUNTER_H
 
-#include "Core/NamespaceInterface/SolverInterface/BoardUpdateHandler.h"
+#include "Core/NamespaceInterface/SolverInterface/IBoardUpdateHandler.h"
 #include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/ResultEnum/PlacementPatternCounterResult.h"
 

@@ -2,7 +2,7 @@
 #define VERSANO_CORE_ILINESOLVER_H
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
-#include "Core/NamespaceInterface/SolverInterface/BoardUpdateHandler.h"
+#include "Core/NamespaceInterface/SolverInterface/IBoardUpdateHandler.h"
 #include "Solver/ResultEnum/LineSolverResult.h"
 
 namespace VersaNo::Solver {

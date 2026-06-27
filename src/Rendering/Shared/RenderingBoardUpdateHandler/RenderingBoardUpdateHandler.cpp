@@ -15,17 +15,33 @@ void RenderingBoardUpdateHandler::onCellUpdate(
     checkAndSendBoard();
 }
 
-template <typename TOrientation>
-void RenderingBoardUpdateHandler::onLineUpdate(
-  typename Core::LineTraits<TOrientation>::Index index,
-  const typename Core::LineTraits<TOrientation>::Line &targetLine,
-  const typename Core::LineTraits<TOrientation>::Line &beforeLine,
-  const typename Core::LineTraits<TOrientation>::Line &afterLine) {
-    checkAndSendBoard();
+void RenderingBoardUpdateHandler::onRowUpdate(
+  RowIndex rowIndex,
+  const typename LineTraits<RowOrientation>::Line &targetLine,
+  const typename LineTraits<RowOrientation>::Line &beforeLine,
+  const typename LineTraits<RowOrientation>::Line &afterLine) {
+    onLineUpdateInternal<RowOrientation>(rowIndex, targetLine, beforeLine, afterLine);
+}
+
+void RenderingBoardUpdateHandler::onColumnUpdate(
+  ColumnIndex columnIndex,
+  const typename LineTraits<ColumnOrientation>::Line &targetLine,
+  const typename LineTraits<ColumnOrientation>::Line &beforeLine,
+  const typename LineTraits<ColumnOrientation>::Line &afterLine) {
+    onLineUpdateInternal<ColumnOrientation>(columnIndex, targetLine, beforeLine, afterLine);
 }
 
 void RenderingBoardUpdateHandler::onBoardUpdate(
   const Board &targetBoard, const Board &beforeBoard, const Board &afterBoard) {
+    checkAndSendBoard();
+}
+
+template <typename TOrientation>
+void RenderingBoardUpdateHandler::onLineUpdateInternal(
+  typename LineTraits<TOrientation>::Index index,
+  const typename LineTraits<TOrientation>::Line &targetLine,
+  const typename LineTraits<TOrientation>::Line &beforeLine,
+  const typename LineTraits<TOrientation>::Line &afterLine) {
     checkAndSendBoard();
 }
 
@@ -35,16 +51,14 @@ void RenderingBoardUpdateHandler::checkAndSendBoard() {
     }
 }
 
-// Explicit template instantiations for RowOrientation and ColumnOrientation.
-// This is for separating the declaration and definition,
-// and is enabled by the fact that TOrientation can be RowOrientation or ColumnOrientation.
-template void RenderingBoardUpdateHandler::onLineUpdate<RowOrientation>(
+// Explicit instantiations
+template void RenderingBoardUpdateHandler::onLineUpdateInternal<RowOrientation>(
   RowIndex,
   const LineTraits<RowOrientation>::Line &,
   const LineTraits<RowOrientation>::Line &,
   const LineTraits<RowOrientation>::Line &);
 
-template void RenderingBoardUpdateHandler::onLineUpdate<ColumnOrientation>(
+template void RenderingBoardUpdateHandler::onLineUpdateInternal<ColumnOrientation>(
   ColumnIndex,
   const LineTraits<ColumnOrientation>::Line &,
   const LineTraits<ColumnOrientation>::Line &,

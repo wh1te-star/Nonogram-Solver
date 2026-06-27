@@ -1,6 +1,6 @@
 #include "Solver/Solver/BacktrackSolver/BacktrackSolver.h"
 
-#include "Core/NamespaceInterface/SolverInterface/BoardUpdateHandler.h"
+#include "Core/NamespaceInterface/SolverInterface/IBoardUpdateHandler.h"
 #include "Core/Types/AppliedType/AppliedType.h"
 #include "Solver/Assumption/AssumptionPosition/IAssumptionPosition.h"
 #include "Solver/Assumption/AssumptionSelector/IAssumptionSelector.h"
