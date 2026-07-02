@@ -20,23 +20,24 @@ class IBoard {
     Row getRow(RowIndex index) const = 0;
     Column getColumn(ColumnIndex index) const = 0;
 
-    void applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false);
+    void applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false) = 0;
 
-    void applyRow(LinePosition<RowOrientation> linePosition, const Row &row, bool overwriteNone);
+    void
+    applyRow(LinePosition<RowOrientation> linePosition, const Row &row, bool overwriteNone) = 0;
     void applyColumn(
-      LinePosition<ColumnOrientation> linePosition, const Column &column, bool overwriteNone);
+      LinePosition<ColumnOrientation> linePosition, const Column &column, bool overwriteNone) = 0;
 
-    template <typename TOrientation>
-    void applyPlacement(
-      typename LinePosition<TOrientation> linePosition,
-      const typename LineTraits<TOrientation>::Placement &placement);
+    void applyRowPlacement(
+      LinePosition<RowOrientation> linePosition, const Row::Placement &placement) = 0;
+    void applyColumnPlacement(
+      LinePosition<ColumnOrientation> linePosition, const Column::Placement &placement) = 0;
 
-    template <typename TOrientation>
-    void applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber);
+    void applyHint(HintPosition<RowOrientation> hintPosition, HintNumber hintNumber) = 0;
+    void applyHint(HintPosition<ColumnOrientation> hintPosition, HintNumber hintNumber) = 0;
 
-    void applyBoard(const IBoard &board, bool overwriteNone);
+    void applyBoard(const IBoard &board, bool overwriteNone) = 0;
 
-    bool isSolved() const;
+    bool isSolved() const = 0;
 };
 
 } // namespace VersaNo::Core

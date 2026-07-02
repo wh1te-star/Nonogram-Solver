@@ -1,6 +1,7 @@
 #ifndef VERSANO_CORE_BOARD_H
 #define VERSANO_CORE_BOARD_H
 
+#include "Core/Board/Board/IBoard.h"
 #include "Core/Types/AppliedType/AppliedType.h"
 #include "Core/Cell/CellColor/CellColor.h"
 #include "Core/Cell/CellVector2D/CellVector2D.h"
@@ -11,7 +12,7 @@
 
 namespace VersaNo::Core {
 
-class Board {
+class Board : public IBoard {
   private:
     RowLength rowLength;
     ColumnLength columnLength;
