@@ -1,4 +1,4 @@
-#include "Core/Board/Board/Board.h"
+#include "Core/Board/Board/VectorBoard/VectorBoard.h"
 
 #include "Core/Cell/Cell/Cell.h"
 #include "Core/Types/AppliedType/AppliedType.h"
@@ -8,17 +8,23 @@
 
 namespace VersaNo::Core {
 
-Board::Board(RowLength rowLength, ColumnLength columnLength)
+VectorBoard::VectorBoard(RowLength rowLength, ColumnLength columnLength)
     : rowLength(std::move(rowLength)), columnLength(std::move(columnLength)) {
     board.resize(rowLength.value, std::vector<Cell>(columnLength.value, Cell()));
 }
 
-bool Board::operator==(const Board &other) const { return board == other.board; }
+bool VectorBoard::operator==(const VectorBoard &other) const { return board == other.board; }
+bool VectorBoard::operator!=(const VectorBoard &other) const { return !(*this == other); }
 
-bool Board::operator!=(const Board &other) const { return !(*this == other); }
+// =========================================================================
+// | Getters                                                               |
+// =========================================================================
+RowLength VectorBoard::getRowLength() const { return rowLength; }
+
+ColumnLength VectorBoard::getColumnLength() const { return columnLength; }
 
 template <typename TOrientation>
-typename LineTraits<TOrientation>::Length Board::getLength() const {
+typename LineTraits<TOrientation>::Length VectorBoard::getLength() const {
     if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
         return rowLength;
     } else {
@@ -26,16 +32,20 @@ typename LineTraits<TOrientation>::Length Board::getLength() const {
     }
 }
 
-Cell Board::getCell(CellPosition cellPosition) const {
+Cell VectorBoard::getCell(CellPosition cellPosition) const {
     assert(isInRange(cellPosition));
     RowIndex rowIndex = cellPosition.getRowIndex();
     ColumnIndex columnIndex = cellPosition.getColumnIndex();
     return board[rowIndex.value][columnIndex.value];
 }
 
+Row VectorBoard::getRow(RowIndex index) const { return getLine<RowOrientation>(index); }
+
+Column VectorBoard::getColumn(ColumnIndex index) const { return getLine<ColumnOrientation>(index); }
+
 template <typename TOrientation>
 typename LineTraits<TOrientation>::Line
-Board::getLine(typename LineTraits<TOrientation>::Index index) const {
+VectorBoard::getLine(typename LineTraits<TOrientation>::Index index) const {
     using Traits = LineTraits<TOrientation>;
     using PeerOrientation = typename Traits::PeerOrientation;
     using LineType = typename Traits::Line;
@@ -60,7 +70,11 @@ Board::getLine(typename LineTraits<TOrientation>::Index index) const {
     return LineType(cells);
 }
 
-void Board::applyCell(CellPosition cellPosition, const Cell &cell, bool overwriteNone) {
+// =========================================================================
+// | Applyers                                                              |
+// =========================================================================
+
+void VectorBoard::applyCell(CellPosition cellPosition, const Cell &cell, bool overwriteNone) {
     if (!isInRange(cellPosition)) {
         return;
     }
@@ -73,8 +87,18 @@ void Board::applyCell(CellPosition cellPosition, const Cell &cell, bool overwrit
     board[rowIndex.value][columnIndex.value] = cell;
 }
 
+void VectorBoard::applyRow(
+  LinePosition<RowOrientation> linePosition, const Row &row, bool overwriteNone) {
+    applyLine<RowOrientation>(linePosition, row, overwriteNone);
+}
+
+void VectorBoard::applyColumn(
+  LinePosition<ColumnOrientation> linePosition, const Column &column, bool overwriteNone) {
+    applyLine<ColumnOrientation>(linePosition, column, overwriteNone);
+}
+
 template <typename TOrientation>
-void Board::applyLine(
+void VectorBoard::applyLine(
   typename LinePosition<TOrientation> linePosition,
   const typename LineTraits<TOrientation>::Line &line,
   bool overwriteNone) {
@@ -103,8 +127,18 @@ void Board::applyLine(
     }
 }
 
+void VectorBoard::applyRowPlacement(
+  LinePosition<RowOrientation> linePosition, const RowPlacement &placement) {
+    applyPlacement<RowOrientation>(linePosition, placement);
+}
+
+void VectorBoard::applyColumnPlacement(
+  LinePosition<ColumnOrientation> linePosition, const ColumnPlacement &placement) {
+    applyPlacement<ColumnOrientation>(linePosition, placement);
+}
+
 template <typename TOrientation>
-void Board::applyPlacement(
+void VectorBoard::applyPlacement(
   typename LinePosition<TOrientation> linePosition,
   const typename LineTraits<TOrientation>::Placement &placement) {
     using Traits = LineTraits<TOrientation>;
@@ -130,8 +164,18 @@ void Board::applyPlacement(
     }
 }
 
+void VectorBoard::applyRowHint(HintPosition<RowOrientation> hintPosition, HintNumber hintNumber) {
+    applyHint<RowOrientation>(hintPosition, hintNumber);
+}
+
+void VectorBoard::applyColumnHint(
+  HintPosition<ColumnOrientation> hintPosition, HintNumber hintNumber) {
+    applyHint<ColumnOrientation>(hintPosition, hintNumber);
+}
+
 template <typename TOrientation>
-void Board::applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
+void VectorBoard::applyHint(
+  typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
     using Traits = LineTraits<TOrientation>;
     using Index = typename Traits::Index;
     using PeerIndex = typename Traits::PeerIndex;
@@ -152,15 +196,30 @@ void Board::applyHint(typename HintPosition<TOrientation> hintPosition, HintNumb
     }
 }
 
-void Board::applyBoard(const Board &board, bool overwriteNone) {
+void VectorBoard::applyBoard(const IBoard &board, bool overwriteNone) {
     for (RowIndex rowIndex : RowIndex::closedRangeUp(0, rowLength.value - 1)) {
-        Row rowLine = board.getLine<RowOrientation>(rowIndex);
+        Row rowLine = board.getRow(rowIndex);
         LinePosition<RowOrientation> rowLinePosition(rowIndex);
         applyLine<RowOrientation>(rowLinePosition, rowLine, overwriteNone);
     }
 }
 
-bool Board::isInRange(CellPosition cellPosition) const {
+// =========================================================================
+// | Utilities                                                             |
+// =========================================================================
+
+bool VectorBoard::isSolved() const {
+    for (std::vector<Cell> row : board) {
+        for (Cell cell : row) {
+            if (cell.getColor() == None) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool VectorBoard::isInRange(CellPosition cellPosition) const {
     RowIndex rowIndex = cellPosition.getRowIndex();
     ColumnIndex columnIndex = cellPosition.getColumnIndex();
     if (columnIndex < ColumnLength(0) || columnLength <= columnIndex) {
@@ -172,33 +231,25 @@ bool Board::isInRange(CellPosition cellPosition) const {
     return true;
 }
 
-bool Board::isSolved() const {
-    for (std::vector<Cell> row : board) {
-        for (Cell cell : row) {
-            if (cell.getColor() == None) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-// Explicit Instantiations
-template RowLength Board::getLength<RowOrientation>() const;
-template ColumnLength Board::getLength<ColumnOrientation>() const;
+// =========================================================================
+// | Explicit instantiations                                               |
+// =========================================================================
+template RowLength VectorBoard::getLength<RowOrientation>() const;
+template ColumnLength VectorBoard::getLength<ColumnOrientation>() const;
 template LineTraits<RowOrientation>::Line
-  Board::getLine<RowOrientation>(LineTraits<RowOrientation>::Index) const;
+  VectorBoard::getLine<RowOrientation>(LineTraits<RowOrientation>::Index) const;
 template LineTraits<ColumnOrientation>::Line
-  Board::getLine<ColumnOrientation>(LineTraits<ColumnOrientation>::Index) const;
-template void Board::applyLine<RowOrientation>(
+  VectorBoard::getLine<ColumnOrientation>(LineTraits<ColumnOrientation>::Index) const;
+template void VectorBoard::applyLine<RowOrientation>(
   LinePosition<RowOrientation>, const LineTraits<RowOrientation>::Line &, bool);
-template void Board::applyLine<ColumnOrientation>(
+template void VectorBoard::applyLine<ColumnOrientation>(
   LinePosition<ColumnOrientation>, const LineTraits<ColumnOrientation>::Line &, bool);
-template void Board::applyPlacement<RowOrientation>(
+template void VectorBoard::applyPlacement<RowOrientation>(
   LinePosition<RowOrientation>, const LineTraits<RowOrientation>::Placement &);
-template void Board::applyPlacement<ColumnOrientation>(
+template void VectorBoard::applyPlacement<ColumnOrientation>(
   LinePosition<ColumnOrientation>, const LineTraits<ColumnOrientation>::Placement &);
-template void Board::applyHint<RowOrientation>(HintPosition<RowOrientation>, HintNumber);
-template void Board::applyHint<ColumnOrientation>(HintPosition<ColumnOrientation>, HintNumber);
+template void VectorBoard::applyHint<RowOrientation>(HintPosition<RowOrientation>, HintNumber);
+template void
+  VectorBoard::applyHint<ColumnOrientation>(HintPosition<ColumnOrientation>, HintNumber);
 
 } // namespace VersaNo::Core

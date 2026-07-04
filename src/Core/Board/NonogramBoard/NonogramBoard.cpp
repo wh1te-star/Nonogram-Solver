@@ -71,7 +71,9 @@ bool NonogramBoard::isInRange(CellPosition cellPosition) const {
 
 bool NonogramBoard::isSolved() const { return board.isSolved(); }
 
-// Explicit instantiations
+// =========================================================================
+// | Explicit instantiations                                               |
+// =========================================================================
 template RowLength NonogramBoard::getLength<RowOrientation>() const;
 template ColumnLength NonogramBoard::getLength<ColumnOrientation>() const;
 template RowHintGroup NonogramBoard::getHintGroup<RowOrientation>() const;

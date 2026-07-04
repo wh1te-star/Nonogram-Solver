@@ -1,25 +1,28 @@
 #ifndef VERSANO_CORE_NONOGRAMBOARD_H
 #define VERSANO_CORE_NONOGRAMBOARD_H
 
-#include "Core/Board/Board/Board.h"
+#include "Core/Board/Board/IBoard.h"
 #include "Core/Types/AppliedType/AppliedType.h"
 
 namespace VersaNo::Core {
 
 class NonogramBoard {
   private:
-    Board board;
+    IBoard &board;
     RowHintGroup rowHintGroup;
     ColumnHintGroup columnHintGroup;
 
   public:
-    explicit NonogramBoard(Board board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup);
+    explicit NonogramBoard(
+      IBoard &board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup);
 
-    // Board getters (method forwarding)
+    // =========================================================================
+    // | Getters                                                               |
+    // =========================================================================
   public:
     template <typename TOrientation> typename LineTraits<TOrientation>::Length getLength() const;
-    Board getBoard() const;
-    Board &getBoard();
+    IBoard getBoard() const;
+    IBoard &getBoard();
     Cell getCell(CellPosition cellPosition) const;
     template <typename TOrientation>
     typename LineTraits<TOrientation>::Line
@@ -30,7 +33,9 @@ class NonogramBoard {
     template <typename TOrientation>
     typename LineTraits<TOrientation>::HintGroup getHintGroup() const;
 
-    // Apply operations
+    // =========================================================================
+    // | Applyers                                                              |
+    // =========================================================================
   public:
     void applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false);
 
@@ -38,7 +43,7 @@ class NonogramBoard {
     void applyLine(
       typename LinePosition<TOrientation> linePosition,
       const typename LineTraits<TOrientation>::Line &line,
-      bool overwriteNone);
+      bool overwriteNone) const {}
     template <typename TOrientation>
     void applyPlacement(
       typename LinePosition<TOrientation> linePosition,
@@ -47,9 +52,11 @@ class NonogramBoard {
     template <typename TOrientation>
     void applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber);
 
-    void applyBoard(const Board &board, bool overwriteNone);
+    void applyBoard(const IBoard &board, bool overwriteNone);
 
-    // Utility methods
+    // =========================================================================
+    // | Utilities                                                             |
+    // =========================================================================
   public:
     bool isInRange(CellPosition cellPosition) const;
     bool isSolved() const;
