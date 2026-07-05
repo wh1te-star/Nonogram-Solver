@@ -3,41 +3,85 @@
 namespace VersaNo::Core {
 
 NonogramBoard::NonogramBoard(
-  Board board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup)
+  IBoard &board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup)
     : board(std::move(board))
     , rowHintGroup(std::move(rowHintGroup))
     , columnHintGroup(std::move(columnHintGroup)) {}
+
+// =========================================================================
+// | Getters                                                               |
+// =========================================================================
+
+const IBoard &NonogramBoard::getBoard() const {
+    return board;
+}
+
+IBoard &NonogramBoard::getBoard() {
+    return board;
+}
+
+RowHintGroup NonogramBoard::getRowHintGroup() const {
+    return rowHintGroup;
+}
+
+ColumnHintGroup NonogramBoard::getColumnHintGroup() const {
+    return columnHintGroup;
+}
+
+template <typename TOrientation>
+typename LineTraits<TOrientation>::HintGroup NonogramBoard::getHintGroup() const {
+    if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
+        return rowHintGroup;
+    } else {
+        return columnHintGroup;
+    }
+}
+
+RowLength NonogramBoard::getRowLength() const {
+    return board.getRowLength();
+}
+
+ColumnLength NonogramBoard::getColumnLength() const {
+    return board.getColumnLength();
+}
 
 template <typename TOrientation>
 typename LineTraits<TOrientation>::Length NonogramBoard::getLength() const {
     return board.getLength<TOrientation>();
 }
 
-Board NonogramBoard::getBoard() const { return board; }
+Cell NonogramBoard::getCell(CellPosition cellPosition) const {
+    return board.getCell(cellPosition);
+}
 
-Board &NonogramBoard::getBoard() { return board; }
+Row NonogramBoard::getRow(RowIndex index) const {
+    return board.getRow(index);
+}
 
-Cell NonogramBoard::getCell(CellPosition cellPosition) const { return board.getCell(cellPosition); }
+Column NonogramBoard::getColumn(ColumnIndex index) const {
+    return board.getColumn(index);
+}
 
 template <typename TOrientation>
-typename LineTraits<TOrientation>::Line
-NonogramBoard::getLine(typename LineTraits<TOrientation>::Index index) const {
+typename LineTraits<TOrientation>::Line NonogramBoard::getLine(typename LineTraits<TOrientation>::Index index) const {
     return board.getLine<TOrientation>(index);
 }
 
-template <>
-typename LineTraits<RowOrientation>::HintGroup NonogramBoard::getHintGroup<RowOrientation>() const {
-    return rowHintGroup;
+// =========================================================================
+// | Applyers                                                              |
+// =========================================================================
+
+void NonogramBoard::applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone) {
+    board.applyCell(coordinate, cell, overrideNone);
 }
 
-template <>
-typename LineTraits<ColumnOrientation>::HintGroup
-NonogramBoard::getHintGroup<ColumnOrientation>() const {
-    return columnHintGroup;
+void NonogramBoard::applyRow(LinePosition<RowOrientation> linePosition, const Row &row, bool overwriteNone) {
+    board.applyRow(linePosition, row, overwriteNone);
 }
 
-void NonogramBoard::applyCell(CellPosition cellPosition, const Cell &cell, bool overwriteNone) {
-    board.applyCell(cellPosition, cell, overwriteNone);
+void NonogramBoard::applyColumn(
+  LinePosition<ColumnOrientation> linePosition, const Column &column, bool overwriteNone) {
+    board.applyColumn(linePosition, column, overwriteNone);
 }
 
 template <typename TOrientation>
@@ -45,31 +89,49 @@ void NonogramBoard::applyLine(
   typename LinePosition<TOrientation> linePosition,
   const typename LineTraits<TOrientation>::Line &line,
   bool overwriteNone) {
-    return board.applyLine<TOrientation>(linePosition, line, overwriteNone);
+    board.applyLine<TOrientation>(linePosition, line, overwriteNone);
+}
+
+void NonogramBoard::applyRowPlacement(LinePosition<RowOrientation> linePosition, const RowPlacement &placement) {
+    board.applyRowPlacement(linePosition, placement);
+}
+
+void NonogramBoard::applyColumnPlacement(
+  LinePosition<ColumnOrientation> linePosition, const ColumnPlacement &placement) {
+    board.applyColumnPlacement(linePosition, placement);
 }
 
 template <typename TOrientation>
 void NonogramBoard::applyPlacement(
   typename LinePosition<TOrientation> linePosition,
   const typename LineTraits<TOrientation>::Placement &placement) {
-    return board.applyPlacement<TOrientation>(linePosition, placement);
+    board.applyPlacement<TOrientation>(linePosition, placement);
+}
+
+void NonogramBoard::applyRowHint(HintPosition<RowOrientation> hintPosition, HintNumber hintNumber) {
+    board.applyRowHint(hintPosition, hintNumber);
+}
+
+void NonogramBoard::applyColumnHint(HintPosition<ColumnOrientation> hintPosition, HintNumber hintNumber) {
+    board.applyColumnHint(hintPosition, hintNumber);
 }
 
 template <typename TOrientation>
-void NonogramBoard::applyHint(
-  typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
-    return board.applyHint<TOrientation>(hintPosition, hintNumber);
+void NonogramBoard::applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
+    board.applyHint<TOrientation>(hintPosition, hintNumber);
 }
 
-void NonogramBoard::applyBoard(const Board &board, bool overwriteNone) {
-    return this->board.applyBoard(board, overwriteNone);
+void NonogramBoard::applyBoard(const IBoard &board, bool overwriteNone) {
+    this->board.applyBoard(board, overwriteNone);
 }
 
-bool NonogramBoard::isInRange(CellPosition cellPosition) const {
-    return board.isInRange(cellPosition);
-}
+// =========================================================================
+// | Utilities                                                             |
+// =========================================================================
 
-bool NonogramBoard::isSolved() const { return board.isSolved(); }
+bool NonogramBoard::isSolved() const {
+    return board.isSolved();
+}
 
 // =========================================================================
 // | Explicit instantiations                                               |
