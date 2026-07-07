@@ -29,14 +29,14 @@ BacktrackSolver::BacktrackSolver(
 
 void BacktrackSolver::solve(
   NonogramBoard &nonogramBoard,
-  std::vector<Board> &solutions,
+  std::vector<std::unique_ptr<const Core::IBoard>> &solutions,
   IBoardUpdateHandler &boardUpdateHandler) {
     backtrackSolve(nonogramBoard, solutions, boardUpdateHandler);
 }
 
 void BacktrackSolver::backtrackSolve(
   NonogramBoard &nonogramBoard,
-  std::vector<Board> &solutions,
+  std::vector<std::unique_ptr<const Core::IBoard>> &solutions,
   IBoardUpdateHandler &boardUpdateHandler) {
 
     DeterministicSolverResult result = deterministicSolver.solve(nonogramBoard, boardUpdateHandler);
@@ -54,7 +54,7 @@ void BacktrackSolver::backtrackSolve(
 
 void BacktrackSolver::backtrackSolveRecursive(
   NonogramBoard &nonogramBoard,
-  std::vector<Board> &solutions,
+  std::vector<std::unique_ptr<const Core::IBoard>> &solutions,
   int depth,
   IBoardUpdateHandler &boardUpdateHandler) {
 

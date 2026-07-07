@@ -2,7 +2,7 @@
 #define VERSANO_SOLVER_IBOARDUPDATEHANDLER_H
 
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Board/Board/Board.h"
+#include "Core/Board/Board/IBoard.h"
 #include "Core/Position/CellPosition/CellPosition.h"
 
 namespace VersaNo::Core {
@@ -30,9 +30,9 @@ public:
         const typename Core::LineTraits<Core::ColumnOrientation>::Line &afterLine) = 0;
 
     virtual void onBoardUpdate(
-        const Core::Board &targetBoard,
-        const Core::Board &beforeBoard,
-        const Core::Board &afterBoard) = 0;
+        const Core::IBoard &targetBoard,
+        const Core::IBoard &beforeBoard,
+        const Core::IBoard &afterBoard) = 0;
 };
 
 } // namespace VersaNo::Solver

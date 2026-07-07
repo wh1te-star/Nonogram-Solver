@@ -30,18 +30,18 @@ class BacktrackSolver : public ISolver {
 
     void solve(
       Core::NonogramBoard &nonogramBoard,
-      std::vector<Core::Board> &solutions,
+      std::vector<std::unique_ptr<const Core::IBoard>> &solutions,
       Core::IBoardUpdateHandler &boardUpdateHandler) override;
 
   private:
     void backtrackSolve(
       Core::NonogramBoard &nonogramBoard,
-      std::vector<Core::Board> &solutions,
+      std::vector<std::unique_ptr<const Core::IBoard>> &solutions,
       Core::IBoardUpdateHandler &boardUpdateHandler);
 
     void backtrackSolveRecursive(
       Core::NonogramBoard &nonogramBoard,
-      std::vector<Core::Board> &solutions,
+      std::vector<std::unique_ptr<const Core::IBoard>> &solutions,
       int depth,
       Core::IBoardUpdateHandler &boardUpdateHandler);
 };

@@ -12,7 +12,7 @@ class ISolver {
     virtual ~ISolver() = default;
     virtual void solve(
       Core::NonogramBoard &nonogramBoard,
-      std::vector<Core::Board> &solutions,
+      std::vector<std::unique_ptr<const Core::IBoard>> &solutions,
       Core::IBoardUpdateHandler &boardUpdateHandler) = 0;
 };
 

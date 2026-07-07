@@ -23,10 +23,10 @@ AlgorithmThreadRunner::AlgorithmThreadRunner(
     , boardUpdateHandler(boardUpdateHandler) {}
 
 void AlgorithmThreadRunner::run(ISolver &solver) {
-    std::vector<Board> solutions;
+    std::vector<std::unique_ptr<const Core::IBoard>> solutions;
     solver.solve(nonogramBoard, solutions, boardUpdateHandler);
     if (!solutions.empty()) {
-        nonogramBoard.applyBoard(solutions[0], true);
+        nonogramBoard.applyBoard(*solutions[0], true);
         nonogramBoardSender.send(nonogramBoard);
     }
 }
