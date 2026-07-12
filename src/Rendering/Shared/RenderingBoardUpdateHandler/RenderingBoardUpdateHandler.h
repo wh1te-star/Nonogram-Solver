@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_RENDERINGBOARDUPDATEHANDLER_H
 #define VERSANO_CORE_RENDERINGBOARDUPDATEHANDLER_H
 
-#include "Core/Board/Board/Board.h"
+#include "Core/Board/Board/IBoard.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Position/CellPosition/CellPosition.h"
 #include "Core/Position/HintPosition/HintPosition.h"
@@ -40,9 +40,9 @@ class RenderingBoardUpdateHandler : public Core::IBoardUpdateHandler {
       const typename Core::LineTraits<Core::ColumnOrientation>::Line &afterLine) override;
 
     void onBoardUpdate(
-      const Core::Board &targetBoard,
-      const Core::Board &beforeBoard,
-      const Core::Board &afterBoard) override;
+      const Core::IBoard &targetBoard,
+      const Core::IBoard &beforeBoard,
+      const Core::IBoard &afterBoard) override;
 
   private:
     template <typename TOrientation>
