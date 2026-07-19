@@ -3,7 +3,6 @@
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Types/AppliedType/AppliedType.h"
 
-
 #include <cassert>
 #include <sstream>
 
@@ -13,8 +12,8 @@ NonogramBoard PuzzleLoader::getPuzzle(PuzzleType type) {
     RowHintGroup rowHintGroup = getRowHintGroup(type);
     ColumnHintGroup columnHintGroup = getColumnHintGroup(type);
     return NonogramBoard(
-      Board(RowLength((int)rowHintGroup.size()), ColumnLength((int)columnHintGroup.size())), rowHintGroup,
-      columnHintGroup);
+      VectorBoard(RowLength((int)rowHintGroup.size()), ColumnLength((int)columnHintGroup.size())),
+      rowHintGroup, columnHintGroup);
 }
 
 RowHintGroup PuzzleLoader::getRowHintGroup(PuzzleType type) {
