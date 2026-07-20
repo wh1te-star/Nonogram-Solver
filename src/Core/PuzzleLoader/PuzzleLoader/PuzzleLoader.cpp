@@ -1,6 +1,7 @@
 #include "Core/PuzzleLoader/PuzzleLoader/PuzzleLoader.h"
 
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
+#include "Core/Board/Board/VectorBoard/VectorBoard.h"
 #include "Core/Types/AppliedType/AppliedType.h"
 
 #include <cassert>
