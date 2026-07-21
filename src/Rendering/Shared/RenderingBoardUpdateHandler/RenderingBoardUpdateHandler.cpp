@@ -32,7 +32,7 @@ void RenderingBoardUpdateHandler::onColumnUpdate(
 }
 
 void RenderingBoardUpdateHandler::onBoardUpdate(
-  const Board &targetBoard, const Board &beforeBoard, const Board &afterBoard) {
+  const IBoard &targetBoard, const IBoard &beforeBoard, const IBoard &afterBoard) {
     checkAndSendBoard();
 }
 
