@@ -1,7 +1,7 @@
 #ifndef VERSANO_CORE_TABLERENDERER_H
 #define VERSANO_CORE_TABLERENDERER_H
 
-#include "Core/Board/Board/Board.h"
+#include "Core/Board/Board/IBoard.h"
 #include "Core/Board/NonogramBoard/NonogramBoard.h"
 #include "Core/Types/AppliedType/AppliedType.h"
 #include "imgui.h"
@@ -49,7 +49,7 @@ class TableRenderer {
       Core::ColumnIndex columnIndex,
       Core::RowLength columnHintLength,
       Core::ColumnLength rowHintLength,
-      Core::Board board,
+      const Core::IBoard &board,
       CellType cellType) const;
 
     std::string setLabel(
@@ -77,7 +77,7 @@ class TableRenderer {
       Core::ColumnIndex columnIndex,
       Core::RowLength columnHintLength,
       Core::ColumnLength rowHintLength,
-      Core::Board board,
+      const Core::IBoard &board,
       CellType cellType,
       // Core::HighlightIndexes highlightIndexes,
       bool isHovered) const;

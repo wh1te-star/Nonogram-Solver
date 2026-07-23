@@ -41,7 +41,7 @@ void BacktrackSolver::backtrackSolve(
 
     DeterministicSolverResult result = deterministicSolver.solve(nonogramBoard, boardUpdateHandler);
     if (result == DeterministicSolverResult::Solved) {
-        solutions.push_back(nonogramBoard.getBoard());
+        solutions.push_back(nonogramBoard.getBoard().clone());
         return;
     }
 
@@ -84,7 +84,7 @@ void BacktrackSolver::backtrackSolveRecursive(
 
         switch (deterministicSolver.solve(nonogramBoard, boardUpdateHandler)) {
         case DeterministicSolverResult::Solved:
-            solutions.push_back(nonogramBoard.getBoard());
+            solutions.push_back(nonogramBoard.getBoard().clone());
             break;
 
         case DeterministicSolverResult::NoMoreProgress:

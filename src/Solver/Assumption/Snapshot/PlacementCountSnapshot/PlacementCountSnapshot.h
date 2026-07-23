@@ -2,19 +2,19 @@
 #define VERSANO_CORE_PLACEMENTCOUNTSNAPSHOT_H
 
 #include "Core/Types/AppliedType/AppliedType.h"
-#include "Core/Board/Board/Board.h"
+#include "Core/Board/Board/IBoard.h"
 #include "Solver/Assumption/Snapshot/ISnapshot.h"
 
 namespace VersaNo::Solver {
 
 class PlacementCountSnapshot : public ISnapshot {
   public:
-    Core::Board board;
+    const Core::IBoard &board;
     Core::RowPlacementCountList rowPlacementCountList;
     Core::ColumnPlacementCountList columnPlacementCountList;
 
     PlacementCountSnapshot(
-      Core::Board board,
+      const Core::IBoard &board,
       Core::RowPlacementCountList rowPlacementCountList,
       Core::ColumnPlacementCountList columnPlacementCountList);
 

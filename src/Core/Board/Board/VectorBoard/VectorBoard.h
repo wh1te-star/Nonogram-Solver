@@ -21,6 +21,8 @@ class VectorBoard : public IBoard {
   public:
     VectorBoard(RowLength rowLength, ColumnLength columnLength);
 
+    std::unique_ptr<IBoard> clone() const override;
+
     bool operator==(const VectorBoard &other) const;
     bool operator!=(const VectorBoard &other) const;
 
@@ -44,10 +46,12 @@ class VectorBoard : public IBoard {
     // =========================================================================
     void applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false) override;
 
-    void
-    applyRow(LinePosition<RowOrientation> linePosition, const Row &row, bool overwriteNone) override;
+    void applyRow(
+      LinePosition<RowOrientation> linePosition, const Row &row, bool overwriteNone) override;
     void applyColumn(
-      LinePosition<ColumnOrientation> linePosition, const Column &column, bool overwriteNone) override;
+      LinePosition<ColumnOrientation> linePosition,
+      const Column &column,
+      bool overwriteNone) override;
     void applyRowPlacement(
       LinePosition<RowOrientation> linePosition, const RowPlacement &placement) override;
     void applyColumnPlacement(
@@ -64,7 +68,8 @@ class VectorBoard : public IBoard {
       const typename LineTraits<TOrientation>::Placement &placement);
 
     void applyRowHint(HintPosition<RowOrientation> hintPosition, HintNumber hintNumber) override;
-    void applyColumnHint(HintPosition<ColumnOrientation> hintPosition, HintNumber hintNumber) override;
+    void
+    applyColumnHint(HintPosition<ColumnOrientation> hintPosition, HintNumber hintNumber) override;
     template <typename TOrientation>
     void applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber);
 

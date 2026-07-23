@@ -12,6 +12,9 @@ VectorBoard::VectorBoard(RowLength rowLength, ColumnLength columnLength)
     : rowLength(std::move(rowLength)), columnLength(std::move(columnLength)) {
     board.resize(rowLength.value, std::vector<Cell>(columnLength.value, Cell()));
 }
+std::unique_ptr<IBoard> VectorBoard::clone() const {
+    return std::make_unique<VectorBoard>(*this);
+}
 
 bool VectorBoard::operator==(const VectorBoard &other) const { return board == other.board; }
 bool VectorBoard::operator!=(const VectorBoard &other) const { return !(*this == other); }

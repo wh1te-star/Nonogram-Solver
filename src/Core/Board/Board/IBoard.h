@@ -18,10 +18,14 @@ class IBoard {
     // =========================================================================
     // | Getters                                                               |
     // =========================================================================
+    [[nodiscard]] virtual std::unique_ptr<IBoard> clone() const = 0;
+
+    // =========================================================================
+    // | Getters                                                               |
+    // =========================================================================
     virtual RowLength getRowLength() const = 0;
     virtual ColumnLength getColumnLength() const = 0;
-    template <typename TOrientation>
-    typename LineTraits<TOrientation>::Length getLength() const {
+    template <typename TOrientation> typename LineTraits<TOrientation>::Length getLength() const {
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
             return getRowLength();
         } else {
@@ -34,7 +38,8 @@ class IBoard {
     virtual Row getRow(RowIndex index) const = 0;
     virtual Column getColumn(ColumnIndex index) const = 0;
     template <typename TOrientation>
-    typename LineTraits<TOrientation>::Line getLine(typename LineTraits<TOrientation>::Index index) const {
+    typename LineTraits<TOrientation>::Line
+    getLine(typename LineTraits<TOrientation>::Index index) const {
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
             return getRow(index);
         } else {
@@ -45,7 +50,8 @@ class IBoard {
     // =========================================================================
     // | Applyers                                                              |
     // =========================================================================
-    virtual void applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false) = 0;
+    virtual void
+    applyCell(CellPosition coordinate, const Cell &cell, bool overrideNone = false) = 0;
 
     virtual void
     applyRow(LinePosition<RowOrientation> linePosition, const Row &row, bool overwriteNone) = 0;
@@ -53,9 +59,9 @@ class IBoard {
       LinePosition<ColumnOrientation> linePosition, const Column &column, bool overwriteNone) = 0;
     template <typename TOrientation>
     void applyLine(
-        typename LinePosition<TOrientation> linePosition,
-        const typename LineTraits<TOrientation>::Line &line,
-        bool overwriteNone) {
+      typename LinePosition<TOrientation> linePosition,
+      const typename LineTraits<TOrientation>::Line &line,
+      bool overwriteNone) {
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
             // Forward to virtual function
             applyRow(linePosition, line, overwriteNone);
@@ -65,14 +71,14 @@ class IBoard {
         }
     }
 
-    virtual void applyRowPlacement(
-      LinePosition<RowOrientation> linePosition, const RowPlacement &placement) = 0;
+    virtual void
+    applyRowPlacement(LinePosition<RowOrientation> linePosition, const RowPlacement &placement) = 0;
     virtual void applyColumnPlacement(
       LinePosition<ColumnOrientation> linePosition, const ColumnPlacement &placement) = 0;
     template <typename TOrientation>
     void applyPlacement(
-        typename LinePosition<TOrientation> linePosition,
-        const typename LineTraits<TOrientation>::Placement &placement) {
+      typename LinePosition<TOrientation> linePosition,
+      const typename LineTraits<TOrientation>::Placement &placement) {
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {
             // Forward to virtual function
             applyRowPlacement(linePosition, placement);
@@ -83,7 +89,8 @@ class IBoard {
     }
 
     virtual void applyRowHint(HintPosition<RowOrientation> hintPosition, HintNumber hintNumber) = 0;
-    virtual void applyColumnHint(HintPosition<ColumnOrientation> hintPosition, HintNumber hintNumber) = 0;
+    virtual void
+    applyColumnHint(HintPosition<ColumnOrientation> hintPosition, HintNumber hintNumber) = 0;
     template <typename TOrientation>
     void applyHint(typename HintPosition<TOrientation> hintPosition, HintNumber hintNumber) {
         if constexpr (std::is_same_v<TOrientation, RowOrientation>) {

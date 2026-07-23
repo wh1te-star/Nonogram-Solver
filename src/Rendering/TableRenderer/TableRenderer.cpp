@@ -29,7 +29,7 @@ void TableRenderer::render(
     // const HighlightIndexes highlightIndexes =
     // sharedHighlightIndexes.getHighlightIndexes(); const BacktrackStack
     // backtrackStack = sharedBacktrackStack.getBacktrackStack();
-    const Board board = nonogramBoard.getBoard();
+    const IBoard &board = nonogramBoard.getBoard();
     const RowHintGroup rowHintGroup = nonogramBoard.getHintGroup<RowOrientation>();
     const ColumnHintGroup columnHintGroup = nonogramBoard.getHintGroup<ColumnOrientation>();
     // const RowPlacementCountList rowPlacementCountList = nonogramBoard.getRowPlacementCountList();
@@ -234,7 +234,7 @@ ImU32 TableRenderer::getCellColorU32(
   ColumnIndex columnIndex,
   RowLength columnHintLength,
   ColumnLength rowHintLength,
-  Board board,
+  const IBoard &board,
   CellType cellType,
   // HighlightIndexes highlightIndexes,
   bool isHovered) const {

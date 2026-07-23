@@ -8,13 +8,13 @@ namespace VersaNo::Core {
 
 class NonogramBoard {
   private:
-    IBoard &board;
+    std::shared_ptr<IBoard> board;
     RowHintGroup rowHintGroup;
     ColumnHintGroup columnHintGroup;
 
   public:
     explicit NonogramBoard(
-      IBoard &board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup);
+      std::shared_ptr<IBoard> board, RowHintGroup rowHintGroup, ColumnHintGroup columnHintGroup);
 
     // =========================================================================
     // | Getters                                                               |

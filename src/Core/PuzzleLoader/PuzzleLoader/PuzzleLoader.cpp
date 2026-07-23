@@ -5,16 +5,22 @@
 #include "Core/Types/AppliedType/AppliedType.h"
 
 #include <cassert>
+#include <memory>
 #include <sstream>
 
 namespace VersaNo::Core {
 
+
 NonogramBoard PuzzleLoader::getPuzzle(PuzzleType type) {
     RowHintGroup rowHintGroup = getRowHintGroup(type);
     ColumnHintGroup columnHintGroup = getColumnHintGroup(type);
-    return NonogramBoard(
-      VectorBoard(RowLength((int)rowHintGroup.size()), ColumnLength((int)columnHintGroup.size())),
-      rowHintGroup, columnHintGroup);
+
+    std::shared_ptr<IBoard> board = std::make_shared<VectorBoard>(
+        RowLength((int)rowHintGroup.size()), 
+        ColumnLength((int)columnHintGroup.size())
+    );
+
+    return NonogramBoard(board, rowHintGroup, columnHintGroup);
 }
 
 RowHintGroup PuzzleLoader::getRowHintGroup(PuzzleType type) {

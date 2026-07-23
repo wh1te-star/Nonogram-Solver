@@ -4,10 +4,10 @@ using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
 PlacementCountSnapshot::PlacementCountSnapshot(
-  Board board,
+  const IBoard &board,
   RowPlacementCountList rowPlacementCountList,
   ColumnPlacementCountList columnPlacementCountList)
-    : board(std::move(board))
+    : board(board)
     , rowPlacementCountList(std::move(rowPlacementCountList))
     , columnPlacementCountList(std::move(columnPlacementCountList)) {}
 
