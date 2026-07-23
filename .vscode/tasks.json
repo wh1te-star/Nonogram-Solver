@@ -9,7 +9,10 @@
 				"all"
 			],
 			"preset": "__defaultBuildPreset__",
-			"group": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
 			"problemMatcher": [],
 			"detail": "CMake template build task"
 		}
