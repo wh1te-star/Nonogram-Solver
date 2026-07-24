@@ -70,7 +70,7 @@ void BacktrackSolver::backtrackSolveRecursive(
 
         backtrackStack.push(
           std::make_unique<PlacementCountSnapshot>(
-            nonogramBoard.getBoard(),
+            nonogramBoard.getBoard().clone(),
             RowPlacementCountList(
               std::vector<PlacementCount>(
                 nonogramBoard.getLength<RowOrientation>().value, PlacementCount(0))),

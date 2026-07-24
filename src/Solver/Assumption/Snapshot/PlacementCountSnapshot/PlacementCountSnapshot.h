@@ -9,12 +9,12 @@ namespace VersaNo::Solver {
 
 class PlacementCountSnapshot : public ISnapshot {
   public:
-    const Core::IBoard &board;
+    const std::shared_ptr<Core::IBoard> board;
     Core::RowPlacementCountList rowPlacementCountList;
     Core::ColumnPlacementCountList columnPlacementCountList;
 
     PlacementCountSnapshot(
-      const Core::IBoard &board,
+      const std::shared_ptr<Core::IBoard> board,
       Core::RowPlacementCountList rowPlacementCountList,
       Core::ColumnPlacementCountList columnPlacementCountList);
 

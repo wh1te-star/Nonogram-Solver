@@ -4,7 +4,7 @@ using namespace VersaNo::Core;
 namespace VersaNo::Solver {
 
 PlacementCountSnapshot::PlacementCountSnapshot(
-  const IBoard &board,
+  const std::shared_ptr<Core::IBoard> board,
   RowPlacementCountList rowPlacementCountList,
   ColumnPlacementCountList columnPlacementCountList)
     : board(board)
@@ -12,7 +12,7 @@ PlacementCountSnapshot::PlacementCountSnapshot(
     , columnPlacementCountList(std::move(columnPlacementCountList)) {}
 
 void PlacementCountSnapshot::restore(NonogramBoard &nonogramBoard) const {
-    nonogramBoard.applyBoard(board, true);
+    nonogramBoard.applyBoard(*board, true);
 }
 
 } // namespace VersaNo::Solver
